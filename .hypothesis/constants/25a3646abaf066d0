@@ -1,4 +1,0 @@
-# file: G:\GitHub\CodeSlopCleanup\src\refactored\validator.py
-# hypothesis_version: 6.150.1
-
-['amount', 'id', 'pending', 'status']
