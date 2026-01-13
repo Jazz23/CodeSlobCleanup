@@ -11,7 +11,7 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
     *   **Fuzzing**: Using **Atheris** (Google) for coverage-guided fuzzing.
 
 ## Development Context
-*   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management.
+*   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management. Use `uv run` instead of python, and add python dependencies with `uv add`.
 *   **Current Focus**:
     *   Establishing the testing baseline with Hypothesis.
     *   Developing the static analysis scanner for identifying slob.

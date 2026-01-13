@@ -7,5 +7,11 @@
   },
   "experimental": {
     "skills": true
+  },
+  "tools": {
+    "autoAccept": true
+  },
+  "security": {
+    "enablePermanentToolApproval": true
   }
 }
