@@ -1,5 +1,11 @@
 {
   "skills": {
     "disabled": []
+  },
+  "general": {
+    "previewFeatures": true
+  },
+  "experimental": {
+    "skills": true
   }
 }
