@@ -18,48 +18,77 @@ sys.path.insert(0, str(project_root))
 sys.path.insert(0, str(verification_root))
 
 try:
-    from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+    from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 except ImportError:
     try:
-        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
     except ImportError:
-        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 
-def generate_benchmark_inputs(func: Callable, num_inputs: int = 100) -> List[Any]:
-    """Generates a list of input tuples for the given function using Hypothesis."""
-    sig = inspect.signature(func)
-    strategies = [infer_strategy(param) for param in sig.parameters.values()]
-    args_strategy = st.tuples(*strategies)
+def generate_benchmark_inputs(func: Callable, num_inputs: int = 100, validate: bool = True) -> List[Any]:
+    """
+    Generates a list of input tuples for the given function using Hypothesis.
+    If validate is True, it filters out inputs that cause the function to raise an Exception.
+    This is crucial for untyped code where Hypothesis might generate garbage types.
+    """
+    # Use smart inference to find strategies that actually work
+    args_strategy = smart_infer_arg_strategies(func)
     
     inputs = []
     
-    # We use a simple loop with strategy.example() for simplicity in this script, 
-    # acknowledging it might not be perfectly reproducible or diverse without full engine.
-    # However, to be robust, we'll try to use the engine.
+    # Generate more candidates than needed if we are validating
+    target_count = num_inputs * 10 if validate else num_inputs
+    candidates = []
     
-    @settings(max_examples=num_inputs, phases=[Phase.generate], database=None)
+    @settings(max_examples=target_count, phases=[Phase.generate], database=None)
     @given(args_strategy)
     def collector(args):
-        inputs.append(args)
+        candidates.append(args)
         
     try:
         collector()
     except Exception:
         pass
         
-    # Fallback if collector didn't get enough (e.g. constraints)
-    while len(inputs) < num_inputs:
+    # Fallback if collector didn't get enough
+    attempts = 0
+    while len(candidates) < target_count and attempts < 1000:
         try:
-            inputs.append(args_strategy.example())
+            candidates.append(args_strategy.example())
         except:
             break
+        attempts += 1
             
-    return inputs[:num_inputs]
+    if not validate:
+        return candidates[:num_inputs]
+        
+    # Filter for valid inputs
+    valid_inputs = []
+    for args in candidates:
+        try:
+            # Test run
+            func(*args)
+            valid_inputs.append(args)
+        except Exception:
+            # Discard invalid input
+            pass
+        if len(valid_inputs) >= num_inputs:
+            break
+            
+    if not valid_inputs and candidates:
+        print(f"    [WARN] Generated {len(candidates)} inputs but ALL failed validation (raised exceptions).")
+        print("           Benchmarking will likely fail or show exception-handling time only.")
+        # Fallback to returning at least some candidates so we don't crash the tool,
+        # but the benchmark results will be meaningless (exception speed).
+        return candidates[:num_inputs]
+        
+    return valid_inputs
 
 def measure_execution_time(func: Callable, input_args_list: List[tuple], num_runs: int = 50) -> List[float]:
     """Measures execution time of func(*args) for the list of inputs."""
     times = []
-    # Warmup
+    
+    # Warmup (only on valid inputs ideally)
     for _ in range(5):
         for args in input_args_list:
             try:
@@ -73,7 +102,7 @@ def measure_execution_time(func: Callable, input_args_list: List[tuple], num_run
             try:
                 func(*args)
             except Exception:
-                pass # Benchmark should ideally handle valid inputs, but we catch to avoid crash
+                pass # Still catch in case of non-deterministic errors
         end = time.perf_counter()
         times.append(end - start)
         

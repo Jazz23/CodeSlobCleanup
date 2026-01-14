@@ -1,5 +1,7 @@
 # Code Slob Cleanup Project
 
+ALWAYS USE `uv run <python file.py>` instead of `python ...`.
+
 ## Project Goal
 The "Code Slob Cleanup" project aims to build an automated toolchain—packaged as a coding agent skill—to identify, refactor, and rigorously verify Python code to remove "code slob". "Code slob" refers to subtle technical debt, unnecessary verbosity, and complexity often introduced by AI coding agents or rapid development.
 
@@ -12,11 +14,13 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 
 ## Development Context
 *   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management. Use `uv run` instead of python, and add python dependencies with `uv add`.
+*   **Continuous Verification**: Always run the comprehensive test suite after modifying any tools, scripts, or adding new "slob" vs "clean" examples to ensure behavior remains consistent and tools function as expected.
+    *   Command: `uv run --project verification pytest verification/tests/test_examples_suite.py`
 *   **Current Focus**:
     *   Establishing the testing baseline with Hypothesis.
     *   Developing the static analysis scanner for identifying slob.
     *   Creating canonical examples of "slob" vs. "clean" code.
 
 ## References
-*   See `G:\GitHub\cse247b_reports_w26\codeslob\overview.md` for the full project overview.
-*   See `G:\GitHub\CodeSlobCleanup\.gemini\skills\cse247b\references\codeslob.md` for skill references.
+*   See `cse247b_reports_w26\codeslob\overview.md` for the full project overview.
+*   See `CodeSlobCleanup\.gemini\skills\cse247b\references\codeslob.md` for skill references.

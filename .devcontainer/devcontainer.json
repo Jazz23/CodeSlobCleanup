@@ -9,9 +9,8 @@
 	],
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {},
-		"ghcr.io/devcontainers-extra/features/npm-package:1": {
-			"package": "@google/gemini-cli",
-			"version": "preview"
+		"ghcr.io/devcontainers-extra/features/npm-packages:1": {
+			"packages": "@google/gemini-cli@preview,openskills"
 		},
 		"ghcr.io/devcontainers-extra/features/uv:1": {}
 	},

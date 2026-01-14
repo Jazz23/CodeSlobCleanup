@@ -1,6 +1,6 @@
 def validate_transaction(t):
     """Refactored: Flattened with guard clauses."""
-    if not t or "id" not in t:
+    if not t or not isinstance(t, dict) or "id" not in t:
         return False
     
     if t.get("amount", 0) <= 0:

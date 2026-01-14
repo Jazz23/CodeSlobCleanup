@@ -1,6 +1,6 @@
 def validate_transaction(t):
     # Slob: "Arrow code" (deep nesting)
-    if t is not None:
+    if t is not None and isinstance(t, dict):
         if "id" in t:
             if t["amount"] > 0:
                 if t["status"] == "pending":

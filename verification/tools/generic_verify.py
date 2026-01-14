@@ -19,13 +19,13 @@ import hypothesis
 import hypothesis.strategies as st
 
 try:
-    from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+    from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 except ImportError:
     try:
-        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
     except ImportError:
         # Fallback if running directly inside tools/
-        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 
 # Try importing Atheris
 try:
@@ -34,41 +34,42 @@ try:
 except ImportError:
     ATHERIS_AVAILABLE = False
 
-def run_hypothesis_verification(orig_func: Callable, ref_func: Callable):
+def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, raise_on_error: bool = False):
     """Runs Hypothesis tests to verify orig_func == ref_func."""
     print(f"  - Verifying {orig_func.__name__} with Hypothesis...")
     
-    sig = inspect.signature(orig_func)
-    params = sig.parameters
-    
-    strategy_kwargs = {}
-    for name, param in params.items():
-        if name == 'self': continue
-        strategy_kwargs[name] = infer_strategy(param)
+    # Use smart inference to generate valid inputs even for untyped code
+    args_strategy = smart_infer_arg_strategies(orig_func)
         
     @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], max_examples=100, deadline=None)
-    @given(**strategy_kwargs)
-    def test_wrapper(**kwargs):
+    @given(args_strategy)
+    def test_wrapper(args):
+        # Unpack tuple args
+        kwargs = {}
+        # We need to map tuple back to kwargs if possible, but given(tuple) passes args as tuple.
+        # Hypothesis @given handles tuples if strategy returns tuples.
+        # However, calling the function requires *args.
+        
         # Capture exceptions to ensure both behave identically even in error states
         orig_res, orig_exc = None, None
         ref_res, ref_exc = None, None
         
         try:
-            orig_res = orig_func(**kwargs)
+            orig_res = orig_func(*args)
         except Exception as e:
             orig_exc = type(e)
             
         try:
-            ref_res = ref_func(**kwargs)
+            ref_res = ref_func(*args)
         except Exception as e:
             ref_exc = type(e)
             
         if orig_exc:
-            assert ref_exc == orig_exc, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for input {kwargs}"
+            assert ref_exc == orig_exc, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
         else:
             if ref_exc:
-                assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for input {kwargs}"
-            assert orig_res == ref_res, f"Mismatch for input {kwargs}: Original={orig_res}, Refactored={ref_res}"
+                assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
+            assert orig_res == ref_res, f"Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
 
     # Manually executing the test wrapper
     try:
@@ -78,8 +79,10 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable):
         print(f"    [FAIL] Hypothesis found a mismatch!")
         # traceback.print_exc() # detailed traceback
         print(e)
+        if raise_on_error:
+            raise e
 
-def run_class_verification(cls_name: str, orig_cls: type, ref_cls: type):
+def run_class_verification(cls_name: str, orig_cls: type, ref_cls: type, raise_on_error: bool = False):
     """Verifies public methods of a class."""
     print(f"\nVerifying Class: {cls_name}")
     
@@ -152,6 +155,8 @@ def run_class_verification(cls_name: str, orig_cls: type, ref_cls: type):
             print("    [PASS]")
         except Exception as e:
              print(f"    [FAIL] {e}")
+             if raise_on_error:
+                 raise e
 
 
 def run_atheris_fuzzing(orig_func: Callable, ref_func: Callable):
