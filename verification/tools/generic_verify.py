@@ -3,6 +3,17 @@ import inspect
 import sys
 import traceback
 from typing import Callable
+from pathlib import Path
+
+# Add the directory containing 'verification' to sys.path to allow absolute imports
+# and the 'verification' directory itself to allow 'from tools' if running from there
+current_file = Path(__file__).resolve()
+project_root = current_file.parents[2] # G:\GitHub\CodeSlobCleanup
+verification_root = current_file.parents[1] # G:\GitHub\CodeSlobCleanup\verification
+
+sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(verification_root))
+
 from hypothesis import given, settings, HealthCheck
 import hypothesis
 import hypothesis.strategies as st
@@ -10,7 +21,11 @@ import hypothesis.strategies as st
 try:
     from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
 except ImportError:
-    from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+    try:
+        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+    except ImportError:
+        # Fallback if running directly inside tools/
+        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
 
 # Try importing Atheris
 try:

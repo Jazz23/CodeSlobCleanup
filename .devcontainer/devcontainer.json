@@ -12,7 +12,8 @@
 		"ghcr.io/devcontainers-extra/features/npm-package:1": {
 			"package": "@google/gemini-cli",
 			"version": "preview"
-		}
+		},
+		"ghcr.io/devcontainers-extra/features/uv:1": {}
 	},
 	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.gemini"
 

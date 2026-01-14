@@ -28,6 +28,11 @@ def get_common_classes(mod1, mod2) -> List[str]:
 
 def infer_strategy(param: inspect.Parameter) -> st.SearchStrategy:
     """Infers a Hypothesis strategy based on type hint or default."""
+    if param.annotation == int:
+        # Limit integers to avoid hanging on inefficient (slob) code with massive inputs
+        # Reduced to +/- 50 because O(N!) or O(N^2) slob logic hangs on 10,000.
+        return st.integers(min_value=-50, max_value=50)
+        
     if param.annotation != inspect.Parameter.empty:
         try:
             return st.from_type(param.annotation)
@@ -36,13 +41,13 @@ def infer_strategy(param: inspect.Parameter) -> st.SearchStrategy:
     
     # Fallback strategies for untyped arguments
     return st.one_of(
-        st.integers(),
+        st.integers(min_value=-50, max_value=50),
         st.floats(allow_nan=False, allow_infinity=False),
         st.text(),
         st.none(),
         st.booleans(),
         st.recursive(
-            st.dictionaries(st.text(), st.one_of(st.text(), st.integers(), st.booleans())),
+            st.dictionaries(st.text(), st.one_of(st.text(), st.integers(min_value=-50, max_value=50), st.booleans())),
             lambda children: st.lists(children) | st.dictionaries(st.text(), children),
             max_leaves=10
         )

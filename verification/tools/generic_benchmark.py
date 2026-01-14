@@ -1,17 +1,29 @@
 import argparse
 import time
 import os
+import sys
 import inspect
 import numpy as np
 import matplotlib.pyplot as plt
 from typing import Callable, List, Any
+from pathlib import Path
 from hypothesis import given, settings, Phase
 import hypothesis.strategies as st
+
+# Add paths for imports
+current_file = Path(__file__).resolve()
+project_root = current_file.parents[2]
+verification_root = current_file.parents[1]
+sys.path.insert(0, str(project_root))
+sys.path.insert(0, str(verification_root))
 
 try:
     from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
 except ImportError:
-    from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+    try:
+        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
+    except ImportError:
+        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy
 
 def generate_benchmark_inputs(func: Callable, num_inputs: int = 100) -> List[Any]:
     """Generates a list of input tuples for the given function using Hypothesis."""
