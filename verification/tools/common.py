@@ -2,36 +2,12 @@ import importlib.util
 import inspect
 import sys
 import hypothesis.strategies as st
-from typing import List
-
-def load_module_from_path(file_path: str, module_name: str):
-    """Dynamically loads a python module from a file path."""
-    spec = importlib.util.spec_from_file_location(module_name, file_path)
-    if spec is None or spec.loader is None:
-        raise ImportError(f"Could not load module from {file_path}")
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[module_name] = module
-    spec.loader.exec_module(module)
-    return module
-
-def get_common_functions(mod1, mod2) -> List[str]:
-    """Returns a list of function names present in both modules."""
-    funcs1 = {n for n, _ in inspect.getmembers(mod1, inspect.isfunction)}
-    funcs2 = {n for n, _ in inspect.getmembers(mod2, inspect.isfunction)}
-    return list(funcs1.intersection(funcs2))
-
-def get_common_classes(mod1, mod2) -> List[str]:
-    """Returns a list of class names present in both modules."""
-    cls1 = {n for n, _ in inspect.getmembers(mod1, inspect.isclass)}
-    cls2 = {n for n, _ in inspect.getmembers(mod2, inspect.isclass)}
-    return list(cls1.intersection(cls2))
-
-import importlib.util
-import inspect
-import sys
-import hypothesis.strategies as st
-from typing import List, Callable, Any, Tuple
+from typing import List, Callable, Any, Tuple, Dict, Union
 import itertools
+import random
+import json
+import os
+from pathlib import Path
 
 def load_module_from_path(file_path: str, module_name: str):
     """Dynamically loads a python module from a file path."""
@@ -54,6 +30,41 @@ def get_common_classes(mod1, mod2) -> List[str]:
     cls1 = {n for n, _ in inspect.getmembers(mod1, inspect.isclass)}
     cls2 = {n for n, _ in inspect.getmembers(mod2, inspect.isclass)}
     return list(cls1.intersection(cls2))
+
+def load_verification_config() -> Dict[str, List[str]]:
+    """Loads verification_config.json if it exists."""
+    # Check current dir and verification dir
+    paths = ["verification_config.json", "verification/verification_config.json"]
+    for p in paths:
+        if os.path.exists(p):
+            try:
+                with open(p, "r") as f:
+                    print(f"    [INFO] Loading config from {p}")
+                    return json.load(f)
+            except Exception as e:
+                print(f"    [WARN] Failed to load config {p}: {e}")
+    return {}
+
+def _json_type_to_strategy(type_str: str) -> st.SearchStrategy:
+    """Maps a type string from JSON to a Hypothesis strategy."""
+    type_str = type_str.lower().strip()
+    if type_str == "int":
+        return st.integers(min_value=-100, max_value=100)
+    if type_str == "float":
+        return st.floats(allow_nan=False, allow_infinity=False)
+    if type_str == "str" or type_str == "string":
+        return st.text()
+    if type_str == "bool":
+        return st.booleans()
+    if type_str == "list":
+        return st.lists(st.integers() | st.text(), max_size=5)
+    if type_str == "dict":
+        return st.dictionaries(st.text(), st.integers() | st.text(), max_size=5)
+    if type_str == "none":
+        return st.none()
+    
+    # Fallback/Default
+    return st.integers() | st.text()
 
 def infer_strategy(param: inspect.Parameter) -> st.SearchStrategy:
     """Infers a Hypothesis strategy based on type hint or default."""
@@ -105,22 +116,32 @@ def _type_to_strategy(val: Any) -> st.SearchStrategy:
     if val is None:
         return st.none()
     if isinstance(val, list):
-        return st.lists(st.integers() | st.text(), max_size=5) # simplified list strategy
+        return st.lists(st.integers() | st.text(), max_size=5)
     if isinstance(val, dict):
-        return st.dictionaries(st.text(), st.integers() | st.text(), max_size=5) # simplified dict
+        return st.dictionaries(st.text(), st.integers() | st.text(), max_size=5)
     return st.just(val)
-
-import random
 
 def smart_infer_arg_strategies(func: Callable) -> st.SearchStrategy:
     """
-    Intelligently deduces a strategy for function arguments by probing the function
-    with various combinations of types. Returns a strategy generating valid argument tuples.
+    Intelligently deduces a strategy for function arguments.
+    Priority 1: verification_config.json
+    Priority 2: Type hints
+    Priority 3: Probe/Heuristic
     """
+    config = load_verification_config()
+    func_name = func.__name__
+    
+    # 1. Check Config
+    if func_name in config:
+        print(f"    [INFO] Found JSON config for {func_name}")
+        type_list = config[func_name]
+        strategies = [_json_type_to_strategy(t) for t in type_list]
+        return st.tuples(*strategies)
+
     sig = inspect.signature(func)
     params = [p for p in sig.parameters.values() if p.name != 'self']
     
-    # If fully typed, just use standard inference
+    # 2. Check Type Hints
     if all(p.annotation != inspect.Parameter.empty for p in params):
         return st.tuples(*[infer_strategy(p) for p in params])
         
@@ -130,11 +151,10 @@ def smart_infer_arg_strategies(func: Callable) -> st.SearchStrategy:
         
     candidates = _get_candidate_values()
     
-    # Limit combinations for performance (max 3 args for exhaustive, else random/homogeneous)
+    # 3. Probe
     working_signatures = []
     
     if num_args <= 3:
-        # Try all combinations
         combinations = itertools.product(candidates, repeat=num_args)
         for args in combinations:
             try:
@@ -143,7 +163,6 @@ def smart_infer_arg_strategies(func: Callable) -> st.SearchStrategy:
             except Exception:
                 pass
     else:
-        # 1. Try homogeneous (all ints, all strs)
         for val in candidates:
             args = (val,) * num_args
             try:
@@ -152,10 +171,6 @@ def smart_infer_arg_strategies(func: Callable) -> st.SearchStrategy:
             except Exception:
                 pass
         
-        # 2. Random Probing if we haven't found many (or any) signatures
-        # Try 5000 random combinations to catch mixed types (e.g. int, int, str, dict...)
-        # 7 candidates ^ 6 args = 117k combos. 5k = ~4% coverage. 
-        # But many combos might crash early, so it's fast.
         for _ in range(5000):
             args = tuple(random.choice(candidates) for _ in range(num_args))
             try:
@@ -165,13 +180,9 @@ def smart_infer_arg_strategies(func: Callable) -> st.SearchStrategy:
                 pass
                 
     if not working_signatures:
-        # Fallback: nothing simple worked, return the blind "try everything" strategy
         print(f"    [INFO] Smart inference failed to find simple valid inputs for {func.__name__}. Falling back to blind fuzzing.")
         return st.tuples(*[infer_strategy(p) for p in params])
         
-    # Group working signatures by type to form strategies
-    # e.g. if (1, 2) works, we add (st.ints, st.ints)
-    # if ("a", "b") works, we add (st.text, st.text)
     strategy_options = []
     seen_types = set()
     

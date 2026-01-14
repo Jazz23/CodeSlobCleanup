@@ -16,6 +16,7 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 *   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management. Use `uv run` instead of python, and add python dependencies with `uv add`.
 *   **Continuous Verification**: Always run the comprehensive test suite after modifying any tools, scripts, or adding new "slob" vs "clean" examples to ensure behavior remains consistent and tools function as expected.
     *   Command: `uv run --project verification pytest verification/tests/test_examples_suite.py`
+*   **Verification Configuration**: The verification tools support a `verification_config.json` file in the `verification/` directory. This file can map function names to a list of argument types (e.g., `["int", "str"]`) to guide the input generation for complex untyped functions, bypassing heuristic probing.
 *   **Current Focus**:
     *   Establishing the testing baseline with Hypothesis.
     *   Developing the static analysis scanner for identifying slob.
