@@ -1,11 +1,31 @@
 import subprocess
 import sys
 import json
+import argparse
+import signal
+import select
+import os
+
+def cleanup_process(process):
+    """Safely terminates the subprocess."""
+    if process.poll() is None:
+        process.terminate()
+        try:
+            process.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            process.kill()
 
 def main():
+    parser = argparse.ArgumentParser(description="Stream Gemini output and control process.")
+    parser.add_argument(
+        "prompt", 
+        help="The prompt to send to Gemini"
+    )
+    args = parser.parse_args()
+
     command = [
         "gemini",
-        "-p", "Count to 6. Wait for 3 seconds between numbers. Output each number.",
+        "-p", args.prompt,
         "--model", "gemini-3-flash-preview",
         "--output-format", "stream-json",
         "--yolo"
@@ -13,61 +33,77 @@ def main():
 
     print(f"Executing: {' '.join(command)}")
     
-    # Start the process
+    # Start the process. 
     process = subprocess.Popen(
         command,
         stdin=subprocess.DEVNULL,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        text=True,
-        bufsize=1,  # Line buffered
-        shell=True
+        text=False, # Use bytes for more reliable non-blocking reads
+        bufsize=0,
+        shell=False
     )
 
-    try:
-        # Read output line by line
-        for line in iter(process.stdout.readline, ''):
-            if not line:
-                break
-            
-            # Display the output chunk
-            print(f"\nReceived Output:\n{line.strip()}")
-            
-            # Ask the user
-            try:
-                choice = input("\n[c]ontinue or [k]ill process? ").strip().lower()
-            except EOFError:
-                print("\nEOF detected, defaulting to 'c'...")
-                choice = 'c'
-            
-            if choice == 'k':
-                print("Killing process...")
-                process.terminate()
-                try:
-                    process.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    process.kill()
-                print("Process terminated.")
-                return
+    # Set up signal handlers
+    def signal_handler(sig, frame):
+        cleanup_process(process)
+        sys.exit(0)
 
-        # Check if process ended on its own
+    signal.signal(signal.SIGINT, signal_handler)
+    signal.signal(signal.SIGTERM, signal_handler)
+
+    # Use select to monitor stdout, stderr, and stdin
+    inputs = [process.stdout, process.stderr, sys.stdin]
+    
+    try:
+        while inputs:
+            # Wait for any of the streams to be ready for reading
+            readable, _, _ = select.select(inputs, [], [], 0.1)
+            
+            for r in readable:
+                if r is sys.stdin:
+                    # Any input detected kills the process
+                    try:
+                        os.read(sys.stdin.fileno(), 1024)
+                    except EOFError:
+                        pass
+                    print("\nInput detected. Killing process...")
+                    cleanup_process(process)
+                    return
+                else:
+                    # Read from stdout or stderr
+                    data = os.read(r.fileno(), 4096)
+                    if not data:
+                        inputs.remove(r)
+                    else:
+                        output = data.decode('utf-8', errors='replace')
+                        if r is process.stderr:
+                            print(f"[ERROR] {output}", end="")
+                        else:
+                            print(output, end="")
+                        sys.stdout.flush()
+            
+            # If the process has exited, we should stop listening to stdin
+            if process.poll() is not None:
+                if sys.stdin in inputs:
+                    inputs.remove(sys.stdin)
+                # If we've also finished reading stdout and stderr, we can exit the loop
+                if process.stdout not in inputs and process.stderr not in inputs:
+                    break
+
         process.wait()
         if process.returncode == 0:
             print("\nProcess completed successfully.")
+        elif process.returncode in (-15, -9, 143, 137):
+            print("\nProcess was terminated.")
         else:
-            stderr_output = process.stderr.read()
             print(f"\nProcess exited with code {process.returncode}")
-            if stderr_output:
-                print(f"Error output:\n{stderr_output}")
 
-    except KeyboardInterrupt:
-        print("\nInterrupted by user. Killing process...")
-        process.terminate()
-        process.wait()
     except Exception as e:
-        print(f"An error occurred: {e}")
-        process.terminate()
-        process.wait()
+        print(f"\nAn error occurred: {e}")
+        cleanup_process(process)
+    finally:
+        cleanup_process(process)
 
 if __name__ == "__main__":
     main()
