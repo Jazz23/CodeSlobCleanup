@@ -3,7 +3,6 @@
 This skill allows the agent to verify the behavioral equivalence of refactored Python code against its original version and benchmark performance changes.
 
 ## When to Use
-- After a Refactor Agent has produced refactored code, or when the user asks for verification and provides a directory.
 - When you need to ensure that logic remains identical between two versions of a file.
 - When you want to verify that refactoring did not introduce performance regressions.
 
@@ -28,14 +27,6 @@ Execute the following command format:
 ```
 uv run scripts/orchestrator.py --target-dir <PATH_TO_JOBS_DIR> --config <JSON_STRING>
 ```
-
-**Automated Refactoring:**
-To automatically trigger a feedback loop for failed functions or functions with poor performance (Speedup < 0.4x), add the `--auto-refactor` flag:
-```
-uv run scripts/orchestrator.py --target-dir <PATH_TO_JOBS_DIR> --config <JSON_STRING> --auto-refactor
-```
-When this flag is used, the orchestrator will invoke `correct_refactor.py` which generates a prompt for fixing the code.
-
 
 ### Verification Config
 Verification config guides type inference for untyped functions. Use **Qualified Names** (`Class.method_name`) for methods inside classes to avoid ambiguity.

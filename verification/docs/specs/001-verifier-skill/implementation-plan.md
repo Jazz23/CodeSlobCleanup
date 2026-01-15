@@ -27,7 +27,7 @@
 
 **Key Design Decisions**:
 - **Decoupled Architecture**: The skill must run on any directory provided via CLI (`--target-dir`), not hardcoded paths.
-- **Fixture-Based Testing**: Use snapshots of "original/refactored" pairs in `tests/fixtures/` to simulate the Refactor Agent's output.
+- **Fixture-Based Testing**: Use snapshots of "original/refactored" pairs in `tests/fixtures/` to simulate refactoring output.
 - **Orchestrator Pattern**: A master script (`orchestrator.py`) manages the workflow: scan -> verify -> report.
 - **Contract**: Input directory contains job subfolders. Output is a `verification_report.json` in each job folder.
 

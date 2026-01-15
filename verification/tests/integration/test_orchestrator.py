@@ -71,28 +71,3 @@ def test_orchestrator_fail_flow(tmp_path):
     assert "[FAIL] fail_job" in result.stdout
     assert "[FAIL] sub" in result.stdout
     assert "ERROR Details:" in result.stdout
-
-def test_orchestrator_auto_refactor_trigger(tmp_path):
-    # Setup mock failing job
-    job_dir = tmp_path / "auto_fail_job"
-    job_dir.mkdir()
-    (job_dir / "original.py").write_text("def add(a, b): return a + b")
-    (job_dir / "refactored.py").write_text("def add(a, b): return a - b")
-    
-    # Path to orchestrator
-    verification_root = Path(__file__).resolve().parent.parent.parent
-    orchestrator_path = verification_root / ".gemini" / "skills" / "verifier" / "scripts" / "orchestrator.py"
-    
-    cmd = [
-        sys.executable, str(orchestrator_path),
-        "--target-dir", str(tmp_path),
-        "--config", "{}",
-        "--auto-refactor"
-    ]
-    
-    # We expect it to still fail (because the mock refactor doesn't actually loop yet),
-    # but we want to see it print that it is triggering correction.
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    
-    assert "Triggering auto-refactor" in result.stdout
-    assert "auto_fail_job" in result.stdout

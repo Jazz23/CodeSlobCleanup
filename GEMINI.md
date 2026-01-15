@@ -7,8 +7,7 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 
 ## Core Components
 1.  **Scanner**: Detects "slob" candidates using static analysis (complexity, LoC) and semantic analysis (LLMs).
-2.  **Refactor Agent**: Automatically applies transformations to clean up the code (e.g., decomposing functions, removing dead code).
-3.  **Verifier**: Ensures that refactoring does not break functionality using rigorous testing:
+2.  **Verifier**: Ensures that refactoring does not break functionality using rigorous testing:
     *   **Property-Based Testing**: Using **Hypothesis** to verify `Original(input) == Transformed(input)`.
 
 ## Development Context
