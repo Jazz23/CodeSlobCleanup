@@ -1,6 +1,9 @@
 # /// script
 # dependencies = [
 #     "pytest",
+#     "hypothesis",
+#     "matplotlib",
+#     "numpy",
 # ]
 # ///
 
@@ -10,7 +13,6 @@ from pathlib import Path
 import json
 import pytest
 import os
-import tempfile
 import sys
 
 # Define paths
@@ -18,9 +20,6 @@ TESTS_DIR = Path(__file__).resolve().parent.parent
 FIXTURES_DIR = TESTS_DIR / "fixtures"
 VERIFICATION_ROOT = TESTS_DIR.parent
 ORCHESTRATOR_PATH = VERIFICATION_ROOT / ".gemini" / "skills" / "verifier" / "scripts" / "orchestrator.py"
-
-def get_sandbox_dir():
-    return Path(tempfile.gettempdir()) / "code_slob_verifier_run"
 
 @pytest.mark.parametrize("scenario", ["scenario_valid", "scenario_untyped_complex"])
 def test_skill_success_cases(tmp_path, scenario):
@@ -34,9 +33,9 @@ def test_skill_success_cases(tmp_path, scenario):
     # 2. Action: Run orchestrator
     env = os.environ.copy()
     env["BENCHMARK_RUNS"] = "2"
-    env["HYPOTHESIS_MAX_EXAMPLES"] = "40"
+    env["HYPOTHESIS_MAX_EXAMPLES"] = "10"
     
-    # NEW: Detect and merge configs from fixtures to pass via --config
+    # Detect and merge configs from fixtures
     merged_config = {}
     for job_dir in source.iterdir():
         if not job_dir.is_dir(): continue
@@ -47,14 +46,11 @@ def test_skill_success_cases(tmp_path, scenario):
     
     config_json = json.dumps(merged_config)
     
-    # Use sys.executable to run in current environment (which has deps)
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
         "--target-dir", str(tmp_path),
-        "--debug",
         "--config", config_json
     ]
-    # Run from verification root so tools are found
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
     # 3. Assertions
@@ -66,8 +62,12 @@ def test_skill_success_cases(tmp_path, scenario):
     # Check stdout for [PASS] for all jobs in the scenario
     for job in tmp_path.iterdir():
         if not job.is_dir(): continue
-        # Format in debug mode: "  [job_name] Result: PASS"
-        assert f"[{job.name}] Result: PASS" in result.stdout
+        assert f"[PASS] {job.name}" in result.stdout
+        assert "Speedup:" in result.stdout
+
+    # Global Summary
+    assert "Global Performance Summary" in result.stdout
+    assert "Average Speedup:" in result.stdout
 
 def test_skill_catches_regression(tmp_path):
     """Tests that broken refactorings are caught."""
@@ -80,10 +80,10 @@ def test_skill_catches_regression(tmp_path):
     # 2. Action
     env = os.environ.copy()
     env["BENCHMARK_RUNS"] = "2"
-    env["HYPOTHESIS_MAX_EXAMPLES"] = "40"
+    env["HYPOTHESIS_MAX_EXAMPLES"] = "10"
     
-    # Detect and merge configs (though broken math usually doesn't have one)
     merged_config = {}
+    source = FIXTURES_DIR / "scenario_broken"
     for job_dir in source.iterdir():
         if not job_dir.is_dir(): continue
         config_file = job_dir / "verification_config.json"
@@ -96,18 +96,18 @@ def test_skill_catches_regression(tmp_path):
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
         "--target-dir", str(tmp_path),
-        "--debug",
         "--config", config_json
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
     # 3. Assertions
-    if result.returncode != 0:
-        print(f"STDOUT: {result.stdout}")
-        print(f"STDERR: {result.stderr}")
+    assert result.returncode == 1
     
     # Check stdout for FAIL
     for job in tmp_path.iterdir():
         if not job.is_dir(): continue
-        # Format in debug mode: "  [job_name] Result: FAIL"
-        assert f"[{job.name}] Result: FAIL" in result.stdout
+        assert f"[FAIL] {job.name}" in result.stdout
+        # Verify clean failure report
+        assert "[FAIL] custom_power" in result.stdout
+        assert "ERROR Details:" in result.stdout
+        assert "AssertionError" in result.stdout

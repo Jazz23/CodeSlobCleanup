@@ -1,13 +1,15 @@
 # /// script
 # dependencies = [
 #     "pytest",
+#     "hypothesis",
+#     "matplotlib",
+#     "numpy",
 # ]
 # ///
 
 import os
 import json
 import subprocess
-import tempfile
 import sys
 from pathlib import Path
 import pytest
@@ -29,25 +31,30 @@ def test_orchestrator_flow(tmp_path):
     env["HYPOTHESIS_MAX_EXAMPLES"] = "5"
     
     cmd = [
-        "uv", "run", "python", str(orchestrator_path),
+        sys.executable, str(orchestrator_path),
         "--target-dir", str(tmp_path),
         "--config", "{}"
     ]
-    # We run from root so 'uv' works with verification/pyproject.toml if needed, 
-    # but orchestrator expects to be able to find tools relative to verification root.
     result = subprocess.run(cmd, capture_output=True, text=True, env=env)
     
     assert result.returncode == 0
+    # Check stdout for success message and function name
+    assert "[PASS] test_job" in result.stdout
+    assert "[PASS] add" in result.stdout
+    assert "Speedup:" in result.stdout
     
-    # Check stdout for success message instead of file
-    assert "[PASS] test_job: Verification PASS" in result.stdout
+    # Check for Global Summary
+    assert "Global Performance Summary" in result.stdout
+    assert "Average Speedup:" in result.stdout
+    assert "Best Speedup:" in result.stdout
+    assert "Worst Speedup:" in result.stdout
 
-def test_orchestrator_debug_flag(tmp_path):
-    # Setup mock job
-    job_dir = tmp_path / "debug_job"
+def test_orchestrator_fail_flow(tmp_path):
+    # Setup mock failing job
+    job_dir = tmp_path / "fail_job"
     job_dir.mkdir()
     (job_dir / "original.py").write_text("def sub(a, b): return a - b")
-    (job_dir / "refactored.py").write_text("def sub(a, b): return a - b")
+    (job_dir / "refactored.py").write_text("def sub(a, b): return a + b") # Wrong!
     
     # Path to orchestrator
     verification_root = Path(__file__).resolve().parent.parent.parent
@@ -56,14 +63,36 @@ def test_orchestrator_debug_flag(tmp_path):
     cmd = [
         sys.executable, str(orchestrator_path),
         "--target-dir", str(tmp_path),
-        "--debug",
         "--config", "{}"
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     
-    assert result.returncode == 0
-    # Check for debug markers in stdout
-    assert "Initializing sandbox" in result.stdout
-    assert "Report:" in result.stdout
-    assert "verification" in result.stdout
-    assert "benchmark" in result.stdout
+    assert result.returncode == 1
+    assert "[FAIL] fail_job" in result.stdout
+    assert "[FAIL] sub" in result.stdout
+    assert "ERROR Details:" in result.stdout
+
+def test_orchestrator_auto_refactor_trigger(tmp_path):
+    # Setup mock failing job
+    job_dir = tmp_path / "auto_fail_job"
+    job_dir.mkdir()
+    (job_dir / "original.py").write_text("def add(a, b): return a + b")
+    (job_dir / "refactored.py").write_text("def add(a, b): return a - b")
+    
+    # Path to orchestrator
+    verification_root = Path(__file__).resolve().parent.parent.parent
+    orchestrator_path = verification_root / ".gemini" / "skills" / "verifier" / "scripts" / "orchestrator.py"
+    
+    cmd = [
+        sys.executable, str(orchestrator_path),
+        "--target-dir", str(tmp_path),
+        "--config", "{}",
+        "--auto-refactor"
+    ]
+    
+    # We expect it to still fail (because the mock refactor doesn't actually loop yet),
+    # but we want to see it print that it is triggering correction.
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    
+    assert "Triggering auto-refactor" in result.stdout
+    assert "auto_fail_job" in result.stdout

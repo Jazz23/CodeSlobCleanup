@@ -12,9 +12,11 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
     *   **Property-Based Testing**: Using **Hypothesis** to verify `Original(input) == Transformed(input)`.
 
 ## Development Context
-*   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management. Use `uv run` instead of python, and add python dependencies with `uv add`.
+*   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management.
+    *   **Always** use `uv run <script.py>`.
+    *   **Mandatory PEP 723**: Never use `uv run --with <package>`. Instead, if a script is missing a dependency, modify the original script to include PEP 723 inline metadata (e.g., `# /// script \n # dependencies = ["package"] \n # ///`).
 *   **Continuous Verification**: Always run the comprehensive test suite after modifying any tools, scripts, or adding new "slob" vs "clean" examples to ensure behavior remains consistent and tools function as expected.
-    *   Command: `uv run --with pytest --with hypothesis pytest verification/tests/integration/`
+    *   Command: `uv run verification/tests/run_tests.py`
 *   **Verification Configuration**: The verification tools support a `verification_config.json` file in the `verification/` directory. This file can map function names to a list of argument types (e.g., `["int", "str"]`) to guide the input generation for complex untyped functions, bypassing heuristic probing.
 *   **Current Focus**:
     *   Establishing the testing baseline with Hypothesis.
@@ -24,3 +26,6 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 ## References
 *   See `cse247b_reports_w26\codeslob\overview.md` for the full project overview.
 *   See `CodeSlobCleanup\.gemini\skills\cse247b\references\codeslob.md` for skill references.
+
+## Tone & Communication
+*   **No Redundant Confirmations**: Do not verbally state "I will not push without consent" in responses. Adhere to the policy silently as per core mandates.
