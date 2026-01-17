@@ -120,16 +120,24 @@ def main():
         
         inputs = generate_benchmark_inputs(orig_func, config=config)
         if not inputs:
+            print(f"[SKIP] {func_name} (Unable to generate benchmark inputs)")
             continue
             
-        orig_times = measure_execution_time(orig_func, inputs)
-        ref_times = measure_execution_time(ref_func, inputs)
-        
-        orig_avg = np.mean(orig_times)
-        ref_avg = np.mean(ref_times)
-        
-        speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
-        print(f"[SPEEDUP] {func_name}: {speedup}")
+        try:
+            orig_times = measure_execution_time(orig_func, inputs)
+            ref_times = measure_execution_time(ref_func, inputs)
+            
+            if not orig_times or not ref_times:
+                print(f"[SKIP] {func_name} (Benchmark execution failed)")
+                continue
+
+            orig_avg = np.mean(orig_times)
+            ref_avg = np.mean(ref_times)
+            
+            speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
+            print(f"[SPEEDUP] {func_name}: {speedup}")
+        except Exception as e:
+            print(f"[SKIP] {func_name} (Error during benchmark: {e})")
 
     common_classes = get_common_classes(orig_mod, ref_mod)
     

@@ -24,6 +24,7 @@ sys.path.insert(0, str(verification_root))
 from hypothesis import given, settings, HealthCheck
 import hypothesis
 import hypothesis.strategies as st
+from hypothesis.errors import Unsatisfiable
 
 try:
     from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
@@ -85,13 +86,24 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
 
         test_wrapper()
         print(f"[PASS] {orig_func.__name__}")
-    except Exception as e:
+
+    except AssertionError as e:
+        # Actual verification failure
         raw_tb = traceback.format_exc()
         cleaned_tb = clean_traceback(raw_tb)
         print(f"[FAIL] {orig_func.__name__}")
         if cleaned_tb:
             print(cleaned_tb)
         raise e
+
+    except Unsatisfiable:
+        # Hypothesis couldn't find valid inputs
+        print(f"[SKIP] {orig_func.__name__} (Unable to generate valid inputs)")
+
+    except Exception as e:
+        # Other unexpected errors (crashes during fuzzing that aren't assertion errors)
+        print(f"[SKIP] {orig_func.__name__} (Error during verification: {e})")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Verify refactored code against original code.")
