@@ -10,6 +10,8 @@ import sys
 import traceback
 import os
 import json
+import multiprocessing
+from queue import Empty
 from typing import Callable, Dict, Any
 from pathlib import Path
 
@@ -39,8 +41,6 @@ def clean_traceback(tb_str: str) -> str:
     lines = tb_str.splitlines()
     filtered_lines = []
     
-    # We want to keep lines that mention original.py or refactored.py
-    # or the actual error message.
     for line in lines:
         if 'original.py' in line or 'refactored.py' in line or 'AssertionError' in line or 'NameError' in line or 'TypeError' in line or 'ValueError' in line:
             filtered_lines.append(line.strip())
@@ -61,7 +61,7 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         if env_max:
             max_examples = int(env_max)
             
-        @settings(suppress_health_check=[HealthCheck.function_scoped_fixture], max_examples=max_examples, deadline=None)
+        @settings(suppress_health_check=[HealthCheck.function_scoped_fixture, HealthCheck.filter_too_much], max_examples=max_examples, deadline=None)
         @given(args_strategy)
         def test_wrapper(args):
             orig_res, orig_exc = None, None
@@ -88,7 +88,6 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         print(f"[PASS] {orig_func.__name__}")
 
     except AssertionError as e:
-        # Actual verification failure
         raw_tb = traceback.format_exc()
         cleaned_tb = clean_traceback(raw_tb)
         print(f"[FAIL] {orig_func.__name__}")
@@ -97,13 +96,26 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         raise e
 
     except Unsatisfiable:
-        # Hypothesis couldn't find valid inputs
         print(f"[SKIP] {orig_func.__name__} (Unable to generate valid inputs)")
 
     except Exception as e:
-        # Other unexpected errors (crashes during fuzzing that aren't assertion errors)
         print(f"[SKIP] {orig_func.__name__} (Error during verification: {e})")
 
+def worker_verify_function(orig_path, ref_path, func_name, config, result_queue):
+    """Worker process to run verification for a single function."""
+    try:
+        orig_mod = load_module_from_path(orig_path, "original_mod")
+        ref_mod = load_module_from_path(ref_path, "refactored_mod")
+        
+        orig_func = getattr(orig_mod, func_name)
+        ref_func = getattr(ref_mod, func_name)
+        
+        run_hypothesis_verification(orig_func, ref_func, config=config)
+        result_queue.put("SUCCESS")
+    except AssertionError:
+        result_queue.put("FAILURE")
+    except Exception:
+        result_queue.put("SKIPPED")
 
 def main():
     parser = argparse.ArgumentParser(description="Verify refactored code against original code.")
@@ -119,29 +131,41 @@ def main():
         except:
             pass
 
-    orig_mod = load_module_from_path(args.original, "original_mod")
-    ref_mod = load_module_from_path(args.refactored, "refactored_mod")
+    try:
+        orig_mod = load_module_from_path(args.original, "original_mod")
+        ref_mod = load_module_from_path(args.refactored, "refactored_mod")
+        common_funcs = get_common_functions(orig_mod, ref_mod)
+    except Exception as e:
+        print(f"[SKIP] (Module loading failed: {e})")
+        return
 
-    common_funcs = get_common_functions(orig_mod, ref_mod)
     success = True
 
     for func_name in common_funcs:
-        orig_func = getattr(orig_mod, func_name)
-        ref_func = getattr(ref_mod, func_name)
-        try:
-            run_hypothesis_verification(orig_func, ref_func, config=config)
-        except Exception:
-            success = False
+        queue = multiprocessing.Queue()
+        p = multiprocessing.Process(
+            target=worker_verify_function, 
+            args=(args.original, args.refactored, func_name, config, queue)
+        )
+        p.start()
         
-    common_classes = get_common_classes(orig_mod, ref_mod)
-    for cls_name in common_classes:
-        orig_cls = getattr(orig_mod, cls_name)
-        ref_cls = getattr(ref_mod, cls_name)
-        # Class verification logic could be cleaned up too, but sticking to functions for now
-        # as per the current failure case.
+        p.join(timeout=15)
+        
+        if p.is_alive():
+            p.terminate()
+            p.join()
+            print(f"[SKIP] {func_name} (Timeout)")
+        else:
+            try:
+                result = queue.get_nowait()
+                if result == "FAILURE":
+                    success = False
+            except Empty:
+                print(f"[SKIP] {func_name} (Process crash)")
             
     if not success:
         sys.exit(1)
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()

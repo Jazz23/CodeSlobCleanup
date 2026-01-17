@@ -113,6 +113,8 @@ def _type_to_strategy(val: Any) -> st.SearchStrategy:
         return st.dictionaries(st.text(), st.integers() | st.text(), max_size=5)
     return st.just(val)
 
+from hypothesis.errors import Unsatisfiable
+
 def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) -> st.SearchStrategy:
     """
     Intelligently deduces a strategy for function arguments.
@@ -182,11 +184,15 @@ def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) ->
                 pass
                 
     if not working_signatures:
-        print(f"    [INFO] Smart inference failed to find simple valid inputs for {func.__name__}. Falling back to blind fuzzing.")
-        return st.tuples(*[infer_strategy(p) for p in params])
+        print(f"    [INFO] Smart inference failed to find simple valid inputs for {func.__name__}.")
+        # Instead of falling back to blind fuzzing which often results in fake [PASS] 
+        # for functions that always crash on standard types, we raise Unsatisfiable 
+        # if there are NO type hints and NO config.
+        raise Unsatisfiable(f"Could not find valid inputs for untyped function {func.__name__}")
         
     strategy_options = []
     seen_types = set()
+
     
     for args in working_signatures:
         arg_types = tuple(type(a) for a in args)

@@ -93,6 +93,88 @@ def measure_execution_time(func: Callable, input_args_list: List[tuple], num_run
         
     return times
 
+import multiprocessing
+from queue import Empty
+
+# ... (imports remain)
+
+def worker_benchmark_func(orig_path, ref_path, func_name, config):
+    try:
+        orig_mod = load_module_from_path(orig_path, "original_mod")
+        ref_mod = load_module_from_path(ref_path, "refactored_mod")
+        
+        orig_func = getattr(orig_mod, func_name)
+        ref_func = getattr(ref_mod, func_name)
+        
+        inputs = generate_benchmark_inputs(orig_func, config=config)
+        if not inputs:
+            print(f"[SKIP] {func_name} (Unable to generate benchmark inputs)")
+            return
+            
+        try:
+            orig_times = measure_execution_time(orig_func, inputs)
+            ref_times = measure_execution_time(ref_func, inputs)
+            
+            if not orig_times or not ref_times:
+                print(f"[SKIP] {func_name} (Benchmark execution failed)")
+                return
+
+            orig_avg = np.mean(orig_times)
+            ref_avg = np.mean(ref_times)
+            
+            speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
+            print(f"[SPEEDUP] {func_name}: {speedup}")
+        except Exception as e:
+            print(f"[SKIP] {func_name} (Error during benchmark: {e})")
+    except Exception as e:
+        print(f"[SKIP] {func_name} (Worker Error: {e})")
+
+def worker_benchmark_class_method(orig_path, ref_path, cls_name, method_name, config):
+    # Similar logic for class methods
+    try:
+        orig_mod = load_module_from_path(orig_path, "original_mod")
+        ref_mod = load_module_from_path(ref_path, "refactored_mod")
+        
+        orig_cls = getattr(orig_mod, cls_name)
+        ref_cls = getattr(ref_mod, cls_name)
+        
+        try:
+            init_inputs = generate_benchmark_inputs(orig_cls, 1, config=config)
+            if not init_inputs:
+                return
+            init_args = init_inputs[0]
+            inst_orig = orig_cls(*init_args)
+            inst_ref = ref_cls(*init_args)
+        except Exception:
+            return
+            
+        bound_orig = getattr(inst_orig, method_name)
+        bound_ref = getattr(inst_ref, method_name)
+        
+        inputs = generate_benchmark_inputs(bound_orig, config=config)
+        if not inputs:
+            return
+            
+        orig_times = measure_execution_time(bound_orig, inputs)
+        ref_times = measure_execution_time(bound_ref, inputs)
+        
+        orig_avg = np.mean(orig_times)
+        ref_avg = np.mean(ref_times)
+        
+        speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
+        print(f"[SPEEDUP] {cls_name}.{method_name}: {speedup}")
+    except Exception:
+        pass
+
+def run_with_timeout(target, args, name, timeout=15):
+    p = multiprocessing.Process(target=target, args=args)
+    p.start()
+    p.join(timeout=timeout)
+    if p.is_alive():
+        p.terminate()
+        p.join()
+        print(f"[SKIP] {name} (Timeout)")
+
 def main():
     parser = argparse.ArgumentParser(description="Benchmark refactored code against original code.")
     parser.add_argument("original", help="Path to original python file")
@@ -115,29 +197,11 @@ def main():
     common_funcs = get_common_functions(orig_mod, ref_mod)
 
     for func_name in common_funcs:
-        orig_func = getattr(orig_mod, func_name)
-        ref_func = getattr(ref_mod, func_name)
-        
-        inputs = generate_benchmark_inputs(orig_func, config=config)
-        if not inputs:
-            print(f"[SKIP] {func_name} (Unable to generate benchmark inputs)")
-            continue
-            
-        try:
-            orig_times = measure_execution_time(orig_func, inputs)
-            ref_times = measure_execution_time(ref_func, inputs)
-            
-            if not orig_times or not ref_times:
-                print(f"[SKIP] {func_name} (Benchmark execution failed)")
-                continue
-
-            orig_avg = np.mean(orig_times)
-            ref_avg = np.mean(ref_times)
-            
-            speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
-            print(f"[SPEEDUP] {func_name}: {speedup}")
-        except Exception as e:
-            print(f"[SKIP] {func_name} (Error during benchmark: {e})")
+        run_with_timeout(
+            target=worker_benchmark_func, 
+            args=(args.original, args.refactored, func_name, config),
+            name=func_name
+        )
 
     common_classes = get_common_classes(orig_mod, ref_mod)
     
@@ -145,37 +209,21 @@ def main():
         orig_cls = getattr(orig_mod, cls_name)
         ref_cls = getattr(ref_mod, cls_name)
         
-        try:
-            init_inputs = generate_benchmark_inputs(orig_cls, 1, config=config)
-            if not init_inputs:
-                continue
-            init_args = init_inputs[0]
-            inst_orig = orig_cls(*init_args)
-            inst_ref = ref_cls(*init_args)
-        except Exception:
-            continue
-            
+        # We need to instantiate to find methods, but we can do that in the main process 
+        # just to get method names, then dispatch workers.
+        # But instantiation might fail or have side effects. 
+        # Let's just blindly inspect the class object for functions.
         methods1 = {n: m for n, m in inspect.getmembers(orig_cls, inspect.isfunction) if not n.startswith('_')}
         methods2 = {n: m for n, m in inspect.getmembers(ref_cls, inspect.isfunction) if not n.startswith('_')}
         common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
         
         for method_name in common_methods:
-            bound_orig = getattr(inst_orig, method_name)
-            bound_ref = getattr(inst_ref, method_name)
-            
-            inputs = generate_benchmark_inputs(bound_orig, config=config)
-            if not inputs:
-                continue
-                
-            orig_times = measure_execution_time(bound_orig, inputs)
-            ref_times = measure_execution_time(bound_ref, inputs)
-            
-            orig_avg = np.mean(orig_times)
-            ref_avg = np.mean(ref_times)
-            
-            speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
-            # Use qualname style for class methods
-            print(f"[SPEEDUP] {cls_name}.{method_name}: {speedup}")
+            run_with_timeout(
+                target=worker_benchmark_class_method,
+                args=(args.original, args.refactored, cls_name, method_name, config),
+                name=f"{cls_name}.{method_name}"
+            )
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()

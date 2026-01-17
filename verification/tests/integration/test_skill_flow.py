@@ -53,10 +53,6 @@ def test_skill_success_cases(tmp_path, scenario):
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
-    # 3. Assertions
-    if result.returncode != 0:
-        print(f"STDOUT: {result.stdout}")
-        print(f"STDERR: {result.stderr}")
     assert result.returncode == 0
     
     # Check stdout for [PASS] for all jobs in the scenario
@@ -111,3 +107,47 @@ def test_skill_catches_regression(tmp_path):
         assert "[FAIL] custom_power" in result.stdout
         assert "ERROR Details:" in result.stdout
         assert "AssertionError" in result.stdout
+
+def test_skill_hybrid_skips(tmp_path):
+    """Tests that hybrid scenario correctly reports SKIP for difficult cases."""
+    # 1. Setup
+    scenario = "scenario_hybrid"
+    source = FIXTURES_DIR / scenario
+    for job in source.iterdir():
+        if not job.is_dir(): continue
+        shutil.copytree(job, tmp_path / job.name)
+        
+    # 2. Action: Run orchestrator WITHOUT config to ensure skips happen
+    env = os.environ.copy()
+    env["BENCHMARK_RUNS"] = "1"
+    env["HYPOTHESIS_MAX_EXAMPLES"] = "200"
+    
+    cmd = [
+        sys.executable, str(ORCHESTRATOR_PATH),
+        "--target-dir", str(tmp_path)
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
+    
+    # 3. Assertions
+    # timeout_loop should SKIP due to timeout (30s)
+    assert "[SKIP] timeout_loop (Timeout)" in result.stdout
+    
+    # mixed_bag and process_order should SKIP due to unable to generate inputs
+    assert "[SKIP] mixed_bag" in result.stdout
+    assert "[SKIP] process_order" in result.stdout
+
+    # impossible_func should SKIP because it's impossible to fuzz
+    assert "[SKIP] impossible_func" in result.stdout
+    # crash_func should SKIP due to RuntimeError
+    assert "[SKIP] crash_func" in result.stdout
+    
+    # Broken math and logic should FAIL
+    assert "[FAIL] broken_math" in result.stdout
+    assert "[FAIL] broken_logic" in result.stdout
+    
+    # Valid calculator and formatter should PASS
+    assert "[PASS] valid_calculator" in result.stdout
+    assert "[PASS] valid_formatter" in result.stdout
+    
+    # Should exit with code 1 because of the FAILures
+    assert result.returncode == 1

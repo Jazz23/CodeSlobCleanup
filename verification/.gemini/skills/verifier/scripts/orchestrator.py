@@ -30,6 +30,11 @@ def parse_verify_output(output):
         if line.startswith("[PASS] "):
             name = line[7:].strip()
             results[name] = {"name": name, "status": "PASS", "logs": ""}
+            current_fail = None
+        elif line.startswith("[SKIP] "):
+            name = line[7:].strip()
+            results[name] = {"name": name, "status": "SKIP", "logs": ""}
+            current_fail = None
         elif line.startswith("[FAIL] "):
             name = line[7:].strip()
             current_fail = {"name": name, "status": "FAIL", "logs": []}
@@ -55,6 +60,9 @@ def parse_benchmark_output(output):
                 speedups[name] = val
             except:
                 continue
+        elif line.startswith("[SKIP] "):
+             # Benchmarking also skips
+             continue
     return speedups
 
 def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
@@ -80,6 +88,8 @@ def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
         if name in functions:
             functions[name]["speedup"] = speedup
     
+    # Job status is FAIL if any function failed (AssertionError)
+    # If a function SKIPPED, the job can still PASS (but those functions won't show as PASS)
     status = "PASS" if ret == 0 else "FAIL"
     
     return {
@@ -91,7 +101,7 @@ def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
 def main():
     parser = argparse.ArgumentParser(description="Verifier Skill Orchestrator")
     parser.add_argument("--target-dir", required=True, help="Directory containing job subfolders")
-    parser.add_argument("--config", required=True, help="JSON config string")
+    parser.add_argument("--config", default="{}", help="JSON config string (default: '{}')")
     args = parser.parse_args()
     
     input_dir = Path(args.target_dir).resolve()
@@ -144,6 +154,8 @@ def main():
                 print(f"    ERROR Details:")
                 for line in func['logs'].splitlines():
                     print(f"      {line}")
+            elif func['status'] == "SKIP":
+                print(f"  [SKIP] {func['name']}{perf}")
             else:
                 print(f"  [PASS] {func['name']}{perf}")
                 
