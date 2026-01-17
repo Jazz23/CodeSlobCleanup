@@ -1,6 +1,7 @@
 # /// script
 # dependencies = [
 #     "pytest",
+#     "pytest-xdist",
 #     "hypothesis",
 #     "matplotlib",
 #     "numpy",
