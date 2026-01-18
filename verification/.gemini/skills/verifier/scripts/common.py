@@ -87,12 +87,19 @@ def _get_candidate_values() -> List[Any]:
     """Returns a list of representative values for various types."""
     return [
         1,              # int
+        0,              # zero
+        -1,             # negative int
         1.5,            # float
         "test",         # str
+        "",             # empty str
         True,           # bool
         None,           # NoneType
-        [1, 2],         # list
-        {"a": 1},       # dict
+        [1, 2],         # simple list
+        [],             # empty list
+        {"a": 1},       # simple dict
+        {},             # empty dict
+        [{"name": "test", "age": 25, "score": 90}], # list of dicts (common in data processing)
+        {"key": ["val1", "val2"]},                 # dict with list
     ]
 
 def _type_to_strategy(val: Any) -> st.SearchStrategy:
@@ -167,6 +174,8 @@ def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) ->
             except Exception:
                 pass
     else:
+        # For many args, product is too slow. 
+        # Try: all same
         for val in candidates:
             args = (val,) * num_args
             try:
@@ -175,11 +184,23 @@ def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) ->
             except Exception:
                 pass
         
-        for _ in range(5000):
+        # Try: one of each type in sequence
+        if num_args <= len(candidates):
+            args = tuple(candidates[:num_args])
+            try:
+                func(*args)
+                working_signatures.append(args)
+            except Exception:
+                pass
+
+        # Try: more random trials
+        for _ in range(20000):
             args = tuple(random.choice(candidates) for _ in range(num_args))
             try:
                 func(*args)
                 working_signatures.append(args)
+                if len(working_signatures) > 100:
+                    break
             except Exception:
                 pass
                 
