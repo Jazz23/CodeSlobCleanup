@@ -19,5 +19,5 @@ if __name__ == "__main__":
     os.chdir(project_root)
     
     # Run pytest on the integration tests
-    ret = pytest.main(["-n", "auto", "-s", "verification/tests/integration/"])
+    ret = pytest.main(["-n", "auto", "-s", "verification/tests/integration/", "--ignore=verification/tests/integration/tools"])
     sys.exit(ret)
