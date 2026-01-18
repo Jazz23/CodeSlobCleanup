@@ -10,6 +10,7 @@ import sys
 import traceback
 import os
 import json
+import time
 import multiprocessing
 from queue import Empty
 from typing import Callable, Dict, Any
@@ -87,7 +88,7 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         test_wrapper()
         print(f"[PASS] {orig_func.__name__}")
 
-    except (AssertionError, hypothesis.errors.MultipleFailures) as e:
+    except AssertionError as e:
         raw_tb = traceback.format_exc()
         cleaned_tb = clean_traceback(raw_tb)
         print(f"[FAIL] {orig_func.__name__}")
@@ -101,7 +102,7 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         print(f"[SKIP] {orig_func.__name__} (Unable to generate valid inputs)")
 
     except Exception as e:
-        if "Hypothesis found" in str(e):
+        if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
              print(f"[FAIL] {orig_func.__name__}")
              print(f"    {e}")
              raise e
@@ -118,10 +119,10 @@ def worker_verify_function(orig_path, ref_path, func_name, config, result_queue)
         
         run_hypothesis_verification(orig_func, ref_func, config=config)
         result_queue.put("SUCCESS")
-    except (AssertionError, hypothesis.errors.MultipleFailures):
+    except AssertionError:
         result_queue.put("FAILURE")
     except Exception as e:
-        if "Hypothesis found" in str(e):
+        if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
             result_queue.put("FAILURE")
         else:
             result_queue.put("SKIPPED")
@@ -251,32 +252,23 @@ def main():
         print(f"[SKIP] (Module loading failed: {e})")
         return
 
+    # Create a queue to collect results
+    result_queue = multiprocessing.Queue()
+    processes = []
     success = True
-
-    # Verify Functions
+    
+    # Collect all tasks
+    tasks = []
+    
+    # Functions
     for func_name in common_funcs:
-        queue = multiprocessing.Queue()
-        p = multiprocessing.Process(
-            target=worker_verify_function, 
-            args=(args.original, args.refactored, func_name, config, queue)
-        )
-        p.start()
-        
-        p.join(timeout=15)
-        
-        if p.is_alive():
-            p.terminate()
-            p.join()
-            print(f"[SKIP] {func_name} (Timeout)")
-        else:
-            try:
-                result = queue.get_nowait()
-                if result == "FAILURE":
-                    success = False
-            except Empty:
-                print(f"[SKIP] {func_name} (Process crash)")
+        tasks.append({
+            "target": worker_verify_function,
+            "args": (args.original, args.refactored, func_name, config, result_queue),
+            "name": func_name
+        })
 
-    # Verify Class Methods
+    # Class Methods
     for cls_name in common_classes:
         orig_cls = getattr(orig_mod, cls_name)
         ref_cls = getattr(ref_mod, cls_name)
@@ -286,27 +278,54 @@ def main():
         common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
         
         for method_name in common_methods:
-            queue = multiprocessing.Queue()
-            p = multiprocessing.Process(
-                target=worker_verify_class_method,
-                args=(args.original, args.refactored, cls_name, method_name, config, queue)
-            )
+             tasks.append({
+                "target": worker_verify_class_method,
+                "args": (args.original, args.refactored, cls_name, method_name, config, result_queue),
+                "name": f"{cls_name}.{method_name}"
+            })
+
+    # Run tasks in parallel with a limit
+    max_workers = os.cpu_count() or 4
+    active_processes = []
+    
+    task_idx = 0
+    while task_idx < len(tasks) or active_processes:
+        # Start new processes if we have capacity and tasks
+        while len(active_processes) < max_workers and task_idx < len(tasks):
+            task = tasks[task_idx]
+            p = multiprocessing.Process(target=task["target"], args=task["args"])
             p.start()
+            active_processes.append({"p": p, "start_time": time.time(), "name": task["name"]})
+            task_idx += 1
             
-            p.join(timeout=15)
-            
-            if p.is_alive():
-                p.terminate()
+        # Check active processes
+        still_active = []
+        for proc_info in active_processes:
+            p = proc_info["p"]
+            if not p.is_alive():
                 p.join()
-                print(f"[SKIP] {cls_name}.{method_name} (Timeout)")
             else:
-                try:
-                    result = queue.get_nowait()
-                    if result == "FAILURE":
-                        success = False
-                except Empty:
-                    print(f"[SKIP] {cls_name}.{method_name} (Process crash)")
-            
+                # Check timeout
+                if time.time() - proc_info["start_time"] > 15:
+                    p.terminate()
+                    p.join()
+                    print(f"[SKIP] {proc_info['name']} (Timeout)")
+                else:
+                    still_active.append(proc_info)
+        
+        active_processes = still_active
+        
+        # Drain queue
+        while not result_queue.empty():
+            try:
+                result = result_queue.get_nowait()
+                if result == "FAILURE":
+                    success = False
+            except Empty:
+                break
+        
+        time.sleep(0.1)
+
     if not success:
         sys.exit(1)
 

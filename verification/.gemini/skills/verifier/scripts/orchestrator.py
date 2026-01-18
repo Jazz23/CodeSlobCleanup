@@ -120,7 +120,10 @@ def main():
     jobs = [d for d in input_dir.iterdir() if d.is_dir()]
     
     results = []
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    # Since child processes (verify.py/benchmark.py) now run in parallel internally,
+    # we reduce the job-level parallelism to avoid oversubscribing the system.
+    max_workers = max(1, (os.cpu_count() or 4) // 2)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
         futures = {executor.submit(process_job, job, verification_root, scripts_dir, args.config): job for job in jobs}
         for future in as_completed(futures):
             res = future.result()

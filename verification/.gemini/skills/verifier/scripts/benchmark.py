@@ -197,12 +197,14 @@ def main():
 
     common_funcs = get_common_functions(orig_mod, ref_mod)
 
+    tasks = []
+    
     for func_name in common_funcs:
-        run_with_timeout(
-            target=worker_benchmark_func, 
-            args=(args.original, args.refactored, func_name, config),
-            name=func_name
-        )
+        tasks.append({
+            "target": worker_benchmark_func,
+            "args": (args.original, args.refactored, func_name, config),
+            "name": func_name
+        })
 
     common_classes = get_common_classes(orig_mod, ref_mod)
     
@@ -210,20 +212,48 @@ def main():
         orig_cls = getattr(orig_mod, cls_name)
         ref_cls = getattr(ref_mod, cls_name)
         
-        # We need to instantiate to find methods, but we can do that in the main process 
-        # just to get method names, then dispatch workers.
-        # But instantiation might fail or have side effects. 
-        # Let's just blindly inspect the class object for functions.
         methods1 = {n: m for n, m in inspect.getmembers(orig_cls, inspect.isfunction) if not n.startswith('_')}
         methods2 = {n: m for n, m in inspect.getmembers(ref_cls, inspect.isfunction) if not n.startswith('_')}
         common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
         
         for method_name in common_methods:
-            run_with_timeout(
-                target=worker_benchmark_class_method,
-                args=(args.original, args.refactored, cls_name, method_name, config),
-                name=f"{cls_name}.{method_name}"
-            )
+             tasks.append({
+                "target": worker_benchmark_class_method,
+                "args": (args.original, args.refactored, cls_name, method_name, config),
+                "name": f"{cls_name}.{method_name}"
+            })
+
+    # Run tasks in parallel with a limit
+    max_workers = os.cpu_count() or 4
+    active_processes = []
+    
+    task_idx = 0
+    while task_idx < len(tasks) or active_processes:
+        # Start new processes if we have capacity and tasks
+        while len(active_processes) < max_workers and task_idx < len(tasks):
+            task = tasks[task_idx]
+            p = multiprocessing.Process(target=task["target"], args=task["args"])
+            p.start()
+            active_processes.append({"p": p, "start_time": time.time(), "name": task["name"]})
+            task_idx += 1
+            
+        # Check active processes
+        still_active = []
+        for proc_info in active_processes:
+            p = proc_info["p"]
+            if not p.is_alive():
+                p.join()
+            else:
+                # Check timeout
+                if time.time() - proc_info["start_time"] > 15:
+                    p.terminate()
+                    p.join()
+                    print(f"[SKIP] {proc_info['name']} (Timeout)")
+                else:
+                    still_active.append(proc_info)
+        
+        active_processes = still_active
+        time.sleep(0.1)
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
