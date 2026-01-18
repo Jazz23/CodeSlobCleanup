@@ -103,6 +103,13 @@ def main():
     parser.add_argument("--target-dir", required=True, help="Directory containing job subfolders")
     parser.add_argument("--config", default="{}", help="JSON config string (default: '{}')")
     args = parser.parse_args()
+
+    # Validate JSON config immediately
+    try:
+        json.loads(args.config)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON configuration provided: {e}")
+        sys.exit(1)
     
     input_dir = Path(args.target_dir).resolve()
     if not input_dir.exists(): sys.exit(1)

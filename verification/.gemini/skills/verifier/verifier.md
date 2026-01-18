@@ -5,6 +5,7 @@ This skill allows the agent to verify the behavioral equivalence of refactored P
 ## STRICT CONSTRAINTS
 - **SINGLE PURPOSE:** Your ONLY goal is to run the verification orchestrator and to follow the below instructions.
 - **NO SIDE QUESTS:** You are FORBIDDEN from performing any actions unrelated to this verification task. Do not write files, do not create new tests, do not fix bugs, and do not explore the codebase beyond what is necessary to run the orchestrator.
+- **NO MANUAL EXPLORATION:** Do NOT use `list_directory`, `ls`, or `read_file` to inspect the target directory or its subdirectories. Rely SOLELY on the output of `dump_fixtures.py` to understand the codebase structure and contents.
 - **TERMINATION:** Once the orchestrator runs and you report the output, your task is COMPLETE. Stop immediately.
 
 ## When to Use
@@ -22,10 +23,12 @@ This skill allows the agent to verify the behavioral equivalence of refactored P
     *   If a function **already has complete Python type hints**, do NOT include it in the `--config` string (the tools will prioritize the source hints automatically).
     *   If a function is **untyped or partially typed**, determine the correct types and prepare a JSON configuration entry.
 3.  **Execute:** Pass the configuration JSON string to the orchestrator via the `--config` flag.
-4.  **Quoting & Escaping:** To ensure the JSON string is parsed correctly across different shells (Bash, Zsh, PowerShell):
-    *   **Preferred:** Use single quotes around the JSON string and double quotes internally (`'{"key":"val"}'`). This avoids complex escaping.
-    *   **Alternative:** If using double quotes for the outer wrapper, escape internal double quotes with backslashes (`"{\"key\":\"val\"}"`).
-    *   **Important:** Avoid spaces within the JSON string to prevent some shells from splitting the configuration into multiple arguments.
+4.  **Quoting & Escaping:** To ensure the JSON string is parsed correctly across different shells (Bash, Zsh, PowerShell), use the following Python wrapper technique. This bypasses shell escaping issues entirely.
+    *   **Robust Method (Python Wrapper):**
+        ```bash
+        python -c "import subprocess, json; config={'func_name':['int','str']}; subprocess.run(['uv', 'run', '.gemini/skills/verifier/scripts/orchestrator.py', '--target-dir', 'path/to/target', '--config', json.dumps(config)])"
+        ```
+    *   **Shell Direct (If simple):** Use single quotes around the JSON string and double quotes internally (`'{"key":"val"}'`). Avoid spaces within the JSON string.
 
 ### Running the Orchestrator
 Execute the following command format:

@@ -128,8 +128,9 @@ def main():
     if args.config:
         try:
             config = json.loads(args.config)
-        except:
-            pass
+        except json.JSONDecodeError as e:
+            print(f"Error: Invalid JSON configuration provided: {e}")
+            sys.exit(1)
 
     try:
         orig_mod = load_module_from_path(args.original, "original_mod")
