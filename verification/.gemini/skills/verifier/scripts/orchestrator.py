@@ -27,20 +27,47 @@ def parse_verify_output(output):
     current_fail = None
     
     for line in lines:
+        status = None
+        raw = ""
+        
         if line.startswith("[PASS] "):
-            name = line[7:].strip()
-            results[name] = {"name": name, "status": "PASS", "logs": ""}
-            current_fail = None
+            status = "PASS"
+            raw = line[7:].strip()
         elif line.startswith("[SKIP] "):
-            name = line[7:].strip()
-            results[name] = {"name": name, "status": "SKIP", "logs": ""}
-            current_fail = None
+            status = "SKIP"
+            raw = line[7:].strip()
         elif line.startswith("[FAIL] "):
-            name = line[7:].strip()
-            current_fail = {"name": name, "status": "FAIL", "logs": []}
-            results[name] = current_fail
+            status = "FAIL"
+            raw = line[7:].strip()
         elif current_fail:
             current_fail["logs"].append(line)
+            continue
+            
+        if status:
+            # Extract duration using regex
+            duration = None
+            # Match (1.2345s) or (0.0000s)
+            match = re.search(r"\(([\d\.]+)s\)", raw)
+            name = raw
+            
+            if match:
+                duration = match.group(1) + "s"
+                # Remove duration from name, keeping clean spacing
+                name = raw.replace(match.group(0), "").strip()
+                # Normalize spaces (replace double spaces with single)
+                name = re.sub(r'\s+', ' ', name)
+            
+            # If name is empty (unlikely), revert to raw
+            if not name:
+                name = raw
+
+            res = {"name": name, "status": status, "logs": "" if status != "FAIL" else [], "duration": duration}
+            results[name] = res
+            
+            if status == "FAIL":
+                current_fail = res
+            else:
+                current_fail = None
             
     for name, res in results.items():
         if isinstance(res["logs"], list):
@@ -73,13 +100,16 @@ def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
     if not (orig_file.exists() and ref_file.exists()):
         return None
 
-    # 1. Verification
+    # 1. Verification & 2. Benchmark (Parallel)
     verify_cmd = ["uv", "run", str(scripts_dir / "verify.py"), str(orig_file), str(ref_file), "--config", config_str]
-    ret, out, err = run_command(verify_cmd, verification_root)
-    
-    # 2. Benchmark
     bench_cmd = ["uv", "run", str(scripts_dir / "benchmark.py"), str(orig_file), str(ref_file), "--config", config_str]
-    ret_b, out_b, err_b = run_command(bench_cmd, verification_root)
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        future_verify = executor.submit(run_command, verify_cmd, verification_root)
+        future_bench = executor.submit(run_command, bench_cmd, verification_root)
+        
+        ret, out, err = future_verify.result()
+        ret_b, out_b, err_b = future_bench.result()
     
     functions = parse_verify_output(out + err)
     speedups = parse_benchmark_output(out_b + err_b)
@@ -157,17 +187,24 @@ def main():
         print(f"{status_icon} {res['job_name']}")
         
         for func in res['functions']:
-            perf = f" (Speedup: {func['speedup']})" if "speedup" in func else ""
+            extras = []
+            if "duration" in func and func['duration']:
+                extras.append(f"{func['duration']}")
+            if "speedup" in func:
+                extras.append(f"Speedup: {func['speedup']}")
+            
+            extra_str = f" ({', '.join(extras)})" if extras else ""
+            
             if func['status'] == "FAIL":
                 any_failed = True
-                print(f"  [FAIL] {func['name']}{perf}")
+                print(f"  [FAIL] {func['name']}{extra_str}")
                 print(f"    ERROR Details:")
                 for line in func['logs'].splitlines():
                     print(f"      {line}")
             elif func['status'] == "SKIP":
-                print(f"  [SKIP] {func['name']}{perf}")
+                print(f"  [SKIP] {func['name']}{extra_str}")
             else:
-                print(f"  [PASS] {func['name']}{perf}")
+                print(f"  [PASS] {func['name']}{extra_str}")
                 
     if any_failed:
         sys.exit(1)

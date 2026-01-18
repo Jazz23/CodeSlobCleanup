@@ -54,6 +54,7 @@ def clean_traceback(tb_str: str) -> str:
 
 def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config: Dict[str, Any] = None):
     """Runs Hypothesis tests to verify orig_func == ref_func."""
+    start_time = time.time()
     try:
         args_strategy = smart_infer_arg_strategies(orig_func, config=config)
         
@@ -86,12 +87,14 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
                 assert orig_res == ref_res, f"Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
 
         test_wrapper()
-        print(f"[PASS] {orig_func.__name__}")
+        duration = time.time() - start_time
+        print(f"[PASS] {orig_func.__name__} ({duration:.4f}s)")
 
     except AssertionError as e:
+        duration = time.time() - start_time
         raw_tb = traceback.format_exc()
         cleaned_tb = clean_traceback(raw_tb)
-        print(f"[FAIL] {orig_func.__name__}")
+        print(f"[FAIL] {orig_func.__name__} ({duration:.4f}s)")
         if cleaned_tb:
             print(cleaned_tb)
         else:
@@ -99,14 +102,16 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         raise e
 
     except Unsatisfiable:
-        print(f"[SKIP] {orig_func.__name__} (Unable to generate valid inputs)")
+        duration = time.time() - start_time
+        print(f"[SKIP] {orig_func.__name__} ({duration:.4f}s) (Unable to generate valid inputs)")
 
     except Exception as e:
+        duration = time.time() - start_time
         if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
-             print(f"[FAIL] {orig_func.__name__}")
+             print(f"[FAIL] {orig_func.__name__} ({duration:.4f}s)")
              print(f"    {e}")
              raise e
-        print(f"[SKIP] {orig_func.__name__} (Error during verification: {e})")
+        print(f"[SKIP] {orig_func.__name__} ({duration:.4f}s) (Error during verification: {e})")
 
 def worker_verify_function(orig_path, ref_path, func_name, config, result_queue):
     """Worker process to run verification for a single function."""
@@ -129,6 +134,7 @@ def worker_verify_function(orig_path, ref_path, func_name, config, result_queue)
 
 def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, config, result_queue):
     """Worker process to run verification for a single class method."""
+    start_time = time.time()
     try:
         orig_mod = load_module_from_path(orig_path, "original_mod")
         ref_mod = load_module_from_path(ref_path, "refactored_mod")
@@ -156,7 +162,8 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                 pass
                 
             if sample_args is None:
-                print(f"[SKIP] {cls_name}.{method_name} (Could not find valid constructor arguments)")
+                duration = time.time() - start_time
+                print(f"[SKIP] {cls_name}.{method_name} ({duration:.4f}s) (Could not find valid constructor arguments)")
                 result_queue.put("SKIPPED")
                 return
 
@@ -204,28 +211,32 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                     assert orig_res == ref_res, f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
 
             test_wrapper()
-            print(f"[PASS] {cls_name}.{method_name}")
+            duration = time.time() - start_time
+            print(f"[PASS] {cls_name}.{method_name} ({duration:.4f}s)")
             result_queue.put("SUCCESS")
             
         except Unsatisfiable:
-             print(f"[SKIP] {cls_name}.{method_name} (Unable to generate valid inputs)")
+             duration = time.time() - start_time
+             print(f"[SKIP] {cls_name}.{method_name} ({duration:.4f}s) (Unable to generate valid inputs)")
              result_queue.put("SKIPPED")
              
     except AssertionError as e:
+        duration = time.time() - start_time
         raw_tb = traceback.format_exc()
         cleaned_tb = clean_traceback(raw_tb)
-        print(f"[FAIL] {cls_name}.{method_name}")
+        print(f"[FAIL] {cls_name}.{method_name} ({duration:.4f}s)")
         if cleaned_tb:
             print(cleaned_tb)
         result_queue.put("FAILURE")
     except Exception as e:
+        duration = time.time() - start_time
         # Check if it's a Hypothesis failure (can happen if multiple failures found)
         if "Hypothesis found" in str(e) or "AssertionError" in str(type(e)):
-             print(f"[FAIL] {cls_name}.{method_name}")
+             print(f"[FAIL] {cls_name}.{method_name} ({duration:.4f}s)")
              print(f"    {e}")
              result_queue.put("FAILURE")
         else:
-             print(f"[SKIP] {cls_name}.{method_name} (Error: {e})")
+             print(f"[SKIP] {cls_name}.{method_name} ({duration:.4f}s) (Error: {e})")
              result_queue.put("SKIPPED")
 
 def main():
@@ -309,7 +320,8 @@ def main():
                 if time.time() - proc_info["start_time"] > 15:
                     p.terminate()
                     p.join()
-                    print(f"[SKIP] {proc_info['name']} (Timeout)")
+                    duration = time.time() - proc_info["start_time"]
+                    print(f"[SKIP] {proc_info['name']} ({duration:.4f}s) (Timeout)")
                 else:
                     still_active.append(proc_info)
         
