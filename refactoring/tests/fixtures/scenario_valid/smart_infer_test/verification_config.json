@@ -1,0 +1,5 @@
+{
+  "deep_update": ["dict", "dict"],
+  "compute_average": ["list"],
+  "format_repeat": ["str", "int"]
+}

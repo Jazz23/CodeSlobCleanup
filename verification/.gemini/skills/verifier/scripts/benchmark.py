@@ -10,6 +10,13 @@ import argparse
 import time
 import os
 import sys
+
+try:
+    # Import common to configure sys.pycache_prefix
+    import common
+except ImportError:
+    pass
+
 import inspect
 import numpy as np
 import matplotlib.pyplot as plt

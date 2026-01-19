@@ -1,10 +1,18 @@
 # /// script
-# dependencies = []
+# dependencies = [
+#     "hypothesis",
+# ]
 # ///
 
 import os
-
+import sys
 import argparse
+
+try:
+    # Import common to configure sys.pycache_prefix
+    import common
+except ImportError:
+    pass
 
 from pathlib import Path
 

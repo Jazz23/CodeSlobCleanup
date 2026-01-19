@@ -13,11 +13,14 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 ## Development Context
 *   **Package Management**: This project uses **`uv`** instead of `pip` for faster and more reliable dependency management.
     *   **Always** use `uv run <script.py>`.
-    *   **Mandatory PEP 723**: Never use `uv run --with <package>`. Instead, if a script is missing a dependency, modify the original script to include PEP 723 inline metadata (e.g., `# /// script \n # dependencies = ["package"] \n # ///`).
+    *   **Mandatory PEP 723**: Never use `uv run --with <package>`. Instead, if a script is missing a dependency, modify the original script to include PEP 723 inline metadata (e.g., `# /// script 
+ # dependencies = ["package"] 
+ # ///`).
 *   **Continuous Verification**: Always run the comprehensive test suite after modifying any tools, scripts, or adding new "slob" vs "clean" examples to ensure behavior remains consistent and tools function as expected.
     *   Command: `uv run verification/tests/run_tests.py`
 *   **Git & File Management**:
     *   **Assume Intentional Deletion**: Never attempt to "restore accidentally deleted scripts" or files (e.g., using `git restore`) unless explicitly asked by the user. Assume all deletions are intentional.
+    *   **No __init__.py**: Do not create empty `__init__.py` files.
 *   **Current Focus**:
     *   Establishing the testing baseline with Hypothesis.
     *   Developing the static analysis scanner for identifying slob.
