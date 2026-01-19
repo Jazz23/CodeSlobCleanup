@@ -12,6 +12,8 @@ import os
 import json
 import time
 import multiprocessing
+import string
+import random
 from queue import Empty
 from typing import Callable, Dict, Any
 from pathlib import Path
@@ -113,6 +115,88 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
              raise e
         print(f"[SKIP] {orig_func.__name__} ({duration:.4f}s) (Error during verification: {e})")
 
+class NaiveRandomFuzzer:
+    """
+    A simple random fuzzer that generates inputs based on type hints or random guessing.
+    Acts as a 'dumb' counterpart to Hypothesis's 'smart' generation.
+    """
+    def __init__(self, iterations=50):
+        self.iterations = iterations
+    
+    def _gen_int(self): return random.randint(-1000, 1000)
+    def _gen_float(self): return random.uniform(-1000.0, 1000.0)
+    def _gen_str(self): return "".join(random.choices(string.ascii_letters + string.digits, k=random.randint(0, 50)))
+    def _gen_bool(self): return random.choice([True, False])
+    def _gen_list(self): return [self._gen_any() for _ in range(random.randint(0, 5))]
+    def _gen_dict(self): return {self._gen_str(): self._gen_any() for _ in range(random.randint(0, 5))}
+    
+    def _gen_any(self):
+        return random.choice([
+            self._gen_int(), self._gen_float(), self._gen_str(), 
+            self._gen_bool(), None, self._gen_list(), self._gen_dict()
+        ])
+
+    def generate_args(self, func):
+        sig = inspect.signature(func)
+        args = []
+        for param in sig.parameters.values():
+            if param.name == 'self': continue
+            if param.annotation == int:
+                args.append(self._gen_int())
+            elif param.annotation == float:
+                args.append(self._gen_float())
+            elif param.annotation == str:
+                args.append(self._gen_str())
+            elif param.annotation == bool:
+                args.append(self._gen_bool())
+            elif param.annotation == list:
+                args.append(self._gen_list())
+            elif param.annotation == dict:
+                args.append(self._gen_dict())
+            else:
+                args.append(self._gen_any())
+        return args
+
+    def fuzz(self, orig_func, ref_func):
+        for _ in range(self.iterations):
+            args = self.generate_args(orig_func)
+            orig_res, orig_exc = None, None
+            ref_res, ref_exc = None, None
+            
+            try:
+                orig_res = orig_func(*args)
+            except Exception as e:
+                orig_exc = type(e)
+            
+            try:
+                ref_res = ref_func(*args)
+            except Exception as e:
+                ref_exc = type(e)
+            
+            if orig_exc:
+                assert ref_exc == orig_exc, f"[RandomFuzzer] Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
+            else:
+                if ref_exc:
+                    assert False, f"[RandomFuzzer] Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
+                assert orig_res == ref_res, f"[RandomFuzzer] Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
+
+def run_naive_fuzzing(orig_func: Callable, ref_func: Callable):
+    """Runs Naive Random Fuzzing."""
+    start_time = time.time()
+    try:
+        fuzzer = NaiveRandomFuzzer(iterations=50)
+        fuzzer.fuzz(orig_func, ref_func)
+        duration = time.time() - start_time
+        print(f"[PASS] {orig_func.__name__} (RandomFuzzer) ({duration:.4f}s)")
+    except AssertionError as e:
+        duration = time.time() - start_time
+        print(f"[FAIL] {orig_func.__name__} (RandomFuzzer) ({duration:.4f}s)")
+        print(f"    {e}")
+        raise e
+    except Exception as e:
+        duration = time.time() - start_time
+        print(f"[SKIP] {orig_func.__name__} (RandomFuzzer) ({duration:.4f}s) (Error: {e})")
+
 def worker_verify_function(orig_path, ref_path, func_name, config, result_queue):
     """Worker process to run verification for a single function."""
     try:
@@ -123,6 +207,7 @@ def worker_verify_function(orig_path, ref_path, func_name, config, result_queue)
         ref_func = getattr(ref_mod, func_name)
         
         run_hypothesis_verification(orig_func, ref_func, config=config)
+        run_naive_fuzzing(orig_func, ref_func)
         result_queue.put("SUCCESS")
     except AssertionError:
         result_queue.put("FAILURE")
@@ -211,6 +296,14 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                     assert orig_res == ref_res, f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
 
             test_wrapper()
+            
+            # Run Naive Random Fuzzer on the same method (using the sample instance)
+            inst_orig_naive = orig_cls(*sample_args)
+            inst_ref_naive = ref_cls(*sample_args)
+            bound_orig_naive = getattr(inst_orig_naive, method_name)
+            bound_ref_naive = getattr(inst_ref_naive, method_name)
+            run_naive_fuzzing(bound_orig_naive, bound_ref_naive)
+            
             duration = time.time() - start_time
             print(f"[PASS] {cls_name}.{method_name} ({duration:.4f}s)")
             result_queue.put("SUCCESS")
