@@ -30,11 +30,13 @@ You will be provided with a **target directory** path. This directory contains o
 ### 2. Process Jobs
 For **each subdirectory** in the target directory:
 1.  **Read**: Read the content of `original.py`.
-2.  **Load Persona**: Refer to `prompts.md` for refactoring rules.
-3.  **Refactor**: Internally generate the cleaner, idiomatic version of the code.
+2.  **Infer Types**: If the functions in `original.py` lack type hints, infer the intended types for their arguments based on usage, docstrings, or logic. Save these to `type_hints.json` in the same subdirectory.
+    *   *Format*: `{"function_name": ["type1", "type2", ...]}`.
+3.  **Load Persona**: Refer to `prompts.md` for refactoring rules.
+4.  **Refactor**: Internally generate the cleaner, idiomatic version of the code.
     *   *Constraint*: Must be drop-in compatible (same signatures).
     *   *Constraint*: Use `type hints`.
-4.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
+5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `target_dir/job_name/refactored.py` exists next to `original.py`.
 
 ### 3. Report

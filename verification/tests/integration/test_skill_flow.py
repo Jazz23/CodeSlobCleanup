@@ -35,22 +35,10 @@ def test_skill_success_cases(tmp_path, scenario):
     env = os.environ.copy()
     env["BENCHMARK_RUNS"] = "2"
     env["HYPOTHESIS_MAX_EXAMPLES"] = "10"
-    
-    # Detect and merge configs from fixtures
-    merged_config = {}
-    for job_dir in source.iterdir():
-        if not job_dir.is_dir(): continue
-        config_file = job_dir / "verification_config.json"
-        if config_file.exists():
-            with open(config_file, "r") as f:
-                merged_config.update(json.load(f))
-    
-    config_json = json.dumps(merged_config)
-    
+
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
-        "--target-dir", str(tmp_path),
-        "--config", config_json
+        "--target-dir", str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
@@ -85,19 +73,19 @@ def test_skill_catches_regression(tmp_path):
     
     merged_config = {}
     source = FIXTURES_DIR / "scenario_broken"
-    for job_dir in source.iterdir():
-        if not job_dir.is_dir(): continue
-        config_file = job_dir / "verification_config.json"
-        if config_file.exists():
-            with open(config_file, "r") as f:
-                merged_config.update(json.load(f))
+    # for job_dir in source.iterdir():
+    #     if not job_dir.is_dir(): continue
+    #     config_file = job_dir / "verification_config.json"
+    #     if config_file.exists():
+    #         with open(config_file, "r") as f:
+    #             merged_config.update(json.load(f))
     
-    config_json = json.dumps(merged_config)
+    # config_json = json.dumps(merged_config)
+
     
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
-        "--target-dir", str(tmp_path),
-        "--config", config_json
+        "--target-dir", str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
@@ -128,20 +116,20 @@ def test_skill_hybrid_skips(tmp_path):
     env["HYPOTHESIS_MAX_EXAMPLES"] = "50"
     
     # Detect and merge configs from fixtures
-    merged_config = {}
-    for job_dir in source.iterdir():
-        if not job_dir.is_dir(): continue
-        config_file = job_dir / "verification_config.json"
-        if config_file.exists():
-            with open(config_file, "r") as f:
-                merged_config.update(json.load(f))
+    # merged_config = {}
+    # for job_dir in source.iterdir():
+    #     if not job_dir.is_dir(): continue
+    #     config_file = job_dir / "verification_config.json"
+    #     if config_file.exists():
+    #         with open(config_file, "r") as f:
+    #             merged_config.update(json.load(f))
     
-    config_json = json.dumps(merged_config)
+    # config_json = json.dumps(merged_config)
+    
     
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
-        "--target-dir", str(tmp_path),
-        "--config", config_json
+        "--target-dir", str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     

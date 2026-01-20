@@ -336,15 +336,18 @@ def main():
     parser = argparse.ArgumentParser(description="Verify refactored code against original code.")
     parser.add_argument("original", help="Path to original python file")
     parser.add_argument("refactored", help="Path to refactored python file")
-    parser.add_argument("--config", help="JSON string containing type configuration")
     args = parser.parse_args()
 
     config = {}
-    if args.config:
+    original_path = Path(args.original).resolve()
+    type_hints_path = original_path.parent / "type_hints.json"
+
+    if type_hints_path.exists():
         try:
-            config = json.loads(args.config)
+            with open(type_hints_path, 'r') as f:
+                config = json.load(f)
         except json.JSONDecodeError as e:
-            print(f"Error: Invalid JSON configuration provided: {e}")
+            print(f"Error: Invalid JSON in type_hints.json: {e}")
             sys.exit(1)
 
     try:

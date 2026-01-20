@@ -99,7 +99,7 @@ def parse_benchmark_output(output):
              continue
     return speedups
 
-def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
+def process_job(job_dir, verification_root, scripts_dir):
     """Processes a single job directory."""
     orig_file = job_dir / "original.py"
     ref_file = job_dir / "refactored.py"
@@ -108,8 +108,8 @@ def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
         return None
 
     # 1. Verification & 2. Benchmark (Parallel)
-    verify_cmd = ["uv", "run", str(scripts_dir / "verify.py"), str(orig_file), str(ref_file), "--config", config_str]
-    bench_cmd = ["uv", "run", str(scripts_dir / "benchmark.py"), str(orig_file), str(ref_file), "--config", config_str]
+    verify_cmd = ["uv", "run", str(scripts_dir / "verify.py"), str(orig_file), str(ref_file)]
+    bench_cmd = ["uv", "run", str(scripts_dir / "benchmark.py"), str(orig_file), str(ref_file)]
 
     with ThreadPoolExecutor(max_workers=2) as executor:
         future_verify = executor.submit(run_command, verify_cmd, verification_root)
@@ -138,16 +138,8 @@ def process_job(job_dir, verification_root, scripts_dir, config_str="{}"):
 def main():
     parser = argparse.ArgumentParser(description="Verifier Skill Orchestrator")
     parser.add_argument("--target-dir", required=True, help="Directory containing job subfolders")
-    parser.add_argument("--config", default="{}", help="JSON config string (default: '{}')")
     args = parser.parse_args()
 
-    # Validate JSON config immediately
-    try:
-        json.loads(args.config)
-    except json.JSONDecodeError as e:
-        print(f"Error: Invalid JSON configuration provided: {e}")
-        sys.exit(1)
-    
     input_dir = Path(args.target_dir).resolve()
     if not input_dir.exists(): sys.exit(1)
 
@@ -161,7 +153,7 @@ def main():
     # we reduce the job-level parallelism to avoid oversubscribing the system.
     max_workers = max(1, (os.cpu_count() or 4) // 2)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(process_job, job, verification_root, scripts_dir, args.config): job for job in jobs}
+        futures = {executor.submit(process_job, job, verification_root, scripts_dir): job for job in jobs}
         for future in as_completed(futures):
             res = future.result()
             if res: results.append(res)
