@@ -68,9 +68,39 @@ def test_refactoring_agent():
         
         if process.returncode != 0:
             print(f"\n[FAIL] Gemini exited with code {process.returncode}")
-            sys.exit(process.returncode)
         else:
             print("\n[SUCCESS] Gemini execution completed.")
+
+            # --- Orchestrator Execution ---
+            orchestrator_path = os.path.abspath(os.path.join(refactoring_dir, "..", "verification", "src", "orchestrator.py"))
+            orchestrator_target = os.path.join(temp_path, "scenario_hybrid")
+            
+            print(f"\nRunning Orchestrator on {orchestrator_target}...")
+            orch_cmd = ["uv", "run", orchestrator_path, "--target-dir", orchestrator_target]
+            
+            try:
+                orch_result = subprocess.run(
+                    orch_cmd,
+                    cwd=refactoring_dir, # Run from refactoring dir, though uv run handles paths
+                    capture_output=True,
+                    text=True
+                )
+                print("--- Orchestrator Output ---")
+                print(orch_result.stdout)
+                if orch_result.stderr:
+                    print("--- Orchestrator Stderr ---")
+                    print(orch_result.stderr)
+                print("---------------------------")
+            except Exception as e:
+                print(f"Failed to run orchestrator: {e}")
+            # ------------------------------
+
+        if os.path.exists(temp_path):
+            print(f"Cleaning up {temp_path}...")
+            shutil.rmtree(temp_path)
+
+        if process.returncode != 0:
+            sys.exit(process.returncode)
             
     except FileNotFoundError:
         print("\n[ERROR] 'gemini' command not found. Ensure it is in your PATH.")
