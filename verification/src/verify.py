@@ -15,8 +15,9 @@ import multiprocessing
 import string
 import random
 from queue import Empty
-from typing import Callable, Dict, Any
+from typing import Callable, Dict, Any, Optional
 from pathlib import Path
+from dataclasses import dataclass
 
 # Add the directory containing 'verification' to sys.path
 current_file = Path(__file__).resolve()
@@ -37,6 +38,12 @@ except ImportError:
     # Fallback if necessary, though direct execution adds local dir to path
     from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 
+@dataclass
+class VerifyResult:
+    status: str  # "PASS", "FAIL", "SKIP"
+    duration: float
+    error: Optional[str] = None
+
 def clean_traceback(tb_str: str) -> str:
     """Filters traceback to remove internal tool frames and focus on user code."""
     lines = tb_str.splitlines()
@@ -52,7 +59,7 @@ def clean_traceback(tb_str: str) -> str:
             
     return "\n".join(filtered_lines).strip()
 
-def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config: Dict[str, Any] = None):
+def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config: Dict[str, Any] = None) -> VerifyResult:
     """Runs Hypothesis tests to verify orig_func == ref_func."""
     start_time = time.time()
     try:
@@ -88,30 +95,24 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
 
         test_wrapper()
         duration = time.time() - start_time
-        print(f"[PASS] {orig_func.__name__} ({duration:.4f}s)")
+        return VerifyResult("PASS", duration)
 
     except AssertionError as e:
         duration = time.time() - start_time
         raw_tb = traceback.format_exc()
         cleaned_tb = clean_traceback(raw_tb)
-        print(f"[FAIL] {orig_func.__name__} ({duration:.4f}s)")
-        if cleaned_tb:
-            print(cleaned_tb)
-        else:
-            print(f"    {e}")
-        raise e
+        error_msg = cleaned_tb if cleaned_tb else str(e)
+        return VerifyResult("FAIL", duration, error_msg)
 
     except Unsatisfiable:
         duration = time.time() - start_time
-        print(f"[SKIP] {orig_func.__name__} ({duration:.4f}s) (Unable to generate valid inputs)")
+        return VerifyResult("SKIP", duration, "Unable to generate valid inputs")
 
     except Exception as e:
         duration = time.time() - start_time
         if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
-             print(f"[FAIL] {orig_func.__name__} ({duration:.4f}s)")
-             print(f"    {e}")
-             raise e
-        print(f"[SKIP] {orig_func.__name__} ({duration:.4f}s) (Error during verification: {e})")
+             return VerifyResult("FAIL", duration, str(e))
+        return VerifyResult("SKIP", duration, f"Error during verification: {e}")
 
 class NaiveRandomFuzzer:
     """
@@ -178,22 +179,49 @@ class NaiveRandomFuzzer:
                     assert False, f"[RandomFuzzer] Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
                 assert orig_res == ref_res, f"[RandomFuzzer] Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
 
-def run_naive_fuzzing(orig_func: Callable, ref_func: Callable):
+def run_naive_fuzzing(orig_func: Callable, ref_func: Callable) -> VerifyResult:
     """Runs Naive Random Fuzzing."""
     start_time = time.time()
     try:
         fuzzer = NaiveRandomFuzzer(iterations=50)
         fuzzer.fuzz(orig_func, ref_func)
         duration = time.time() - start_time
-        print(f"[PASS] {orig_func.__name__} (RandomFuzzer) ({duration:.4f}s)")
+        return VerifyResult("PASS", duration)
     except AssertionError as e:
         duration = time.time() - start_time
-        print(f"[FAIL] {orig_func.__name__} (RandomFuzzer) ({duration:.4f}s)")
-        print(f"    {e}")
-        raise e
+        return VerifyResult("FAIL", duration, str(e))
     except Exception as e:
         duration = time.time() - start_time
-        print(f"[SKIP] {orig_func.__name__} (RandomFuzzer) ({duration:.4f}s) (Error: {e})")
+        return VerifyResult("SKIP", duration, f"Error: {e}")
+
+def combine_results(name: str, hyp_res: VerifyResult, naive_res: VerifyResult):
+    """Combines results from both fuzzers and prints the output."""
+    total_duration = hyp_res.duration + naive_res.duration
+    
+    # Logic:
+    # Fail if either fails.
+    # Pass if one passes (and other passes/skips).
+    # Skip if both skip.
+    
+    if hyp_res.status == "FAIL":
+        print(f"[FAIL] {name} ({total_duration:.4f}s)")
+        if hyp_res.error:
+             print(hyp_res.error)
+        return "FAILURE"
+    
+    if naive_res.status == "FAIL":
+        print(f"[FAIL] {name} ({total_duration:.4f}s)")
+        if naive_res.error:
+             print(naive_res.error)
+        return "FAILURE"
+    
+    if hyp_res.status == "PASS" or naive_res.status == "PASS":
+        print(f"[PASS] {name} ({total_duration:.4f}s)")
+        return "SUCCESS"
+    
+    # Both skipped
+    print(f"[SKIP] {name} ({total_duration:.4f}s) (Both fuzzers skipped)")
+    return "SKIPPED"
 
 def worker_verify_function(orig_path, ref_path, func_name, config, result_queue):
     """Worker process to run verification for a single function."""
@@ -204,20 +232,22 @@ def worker_verify_function(orig_path, ref_path, func_name, config, result_queue)
         orig_func = getattr(orig_mod, func_name)
         ref_func = getattr(ref_mod, func_name)
         
-        run_hypothesis_verification(orig_func, ref_func, config=config)
-        run_naive_fuzzing(orig_func, ref_func)
-        result_queue.put("SUCCESS")
-    except AssertionError:
-        result_queue.put("FAILURE")
+        hyp_res = run_hypothesis_verification(orig_func, ref_func, config=config)
+        naive_res = run_naive_fuzzing(orig_func, ref_func)
+        
+        status = combine_results(func_name, hyp_res, naive_res)
+        result_queue.put(status)
+        
     except Exception as e:
-        if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
-            result_queue.put("FAILURE")
-        else:
-            result_queue.put("SKIPPED")
+        # Fallback if loading fails or something unexpected
+        print(f"[SKIP] {func_name} (0.0000s) (Worker Error: {e})")
+        result_queue.put("SKIPPED")
 
 def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, config, result_queue):
     """Worker process to run verification for a single class method."""
     start_time = time.time()
+    full_name = f"{cls_name}.{method_name}"
+    
     try:
         orig_mod = load_module_from_path(orig_path, "original_mod")
         ref_mod = load_module_from_path(ref_path, "refactored_mod")
@@ -226,15 +256,15 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
         ref_cls = getattr(ref_mod, cls_name)
         
         # We need a strategy for (init_args, method_args)
+        # Setup Hypothesis for Class Method
+        
+        hyp_res = None
+        
         try:
             init_strategy = smart_infer_arg_strategies(orig_cls, config=config)
             
-            # To get method strategy, we need an instance. 
-            # We'll use a sample instance to infer method strategy.
-            # (In a more robust version, we'd do this inside the strategy)
             sample_args = None
             try:
-                # Try to get one valid init arg set
                 @settings(max_examples=1, deadline=None)
                 @given(init_strategy)
                 def get_one(args):
@@ -245,90 +275,108 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                 pass
                 
             if sample_args is None:
-                duration = time.time() - start_time
-                print(f"[SKIP] {cls_name}.{method_name} ({duration:.4f}s) (Could not find valid constructor arguments)")
-                result_queue.put("SKIPPED")
-                return
+                hyp_res = VerifyResult("SKIP", time.time() - start_time, "Could not find valid constructor arguments")
+            else:
+                sample_inst = orig_cls(*sample_args)
+                bound_method = getattr(sample_inst, method_name)
+                method_strategy = smart_infer_arg_strategies(bound_method, config=config)
 
-            sample_inst = orig_cls(*sample_args)
-            bound_method = getattr(sample_inst, method_name)
-            method_strategy = smart_infer_arg_strategies(bound_method, config=config)
+                combined_strategy = st.tuples(init_strategy, method_strategy)
 
-            combined_strategy = st.tuples(init_strategy, method_strategy)
+                max_examples = 100
+                env_max = os.getenv("HYPOTHESIS_MAX_EXAMPLES")
+                if env_max:
+                    max_examples = int(env_max)
 
-            max_examples = 100
-            env_max = os.getenv("HYPOTHESIS_MAX_EXAMPLES")
-            if env_max:
-                max_examples = int(env_max)
-
-            @settings(suppress_health_check=[HealthCheck.function_scoped_fixture, HealthCheck.filter_too_much], max_examples=max_examples, deadline=None)
-            @given(combined_strategy)
-            def test_wrapper(combined_args):
-                init_args, method_args = combined_args
-                
-                # We want to use the SAME init args for both
-                inst_orig = orig_cls(*init_args)
-                inst_ref = ref_cls(*init_args)
-                
-                bound_orig = getattr(inst_orig, method_name)
-                bound_ref = getattr(inst_ref, method_name)
-                
-                orig_res, orig_exc = None, None
-                ref_res, ref_exc = None, None
-                
-                try:
-                    orig_res = bound_orig(*method_args)
-                except Exception as e:
-                    orig_exc = type(e)
+                @settings(suppress_health_check=[HealthCheck.function_scoped_fixture, HealthCheck.filter_too_much], max_examples=max_examples, deadline=None)
+                @given(combined_strategy)
+                def test_wrapper(combined_args):
+                    init_args, method_args = combined_args
                     
-                try:
-                    ref_res = bound_ref(*method_args)
-                except Exception as e:
-                    ref_exc = type(e)
-                
-                if orig_exc:
-                    assert ref_exc == orig_exc, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
-                else:
-                    if ref_exc:
-                        assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
-                    assert orig_res == ref_res, f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
+                    inst_orig = orig_cls(*init_args)
+                    inst_ref = ref_cls(*init_args)
+                    
+                    bound_orig = getattr(inst_orig, method_name)
+                    bound_ref = getattr(inst_ref, method_name)
+                    
+                    orig_res, orig_exc = None, None
+                    ref_res, ref_exc = None, None
+                    
+                    try:
+                        orig_res = bound_orig(*method_args)
+                    except Exception as e:
+                        orig_exc = type(e)
+                        
+                    try:
+                        ref_res = bound_ref(*method_args)
+                    except Exception as e:
+                        ref_exc = type(e)
+                    
+                    if orig_exc:
+                        assert ref_exc == orig_exc, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
+                    else:
+                        if ref_exc:
+                            assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
+                        assert orig_res == ref_res, f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
 
-            test_wrapper()
-            
-            # Run Naive Random Fuzzer on the same method (using the sample instance)
-            inst_orig_naive = orig_cls(*sample_args)
-            inst_ref_naive = ref_cls(*sample_args)
-            bound_orig_naive = getattr(inst_orig_naive, method_name)
-            bound_ref_naive = getattr(inst_ref_naive, method_name)
-            run_naive_fuzzing(bound_orig_naive, bound_ref_naive)
-            
-            duration = time.time() - start_time
-            print(f"[PASS] {cls_name}.{method_name} ({duration:.4f}s)")
-            result_queue.put("SUCCESS")
-            
+                test_wrapper()
+                hyp_res = VerifyResult("PASS", time.time() - start_time)
+
+        except AssertionError as e:
+            raw_tb = traceback.format_exc()
+            cleaned_tb = clean_traceback(raw_tb)
+            hyp_res = VerifyResult("FAIL", time.time() - start_time, cleaned_tb if cleaned_tb else str(e))
         except Unsatisfiable:
-             duration = time.time() - start_time
-             print(f"[SKIP] {cls_name}.{method_name} ({duration:.4f}s) (Unable to generate valid inputs)")
-             result_queue.put("SKIPPED")
-             
-    except AssertionError as e:
-        duration = time.time() - start_time
-        raw_tb = traceback.format_exc()
-        cleaned_tb = clean_traceback(raw_tb)
-        print(f"[FAIL] {cls_name}.{method_name} ({duration:.4f}s)")
-        if cleaned_tb:
-            print(cleaned_tb)
-        result_queue.put("FAILURE")
-    except Exception as e:
-        duration = time.time() - start_time
-        # Check if it's a Hypothesis failure (can happen if multiple failures found)
-        if "Hypothesis found" in str(e) or "AssertionError" in str(type(e)):
-             print(f"[FAIL] {cls_name}.{method_name} ({duration:.4f}s)")
-             print(f"    {e}")
-             result_queue.put("FAILURE")
+             hyp_res = VerifyResult("SKIP", time.time() - start_time, "Unable to generate valid inputs")
+        except Exception as e:
+            if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
+                 hyp_res = VerifyResult("FAIL", time.time() - start_time, str(e))
+            else:
+                 hyp_res = VerifyResult("SKIP", time.time() - start_time, f"Error: {e}")
+        
+        # Run Naive Fuzzer (using the sample instance if available, or try random gen if not specific to instance logic, 
+        # but class methods usually need instance state. We used sample_args before.
+        # If Hypothesis failed to get sample_args, we probably can't easily fuzz with naive fuzzer either unless we blindly guess init args)
+        
+        naive_res = None
+        naive_start = time.time()
+        
+        # We need a fresh instance for Naive Fuzzer or we reuse logic?
+        # worker_verify_class_method logic in original file used `sample_args` found by Hypothesis to seed Naive Fuzzer.
+        # If Hypothesis failed to find `sample_args`, original code skipped everything.
+        # We should try to stick to that pattern or improve it. 
+        # If Hypothesis skipped because it couldn't find init args, Naive likely will too unless it has a simpler strategy.
+        # Let's try to run Naive if we have sample_args.
+        
+        # To strictly follow "One Pass = Pass", we should try Naive even if Hypothesis Skipped. 
+        # But if Hypothesis Skipped because it couldn't construct the class, we need a way to construct the class.
+        # If we can't construct the class, we can't run the method.
+        
+        if hyp_res.status == "SKIP" and "Could not find valid constructor arguments" in (hyp_res.error or ""):
+             # If we have no sample args, we can't really run naive fuzzer on the method easily 
+             # without duplicating the init-arg-finding logic.
+             # For now, let's treat this as Naive also Skipping (implicitly).
+             naive_res = VerifyResult("SKIP", 0.0, "Could not find valid constructor arguments")
+        elif sample_args is not None:
+             # reuse sample_args
+             try:
+                inst_orig_naive = orig_cls(*sample_args)
+                inst_ref_naive = ref_cls(*sample_args)
+                bound_orig_naive = getattr(inst_orig_naive, method_name)
+                bound_ref_naive = getattr(inst_ref_naive, method_name)
+                naive_res = run_naive_fuzzing(bound_orig_naive, bound_ref_naive)
+             except Exception as e:
+                naive_res = VerifyResult("SKIP", time.time() - naive_start, str(e))
         else:
-             print(f"[SKIP] {cls_name}.{method_name} ({duration:.4f}s) (Error: {e})")
-             result_queue.put("SKIPPED")
+             # Should not happen if logic holds (if sample_args is None, we entered the first if block)
+             naive_res = VerifyResult("SKIP", 0.0, "No sample args")
+             
+        status = combine_results(full_name, hyp_res, naive_res)
+        result_queue.put(status)
+
+    except Exception as e:
+        print(f"[SKIP] {full_name} (0.0000s) (Worker Error: {e})")
+        result_queue.put("SKIPPED")
 
 def main():
     parser = argparse.ArgumentParser(description="Verify refactored code against original code.")
