@@ -40,7 +40,7 @@ We test the verifier itself using a suite of "Fixtures" located in `verification
 To run the verifier against a directory of refactoring jobs:
 
 ```bash
-uv run verification/.gemini/skills/verifier/scripts/orchestrator.py --target-dir <PATH_TO_JOBS>
+uv run verification/src/orchestrator.py --target-dir <PATH_TO_JOBS>
 ```
 
 To run the project's test suite (which tests the verifier):
@@ -51,7 +51,7 @@ uv run verification/tests/run_tests.py
 
 ## Directory Structure
 
-*   **.gemini/skills/verifier/scripts/**: The core tool source code.
+*   **src/**: The core tool source code.
     *   `orchestrator.py`: Main CLI runner.
     *   `verify.py`: Logic verification engine.
     *   `benchmark.py`: Performance testing.

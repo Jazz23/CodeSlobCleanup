@@ -32,12 +32,10 @@ import hypothesis.strategies as st
 from hypothesis.errors import Unsatisfiable
 
 try:
-    from verification.tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
+    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 except ImportError:
-    try:
-        from tools.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
-    except ImportError:
-        from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
+    # Fallback if necessary, though direct execution adds local dir to path
+    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
 
 def clean_traceback(tb_str: str) -> str:
     """Filters traceback to remove internal tool frames and focus on user code."""

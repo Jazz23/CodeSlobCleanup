@@ -23,7 +23,7 @@ def test_orchestrator_flow(tmp_path):
     
     # Path to orchestrator
     verification_root = Path(__file__).resolve().parent.parent.parent
-    orchestrator_path = verification_root / ".gemini" / "skills" / "verifier" / "scripts" / "orchestrator.py"
+    orchestrator_path = verification_root / "src" / "orchestrator.py"
     
     # Run orchestrator
     env = os.environ.copy()
@@ -57,7 +57,7 @@ def test_orchestrator_fail_flow(tmp_path):
     
     # Path to orchestrator
     verification_root = Path(__file__).resolve().parent.parent.parent
-    orchestrator_path = verification_root / ".gemini" / "skills" / "verifier" / "scripts" / "orchestrator.py"
+    orchestrator_path = verification_root / "src" / "orchestrator.py"
     
     cmd = [
         sys.executable, str(orchestrator_path),

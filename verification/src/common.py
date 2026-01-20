@@ -6,42 +6,28 @@
 
 import sys
 import os
+import subprocess
 
-# Configure pycache to be created in verification/__pycache__
+# Configure pycache to be created in the root of the active git repository
 # This runs on import to ensure all scripts importing this module share the config.
 try:
-    _script_dir = os.path.dirname(os.path.abspath(__file__))
-    # Assuming this script is deep in verification/.gemini/skills/verifier/scripts/
-    # We want verification/__pycache__ which is 4 levels up from here?
-    # Original logic: verify.py is in scripts/, so root is ../../../..
-    # verification/ is ../../../../verification
-    # Wait, common.py is in the SAME dir as verify.py.
-    # relative path: ../../../.. gets us to Project Root (CodeSlobCleanup)
-    # The cache dir was set to CodeSlobCleanup/__pycache__ in my previous edit?
-    # previous edit: _root_dir = os.path.abspath(os.path.join(_script_dir, "../../../.."))
-    # _pycache_dir = os.path.join(_root_dir, "__pycache__")
-    # That puts it in Project Root.
-    # The instruction said "next to verification/.gemini folder".
-    # verification/.gemini is inside verification.
-    # So "verification/__pycache__" is what I did.
-    
-    # Let's verify the path depth.
-    # G:\Github\CodeSlobCleanup\verification\.gemini\skills\verifier\scripts\common.py
-    # .. -> scripts
-    # .... -> verifier
-    # ...... -> skills
-    # ........ -> .gemini
-    # .......... -> verification (This is where we want it?)
-    
-    # os.path.dirname(__file__) -> scripts
-    # scripts/../../../../ -> verification/
-    
-    _target_root = os.path.abspath(os.path.join(_script_dir, "../../../.."))
-    _pycache_dir = os.path.join(_target_root, "__pycache__")
+    # Try to find git root
+    _git_root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], stderr=subprocess.DEVNULL, text=True).strip()
+    _pycache_dir = os.path.join(_git_root, "__pycache__")
     os.makedirs(_pycache_dir, exist_ok=True)
     sys.pycache_prefix = _pycache_dir
+    os.environ["PYTHONPYCACHEPREFIX"] = _pycache_dir
 except Exception:
-    pass
+    # Fallback to local directory if git fails
+    try:
+        _script_dir = os.path.dirname(os.path.abspath(__file__))
+        _target_root = os.path.abspath(os.path.join(_script_dir, ".."))
+        _pycache_dir = os.path.join(_target_root, "__pycache__")
+        os.makedirs(_pycache_dir, exist_ok=True)
+        sys.pycache_prefix = _pycache_dir
+        os.environ["PYTHONPYCACHEPREFIX"] = _pycache_dir
+    except Exception:
+        pass
 
 import importlib.util
 import inspect

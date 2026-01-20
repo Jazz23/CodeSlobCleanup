@@ -144,7 +144,7 @@ def main():
     if not input_dir.exists(): sys.exit(1)
 
     scripts_dir = Path(__file__).resolve().parent
-    verification_root = scripts_dir.parent.parent.parent.parent
+    verification_root = scripts_dir.parent
 
     jobs = [d for d in input_dir.iterdir() if d.is_dir()]
     
