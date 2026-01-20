@@ -8,11 +8,10 @@
 -   **Un-Pythonic**: Ignoring language features (e.g., using `i=0; while i<len(l): ...` instead of `for x in l:`).
 
 ## Philosophy
-The goal of this skill is **aggressive simplification** paired with **defensive verification**.
+The goal of this skill is **aggressive simplification**.
 
 1.  **Semantics First**: We never sacrifice correctness for aesthetics. If we can't prove it behaves the same, we don't change it.
 2.  **Idiomatic Python**: We strive for code that looks like it was written by a seasoned Python expert.
-3.  **Property-Based Verification**: We don't just run unit tests; we use Hypothesis to generate thousands of inputs to mathematically assert `original(x) == refactored(x)`.
 
 ## Common Refactoring Targets
 -   **Nested Ifs**: Convert to guard clauses.
@@ -32,6 +31,13 @@ For **each subdirectory** in the target directory:
 1.  **Read**: Read the content of `original.py`.
 2.  **Infer Types**: If the functions in `original.py` lack type hints, infer the intended types for their arguments based on usage, docstrings, or logic. Save these to `type_hints.json` in the same subdirectory.
     *   *Format*: `{"function_name": ["type1", "type2", ...]}`.
+    *   *Example `type_hints.json`*:
+        ```json
+        {
+          "compute_average": ["list[float]"],
+          "format_user_greeting": ["str", "int"]
+        }
+        ```
 3.  **Load Persona**: Refer to `prompts.md` for refactoring rules.
 4.  **Refactor**: Internally generate the cleaner, idiomatic version of the code.
     *   *Constraint*: Must be drop-in compatible (same signatures).
@@ -40,7 +46,7 @@ For **each subdirectory** in the target directory:
     *   *Result*: `target_dir/job_name/refactored.py` exists next to `original.py`.
 
 ### 3. Report
-Inform the user that the refactoring candidates have been generated and are ready for verification.
+Inform the user that the refactoring candidates have been generated.
 
 ## Resources
 - **Prompts**: `prompts.md`
