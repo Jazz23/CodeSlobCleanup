@@ -42,9 +42,7 @@ For **each subdirectory** (job):
 3.  **Load Persona**: Refer to `prompts.md` for refactoring rules.
 4.  **Refactor**: Internally generate the cleaner, idiomatic version of the code.
     *   *Constraint*: Must be drop-in compatible (same signatures).
-    *   *Constraint*: **Strict Equality**: Ensure logic preserves exact behavior, especially for:
-        *   **Floating Point**: Do not reorder operations if it changes precision (e.g., `(a+b)+c` vs `a+(b+c)`).
-        *   **Data Regularity**: Do not assume lists are rectangular (e.g., `len(grid[0])`) unless the original code strictly enforces it. Handle ragged inputs if the original did.
+    *   *Constraint*: Follow ALL rules in `prompts.md`, especially regarding floating-point precision and boundary checks.
     *   *Constraint*: Use `type hints`.
 5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `target_dir/job_name/refactored.py` exists next to `original.py`.
