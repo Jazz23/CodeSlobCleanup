@@ -21,10 +21,6 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 *   **Git & File Management**:
     *   **Assume Intentional Deletion**: Never attempt to "restore accidentally deleted scripts" or files (e.g., using `git restore`) unless explicitly asked by the user. Assume all deletions are intentional.
     *   **No __init__.py**: Do not create empty `__init__.py` files.
-*   **Current Focus**:
-    *   Establishing the testing baseline with Hypothesis.
-    *   Developing the static analysis scanner for identifying slob.
-    *   Creating canonical examples of "slob" vs. "clean" code.
 
 ## References
 *   See `cse247b_reports_w26\codeslob\overview.md` for the full project overview.

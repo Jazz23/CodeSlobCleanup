@@ -91,8 +91,57 @@ def test_refactoring_agent():
                     print("--- Orchestrator Stderr ---")
                     print(orch_result.stderr)
                 print("---------------------------")
+
+                # --- Output Parsing & Assertion ---
+                jobs = {}
+                current_job = None
+                
+                for line in orch_result.stdout.splitlines():
+                    if line.startswith("[PASS] ") or line.startswith("[FAIL] "):
+                        # This is a job line
+                        parts = line.split(" ", 1)
+                        status = parts[0].strip("[]")
+                        name = parts[1].strip()
+                        current_job = name
+                        jobs[current_job] = {"status": status, "functions": []}
+                    elif line.strip().startswith("[PASS] ") or line.strip().startswith("[FAIL] ") or line.strip().startswith("[SKIP] "):
+                        # This is a function line
+                        if current_job:
+                            parts = line.strip().split(" ", 1)
+                            f_status = parts[0].strip("[]")
+                            f_name = parts[1]
+                            jobs[current_job]["functions"].append({"status": f_status, "name": f_name})
+
+                failed_assertions = False
+                for job_name, data in jobs.items():
+                    if job_name.startswith("skip_"):
+                        # For skip_ jobs, the job status should be PASS (no failures)
+                        # and individual functions should be SKIP
+                        if data["status"] == "FAIL":
+                            print(f"[ASSERT FAIL] Job '{job_name}' failed but was expected to be skipped.")
+                            failed_assertions = True
+                        
+                        for func in data["functions"]:
+                            if func["status"] != "SKIP":
+                                print(f"[ASSERT FAIL] Function '{func['name']}' in job '{job_name}' was '{func['status']}' but expected 'SKIP'.")
+                                failed_assertions = True
+                                
+                    else:
+                        # For normal jobs, status must be PASS
+                        if data["status"] != "PASS":
+                            print(f"[ASSERT FAIL] Job '{job_name}' failed.")
+                            failed_assertions = True
+
+                if failed_assertions:
+                    print("\n[TEST FAILED] Some assertions failed.")
+                    sys.exit(1)
+                else:
+                    print("\n[TEST PASSED] All job status assertions passed.")
+                # ----------------------------------
+
             except Exception as e:
                 print(f"Failed to run orchestrator: {e}")
+                sys.exit(1)
             # ------------------------------
 
         if os.path.exists(temp_path):

@@ -22,14 +22,15 @@ The goal of this skill is **aggressive simplification**.
 
 ## Workflow Instructions
 
-### 1. Receive Input
-You will be provided with a **target directory** path. This directory contains one or more subdirectories (jobs), each representing a refactoring case.
-*   *Structure*: `target_dir/job_name/original.py`
+### 1. Discovery & Batch Reading
+1.  **List**: List the contents of the **target directory** to identify all job subdirectories.
+2.  **Batch Read**: Read the `original.py` file in **all** subdirectories using parallel tool calls. Do *not* read them one by one in separate turns.
+    *   *Constraint*: **Do not** read files outside the `target_dir` (e.g., do not look in `fixtures/` or `tests/` for answers).
 
 ### 2. Process Jobs
-For **each subdirectory** in the target directory:
-1.  **Read**: Read the content of `original.py`.
-2.  **Infer Types**: If the functions in `original.py` lack type hints, infer the intended types for their arguments based on usage, docstrings, or logic. Save these to `type_hints.json` in the same subdirectory.
+For **each subdirectory** (job):
+1.  **Analyze**: Examine the `original.py` content.
+2.  **Infer Types**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
     *   *Format*: `{"function_name": ["type1", "type2", ...]}`.
     *   *Example `type_hints.json`*:
         ```json
@@ -41,6 +42,9 @@ For **each subdirectory** in the target directory:
 3.  **Load Persona**: Refer to `prompts.md` for refactoring rules.
 4.  **Refactor**: Internally generate the cleaner, idiomatic version of the code.
     *   *Constraint*: Must be drop-in compatible (same signatures).
+    *   *Constraint*: **Strict Equality**: Ensure logic preserves exact behavior, especially for:
+        *   **Floating Point**: Do not reorder operations if it changes precision (e.g., `(a+b)+c` vs `a+(b+c)`).
+        *   **Data Regularity**: Do not assume lists are rectangular (e.g., `len(grid[0])`) unless the original code strictly enforces it. Handle ragged inputs if the original did.
     *   *Constraint*: Use `type hints`.
 5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `target_dir/job_name/refactored.py` exists next to `original.py`.
