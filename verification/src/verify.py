@@ -87,11 +87,11 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
                 ref_exc = type(e)
             
             if orig_exc:
-                assert ref_exc == orig_exc, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
+                assert ref_exc and ref_exc.__name__ == orig_exc.__name__, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
             else:
                 if ref_exc:
                     assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
-                assert orig_res == ref_res, f"Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
+                assert objects_are_equal(orig_res, ref_res), f"Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
 
         test_wrapper()
         duration = time.time() - start_time
@@ -113,6 +113,44 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
              return VerifyResult("FAIL", duration, str(e))
         return VerifyResult("SKIP", duration, f"Error during verification: {e}")
+
+def objects_are_equal(obj1, obj2):
+    """
+    Compares two objects for equality.
+    Handles distinct types from different module loads (original vs refactored).
+    """
+    if obj1 == obj2:
+        return True
+
+    if isinstance(obj1, (list, tuple)) and isinstance(obj2, (list, tuple)):
+        if len(obj1) != len(obj2): return False
+        return all(objects_are_equal(x, y) for x, y in zip(obj1, obj2))
+    
+    if isinstance(obj1, dict) and isinstance(obj2, dict):
+        if obj1.keys() != obj2.keys(): return False
+        for k in obj1:
+            if not objects_are_equal(obj1[k], obj2[k]): return False
+        return True
+
+    t1 = type(obj1)
+    t2 = type(obj2)
+    
+    # Custom objects from different modules
+    if t1 is not t2 and t1.__name__ == t2.__name__:
+        # Handle Enum
+        if hasattr(t1, '__members__'): 
+             return getattr(obj1, 'name', None) == getattr(obj2, 'name', None)
+
+        if hasattr(obj1, '__dict__') and hasattr(obj2, '__dict__'):
+            d1 = obj1.__dict__
+            d2 = obj2.__dict__
+            if d1.keys() != d2.keys(): return False
+            for k in d1:
+                if not objects_are_equal(d1[k], d2[k]):
+                    return False
+            return True
+            
+    return False
 
 class NaiveRandomFuzzer:
     """
@@ -173,11 +211,11 @@ class NaiveRandomFuzzer:
                 ref_exc = type(e)
             
             if orig_exc:
-                assert ref_exc == orig_exc, f"[RandomFuzzer] Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
+                assert ref_exc and ref_exc.__name__ == orig_exc.__name__, f"[RandomFuzzer] Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
             else:
                 if ref_exc:
                     assert False, f"[RandomFuzzer] Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
-                assert orig_res == ref_res, f"[RandomFuzzer] Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
+                assert objects_are_equal(orig_res, ref_res), f"[RandomFuzzer] Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
 
 def run_naive_fuzzing(orig_func: Callable, ref_func: Callable) -> VerifyResult:
     """Runs Naive Random Fuzzing."""
@@ -259,11 +297,10 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
         # Setup Hypothesis for Class Method
         
         hyp_res = None
+        sample_args = None
         
         try:
             init_strategy = smart_infer_arg_strategies(orig_cls, config=config)
-            
-            sample_args = None
             try:
                 @settings(max_examples=1, deadline=None)
                 @given(init_strategy)
@@ -313,11 +350,11 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                         ref_exc = type(e)
                     
                     if orig_exc:
-                        assert ref_exc == orig_exc, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
+                        assert ref_exc and ref_exc.__name__ == orig_exc.__name__, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
                     else:
                         if ref_exc:
                             assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
-                        assert orig_res == ref_res, f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
+                        assert objects_are_equal(orig_res, ref_res), f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
 
                 test_wrapper()
                 hyp_res = VerifyResult("PASS", time.time() - start_time)

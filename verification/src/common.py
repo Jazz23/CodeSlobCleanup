@@ -49,15 +49,15 @@ def load_module_from_path(file_path: str, module_name: str):
     return module
 
 def get_common_functions(mod1, mod2) -> List[str]:
-    """Returns a list of function names present in both modules."""
-    funcs1 = {n for n, _ in inspect.getmembers(mod1, inspect.isfunction)}
-    funcs2 = {n for n, _ in inspect.getmembers(mod2, inspect.isfunction)}
+    """Returns a list of function names present in both modules, defined in the modules."""
+    funcs1 = {n for n, f in inspect.getmembers(mod1, inspect.isfunction) if getattr(f, '__module__', None) == mod1.__name__}
+    funcs2 = {n for n, f in inspect.getmembers(mod2, inspect.isfunction) if getattr(f, '__module__', None) == mod2.__name__}
     return list(funcs1.intersection(funcs2))
 
 def get_common_classes(mod1, mod2) -> List[str]:
-    """Returns a list of class names present in both modules."""
-    cls1 = {n for n, _ in inspect.getmembers(mod1, inspect.isclass)}
-    cls2 = {n for n, _ in inspect.getmembers(mod2, inspect.isclass)}
+    """Returns a list of class names present in both modules, defined in the modules."""
+    cls1 = {n for n, c in inspect.getmembers(mod1, inspect.isclass) if getattr(c, '__module__', None) == mod1.__name__}
+    cls2 = {n for n, c in inspect.getmembers(mod2, inspect.isclass) if getattr(c, '__module__', None) == mod2.__name__}
     return list(cls1.intersection(cls2))
 
 def _json_type_to_strategy(type_str: str) -> st.SearchStrategy:
