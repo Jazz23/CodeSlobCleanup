@@ -38,7 +38,7 @@ def test_skill_success_cases(tmp_path, scenario):
 
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
-        "--target-dir", str(tmp_path)
+        str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
@@ -85,7 +85,7 @@ def test_skill_catches_regression(tmp_path):
     
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
-        "--target-dir", str(tmp_path)
+        str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     
@@ -129,7 +129,7 @@ def test_skill_hybrid_skips(tmp_path):
     
     cmd = [
         sys.executable, str(ORCHESTRATOR_PATH),
-        "--target-dir", str(tmp_path)
+        str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, cwd=VERIFICATION_ROOT, env=env)
     

@@ -92,7 +92,7 @@ def test_refactoring_agent(target_dir=None):
             orchestrator_target = temp_path
             
             print(f"\nRunning Orchestrator on {orchestrator_target}...")
-            orch_cmd = ["uv", "run", orchestrator_path, "--target-dir", orchestrator_target]
+            orch_cmd = ["uv", "run", orchestrator_path, orchestrator_target]
             
             try:
                 orch_result = subprocess.run(

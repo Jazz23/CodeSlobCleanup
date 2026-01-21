@@ -40,7 +40,7 @@ We test the verifier itself using a suite of "Fixtures" located in `verification
 To run the verifier against a directory of refactoring jobs:
 
 ```bash
-uv run verification/src/orchestrator.py --target-dir <PATH_TO_JOBS>
+uv run verification/src/orchestrator.py <PATH_TO_JOBS>
 ```
 
 To run the project's test suite (which tests the verifier):

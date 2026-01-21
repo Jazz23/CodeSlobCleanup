@@ -32,7 +32,7 @@ def test_orchestrator_flow(tmp_path):
     
     cmd = [
         sys.executable, str(orchestrator_path),
-        "--target-dir", str(tmp_path)
+        str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, env=env)
     
@@ -61,7 +61,7 @@ def test_orchestrator_fail_flow(tmp_path):
     
     cmd = [
         sys.executable, str(orchestrator_path),
-        "--target-dir", str(tmp_path)
+        str(tmp_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     

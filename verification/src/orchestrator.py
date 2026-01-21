@@ -137,7 +137,7 @@ def process_job(job_dir, verification_root, scripts_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="Verifier Skill Orchestrator")
-    parser.add_argument("--target-dir", required=True, help="Directory containing job subfolders")
+    parser.add_argument("target_dir", help="Directory containing job subfolders")
     args = parser.parse_args()
 
     input_dir = Path(args.target_dir).resolve()
