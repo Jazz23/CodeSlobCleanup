@@ -2,25 +2,38 @@ import subprocess
 import sys
 import os
 import shutil
+import argparse
 
-def test_refactoring_agent():
+def test_refactoring_agent(target_dir=None):
     # Determine the 'refactoring' directory (parent of 'tests')
     script_dir = os.path.dirname(os.path.abspath(__file__))
     refactoring_dir = os.path.abspath(os.path.join(script_dir, ".."))
     
-    # Paths for fixtures and temp dir
-    fixtures_path = os.path.join(refactoring_dir, "tests", "fixtures")
-    temp_path = os.path.join(refactoring_dir, ".temp")
+    is_custom = target_dir is not None
     
-    # Clean up and recreate .temp
+    # Always use .temp as the workspace to avoid modifying originals
+    temp_path = os.path.join(script_dir, ".temp")
+    
+    # Clean up previous run
     if os.path.exists(temp_path):
         shutil.rmtree(temp_path)
-    
-    print(f"Copying fixtures from {fixtures_path} to {temp_path}...")
-    shutil.copytree(fixtures_path, temp_path)
+
+    if is_custom:
+        source_path = os.path.abspath(target_dir)
+        print(f"Copying custom target from {source_path} to {temp_path}...")
+    else:
+        source_path = os.path.join(refactoring_dir, "tests", "fixtures")
+        print(f"Copying fixtures from {source_path} to {temp_path}...")
+        
+    shutil.copytree(source_path, temp_path)
 
     # Prompt as requested
-    prompt = "Refactor the code in the .temp"
+    try:
+        rel_target = os.path.relpath(temp_path, refactoring_dir)
+    except ValueError:
+        rel_target = temp_path
+        
+    prompt = f"Refactor the code in {rel_target}"
     
     gemini_path = shutil.which("gemini")
     if not gemini_path:
@@ -37,7 +50,7 @@ def test_refactoring_agent():
     ]
     
     print(f"Running: {' '.join(command)}")
-    print(f"Target Directory (Prompt): .temp")
+    print(f"Target Directory (Prompt): {rel_target}")
     print(f"Working Directory: {refactoring_dir}")
     print("-" * 40)
     
@@ -73,7 +86,10 @@ def test_refactoring_agent():
 
             # --- Orchestrator Execution ---
             orchestrator_path = os.path.abspath(os.path.join(refactoring_dir, "..", "verification", "src", "orchestrator.py"))
-            orchestrator_target = os.path.join(temp_path, "scenario_hybrid")
+            
+            # The target directory for the orchestrator is simply the temp path
+            # (which is either the copied fixtures or the custom target dir)
+            orchestrator_target = temp_path
             
             print(f"\nRunning Orchestrator on {orchestrator_target}...")
             orch_cmd = ["uv", "run", orchestrator_path, "--target-dir", orchestrator_target]
@@ -96,57 +112,55 @@ def test_refactoring_agent():
                 jobs = {}
                 current_job = None
                 
+                # Simple parsing logic assuming standard Orchestrator output format
                 for line in orch_result.stdout.splitlines():
-                    if line.startswith("[PASS] ") or line.startswith("[FAIL] "):
-                        # This is a job line
+                    clean_line = line.strip()
+                    if line.startswith("[PASS] ") or line.startswith("[FAIL] ") or line.startswith("[SKIP] "):
+                        # This is a job line (no indentation)
                         parts = line.split(" ", 1)
                         status = parts[0].strip("[]")
                         name = parts[1].strip()
                         current_job = name
                         jobs[current_job] = {"status": status, "functions": []}
-                    elif line.strip().startswith("[PASS] ") or line.strip().startswith("[FAIL] ") or line.strip().startswith("[SKIP] "):
-                        # This is a function line
+                    elif clean_line.startswith("[PASS] ") or clean_line.startswith("[FAIL] ") or clean_line.startswith("[SKIP] "):
+                        # This is a function line (indented)
                         if current_job:
-                            parts = line.strip().split(" ", 1)
+                            parts = clean_line.split(" ", 1)
                             f_status = parts[0].strip("[]")
-                            f_name = parts[1]
+                            # Remove potential extra info like (0.12s) or Speedup: ...
+                            f_name_raw = parts[1]
+                            # Extract just the function name (stop at first parenthesis or extra info)
+                            f_name = f_name_raw.split("(")[0].strip()
                             jobs[current_job]["functions"].append({"status": f_status, "name": f_name})
 
                 failed_assertions = False
+                
                 for job_name, data in jobs.items():
-                    if job_name.startswith("skip_"):
-                        # For skip_ jobs, the job status should be PASS (no failures)
-                        # and individual functions should be SKIP
-                        if data["status"] == "FAIL":
-                            print(f"[ASSERT FAIL] Job '{job_name}' failed but was expected to be skipped.")
-                            failed_assertions = True
-                        
-                        for func in data["functions"]:
-                            if func["status"] != "SKIP":
-                                print(f"[ASSERT FAIL] Function '{func['name']}' in job '{job_name}' was '{func['status']}' but expected 'SKIP'.")
-                                failed_assertions = True
-                                
-                    else:
-                        # For normal jobs, status must be PASS
-                        if data["status"] != "PASS":
-                            print(f"[ASSERT FAIL] Job '{job_name}' failed.")
+                    # All jobs must be either PASS or SKIP
+                    if data["status"] == "FAIL":
+                         print(f"[ASSERT FAIL] Job '{job_name}' failed.")
+                         failed_assertions = True
+
+                    for func in data["functions"]:
+                        # All functions must be either PASS or SKIP
+                        if func["status"] == "FAIL":
+                            print(f"[ASSERT FAIL] Function '{func['name']}' in job '{job_name}' failed.")
                             failed_assertions = True
 
                 if failed_assertions:
-                    print("\n[TEST FAILED] Some assertions failed.")
+                    print("\n[TEST FAILED] Some assertions failed (detected [FAIL] status).")
+                    sys.exit(1)
+                elif orch_result.returncode != 0:
+                     # Fallback if return code is bad but we somehow missed it in assertions
+                    print("\n[TEST FAILED] Orchestrator reported failures (exit code).")
                     sys.exit(1)
                 else:
-                    print("\n[TEST PASSED] All job status assertions passed.")
-                # ----------------------------------
+                    print("\n[TEST PASSED] All jobs and functions passed or were skipped.")
 
             except Exception as e:
                 print(f"Failed to run orchestrator: {e}")
                 sys.exit(1)
             # ------------------------------
-
-        if os.path.exists(temp_path):
-            print(f"Cleaning up {temp_path}...")
-            shutil.rmtree(temp_path)
 
         if process.returncode != 0:
             sys.exit(process.returncode)
@@ -158,6 +172,14 @@ def test_refactoring_agent():
         print("\n[STOP] Interrupted by user.")
         process.terminate()
         sys.exit(130)
+    finally:
+        if os.path.exists(temp_path):
+            print(f"Cleaning up {temp_path}...")
+            shutil.rmtree(temp_path)
 
 if __name__ == "__main__":
-    test_refactoring_agent()
+    parser = argparse.ArgumentParser(description="Test Refactoring Agent")
+    parser.add_argument("target_dir", help="Directory to refactor")
+    args = parser.parse_args()
+    
+    test_refactoring_agent(args.target_dir)

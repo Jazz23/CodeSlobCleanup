@@ -1,0 +1,7 @@
+description = "Triggers a feedback loop that updates prompts.md to allow the refactoring agent to refactor code first try."
+prompt = """
+
+Run refactoring/tests/test_refactoring_agent.py. If the agent initially failed the tests and needed to self correct, interpret what it did to self correct and update refactoring/.gemini/skills/refactor/prompts.md to correct the agent allowing it to correctly refactor the code first try. Then re-run test_refactoring_agent.py and continue updating prompts.md until the agent passes the tests first try.
+
+If you notice the agent performing any tasks other than the ones directed, update refactor.md to prevent it from happening in future executions. If you find anything performance wise that could be improved, also update refactor.md.
+"""
