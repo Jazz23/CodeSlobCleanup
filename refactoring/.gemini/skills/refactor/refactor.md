@@ -49,8 +49,21 @@ For **each subdirectory** (job):
 5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `target_dir/job_name/refactored.py` exists next to `original.py`.
 
-### 3. Report
-Inform the user that the refactoring candidates have been generated.
+### 3. Verification & Iteration
+AFTER generating the refactored code for all jobs:
 
-## Resources
-- **Prompts**: `prompts.md`
+1.  **Verify**: Run the verification orchestrator to ensure the refactored code maintains the same behavior as the original.
+    *   **Command**: `uv run ../verification/src/orchestrator.py --target-dir <directory_containing_jobs>`
+    *   *Critical*: The agent is executed from the `refactoring` directory. You MUST use the relative path `../verification/src/orchestrator.py`.
+2.  **Iterate**: Check the output of the orchestrator.
+    *   If it says `[PASS]`: You are done with that job.
+    *   If it says `[FAIL]`: Analyze the error logs provided in the output. Modify `refactored.py` to fix the issues.
+    *   **Retry Limit**: You have a maximum of 3 attempts to fix and verify. If it fails after 3 attempts, stop and report the failure.
+
+### 4. Report
+Inform the user that the refactoring candidates have been generated and verified.
+
+## Constraints & Safety
+*   **Do NOT modify the orchestrator**: Never attempt to edit `../verification/src/orchestrator.py` or any files in the `verification` directory. If the orchestrator fails (e.g., syntax error, missing dependency), report it to the user immediately.
+*   **Do NOT modify original files**: Never edit `original.py`. Only create/edit `refactored.py` and `type_hints.json`.
+*   **Scope**: Only read/write files within the `target_dir` provided by the user (and the necessary orchestrator script). Do not explore the rest of the repository.
