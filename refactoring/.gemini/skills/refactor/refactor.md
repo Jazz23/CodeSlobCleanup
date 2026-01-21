@@ -31,12 +31,14 @@ The goal of this skill is **aggressive simplification**.
 For **each subdirectory** (job):
 1.  **Analyze**: Examine the `original.py` content.
 2.  **Infer Types**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
-    *   *Format*: `{"function_name": ["type1", "type2", ...]}`.
+    *   *Non-Deterministic Functions*: Identify functions that use random number generation or are otherwise non-deterministic (e.g., `generate_id`, `random_string`). Add these to a `"skip"` list in `type_hints.json`.
+    *   *Format*: `{"function_name": ["type1", "type2", ...], "skip": ["non_deterministic_func"]}`.
     *   *Example `type_hints.json`*:
         ```json
         {
           "compute_average": ["list[float]"],
-          "format_user_greeting": ["str", "int"]
+          "generate_id": ["int"],
+          "skip": ["generate_id"]
         }
         ```
 3.  **Load Persona**: Refer to `prompts.md` for refactoring rules.
@@ -51,7 +53,7 @@ For **each subdirectory** (job):
 AFTER generating the refactored code for all jobs:
 
 1.  **Verify**: Run the verification orchestrator to ensure the refactored code maintains the same behavior as the original.
-    *   **Command**: `uv run ../verification/src/orchestrator.py --target-dir <directory_containing_jobs>`
+    *   **Command**: `uv run ../verification/src/orchestrator.py <directory_containing_jobs>`
     *   *Critical*: The agent is executed from the `refactoring` directory. You MUST use the relative path `../verification/src/orchestrator.py`.
 2.  **Iterate**: Check the output of the orchestrator.
     *   If it says `[PASS]`: You are done with that job.

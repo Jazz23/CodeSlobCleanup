@@ -451,7 +451,13 @@ def main():
     tasks = []
     
     # Functions
+    skip_list = config.get("skip", [])
+    
     for func_name in common_funcs:
+        if func_name in skip_list:
+            print(f"[SKIP] {func_name} (Explicitly skipped via config)")
+            continue
+            
         tasks.append({
             "target": worker_verify_function,
             "args": (args.original, args.refactored, func_name, config, result_queue),
@@ -468,10 +474,15 @@ def main():
         common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
         
         for method_name in common_methods:
+             full_name = f"{cls_name}.{method_name}"
+             if full_name in skip_list:
+                 print(f"[SKIP] {full_name} (Explicitly skipped via config)")
+                 continue
+                 
              tasks.append({
                 "target": worker_verify_class_method,
                 "args": (args.original, args.refactored, cls_name, method_name, config, result_queue),
-                "name": f"{cls_name}.{method_name}"
+                "name": full_name
             })
 
     # Run tasks in parallel with a limit

@@ -14,9 +14,15 @@ def test_refactoring_agent(target_dir=None):
     # Always use .temp as the workspace to avoid modifying originals
     temp_path = os.path.join(script_dir, ".temp")
     
-    # Clean up previous run
+    # Clean up previous run to ensure a fresh start
     if os.path.exists(temp_path):
-        shutil.rmtree(temp_path)
+        try:
+            if os.path.isdir(temp_path):
+                shutil.rmtree(temp_path)
+            else:
+                os.remove(temp_path)
+        except Exception as e:
+            print(f"Warning: Could not clean up existing {temp_path}: {e}")
 
     if is_custom:
         source_path = os.path.abspath(target_dir)
@@ -25,7 +31,7 @@ def test_refactoring_agent(target_dir=None):
         source_path = os.path.join(refactoring_dir, "tests", "fixtures")
         print(f"Copying fixtures from {source_path} to {temp_path}...")
         
-    shutil.copytree(source_path, temp_path)
+    shutil.copytree(source_path, temp_path, dirs_exist_ok=True)
 
     # Prompt as requested
     try:
@@ -175,7 +181,13 @@ def test_refactoring_agent(target_dir=None):
     finally:
         if os.path.exists(temp_path):
             print(f"Cleaning up {temp_path}...")
-            shutil.rmtree(temp_path)
+            try:
+                if os.path.isdir(temp_path):
+                    shutil.rmtree(temp_path)
+                else:
+                    os.remove(temp_path)
+            except Exception as e:
+                print(f"Warning: Failed to clean up {temp_path}: {e}")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test Refactoring Agent")
