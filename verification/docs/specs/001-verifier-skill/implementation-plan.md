@@ -26,7 +26,7 @@
 - `verification/tools/common.py` - Existing logic to adapt `[ref: verification/tools/common.py]`
 
 **Key Design Decisions**:
-- **Decoupled Architecture**: The skill must run on any directory provided via CLI (`--target-dir`), not hardcoded paths.
+- **Decoupled Architecture**: The skill must run on any directory provided via CLI (positional argument), not hardcoded paths.
 - **Fixture-Based Testing**: Use snapshots of "original/refactored" pairs in `tests/fixtures/` to simulate refactoring output.
 - **Orchestrator Pattern**: A master script (`orchestrator.py`) manages the workflow: scan -> verify -> report.
 - **Contract**: Input directory contains job subfolders. Output is a `verification_report.json` in each job folder.
@@ -34,7 +34,7 @@
 **Implementation Context**:
 - **Tools**: `uv`, `pytest`.
 - **Paths**:
-    - Skill: `verification/.gemini/skills/verifier/`
+    - Skill: `verification/src/`
     - Tests: `verification/tests/integration/`
     - Fixtures: `verification/tests/fixtures/`
 
@@ -66,8 +66,8 @@
         - [x] T2.2.2 Define test: `test_orchestrator_finds_jobs` (mocks file system)
         - [x] T2.2.3 Define test: `test_orchestrator_runs_verification` (mocks subprocess calls)
     - [x] T2.3 Implement
-        - [x] T2.3.1 Create `verification/.gemini/skills/verifier/orchestrator.py` skeleton `[activity: backend]`
-        - [x] T2.3.2 Implement CLI argument parsing (`--target-dir`) `[activity: backend]`
+        - [x] T2.3.1 Create `verification/src/orchestrator.py` skeleton `[activity: backend]`
+        - [x] T2.3.2 Implement CLI argument parsing (`target_dir`) `[activity: backend]`
         - [x] T2.3.3 Implement job scanning logic (find subfolders with `original.py`/`refactored.py`) `[activity: backend]`
         - [x] T2.3.4 Implement execution logic (call `uv run ... generic_verify.py`) `[activity: backend]`
         - [x] T2.3.5 Implement reporting (write `verification_report.json`) `[activity: backend]`
@@ -80,7 +80,7 @@
     - [x] T3.1 Prime Context
         - [x] T3.1.1 Review `.gemini/skills/cse247b/SKILL.md` as reference `[ref: .gemini/skills/cse247b/SKILL.md]`
     - [x] T3.2 Implement
-        - [x] T3.2.1 Create `verification/.gemini/skills/verifier/SKILL.md` `[activity: docs]`
+        - [x] T3.2.1 Create `verification/src/SKILL.md` `[activity: docs]`
         - [x] T3.2.2 Define `<INSTRUCTIONS>` for the Agent (how to use the orchestrator) `[activity: docs]`
     - [x] T3.3 Validate
         - [x] T3.3.1 Manual check: Ensure SKILL.md paths are correct `[activity: review]`
