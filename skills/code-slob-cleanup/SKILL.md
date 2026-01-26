@@ -8,8 +8,8 @@ description: A comprehensive skill to identify "code slob" (technical debt), ref
 This skill orchestrates the entire lifecycle of cleaning up "code slob": identification, safe refactoring, verification, and application.
 
 ## References
-- **Refactoring**: `refactor.md`
-- **Prompts**: `prompts.md`
+- **Refactoring**: `references/refactor.md`
+- **Prompts**: `references/prompts.md`
 
 ## Workflow
 
@@ -25,14 +25,14 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
     *   **Validity**: Ensure the final `original.py` remains valid, runnable Python code.
 
 ### Phase 2: Refactoring
-Follow the instructions in `refactor.md` to generate `refactored.py` for the job(s) in the temporary workspace.
+Follow the instructions in `references/refactor.md` to generate `refactored.py` for the job(s) in the temporary workspace.
 *   **Context**: You are working inside `.code-slob-tmp/`.
 *   **Goal**: Create `refactored.py` next to `original.py` containing the refactored versions of the extracted functions.
 
 ### Phase 3: Verification
-Follow the instructions in **Section 3 of `refactor.md`** to verify the refactoring.
+Follow the instructions in **Section 3 of `references/refactor.md`** to verify the refactoring.
 *   **Command**: `uv run scripts/orchestrator.py .code-slob-tmp`
-*   **Action**: If verification fails, follow the iteration steps in `refactor.md` (fix `refactored.py` and retry).
+*   **Action**: If verification fails, follow the iteration steps in `references/refactor.md` (fix `refactored.py` and retry).
     *   **Retry Limit**: You have a maximum of 3 attempts to fix and verify.
     *   **Failure Handling**: If a function still fails verification after 3 attempts, explicitly **IGNORE** the refactored code for that function. Do **NOT** introduce it back into the original codebase. Report the failure to the user.
 
