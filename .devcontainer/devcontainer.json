@@ -8,7 +8,6 @@
   		"source=gemini,target=/home/vscode/.gemini,type=volume"
 	],
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers-extra/features/npm-packages:1": {
 			"packages": "@google/gemini-cli@nightly"
 		},
