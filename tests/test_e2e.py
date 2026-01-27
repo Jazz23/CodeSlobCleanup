@@ -63,17 +63,34 @@ def main():
     ]
 
     try:
-        result = subprocess.run(
+        process = subprocess.Popen(
             command,
             cwd=temp_dir,
-            check=False,  # We'll check returncode manually
-            capture_output=False # Let it stream to stdout/stderr
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, # Merge stderr into stdout for combined streaming
+            text=True,
+            bufsize=1 # Line buffered
         )
-        if result.returncode == 0:
+
+        output_lines = []
+        # Stream output line by line
+        for line in iter(process.stdout.readline, ''):
+            print(line, end='')
+            output_lines.append(line)
+        
+        process.stdout.close()
+        returncode = process.wait()
+        
+        full_output = "".join(output_lines)
+
+        if "[FAIL]" in full_output:
+            print("agent was unsuccesful in refactoring first try")
+
+        if returncode == 0:
             print("Gemini refactoring completed successfully.")
         else:
-            print(f"Gemini refactoring failed with exit code {result.returncode}.")
-            sys.exit(result.returncode)
+            print(f"Gemini refactoring failed with exit code {returncode}.")
+            sys.exit(returncode)
     except Exception as e:
         print(f"Failed to run gemini: {e}")
         sys.exit(1)

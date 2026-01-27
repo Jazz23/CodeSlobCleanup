@@ -15,8 +15,9 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 
 ### Phase 1: Identification & Setup
 1.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
-    *   If it exists, read all existing `original.py` files in its subdirectories to determine which functions have already been identified for refactoring.
-2.  **Identify Missing Targets**: Analyze the source codebase for any additional "slob" functions or snippets that require cleanup but are *not* yet captured in the existing `original.py` files, if any.
+    *   If it exists, assume identification is complete. Read all existing `original.py` files in its subdirectories to proceed with refactoring. **Do not** re-scan the source codebase unless explicitly requested.
+    *   If it does *not* exist, proceed to step 2.
+2.  **Identify Missing Targets**: Analyze the source codebase for "slob" functions or snippets that require cleanup.
 3.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
 4.  **Structure**: For any *newly* identified targets, create a uniquely named subdirectory (job) within `.code-slob-tmp`.
 5.  **Extract**: Create or update `original.py` files for the jobs.
@@ -40,11 +41,9 @@ Follow the instructions in **Section 3 of `references/refactor.md`** to verify t
 
 ### Phase 4: Application (Patch)
 1.  **Check Result**: For each function, check if verification passed (`[PASS]`). If a function didn't pass (`[FAIL]`), ignore steps 2 and 3 for that function; otherwise, continue.
-2.  **Patch**: Intelligently introduce the refactored code back into the original source file.
-    *   Read the content of `refactored.py`.
-    *   Use text replacement tools to replace the *original function definitions* in the source file with the corresponding refactored versions from `refactored.py`.
-    *   Ensure indentation, comments, and formatting match the source file's style.
-    *   Do *not* blindly overwrite the entire file. Only replace the specific functions that were refactored and verified.
+2.  **Patch**: Apply the refactored code to the original source files.
+    *   **Full Replacement**: If `refactored.py` represents the complete file (imports + code), overwrite the target file.
+    *   **Merge**: If `refactored.py` only contains functions, use text replacement to update the target file, preserving surrounding code.
 3.  **Report**: Inform the user that the code has been cleaned and verified.
 
 ### Phase 5: Cleanup

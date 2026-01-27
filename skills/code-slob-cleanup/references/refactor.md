@@ -25,7 +25,7 @@ The goal of this skill is **aggressive simplification**.
 ### 1. Discovery & Batch Reading
 1.  **List**: List the contents of the **.code-slob-tmp** directory to identify all job subdirectories.
 2.  **Batch Read**: Read the `original.py` file in **all** subdirectories using parallel tool calls. Do *not* read them one by one in separate turns.
-    *   *Constraint*: **Do not** read files outside the `.code-slob-tmp` (e.g., do not look in `fixtures/` or `tests/` for answers).
+    *   *Constraint*: **Do not** read files outside the `.code-slob-tmp` (e.g., do not read `inventory.py` or `utils.py` in the root). Trust that `original.py` contains the code to be refactored.
 
 ### 2. Process Jobs
 For **each subdirectory** (job):
@@ -61,9 +61,10 @@ AFTER generating the refactored code for all jobs:
 
 ### 4. Apply
 If the verification passes (`[PASS]`):
-1.  **Patch**: Overwrite the **original** source files in the project root (or wherever they were read from) with the content of `refactored.py`.
-    *   *Example*: Copy `.code-slob-tmp/inventory/refactored.py` to `inventory.py`.
-    *   *Constraint*: Only overwrite if verification PASSED.
+1.  **Patch**: Apply the refactored code to the original source files.
+    *   **Full File Replacement**: If `refactored.py` contains the *complete* file content (including imports, all functions, etc.), you may overwrite the target file directly.
+    *   **Partial Merge**: If `original.py` (and thus `refactored.py`) contained only *subsets* of the code (e.g., specific functions), you **MUST** read the target file (e.g., `inventory.py`) and carefully replace *only* the refactored functions, preserving surrounding code, comments, and global variables.
+    *   *Constraint*: Only modify the file if verification PASSED.
 2.  **Report**: Inform the user that the code has been successfully refactored and verified.
 
 ## Constraints & Safety

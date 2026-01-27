@@ -1,7 +1,7 @@
 description = "Triggers a feedback loop that updates prompts.md to allow the refactoring agent to refactor code first try."
 prompt = """
 
-Run `uv run tests/test_e2e.py {{args}} --no-cleanup`. If the agent initially failed the tests and needed to self correct, interpret what it did to self correct and update skills/code-slob-cleanup/references/prompts.md to correct the agent allowing it to correctly refactor the code first try. If the fix has something to do with the instructions themselves for the agent, and not code quality tips, then put the changes in skills/code-slob-cleanup/references/refactor.md. Then re-run `uv run test_refactoring_agent.py {{args}} --no-cleanup` and continue updating prompts.md/refactor.md until the agent passes the tests first try.
+Run `uv run tests/test_e2e.py {{args}}`. If the agent initially failed the tests and needed to self correct, interpret what it did to self correct and update skills/code-slob-cleanup/references/prompts.md to correct the agent allowing it to correctly refactor the code first try. If the fix has something to do with the instructions themselves for the agent, and not code quality tips, then put the changes in skills/code-slob-cleanup/references/refactor.md. Then re-run `uv run test_refactoring_agent.py {{args}}` and continue updating prompts.md/refactor.md until the agent passes the tests first try.
 
 If you notice the agent performing any tasks other than the ones directed, update skills/code-slob-cleanup/references/refactor.md to prevent it from happening in future executions. If you find anything performance wise that could be improved, also update refactor.md.
 
