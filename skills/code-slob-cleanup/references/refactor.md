@@ -59,10 +59,14 @@ AFTER generating the refactored code for all jobs:
     *   If it says `[FAIL]`: Analyze the error logs provided in the output. Modify `refactored.py` to fix the issues.
     *   **Retry Limit**: You have a maximum of 3 attempts to fix and verify. If it fails after 3 attempts, stop and report the failure.
 
-### 4. Report
-Inform the user that the refactoring candidates have been generated and verified.
+### 4. Apply
+If the verification passes (`[PASS]`):
+1.  **Patch**: Overwrite the **original** source files in the project root (or wherever they were read from) with the content of `refactored.py`.
+    *   *Example*: Copy `.code-slob-tmp/inventory/refactored.py` to `inventory.py`.
+    *   *Constraint*: Only overwrite if verification PASSED.
+2.  **Report**: Inform the user that the code has been successfully refactored and verified.
 
 ## Constraints & Safety
 *   **Do NOT modify the orchestrator**: Never attempt to edit `scripts/orchestrator.py` or any files in the `scripts` directory. If the orchestrator fails (e.g., syntax error, missing dependency), report it to the user immediately.
-*   **Do NOT modify original files**: Never edit `original.py`. Only create/edit `refactored.py` and `type_hints.json`.
-*   **Scope**: Only read/write files within the `.code-slob-tmp`. Do not explore the rest of the repository.
+*   **Do NOT modify original files BEFORE verification**: Only overwrite them in the final "Apply" step.
+*   **Scope**: Work primarily within `.code-slob-tmp`.

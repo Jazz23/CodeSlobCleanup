@@ -63,6 +63,19 @@ def get_common_classes(mod1, mod2) -> List[str]:
 def _json_type_to_strategy(type_str: str) -> st.SearchStrategy:
     """Maps a type string from JSON to a Hypothesis strategy."""
     type_str = type_str.lower().strip()
+    
+    # Parse int(min, max)
+    if type_str.startswith("int(") and type_str.endswith(")"):
+        try:
+            content = type_str[4:-1]
+            parts = content.split(',')
+            if len(parts) == 2:
+                min_val = int(parts[0].strip())
+                max_val = int(parts[1].strip())
+                return st.integers(min_value=min_val, max_value=max_val)
+        except ValueError:
+            pass # Fallback
+
     if type_str == "int":
         return st.integers(min_value=-100, max_value=100)
     if type_str == "float":

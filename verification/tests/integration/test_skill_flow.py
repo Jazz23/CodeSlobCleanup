@@ -20,7 +20,8 @@ import sys
 TESTS_DIR = Path(__file__).resolve().parent.parent
 FIXTURES_DIR = TESTS_DIR / "fixtures"
 VERIFICATION_ROOT = TESTS_DIR.parent
-ORCHESTRATOR_PATH = VERIFICATION_ROOT / "src" / "orchestrator.py"
+PROJECT_ROOT = VERIFICATION_ROOT.parent
+ORCHESTRATOR_PATH = PROJECT_ROOT / "skills/code-slob-cleanup/scripts/orchestrator.py"
 
 @pytest.mark.parametrize("scenario", ["scenario_valid", "scenario_untyped_complex"])
 def test_skill_success_cases(tmp_path, scenario):
