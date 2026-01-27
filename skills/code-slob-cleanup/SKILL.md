@@ -45,6 +45,7 @@ Follow the instructions in **Section 3 of `references/refactor.md`** to verify t
     *   **Full Replacement**: If `refactored.py` represents the complete file (imports + code), overwrite the target file.
     *   **Merge**: If `refactored.py` only contains functions, use text replacement to update the target file, preserving surrounding code.
 3.  **Report**: Inform the user that the code has been cleaned and verified.
+4.  **Constraint**: Do not run any tests from the original codebase.
 
 ### Phase 5: Cleanup
 1.  **Remove Workspace**: Delete the temporary directory.

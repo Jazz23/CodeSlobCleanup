@@ -56,7 +56,7 @@ AFTER generating the refactored code for all jobs:
     *   **Command**: `uv run scripts/orchestrator.py .code-slob-tmp`
 2.  **Iterate**: Check the output of the orchestrator.
     *   If it says `[PASS]`: You are done with that job.
-    *   If it says `[FAIL]`: Analyze the error logs provided in the output. Modify `refactored.py` to fix the issues.
+    *   If it says `[FAIL]`: Analyze the error logs provided in the output. Modify `refactored.py` to fix the issues. Rerun the orchestrator.
     *   **Retry Limit**: You have a maximum of 3 attempts to fix and verify. If it fails after 3 attempts, stop and report the failure.
 
 ### 4. Apply
