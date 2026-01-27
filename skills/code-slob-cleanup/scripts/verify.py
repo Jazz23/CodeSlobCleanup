@@ -45,19 +45,14 @@ class VerifyResult:
     error: Optional[str] = None
 
 def clean_traceback(tb_str: str) -> str:
-    """Filters traceback to remove internal tool frames and focus on user code."""
+    """Filters traceback to return only the exception message."""
     lines = tb_str.splitlines()
-    filtered_lines = []
-    
-    for line in lines:
-        if 'original.py' in line or 'refactored.py' in line or 'AssertionError' in line or 'NameError' in line or 'TypeError' in line or 'ValueError' in line:
-            filtered_lines.append(line.strip())
-        elif 'Falsifying example' in line:
-            filtered_lines.append(line.strip())
-        elif 'args=(' in line:
-            filtered_lines.append(line.strip())
-            
-    return "\n".join(filtered_lines).strip()
+    for line in reversed(lines):
+        if 'AssertionError:' in line:
+            return line.split('AssertionError:', 1)[1].strip()
+        if 'NameError:' in line or 'TypeError:' in line or 'ValueError:' in line:
+            return line.strip()
+    return ""
 
 def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config: Dict[str, Any] = None) -> VerifyResult:
     """Runs Hypothesis tests to verify orig_func == ref_func."""
@@ -86,12 +81,7 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
             except Exception as e:
                 ref_exc = type(e)
             
-            if orig_exc:
-                assert ref_exc and ref_exc.__name__ == orig_exc.__name__, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
-            else:
-                if ref_exc:
-                    assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
-                assert objects_are_equal(orig_res, ref_res), f"Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
+            check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, f"input {args}")
 
         test_wrapper()
         duration = time.time() - start_time
@@ -111,7 +101,10 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
     except Exception as e:
         duration = time.time() - start_time
         if "Hypothesis found" in str(e) or "MultipleFailures" in type(e).__name__:
-             return VerifyResult("FAIL", duration, str(e))
+             # Re-run clean_traceback on the hypothesis error if it's wrapped
+             raw_tb = traceback.format_exc()
+             cleaned_tb = clean_traceback(raw_tb)
+             return VerifyResult("FAIL", duration, cleaned_tb if cleaned_tb else str(e))
         return VerifyResult("SKIP", duration, f"Error during verification: {e}")
 
 def objects_are_equal(obj1, obj2):
@@ -151,6 +144,33 @@ def objects_are_equal(obj1, obj2):
             return True
             
     return False
+
+def check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, args_context):
+    """
+    Verifies that the refactored result matches the original result,
+    allowing for fixes of "crash" exceptions.
+    """
+    # Exceptions considered "crashes" or "bugs" that are acceptable to fix.
+    ACCEPTABLE_FIX_EXCEPTIONS = {
+        AttributeError, TypeError, NameError, UnboundLocalError, 
+        ZeroDivisionError, IndexError, KeyError, RecursionError
+    }
+    
+    if orig_exc:
+        if ref_exc:
+            if orig_exc.__name__ != ref_exc.__name__:
+                 raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_exc.__name__}, Refactored raised {ref_exc.__name__}")
+        else:
+            if orig_exc in ACCEPTABLE_FIX_EXCEPTIONS:
+                return
+            else:
+                raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_exc.__name__}, Refactored returned {ref_res}")
+    else:
+        if ref_exc:
+            raise AssertionError(f"Mismatch for {args_context}: Original returned {orig_res}, Refactored raised {ref_exc.__name__}")
+        
+        if not objects_are_equal(orig_res, ref_res):
+             raise AssertionError(f"Mismatch for {args_context}: Original={orig_res}, Refactored={ref_res}")
 
 class NaiveRandomFuzzer:
     """
@@ -210,12 +230,7 @@ class NaiveRandomFuzzer:
             except Exception as e:
                 ref_exc = type(e)
             
-            if orig_exc:
-                assert ref_exc and ref_exc.__name__ == orig_exc.__name__, f"[RandomFuzzer] Original raised {orig_exc}, but Refactored raised {ref_exc} for input {args}"
-            else:
-                if ref_exc:
-                    assert False, f"[RandomFuzzer] Original returned {orig_res}, but Refactored raised {ref_exc} for input {args}"
-                assert objects_are_equal(orig_res, ref_res), f"[RandomFuzzer] Mismatch for input {args}: Original={orig_res}, Refactored={ref_res}"
+            check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, f"input {args}")
 
 def run_naive_fuzzing(orig_func: Callable, ref_func: Callable) -> VerifyResult:
     """Runs Naive Random Fuzzing."""
@@ -349,12 +364,7 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                     except Exception as e:
                         ref_exc = type(e)
                     
-                    if orig_exc:
-                        assert ref_exc and ref_exc.__name__ == orig_exc.__name__, f"Original raised {orig_exc}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
-                    else:
-                        if ref_exc:
-                            assert False, f"Original returned {orig_res}, but Refactored raised {ref_exc} for init {init_args}, method {method_args}"
-                        assert objects_are_equal(orig_res, ref_res), f"Mismatch for init {init_args}, method {method_args}: Original={orig_res}, Refactored={ref_res}"
+                    check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, f"init {init_args}, method {method_args}")
 
                 test_wrapper()
                 hyp_res = VerifyResult("PASS", time.time() - start_time)
