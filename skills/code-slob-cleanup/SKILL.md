@@ -23,6 +23,7 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
     *   **Copy Content**: Copy the specific functions to be refactored into `original.py`.
     *   **Dependencies**: Include all necessary imports and helper classes/functions required for these functions to run in isolation (if they aren't already there).
     *   **Validity**: Ensure the final `original.py` remains valid, runnable Python code.
+    *   **Restriction**: Do not copy the `main()` function into an `original.py` file.
 
 ### Phase 2: Refactoring
 Follow the instructions in `references/refactor.md` to generate `refactored.py` for the job(s) in the temporary workspace.

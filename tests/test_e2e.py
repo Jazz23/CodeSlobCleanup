@@ -5,14 +5,17 @@
 import sys
 import shutil
 import os
+import argparse
+import subprocess
 from pathlib import Path
 
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: uv run tests/test_e2e.py <folder_path>")
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description="Run E2E tests for code-slob-cleanup.")
+    parser.add_argument("folder_path", type=Path, help="Path to the source folder to test.")
+    parser.add_argument("--no-cleanup", action="store_true", help="Do not delete the .temp folder after completion.")
+    args = parser.parse_args()
 
-    source_folder = Path(sys.argv[1])
+    source_folder = args.folder_path
     if not source_folder.exists():
         print(f"Error: Source folder '{source_folder}' does not exist.")
         sys.exit(1)
@@ -59,7 +62,6 @@ def main():
         "--yolo"
     ]
 
-    import subprocess
     try:
         result = subprocess.run(
             command,
@@ -115,6 +117,10 @@ def main():
             sys.exit(1)
 
     print("Setup complete.")
+
+    if not args.no_cleanup:
+        print(f"Cleaning up {temp_dir}...")
+        shutil.rmtree(temp_dir)
 
 if __name__ == "__main__":
     main()
