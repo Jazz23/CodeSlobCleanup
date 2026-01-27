@@ -14,14 +14,15 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 ## Workflow
 
 ### Phase 1: Identification & Setup
-1.  **Identify Target**: Identify the specific functions or snippets within the "slob" code that require refactoring.
-2.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
-3.  **Structure**: Inside this workspace, create a uniquely named subdirectory for the job (e.g., based on the file name or path).
-4.  **Extract**: Create or update the `original.py` file in the job directory.
-    *   **Check Existence**: If `original.py` already exists, read it first.
-    *   **Filter Duplicates**: Only copy functions that are *not* already present in the existing `original.py`. If a function is already there, skip it.
-    *   **Copy Content**: Copy the specific functions to be refactored into `original.py`.
-    *   **Dependencies**: Include all necessary imports and helper classes/functions required for these functions to run in isolation (if they aren't already there).
+1.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
+    *   If it exists, read all existing `original.py` files in its subdirectories to determine which functions have already been identified for refactoring.
+2.  **Identify Missing Targets**: Analyze the source codebase for any additional "slob" functions or snippets that require cleanup but are *not* yet captured in the existing `original.py` files, if any.
+3.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
+4.  **Structure**: For any *newly* identified targets, create a uniquely named subdirectory (job) within `.code-slob-tmp`.
+5.  **Extract**: Create or update `original.py` files for the jobs.
+    *   **Filter Duplicates**: Ensure you only add functions that are *not* already present in the existing `original.py` for that job.
+    *   **Copy Content**: Copy the identified functions into the appropriate `original.py`.
+    *   **Dependencies**: Include all necessary imports and helper classes/functions required for these functions to run in isolation.
     *   **Validity**: Ensure the final `original.py` remains valid, runnable Python code.
     *   **Restriction**: Do not copy the `main()` function into an `original.py` file.
 
