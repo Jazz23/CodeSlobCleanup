@@ -36,16 +36,52 @@ def calculate_halstead(code: str) -> float:
     except Exception:
         return 0.0
 
-def calculate_slob_score(code: str) -> float:
+def calculate_slob_score(code: str, complexity: int = None, lloc: int = None) -> float:
     """
     Heuristic score to determine if code is 'slob'.
     Higher is worse.
     
     Formula: (Complexity^2) + (LLOC / 5)
     """
-    complexity = calculate_complexity(code)
-    lloc = calculate_loc(code)
+    if complexity is None:
+        complexity = calculate_complexity(code)
+    if lloc is None:
+        lloc = calculate_loc(code)
     
     # Penalize complexity heavily
     score = (complexity ** 2) + (lloc / 5.0)
     return round(score, 2)
+
+def get_function_metrics(code: str):
+    """
+    Extracts metrics for individual functions and classes in the code.
+    """
+    try:
+        blocks = cc.cc_visit(code)
+        lines = code.splitlines()
+        
+        results = []
+        for block in blocks:
+            # Extract block source to calculate LLOC
+            # block.lineno is 1-indexed. block.endline is also available in some radon versions.
+            # If endline is not available, we might just use the block's own info if possible,
+            # but radon blocks usually have lineno, col_offset, endline.
+            
+            start = block.lineno - 1
+            end = getattr(block, 'endline', len(lines))
+            block_code = "\n".join(lines[start:end])
+            
+            lloc = calculate_loc(block_code)
+            complexity = block.complexity
+            score = calculate_slob_score(block_code, complexity=complexity, lloc=lloc)
+            
+            results.append({
+                "name": block.name,
+                "line": block.lineno,
+                "complexity": complexity,
+                "loc": lloc,
+                "score": score
+            })
+        return results
+    except Exception:
+        return []

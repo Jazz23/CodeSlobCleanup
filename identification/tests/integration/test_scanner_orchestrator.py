@@ -19,25 +19,37 @@ def test_scanner_orchestrator_flow(tmp_path):
     # 1. Create a "clean" file
     (project_dir / "clean.py").write_text("def add(a, b): return a + b")
     
-    # 2. Create a "slob" file (complex)
+    # 2. Create a "slob" file (very complex)
     slob_code = """
-def complex_logic(n):
+def super_complex_logic(a, b, c, d, e):
     res = 0
-    for i in range(n):
-        if i % 2 == 0:
-            for j in range(i):
-                if j > 5:
-                    res += j
-                else:
-                    res -= j
-        else:
-            res += i
+    if a:
+        if b:
+            for i in range(10):
+                if i > 5:
+                    for j in range(10):
+                        if j % 2 == 0:
+                            if c:
+                                res += 1
+                            else:
+                                res -= 1
+                        elif d:
+                            if e:
+                                res *= 2
+    else:
+        for k in range(100):
+            if k == 50:
+                return k
     return res
 """
     (project_dir / "slob.py").write_text(slob_code)
     
+    # 3. Create an excluded directory with a slob file
+    exclude_dir = project_dir / "venv"
+    exclude_dir.mkdir()
+    (exclude_dir / "bad.py").write_text("def deep():" + "    if True:" * 15 + " pass")
+
     # Path to orchestrator
-    # identification/tests/integration/test_scanner_orchestrator.py -> ... -> identification
     ident_root = Path(__file__).resolve().parents[2] 
     orchestrator_path = ident_root / ".gemini" / "skills" / "scanner" / "scripts" / "orchestrator.py"
     
@@ -59,23 +71,27 @@ def complex_logic(n):
     with open(report_path) as f:
         data = json.load(f)
         
-    assert "candidates" in data
-    assert "clean.py" in str(data) # Should be listed (maybe with low score) or not? 
-    # Let's say we report everything but sort/flag them.
+    assert "slob_candidates" in data
+    assert data["files_scanned"] == 2 # clean.py and slob.py (bad.py in venv is excluded)
     
-    candidates = data["candidates"]
+    candidates = data["slob_candidates"]
     
-    # Find entries
-    clean_entry = next((c for c in candidates if "clean.py" in c["file_path"]), None)
-    slob_entry = next((c for c in candidates if "slob.py" in c["file_path"]), None)
+    # Find entry for slob.py
+    slob_entry = next((c for c in candidates if "slob.py" in c["file"]), None)
     
-    assert clean_entry is not None
     assert slob_entry is not None
+    assert slob_entry["function"] == "super_complex_logic"
+    assert "metrics" in slob_entry
+    assert slob_entry["metrics"]["complexity"] > 1
+    assert slob_entry["high_severity"] is True
     
-    # Assert scores
-    assert slob_entry["score"] > clean_entry["score"]
-    assert slob_entry["is_slob"] is True
-    assert clean_entry["is_slob"] is False
+    # clean.py should NOT be in slob_candidates because it's not severe enough
+    clean_entry = next((c for c in candidates if "clean.py" in c["file"]), None)
+    assert clean_entry is None
+    
+    # venv/bad.py should NOT be in slob_candidates because venv is excluded
+    bad_entry = next((c for c in candidates if "bad.py" in c["file"]), None)
+    assert bad_entry is None
 
 if __name__ == "__main__":
     sys.exit(pytest.main([__file__]))
