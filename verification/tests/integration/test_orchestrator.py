@@ -23,7 +23,8 @@ def test_orchestrator_flow(tmp_path):
     
     # Path to orchestrator
     verification_root = Path(__file__).resolve().parent.parent.parent
-    orchestrator_path = verification_root / "src" / "orchestrator.py"
+    project_root = verification_root.parent
+    orchestrator_path = project_root / "skills/code-slob-cleanup/scripts/orchestrator.py"
     
     # Run orchestrator
     env = os.environ.copy()
@@ -57,7 +58,8 @@ def test_orchestrator_fail_flow(tmp_path):
     
     # Path to orchestrator
     verification_root = Path(__file__).resolve().parent.parent.parent
-    orchestrator_path = verification_root / "src" / "orchestrator.py"
+    project_root = verification_root.parent
+    orchestrator_path = project_root / "skills/code-slob-cleanup/scripts/orchestrator.py"
     
     cmd = [
         sys.executable, str(orchestrator_path),

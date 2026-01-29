@@ -1,0 +1,12 @@
+Starting application...
+Fib 10: 55
+Clean names: ['Alice', 'Bob', '', 'Charlie']
+Max: 20
+Total Value: 225.0
+Duplicates: ['Apple']
+Processed Apple
+Processed Apple
+Processed Banana
+Processed Apple
+Processed Apple
+Finished.

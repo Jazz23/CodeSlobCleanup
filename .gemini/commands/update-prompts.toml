@@ -1,9 +1,11 @@
 description = "Triggers a feedback loop that updates prompts.md to allow the refactoring agent to refactor code first try."
 prompt = """
 
-Run refactoring/tests/test_refactoring_agent.py {{args}}. If the agent initially failed the tests and needed to self correct, interpret what it did to self correct and update refactoring/.gemini/skills/refactor/prompts.md to correct the agent allowing it to correctly refactor the code first try. Then re-run test_refactoring_agent.py {{args}} and continue updating prompts.md until the agent passes the tests first try.
+Run `uv run tests/test_e2e.py {{args}}`. If the agent initially failed the tests and needed to self correct, interpret what it did to self correct and update skills/code-slob-cleanup/references/prompts.md to correct the agent allowing it to correctly refactor the code first try. If the fix has something to do with the instructions themselves for the agent, and not code quality tips, then put the changes in skills/code-slob-cleanup/references/refactor.md. Then re-run `uv run test_refactoring_agent.py {{args}}` and continue updating prompts.md/refactor.md until the agent passes the tests first try.
 
-If you notice the agent performing any tasks other than the ones directed, update refactor.md to prevent it from happening in future executions. If you find anything performance wise that could be improved, also update refactor.md.
+If you notice the agent performing any tasks other than the ones directed, update skills/code-slob-cleanup/references/refactor.md to prevent it from happening in future executions. If you find anything performance wise that could be improved, also update refactor.md.
 
-If you notice that something might be wrong with the verification logic/scripts, update the code to verification as necessary and re-test. This could be something that's impossible to test and should be skipped, for example. If you make any verification changes, run the verification test suite to ensure your changes didn't break anything.
+If you notice that something might be wrong with the verification logic/scripts, update the code in skills/code-slob-cleanup/scripts/ as necessary and re-test. This could be something that's impossible to test and should be skipped, for example. Or maybe a test that is [FAIL] but should actually be [SKIP].
+
+Do not consider the folder refactoring, identifiaction, or verfication at all during this process. Do not read or write files from there.
 """

@@ -8,13 +8,19 @@
   		"source=gemini,target=/home/vscode/.gemini,type=volume"
 	],
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers-extra/features/npm-packages:1": {
 			"packages": "@google/gemini-cli@nightly"
 		},
 		"ghcr.io/devcontainers-extra/features/uv:1": {}
 	},
-	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.gemini"
+	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.gemini",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"tamasfe.even-better-toml"
+			]
+		}
+	}
 
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
