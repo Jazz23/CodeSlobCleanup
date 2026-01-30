@@ -17,7 +17,11 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 1.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
     *   If it exists, assume identification is complete. Read all existing `original.py` files in its subdirectories to proceed with refactoring. **Do not** re-scan the source codebase unless explicitly requested.
     *   If it does *not* exist, proceed to step 2.
-2.  **Identify Missing Targets**: Analyze the source codebase for "slob" functions or snippets that require cleanup.
+2.  **Hybrid Identification**: Use both automated tools and manual review to find "slob" candidates.
+    *   **Automated**: Run the identification script: `uv run scripts/identify.py --target-dir .`
+    *   **Manual**: Don't rely solely on the script. Read the codebase yourself to find "slob" that static analysis might miss, such as redundant logic, poor naming, non-idiomatic patterns, or "dead" code that is still technically functional.
+    *   **Heuristic vs. Reality**: Analyze the output of both methods. Note that high complexity/LOC doesn't *always* mean the code is "slob". 
+    *   **Filter**: If a function is an inherently complex algorithm (e.g., advanced mathematics) where the complexity is necessary and the code is already as clean as practical, **DO NOT** refactor it. Focus on actual "slob"—code that is complex due to poor structure or neglect.
 3.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
 4.  **Structure**: For any *newly* identified targets, create a uniquely named subdirectory (job) within `.code-slob-tmp`.
 5.  **Extract**: Create or update `original.py` files for the jobs.
