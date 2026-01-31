@@ -1,11 +1,14 @@
 description = "Triggers a feedback loop that updates prompts.md to allow the refactoring agent to refactor code first try."
 prompt = """
 
-Run `uv run tests/test_e2e.py {{args}}`. If the agent initially failed the tests and needed to self correct, interpret what it did to self correct and update skills/code-slob-cleanup/references/prompts.md to correct the agent allowing it to correctly refactor the code first try. If the fix has something to do with the instructions themselves for the agent, and not code quality tips, then put the changes in skills/code-slob-cleanup/references/refactor.md. Then re-run `uv run test_refactoring_agent.py {{args}}` and continue updating prompts.md/refactor.md until the agent passes the tests first try.
+Run the e2e subagent with the {{args}} target_dir. It will give you a numbered report. Modify the following files based on the different numbered responses from the report:
 
-If you notice the agent performing any tasks other than the ones directed, update skills/code-slob-cleanup/references/refactor.md to prevent it from happening in future executions. If you find anything performance wise that could be improved, also update refactor.md.
+1. If the agent didn't pass a test first try, modify skills/code-slob-cleanup/references/prompts.md to include whatever the fix was. If the fix was to modify the instructions of how the agent functions, modify skills/code-slob-cleanup/references/refactor.md instead.
+2. If the agent did something it shouldn't have, modify skills/code-slob-cleanup/references/refactor.md if it needs better refactoring instructions or skills/code-slob-cleanup/SKILL.md if it did something else wrong not quite related to refactoring.
+3. If the agent went off and did something something it wasn't instructed to do, update refactor.md and or SKILL.md accordingly.
+4. If the agent did something redundant, such as reading in orchestrator.py, update it's instructions accordingly to prevent it.
+5. If something went wrong with the verification scripts, update the scripts in skills/code-slob-cleanup/scripts to fix the issue/add the necessary feature.
+6. If something went wrong with the identification scripts, update the scripts in skills/code-slob-cleanup/scripts accordingly.
 
-If you notice that something might be wrong with the verification logic/scripts, update the code in skills/code-slob-cleanup/scripts/ as necessary and re-test. This could be something that's impossible to test and should be skipped, for example. Or maybe a test that is [FAIL] but should actually be [SKIP].
-
-Do not consider the folder refactoring, identifiaction, or verfication at all during this process. Do not read or write files from there.
+After making the appropriate changes, re-run the e2e subagent with the same target_dir. Repeat until the report has no issues.
 """

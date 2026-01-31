@@ -6,7 +6,8 @@
     "previewFeatures": true
   },
   "experimental": {
-    "skills": true
+    "skills": true,
+    "enableAgents": true
   },
   "tools": {
     "autoAccept": true
