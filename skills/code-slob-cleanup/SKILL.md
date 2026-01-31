@@ -14,15 +14,19 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 ## Workflow
 
 ### Phase 1: Identification & Setup
-1.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
+1.  **Golden Test Coverage (Optional)**:
+    *   **Trigger**: Run this step **ONLY IF** the user explicitly requests to remove untested code or perform a "golden test cleanup" in their prompt (e.g., "Clean up untested code using test_main.py"). Do **NOT** run this step just because a test script is mentioned or exists in the codebase; the intent to use it for code removal must be explicit.
+    *   **Action**: Run the cleanup script: `uv run scripts/clean_untested.py <golden_test_script_path>`.
+    *   **Outcome**: This will automatically remove any functions from the original codebase that are not executed by the golden test script.
+2.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
     *   If it exists, assume identification is complete. Read all existing `original.py` files in its subdirectories to proceed with refactoring. **Do not** re-scan the source codebase unless explicitly requested.
-    *   If it does *not* exist, proceed to step 2.
-2.  **Hybrid Identification**:
+    *   If it does *not* exist, proceed to step 3.
+3.  **Hybrid Identification**:
     *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir .`. Use its output as your primary source of targets.
     *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Avoid reading every file if the script already covers the main candidates.
     *   **Heuristic vs. Reality**: Analyze the output of both methods. Note that high complexity/LOC doesn't *always* mean the code is "slob". 
     *   **Filter**: If a function is an inherently complex algorithm (e.g., advanced mathematics) where the complexity is necessary and the code is already as clean as practical, **DO NOT** refactor it. Focus on actual "slob"—code that is complex due to poor structure or neglect.
-3.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
+4.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
 4.  **Structure**: For any *newly* identified targets, create a uniquely named subdirectory (job) within `.code-slob-tmp`.
 5.  **Extract**: Create or update `original.py` files for the jobs.
     *   **Filter Duplicates**: Ensure you only add functions that are *not* already present in the existing `original.py` for that job.
