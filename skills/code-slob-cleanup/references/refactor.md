@@ -26,11 +26,13 @@ The goal of this skill is **aggressive simplification**.
 1.  **List**: List the contents of the **.code-slob-tmp** directory to identify all job subdirectories.
 2.  **Batch Read**: Read the `original.py` file in **all** subdirectories using parallel tool calls. Do *not* read them one by one in separate turns.
     *   *Constraint*: **Do not** read files outside the `.code-slob-tmp` (e.g., do not read `inventory.py` or `utils.py` in the root). Trust that `original.py` contains the code to be refactored.
+    *   *Efficiency*: Do NOT re-read the `original.py` files after you have extracted them or read them once.
 
 ### 2. Process Jobs
 For **each subdirectory** (job):
 1.  **Analyze**: Examine the `original.py` content.
-2.  **Infer Types**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
+2.  **Infer Types & Constraints**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
+    *   **Proactive Constraints**: If a function is recursive (e.g., Fibonacci), uses deeply nested loops, or performs O(N^2) operations on large lists, you MUST proactively add input range constraints (e.g., `int(0, 15)`) to avoid verification timeouts.
     *   *Non-Deterministic Functions*: Identify functions that use random number generation or are otherwise non-deterministic (e.g., `generate_id`, `random_string`). Add these to a `"skip"` list in `type_hints.json`.
     *   *Format*: `{"function_name": ["type1", "type2", ...], "skip": ["non_deterministic_func"]}`.
     *   *Example `type_hints.json`*:
@@ -48,6 +50,7 @@ For **each subdirectory** (job):
     *   *Constraint*: Use `type hints`.
 5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `.code-slob-tmp/job_name/refactored.py` exists next to `original.py`.
+    *   *Tooling*: Use the `write_file` tool. Do not use shell redirects.
 
 ### 3. Verification & Iteration
 AFTER generating the refactored code for all jobs:

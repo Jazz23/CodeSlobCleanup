@@ -17,9 +17,9 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 1.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
     *   If it exists, assume identification is complete. Read all existing `original.py` files in its subdirectories to proceed with refactoring. **Do not** re-scan the source codebase unless explicitly requested.
     *   If it does *not* exist, proceed to step 2.
-2.  **Hybrid Identification**: Use both automated tools and manual review to find "slob" candidates.
-    *   **Automated**: Run the identification script: `uv run scripts/identify.py --target-dir .`
-    *   **Manual**: Don't rely solely on the script. Read the codebase yourself to find "slob" that static analysis might miss, such as redundant logic, poor naming, non-idiomatic patterns, or "dead" code that is still technically functional.
+2.  **Hybrid Identification**:
+    *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir .`. Use its output as your primary source of targets.
+    *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Avoid reading every file if the script already covers the main candidates.
     *   **Heuristic vs. Reality**: Analyze the output of both methods. Note that high complexity/LOC doesn't *always* mean the code is "slob". 
     *   **Filter**: If a function is an inherently complex algorithm (e.g., advanced mathematics) where the complexity is necessary and the code is already as clean as practical, **DO NOT** refactor it. Focus on actual "slob"—code that is complex due to poor structure or neglect.
 3.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
@@ -35,6 +35,7 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 Follow the instructions in `references/refactor.md` to generate `refactored.py` for the job(s) in the temporary workspace.
 *   **Context**: You are working inside `.code-slob-tmp/`.
 *   **Goal**: Create `refactored.py` next to `original.py` containing the refactored versions of the extracted functions.
+*   **Efficiency**: Do NOT re-read `references/refactor.md` or `references/prompts.md` if you already have their content in memory from previous turns.
 
 ### Phase 3: Verification
 Follow the instructions in **Section 3 of `references/refactor.md`** to verify the refactoring.
@@ -46,10 +47,12 @@ Follow the instructions in **Section 3 of `references/refactor.md`** to verify t
 ### Phase 4: Application (Patch)
 1.  **Check Result**: For each function, check if verification passed (`[PASS]`). If a function didn't pass (`[FAIL]`), ignore steps 2 and 3 for that function; otherwise, continue.
 2.  **Patch**: Apply the refactored code to the original source files.
+    *   **Tooling**: Use the `write_file` or `replace` tools directly. **DO NOT** use shell redirects (e.g., `cat << EOF > file.py`) as these may be blocked by security policies.
     *   **Full Replacement**: If `refactored.py` represents the complete file (imports + code), overwrite the target file.
     *   **Merge**: If `refactored.py` only contains functions, use text replacement to update the target file, preserving surrounding code.
+    *   **NO REDUNDANT READS**: Do NOT re-read the target file (e.g., `utils.py`) if you have already read it. Do NOT perform "final check" reads after writing. Trust your tool outputs and memory.
 3.  **Report**: Inform the user that the code has been cleaned and verified.
-4.  **Constraint**: Do not run any tests from the original codebase.
+4.  **CRITICAL Constraint**: Do NOT run any tests or scripts from the original codebase (e.g., `main.py`, `run_tests.py`, `pytest`). Only use the provided `orchestrator.py` for verification.
 
 ### Phase 5: Cleanup
 1.  **Remove Workspace**: Delete the temporary directory.

@@ -29,3 +29,5 @@ Example report:
 5. Nothing went wrong with verification.
 6. Identification doesn't work with classes.
 ```
+
+Do not try and fix any of these issues yourself. You are simply writing a report.

@@ -131,10 +131,12 @@ def _get_candidate_values() -> List[Any]:
         True,           # bool
         None,           # NoneType
         [1, 2],         # simple list
+        [1, 1, 2],      # list with duplicates
         [],             # empty list
         {"a": 1},       # simple dict
         {},             # empty dict
-        [{"name": "test", "age": 25, "score": 90}], # list of dicts (common in data processing)
+        [{"name": "test", "age": 25, "score": 90}], # list of dicts
+        [{"name": "test", "val": 1}, {"name": "test", "val": 2}], # list of dicts with duplicate keys
         {"key": ["val1", "val2"]},                 # dict with list
     ]
 
