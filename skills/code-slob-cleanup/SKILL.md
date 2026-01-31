@@ -49,7 +49,9 @@ Follow the instructions in **Section 3 of `references/refactor.md`** to verify t
     *   **Failure Handling**: If a function still fails verification after 3 attempts, explicitly **IGNORE** the refactored code for that function. Do **NOT** introduce it back into the original codebase. Report the failure to the user.
 
 ### Phase 4: Application (Patch)
-1.  **Check Result**: For each function, check if verification passed (`[PASS]`). If a function didn't pass (`[FAIL]`), ignore steps 2 and 3 for that function; otherwise, continue.
+1.  **Check Result**: For each function, check if verification passed (`[PASS]`). 
+    *   **CRITICAL**: ONLY apply refactored code for functions that received a `[PASS]`.
+    *   **IGNORE**: If a function received `[FAIL]` OR `[SKIP]`, you MUST NOT apply the refactored version of that function to the original codebase.
 2.  **Patch**: Apply the refactored code to the original source files.
     *   **Tooling**: Use the `write_file` or `replace` tools directly. **DO NOT** use shell redirects (e.g., `cat << EOF > file.py`) as these may be blocked by security policies.
     *   **Full Replacement**: If `refactored.py` represents the complete file (imports + code), overwrite the target file.

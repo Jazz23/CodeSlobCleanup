@@ -63,12 +63,14 @@ AFTER generating the refactored code for all jobs:
     *   **Retry Limit**: You have a maximum of 3 attempts to fix and verify. If it fails after 3 attempts, stop and report the failure.
 
 ### 4. Apply
-If the verification passes (`[PASS]`):
-1.  **Patch**: Apply the refactored code to the original source files.
+1.  **Check Status**: Review the orchestrator output for each function.
+    *   **PASS**: Proceed to patch.
+    *   **FAIL** or **SKIP**: Do NOT patch this function. Leave the original code as-is.
+2.  **Patch**: Apply the refactored code to the original source files for passing functions.
     *   **Full File Replacement**: If `refactored.py` contains the *complete* file content (including imports, all functions, etc.), you may overwrite the target file directly.
     *   **Partial Merge**: If `original.py` (and thus `refactored.py`) contained only *subsets* of the code (e.g., specific functions), you **MUST** read the target file (e.g., `inventory.py`) and carefully replace *only* the refactored functions, preserving surrounding code, comments, and global variables.
     *   *Constraint*: Only modify the file if verification PASSED.
-2.  **Report**: Inform the user that the code has been successfully refactored and verified.
+3.  **Report**: Inform the user that the code has been successfully refactored and verified.
 
 ## Constraints & Safety
 *   **Do NOT modify the orchestrator**: Never attempt to edit `scripts/orchestrator.py` or any files in the `scripts` directory. If the orchestrator fails (e.g., syntax error, missing dependency), report it to the user immediately.
