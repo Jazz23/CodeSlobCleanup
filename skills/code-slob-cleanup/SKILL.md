@@ -57,8 +57,13 @@ Follow the instructions in **Section 3 of `references/refactor.md`** to verify t
     *   **Full Replacement**: If `refactored.py` represents the complete file (imports + code), overwrite the target file.
     *   **Merge**: If `refactored.py` only contains functions, use text replacement to update the target file, preserving surrounding code.
     *   **NO REDUNDANT READS**: Do NOT re-read the target file (e.g., `utils.py`) if you have already read it. Do NOT perform "final check" reads after writing. Trust your tool outputs and memory.
-3.  **Report**: Inform the user that the code has been cleaned and verified.
-4.  **CRITICAL Constraint**: Do NOT run any tests or scripts from the original codebase (e.g., `main.py`, `run_tests.py`, `pytest`). Only use the provided `orchestrator.py` for verification.
+3.  **Run Existing Tests**: After applying the patches, identify and run any existing tests in the repository.
+    *   **Discover**: Look for `tests/`, `test_*.py`, `pytest.ini`, or test commands in `README.md` / `package.json` / `pyproject.toml`.
+    *   **Execute**: Run the tests using the appropriate tool (e.g., `pytest`, `uv run tests/run_tests.py`).
+4.  **Fix Brittle Tests**: If existing tests fail for a function that Hypothesis verified as `[PASS]`:
+    *   **Analyze**: Determine if the test is "brittle" (e.g., asserting on internal state, specific log messages, or private members that were cleanly refactored away).
+    *   **Fix**: Modify the existing test so it passes with the new, cleaner code. Ensure you maintain the original intent of the test (verifying functionality) while removing the brittle dependency on the "slob" implementation.
+5.  **Report**: Inform the user that the code has been cleaned, verified by Hypothesis, and that existing tests have been run (and updated if necessary).
 
 ### Phase 5: Cleanup
 1.  **Remove Workspace**: Delete the temporary directory.
