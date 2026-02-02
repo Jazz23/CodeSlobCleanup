@@ -34,13 +34,15 @@ For **each subdirectory** (job):
 2.  **Infer Types & Constraints**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
     *   **Proactive Constraints**: If a function is recursive (e.g., Fibonacci), uses deeply nested loops, or performs O(N^2) operations on large lists, you MUST proactively add input range constraints (e.g., `int(0, 15)`) to avoid verification timeouts.
     *   *Non-Deterministic Functions*: Identify functions that use random number generation or are otherwise non-deterministic (e.g., `generate_id`, `random_string`). Add these to a `"skip"` list in `type_hints.json`.
-    *   *Format*: `{"function_name": ["type1", "type2", ...], "skip": ["non_deterministic_func"]}`.
+    *   *External Dependencies*: If the code requires external packages not already present in the script's environment (e.g., `requests`, `pandas`, `pydantic`), add them to a `"modules"` list in `type_hints.json`. The orchestrator will automatically include them using `uv run --with`.
+    *   *Format*: `{"function_name": ["type1", "type2", ...], "skip": ["non_deterministic_func"], "modules": ["pkg1", "pkg2"]}`.
     *   *Example `type_hints.json`*:
         ```json
         {
           "compute_average": ["list[float]"],
           "generate_id": ["int"],
-          "skip": ["generate_id"]
+          "skip": ["generate_id"],
+          "modules": ["numpy"]
         }
         ```
 3.  **Load Persona**: Refer to `references/prompts.md` for refactoring rules.
