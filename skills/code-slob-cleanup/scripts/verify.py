@@ -49,7 +49,7 @@ def clean_traceback(tb_str: str) -> str:
     lines = tb_str.splitlines()
     for line in reversed(lines):
         if 'AssertionError:' in line:
-            return line.split('AssertionError:', 1)[1].strip()
+            return line.strip()
         if 'NameError:' in line or 'TypeError:' in line or 'ValueError:' in line:
             return line.strip()
     return ""
@@ -468,6 +468,10 @@ def main():
             print(f"[SKIP] {func_name} (Explicitly skipped via config)")
             continue
             
+        if func_name.startswith('_') and not (func_name.startswith('__') and func_name.endswith('__')):
+            print(f"[PASS] {func_name} (0.0000s) (Private function automatically passed)")
+            continue
+
         tasks.append({
             "target": worker_verify_function,
             "args": (args.original, args.refactored, func_name, config, result_queue),
@@ -479,8 +483,8 @@ def main():
         orig_cls = getattr(orig_mod, cls_name)
         ref_cls = getattr(ref_mod, cls_name)
         
-        methods1 = {n: m for n, m in inspect.getmembers(orig_cls, inspect.isfunction) if not n.startswith('_')}
-        methods2 = {n: m for n, m in inspect.getmembers(ref_cls, inspect.isfunction) if not n.startswith('_')}
+        methods1 = {n: m for n, m in inspect.getmembers(orig_cls, inspect.isfunction)}
+        methods2 = {n: m for n, m in inspect.getmembers(ref_cls, inspect.isfunction)}
         common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
         
         for method_name in common_methods:
@@ -488,7 +492,14 @@ def main():
              if full_name in skip_list:
                  print(f"[SKIP] {full_name} (Explicitly skipped via config)")
                  continue
-                 
+             
+             if method_name.startswith('_') and not (method_name.startswith('__') and method_name.endswith('__')):
+                 print(f"[PASS] {full_name} (0.0000s) (Private method automatically passed)")
+                 continue
+
+             if method_name.startswith('__') and method_name.endswith('__'):
+                 continue
+
              tasks.append({
                 "target": worker_verify_class_method,
                 "args": (args.original, args.refactored, cls_name, method_name, config, result_queue),

@@ -35,8 +35,6 @@ if __name__ == "__main__":
     ret = pytest.main([
         "-n", "auto", 
         "-s", 
-        "verification/tests/integration/", 
-        "--ignore=verification/tests/integration/tools",
-        "--ignore=verification/tests/integration/test_run_verifier_agent.py"
+        "verification/tests/integration/"
     ])
     sys.exit(ret)

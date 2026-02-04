@@ -107,9 +107,30 @@ def process_job(job_dir, verification_root, scripts_dir):
     if not (orig_file.exists() and ref_file.exists()):
         return None
 
+    # Load extra modules from type_hints.json if available
+    extra_modules = []
+    type_hints_path = job_dir / "type_hints.json"
+    if type_hints_path.exists():
+        try:
+            with open(type_hints_path, 'r') as f:
+                config = json.load(f)
+                modules = config.get("modules", [])
+                if isinstance(modules, list):
+                    extra_modules = [str(m) for m in modules]
+        except Exception:
+            pass
+
     # 1. Verification & 2. Benchmark (Parallel)
-    verify_cmd = ["uv", "run", str(scripts_dir / "verify.py"), str(orig_file), str(ref_file)]
-    bench_cmd = ["uv", "run", str(scripts_dir / "benchmark.py"), str(orig_file), str(ref_file)]
+    verify_cmd = ["uv", "run"]
+    bench_cmd = ["uv", "run"]
+    
+    if extra_modules:
+        modules_str = ",".join(extra_modules)
+        verify_cmd.extend(["--with", modules_str])
+        bench_cmd.extend(["--with", modules_str])
+        
+    verify_cmd.extend([str(scripts_dir / "verify.py"), str(orig_file), str(ref_file)])
+    bench_cmd.extend([str(scripts_dir / "benchmark.py"), str(orig_file), str(ref_file)])
 
     with ThreadPoolExecutor(max_workers=2) as executor:
         future_verify = executor.submit(run_command, verify_cmd, verification_root)

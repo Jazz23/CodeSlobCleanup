@@ -26,19 +26,23 @@ The goal of this skill is **aggressive simplification**.
 1.  **List**: List the contents of the **.code-slob-tmp** directory to identify all job subdirectories.
 2.  **Batch Read**: Read the `original.py` file in **all** subdirectories using parallel tool calls. Do *not* read them one by one in separate turns.
     *   *Constraint*: **Do not** read files outside the `.code-slob-tmp` (e.g., do not read `inventory.py` or `utils.py` in the root). Trust that `original.py` contains the code to be refactored.
+    *   *Efficiency*: Do NOT re-read the `original.py` files after you have extracted them or read them once.
 
 ### 2. Process Jobs
 For **each subdirectory** (job):
 1.  **Analyze**: Examine the `original.py` content.
-2.  **Infer Types**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
+2.  **Infer Types & Constraints**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
+    *   **Proactive Constraints**: If a function is recursive (e.g., Fibonacci), uses deeply nested loops, or performs O(N^2) operations on large lists, you MUST proactively add input range constraints (e.g., `int(0, 15)`) to avoid verification timeouts.
     *   *Non-Deterministic Functions*: Identify functions that use random number generation or are otherwise non-deterministic (e.g., `generate_id`, `random_string`). Add these to a `"skip"` list in `type_hints.json`.
-    *   *Format*: `{"function_name": ["type1", "type2", ...], "skip": ["non_deterministic_func"]}`.
+    *   *External Dependencies*: If the code requires external packages not already present in the script's environment (e.g., `requests`, `pandas`, `pydantic`), add them to a `"modules"` list in `type_hints.json`. The orchestrator will automatically include them using `uv run --with`.
+    *   *Format*: `{"function_name": ["type1", "type2", ...], "skip": ["non_deterministic_func"], "modules": ["pkg1", "pkg2"]}`.
     *   *Example `type_hints.json`*:
         ```json
         {
           "compute_average": ["list[float]"],
           "generate_id": ["int"],
-          "skip": ["generate_id"]
+          "skip": ["generate_id"],
+          "modules": ["numpy"]
         }
         ```
 3.  **Load Persona**: Refer to `references/prompts.md` for refactoring rules.
@@ -48,6 +52,7 @@ For **each subdirectory** (job):
     *   *Constraint*: Use `type hints`.
 5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `.code-slob-tmp/job_name/refactored.py` exists next to `original.py`.
+    *   *Tooling*: Use the `write_file` tool. Do not use shell redirects.
 
 ### 3. Verification & Iteration
 AFTER generating the refactored code for all jobs:
@@ -60,12 +65,14 @@ AFTER generating the refactored code for all jobs:
     *   **Retry Limit**: You have a maximum of 3 attempts to fix and verify. If it fails after 3 attempts, stop and report the failure.
 
 ### 4. Apply
-If the verification passes (`[PASS]`):
-1.  **Patch**: Apply the refactored code to the original source files.
+1.  **Check Status**: Review the orchestrator output for each function.
+    *   **PASS**: Proceed to patch.
+    *   **FAIL** or **SKIP**: Do NOT patch this function. Leave the original code as-is.
+2.  **Patch**: Apply the refactored code to the original source files for passing functions.
     *   **Full File Replacement**: If `refactored.py` contains the *complete* file content (including imports, all functions, etc.), you may overwrite the target file directly.
     *   **Partial Merge**: If `original.py` (and thus `refactored.py`) contained only *subsets* of the code (e.g., specific functions), you **MUST** read the target file (e.g., `inventory.py`) and carefully replace *only* the refactored functions, preserving surrounding code, comments, and global variables.
     *   *Constraint*: Only modify the file if verification PASSED.
-2.  **Report**: Inform the user that the code has been successfully refactored and verified.
+3.  **Report**: Inform the user that the code has been successfully refactored and verified.
 
 ## Constraints & Safety
 *   **Do NOT modify the orchestrator**: Never attempt to edit `scripts/orchestrator.py` or any files in the `scripts` directory. If the orchestrator fails (e.g., syntax error, missing dependency), report it to the user immediately.

@@ -29,3 +29,5 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
 
 ## Tone & Communication
 *   **No Redundant Confirmations**: Do not verbally state "I will not push without consent" in responses. Adhere to the policy silently as per core mandates.
+
+- Anytime the word "skill" is mentioned, if you haven't already please web_fetch this documentation: https://geminicli.com/docs/cli/skills/

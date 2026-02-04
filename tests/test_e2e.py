@@ -12,6 +12,7 @@ from pathlib import Path
 def main():
     parser = argparse.ArgumentParser(description="Run E2E tests for code-slob-cleanup.")
     parser.add_argument("folder_path", type=Path, help="Path to the source folder to test.")
+    parser.add_argument("--agent", action="store_true", help="Execute the gemini refactoring process.")
     parser.add_argument("--no-cleanup", action="store_true", help="Do not delete the .temp folder after completion.")
     args = parser.parse_args()
 
@@ -46,54 +47,57 @@ def main():
     shutil.copytree(skill_source, skill_dest)
 
     # 3. Run gemini refactoring
-    print("Running gemini refactoring...")
-    gemini_path = shutil.which("gemini")
-    if not gemini_path:
-        print("Error: 'gemini' executable not found in PATH.")
-        sys.exit(1)
+    if args.agent:
+        print("Running gemini refactoring...")
+        gemini_path = shutil.which("gemini")
+        if not gemini_path:
+            print("Error: 'gemini' executable not found in PATH.")
+            sys.exit(1)
 
-    # We need to run gemini inside the .temp directory
-    # The prompt instructs it to refactor the current directory (".")
-    command = [
-        gemini_path,
-        "-p", "Refactor the code in .",
-        "--model", "gemini-3-flash-preview",
-        "--output-format", "stream-json",
-        "--yolo"
-    ]
+        # We need to run gemini inside the .temp directory
+        # The prompt instructs it to refactor the current directory (".")
+        command = [
+            gemini_path,
+            "-p", "Refactor the code in .",
+            "--model", "gemini-3-flash-preview",
+            "--output-format", "stream-json",
+            "--yolo"
+        ]
 
-    try:
-        process = subprocess.Popen(
-            command,
-            cwd=temp_dir,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT, # Merge stderr into stdout for combined streaming
-            text=True,
-            bufsize=1 # Line buffered
-        )
+        try:
+            process = subprocess.Popen(
+                command,
+                cwd=temp_dir,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT, # Merge stderr into stdout for combined streaming
+                text=True,
+                bufsize=1 # Line buffered
+            )
 
-        output_lines = []
-        # Stream output line by line
-        for line in iter(process.stdout.readline, ''):
-            print(line, end='')
-            output_lines.append(line)
-        
-        process.stdout.close()
-        returncode = process.wait()
-        
-        full_output = "".join(output_lines)
+            output_lines = []
+            # Stream output line by line
+            for line in iter(process.stdout.readline, ''):
+                print(line, end='')
+                output_lines.append(line)
+            
+            process.stdout.close()
+            returncode = process.wait()
+            
+            full_output = "".join(output_lines)
 
-        if "[FAIL]" in full_output:
-            print("agent was unsuccesful in refactoring first try")
+            if "[FAIL]" in full_output:
+                print("agent was unsuccesful in refactoring first try")
 
-        if returncode == 0:
-            print("Gemini refactoring completed successfully.")
-        else:
-            print(f"Gemini refactoring failed with exit code {returncode}.")
-            sys.exit(returncode)
-    except Exception as e:
-        print(f"Failed to run gemini: {e}")
-        sys.exit(1)
+            if returncode == 0:
+                print("Gemini refactoring completed successfully.")
+            else:
+                print(f"Gemini refactoring failed with exit code {returncode}.")
+                sys.exit(returncode)
+        except Exception as e:
+            print(f"Failed to run gemini: {e}")
+            sys.exit(1)
+    else:
+        print("Skipping gemini refactoring (--agent not provided).")
 
     # 4. Verify output
     print("Verifying output...")
@@ -135,9 +139,13 @@ def main():
 
     print("Setup complete.")
 
-    if not args.no_cleanup:
+    if args.agent and not args.no_cleanup:
         print(f"Cleaning up {temp_dir}...")
         shutil.rmtree(temp_dir)
+    elif not args.agent:
+        print(f"Preserving {temp_dir} because --agent was not provided.")
+    else:
+        print(f"Preserving {temp_dir} because --no-cleanup was provided.")
 
 if __name__ == "__main__":
     main()
