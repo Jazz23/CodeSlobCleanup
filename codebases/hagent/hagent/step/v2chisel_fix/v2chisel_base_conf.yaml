@@ -1,0 +1,168 @@
+v2chisel_fix:
+  llm:
+    model: "bedrock/us.meta.llama3-3-70b-instruct-v1:0"
+
+  threshold: 40
+  context: 1
+
+  prompt_diff_not_found:
+    - role: system
+      content: |
+        You are an AI specialized in debugging and refining Chisel code to match a given Verilog specification.
+    - role: user
+      content: |
+        I have a Scala program that generates Verilog. I made modifications to the Verilog code and now need to update the corresponding Chisel code.
+
+        The fixed Verilog represents the desired changes. Here is the unified diff between the original and fixed Verilog:
+        ```
+        {verilog_diff}
+        ```
+        The unified diff you provided refers to lines not present in the current Chisel source, here is the buggy chisel diff:
+        ```
+        {generate_diff}
+        ```
+        When applying this diff, the applier generates the following error:
+        ```
+        {applier_error}
+        ```
+        Additionally, based on further code analysis, here are new hints extracted from the chisel_original with hints "->" marking the lines that are most likely to require changes:
+        ```
+        {new_hints}
+        ```
+        Please provide a unified diff that implements all necessary updates to the Chisel code and please generate a new unified diff that only modifies existing lines.
+        Output *only* the diff in unified diff format with only the minimal hunk containing the changed lines and no additional commentary or headers or Note.
+        PLEASE No explanation, no Note. ONLY diff
+
+  prompt4:
+    - role: system
+      content: |
+        You are an AI specialized in debugging and refining Chisel code to match a given Verilog specification.
+    - role: user
+      content: |
+        The previous refinement attempt using prompt3 did not yield a satisfactory fix.
+        The Logic Equivalence Check (LEC) reported the following error or counterexample:
+        ```
+        {lec_output}
+        ```
+        The Verilog diff between the fixed and candidate designs is as follows:
+        ```
+        {verilog_diff}
+        ```
+        The current Chisel diff between the original and the latest candidate code is as follows:
+        ```
+        {chisel_diff}
+        ```
+        Additionally, based on further code analysis, here are new hints extracted from the chisel_original with hints "->" marking the lines that are most likely to require changes:
+        ```
+        {new_hints}
+        ```
+        Can you give me a Chisel diff that could work?
+        Output *only* the diff in unified diff format with only the minimal hunk containing the changed lines and no additional commentary or headers or Note.
+        PLEASE No explanation, no Note. ONLY diff
+  
+  prompt3:
+    - role: system
+      content: |
+        You are an AI specialized in debugging and refining Chisel code to match a given Verilog specification.
+    - role: user
+      content: |
+        The Chisel implementation is not equivalent to the updated Verilog.  
+        The Verilog implementation has changed as shown in this unified diff:(verilog_diff):
+        ```
+        {verilog_diff}
+        ```
+        We want the Chisel code to reflect those exact changes in the updated verilog. We need to modify the Chisel source so that, when recompiled, the generated Verilog matches the updated Verilog specification exactly—confirmed by a passing Logic Equivalence Check (LEC). The LEC run produced the following error: 
+        ```
+        {lec_output}
+        ```
+        based on further code analysis, here are hints extracted from the chisel_original with hints "->" marking the lines that are most likely to require changes:
+        ```
+        {chisel_subset}
+        ```
+        Please provide a unified diff that implements all necessary updates to the Chisel code. Be careful You may need to modify multiple lines—and even include more than one hunk—to fully match the updated Verilog.
+        Output *only* the diff in unified diff format with only the minimal hunk containing the changed lines and no additional commentary or headers or Note.
+        PLEASE No explanation, no Note. ONLY diff
+  
+  prompt4_alternative:
+    - role: system
+      content: |
+        You are an AI specialized in debugging and refining Chisel code with high reasoning effort.
+        Please generate multiple candidate Chisel diffs.
+    - role: user
+      content: |
+        The previous refinement attempts using prompt4 did not yield a satisfactory fix.
+        Please generate Chisel diffs that could work. Consider the following:
+        The Logic Equivalence Check (LEC) reported:
+        ```
+        {lec_output}
+        ```
+        The Verilog diff is:
+        ```
+        {verilog_diff}
+        ```
+        I also provide a subset of the Chisel code with hints "->" marking the lines that are most likely to require changes:
+        ```
+        {chisel_subset}
+        ```
+        Please output *only* the diffs in unified diff format with only the minimal hunks containing the changed lines.
+        No explanation, no commentary, only diffs.
+
+
+  prompt_compiler_fix:
+    - role: system
+      content: |
+        You are an AI specialized in debugging and refining Chisel code to fix compilation errors.
+    - role: user
+      content: |
+        The current Chisel code does not compile and the following compiler error was reported.
+        I have already computed a diff between the buggy version and the original correct Chisel:
+        ```
+        {current_chisel_diff}
+        ```
+        and the compiler error is:
+        ```
+        {compiler_error}
+        ```
+        Lines from the original chisel code marked with `->` that point to areas most likely needing changes:
+        ```
+        {new_hints}
+        ```
+        Please generate a minimal unified diff that fixes the compilation error so that the code can compile.
+        *Note*: Only output the unified diff.
+
+  prompt_lec_feedback:
+  - role: system
+    content: |
+      You are an AI expert at diagnosing and fixing Chisel code so that its generated Verilog passes a Logic Equivalence Check (LEC) against a reference Verilog implementation.
+  - role: user
+    content: |
+      I have a Scala‐based Chisel generator that produces Verilog. I modified the Verilog directly and now need the corresponding Chisel to match those changes precisely.
+
+      1. The reference (“fixed”) Verilog diff is:
+         ```
+         {verilog_diff}
+         ```
+
+      2. Here is the previous Chisel diff you generated:
+         ```
+         {previous_chisel_diff}
+         ```
+
+      3. When I applied that Chisel diff, LEC failed with this error:
+         ```
+         {lec_error}
+         ```
+
+      4. Based on the LEC error, here are the relevant hints (lines of the original Chisel code marked with “->” where updates are needed):
+         ```
+         {chisel_hints}
+         ```
+
+      Using all of the information above—Verilog diff, previous Chisel diff, LEC error, and the code hints—please produce a new, minimal unified diff for the Chisel source. The diff should:
+
+      • Only modify existing lines (no added commentary or extra context).  
+      • Contain exactly the hunks needed to fix LEC errors.  
+      • Not include any explanation or notes—output only the unified diff in standard format.
+
+      Please output the unified diff now.
+

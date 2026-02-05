@@ -1,0 +1,111 @@
+default:
+  llm:
+    model: openai/gpt-5.1
+    temperature: 0.2
+    # max_tokens: 2048  # optional
+
+  sva_property_block:
+    - role: system
+      content: |
+        You generate exactly ONE SystemVerilog property/cover directive for ONE CSV row.
+
+        Inputs:
+        - clock signal name: {clock}
+        - reset signal name: {reset}
+        - sid: {sid}
+        - name: {name}
+        - ptype: {ptype} (assert|assume|cover)
+        - seed pre: {pre}
+        - seed post: {post}
+        - allowed top-level port names ONLY: {allowed_signals}
+        - design summary: {spec_markdown}
+
+        =========================================================
+        HARD CONSTRAINTS (violations are NOT allowed)
+        =========================================================
+
+        C0) Use ONLY allowed ports:
+            - Every identifier in any expression MUST be either:
+              * a SystemVerilog keyword/operator, OR
+              * a system function ($rose, $fell, $stable, $changed, $past), OR
+              * exactly one of the names in {allowed_signals}.
+            - NEVER invent identifiers like "logic", "tmp", "sig", "state", etc.
+            - NEVER use type casts like logic'(1'b1) or any cast syntax.
+
+        C1) Implication-free pre/post:
+            - <FINAL_PRE> must NOT contain "|->" or "|=>".
+            - <FINAL_POST> must NOT contain "|->" or "|=>".
+            - If a seed contains an implication (e.g. seed post = "A |-> B"),
+              REPAIR it by moving "A" into <FINAL_PRE> using &&, and setting <FINAL_POST> to "B".
+
+        C2) Seed preservation when valid:
+            - If seed {pre} is non-empty and does NOT contain any implication and contains ONLY allowed identifiers,
+              then <FINAL_PRE> MUST equal {pre} OR a strengthening using && only.
+            - If seed {post} is non-empty and does NOT contain any implication and contains ONLY allowed identifiers,
+              then <FINAL_POST> MUST equal {post} OR a strengthening/refinement of it.
+            - DO NOT replace a valid non-empty {pre}/{post} with 1'b1 or placeholders.
+
+        C3) NO "1 |-> ..." when pre is missing:
+            - If seed {pre} is empty, "1", or "1'b1", treat pre as MISSING.
+            - When pre is MISSING, DO NOT emit an implication.
+              Instead, emit a standalone property expression: (<FINAL_POST>);
+            - For cover with missing pre, it is fine to emit: cover property(@(...) ... (<FINAL_POST>));
+
+        C4) Temporal operators / sequence legality:
+            - Do NOT wrap a seed post that already has temporal operators (##, ##[a:b], [*], [->], throughout).
+            - ALWAYS use standard boolean/bitwise operators: ||, &&, |, &, ^, ~, !
+            - NEVER use word-form operators 'or', 'and', 'not' in property expressions.
+            - If mixing temporal (##) with boolean logic, ensure proper parentheses and use only symbolic operators.
+
+        C5) No useless tautologies:
+            - Do NOT emit:
+                * 1'b1;
+                * 1'b1 |-> 1'b1;
+                * A |-> A;
+                * X |-> 1'b1 when seed post is non-empty valid
+                * 1'b1 |-> X when seed pre is non-empty valid
+
+        C6) Reset gating (must be consistent):
+            - Always use: @(posedge {clock})
+            - Determine "reset asserted" expression (RST_ASSERTED) by heuristic:
+                * If reset name contains "_n" or ends with "ni" or "_ni" or "_n_i": RST_ASSERTED = !{reset}
+                * else: RST_ASSERTED = {reset}
+            - Use: disable iff (RST_ASSERTED)
+
+        C7) Identifier whitelist self-check:
+            - If ANY identifier used is not in {allowed_signals} and not a $system function, rewrite to remove it.
+
+        =========================================================
+        OUTPUT (exactly one block, no extra text)
+        =========================================================
+        ```systemverilog
+        // {sid}: {name}
+        property {name};
+          @(posedge {clock}) disable iff (RST_ASSERTED)
+            <BODY_EXPR>;
+        endproperty
+        {ptype}_{name}: {ptype} property({name});
+        ```
+
+        Where:
+          - If pre is NOT missing: <BODY_EXPR> must be "<FINAL_PRE> |-> <FINAL_POST>"
+          - If pre IS missing: <BODY_EXPR> must be "<FINAL_POST>" (no implication)
+
+    - role: user
+      content: |
+        ## Design context
+        Clock: {clock}
+        Reset: {reset}
+
+        ## Allowed top-level signals
+        {allowed_signals}
+
+        ## Seed property row (from CSV)
+        SID: {sid}
+        Name: {name}
+        Type: {ptype}
+        Seed pre: {pre}
+        Seed post: {post}
+
+        ## Markdown design summary
+        {spec_markdown}

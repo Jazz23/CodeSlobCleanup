@@ -43,18 +43,17 @@ def scan_directory(target_dir: Path):
                         # Thresholds
                         is_high_severity = m["complexity"] > 10 or m["loc"] > 50 or m["score"] > 50
                         
-                        if is_high_severity:
-                            slob_candidates.append({
-                                "file": str(file_path.relative_to(target_dir)),
-                                "function": m["name"],
-                                "line": m["line"],
-                                "metrics": {
-                                    "complexity": m["complexity"],
-                                    "loc": m["loc"],
-                                    "slob_score": m["score"]
-                                },
-                                "high_severity": is_high_severity
-                            })
+                        slob_candidates.append({
+                            "file": str(file_path.relative_to(target_dir)),
+                            "function": m["name"],
+                            "line": m["line"],
+                            "metrics": {
+                                "complexity": m["complexity"],
+                                "loc": m["loc"],
+                                "slob_score": m["score"]
+                            },
+                            "high_severity": is_high_severity
+                        })
                     
                 except Exception as e:
                     print(f"Error processing {file_path}: {e}", file=sys.stderr)
@@ -81,16 +80,15 @@ def main():
     # Print summary for the Agent to see
     print(f"--- Identification Summary ---")
     print(f"Files Scanned: {files_scanned}")
-    print(f"Slob Candidates Found: {len(slob_candidates)}")
+    print(f"Functions Found: {len(slob_candidates)}")
+    print(f"Slob Candidates: {len([c for c in slob_candidates if c['high_severity']])}")
     print("------------------------------")
     
-    for cand in slob_candidates[:10]: # Top 10
-        print(f"[SLOB] {cand['file']}::{cand['function']} (Line {cand['line']})")
-        print(f"       Score: {cand['metrics']['slob_score']} (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']})")
+    for cand in slob_candidates:
+        if cand["high_severity"]:
+            print(f"[SLOB]   {cand['file']}::{cand['function']} (Line {cand['line']})")
+            print(f"         Score: {cand['metrics']['slob_score']} (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']})")
     
-    if len(slob_candidates) > 10:
-        print(f"... and {len(slob_candidates) - 10} more.")
-
     if args.output:
         report = {
             "files_scanned": files_scanned,

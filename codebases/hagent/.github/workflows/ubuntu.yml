@@ -1,0 +1,153 @@
+name: Ubuntu
+
+on: [push, pull_request]
+
+env:
+  HAGENT_SIMPLECHISEL_IMAGE: mascucsc/hagent-simplechisel:2026.01
+
+jobs:
+  install_uv:
+    name: Install UV.
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          # Install a specific version of uv.
+          version: "0.9.30"
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+
+      - name: Install project
+        run: uv sync --extra dev
+
+  ruff:
+    name: Run Ruff and generate a lint report
+    runs-on: ubuntu-latest
+    needs: install_uv
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          # Install a specific version of uv.
+          version: "0.9.30"
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+
+      - name: Install project
+        run: uv sync --extra dev
+
+      - name: Run ruff
+        run: uv run ruff check .
+
+  test:
+    name: Run tests with coverage
+    runs-on: ubuntu-latest
+    needs: install_uv
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          # Install a specific version of uv.
+          version: "0.9.30"
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+
+      - name: Install project
+        run: uv sync --extra dev
+
+      - name: Pull Docker images
+        run: |
+          set -euxo pipefail
+          df -h
+
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+
+          df -h
+          docker pull ${{ env.HAGENT_SIMPLECHISEL_IMAGE }}
+
+      - name: Run tests with coverage
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          HAGENT_EXECUTION_MODE: docker
+          TEMP: /tmp
+          TMPDIR: /tmp
+        run: |
+          # Clean up any existing coverage files to prevent database corruption
+          rm -f .coverage*
+
+          # Ensure temp directories are writable
+          sudo mkdir -p /tmp/pytest_temp
+          sudo chmod 777 /tmp/pytest_temp
+
+          # To avoid races (test could build this but can create problems)
+          mkdir -p output/local/build
+          mkdir -p output/local/cache
+          git clone --depth 1 https://github.com/masc-ucsc/simplechisel.git output/local/repo
+
+          # Run tests with coverage, excluding slow tests by default
+          # Note: Not using parallel (-n auto) here to avoid coverage data corruption
+          uv run pytest --cov --cov-branch --cov-report=xml:coverage.xml -m "not slow"
+      - name: Upload coverage reports to Codecov
+        if: always()
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          fail_ci_if_error: false
+          verbose: true
+
+  test_slow:
+    name: Run slow tests
+    runs-on: ubuntu-latest
+    needs: install_uv
+    if: github.event_name == 'schedule' || contains(github.event.head_commit.message, '[run-slow]')
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "0.9.30"
+          enable-cache: true
+          cache-dependency-glob: "pyproject.toml"
+
+      - name: Install project
+        run: uv sync --extra dev
+
+      - name: Pull Docker images
+        run: |
+          docker pull ${{ env.HAGENT_SIMPLECHISEL_IMAGE }}
+
+      - name: Run slow tests
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          HAGENT_EXECUTION_MODE: docker
+          TEMP: /tmp
+          TMPDIR: /tmp
+        run: |
+          # Create and set permissions for temp directories
+          sudo mkdir -p /tmp/pytest_temp
+          sudo chmod 777 /tmp/pytest_temp
+
+          # Run only slow tests in parallel with extended timeout
+          uv run pytest -n auto --forked -m "slow" --tb=short --maxfail=3 -v

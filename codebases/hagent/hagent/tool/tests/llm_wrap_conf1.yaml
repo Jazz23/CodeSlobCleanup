@@ -1,0 +1,40 @@
+test_react_compile_slang_simple:
+  model2: "bedrock/us.meta.llama3-2-70b-instruct-v1:0"
+  model1: "bedrock/us.meta.llama3-3-70b-instruct-v1:0"
+  model3: "bedrock/us.meta.llama4-scout-17b-instruct-v1:0"
+  llm:
+    model: "bedrock/us.meta.llama3-3-70b-instruct-v1:0"
+    aws_region_name: "us-east-1"
+    # model: "bedrock/us.meta.llama4-scout-17b-instruct-v1:0"
+    # model: "openrouter/deepseek/deepseek-r1-distill-llama-8b"
+
+  direct_prompt:
+    - role: system
+      content: |
+        You are an expert Verilog programmer
+    - role: user
+      content: |
+        The following code has error in the comment that need to be fixed:
+        ```
+        {code}
+        ```
+        Do not provide explanations, and respond just with the fixed code and remove the comment for the error.
+
+  example_prompt:
+    - role: system
+      content: |
+        You are an expert Verilog programmer
+    - role: user
+      content: |
+        The following code has error in the comment that need to be fixed:
+        ```
+        {code}
+        ```
+        As a reference, a similar error for the following code:
+        {fix.question}
+        had the following correct answer:
+        {fix.answer}
+
+        Do not provide explanations, and respond just with the fixed code and remove the comment for the error.
+
+

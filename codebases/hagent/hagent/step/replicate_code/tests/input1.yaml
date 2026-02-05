@@ -1,0 +1,22 @@
+description: |
+  test1
+  2nd line
+
+code_content: |
+  module and_gate_behavioral(output reg Y, input A, input B);
+      always @(A or B) begin
+          Y = A & B;
+      end
+  endmodule
+
+top_name: "and_gate_behavioral"
+
+threshold: 50
+
+llm:
+  model: "bedrock/us.meta.llama3-3-70b-instruct-v1:0" # Cheap bedrock model
+  aws_region_name: "us-east-1"
+
+# Fictious initial cost/tokens
+cost: 10
+#tokens: 1000000
