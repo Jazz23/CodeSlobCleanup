@@ -1,0 +1,4 @@
+Running LLOC Tests...
+Starting with alpha and INIT
+Monolithic Processor Result: {'status': 'DONE', 'score': 760.5, 'count': 3, 'errors': []}
+LLOC Tests Finished.

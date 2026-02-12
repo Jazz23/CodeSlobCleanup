@@ -1,0 +1,5 @@
+Running Complexity Tests...
+Category inactive
+Nested Function Result: ['A1', 'A2', 'A3']
+Redundant Checks Result: 3
+Complexity Tests Finished.

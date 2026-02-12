@@ -1,0 +1,65 @@
+{
+  "files_scanned": 3,
+  "slob_candidates": [
+    {
+      "file": "nested_logic.py",
+      "function": "deeply_nested_function",
+      "type": "function",
+      "line": 1,
+      "metrics": {
+        "complexity": 13,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 175.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": ".code-slob-tmp/nested_logic/original.py",
+      "function": "deeply_nested_function",
+      "type": "function",
+      "line": 1,
+      "metrics": {
+        "complexity": 13,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 175.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "nested_logic.py",
+      "function": "redundant_checks",
+      "type": "function",
+      "line": 30,
+      "metrics": {
+        "complexity": 8,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 69.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": ".code-slob-tmp/nested_logic/original.py",
+      "function": "redundant_checks",
+      "type": "function",
+      "line": 30,
+      "metrics": {
+        "complexity": 8,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 69.29
+      },
+      "high_severity": true
+    }
+  ]
+}

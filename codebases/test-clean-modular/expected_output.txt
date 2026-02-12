@@ -1,0 +1,4 @@
+Running Clean Tests...
+Total Processed Value: 90.0
+Active Items Count: 2
+Clean Tests Finished.
