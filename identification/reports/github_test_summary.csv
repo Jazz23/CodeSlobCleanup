@@ -1,0 +1,4 @@
+Repository,Total Slob Score,Files Scanned,Slob Candidates,Top Slob Factor,Rationale
+flask,6500,35,71,God Classes,"Highly centralized architecture. The Flask class alone has 35+ methods and 400+ LLOC."
+requests,4200,21,67,Complex Logic & God Classes,"Heavy reliance on individual complex functions (e.g., _encode_files) and large models."
+python-dotenv,471.5,8,10,Data Classes & Utility Complexity,"Small scope. High scores for individual utility functions or small Data Classes."

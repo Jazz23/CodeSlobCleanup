@@ -1,0 +1,115 @@
+{
+  "files_scanned": 38,
+  "slob_candidates": [
+    {
+      "file": "test-slob-complexity/nested_logic.py",
+      "function": "deeply_nested_function",
+      "line": 1,
+      "metrics": {
+        "complexity": 13,
+        "loc": 26,
+        "slob_score": 175.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test-slob-complexity/.code-slob-tmp/nested_logic/original.py",
+      "function": "deeply_nested_function",
+      "line": 1,
+      "metrics": {
+        "complexity": 13,
+        "loc": 26,
+        "slob_score": 175.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test-slob-lloc/verbose_script.py",
+      "function": "monolithic_processor",
+      "line": 1,
+      "metrics": {
+        "complexity": 4,
+        "loc": 101,
+        "slob_score": 118.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test-slob-lloc/.code-slob-tmp/verbose_script/original.py",
+      "function": "monolithic_processor",
+      "line": 1,
+      "metrics": {
+        "complexity": 4,
+        "loc": 101,
+        "slob_score": 118.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "code-smells/command-line-shell/before/src/main.py",
+      "function": "Interface",
+      "line": 40,
+      "metrics": {
+        "complexity": 3,
+        "loc": 83,
+        "slob_score": 77.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test-slob-complexity/nested_logic.py",
+      "function": "redundant_checks",
+      "line": 30,
+      "metrics": {
+        "complexity": 8,
+        "loc": 23,
+        "slob_score": 69.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test-slob-complexity/.code-slob-tmp/nested_logic/original.py",
+      "function": "redundant_checks",
+      "line": 30,
+      "metrics": {
+        "complexity": 8,
+        "loc": 23,
+        "slob_score": 69.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test1/inventory.py",
+      "function": "find_duplicates",
+      "line": 17,
+      "metrics": {
+        "complexity": 8,
+        "loc": 13,
+        "slob_score": 65.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test1-identified/inventory.py",
+      "function": "find_duplicates",
+      "line": 17,
+      "metrics": {
+        "complexity": 8,
+        "loc": 13,
+        "slob_score": 65.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "test1-identified/.code-slob-tmp/inventory/original.py",
+      "function": "find_duplicates",
+      "line": 17,
+      "metrics": {
+        "complexity": 8,
+        "loc": 13,
+        "slob_score": 65.69
+      },
+      "high_severity": true
+    }
+  ]
+}

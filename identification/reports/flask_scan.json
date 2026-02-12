@@ -1,0 +1,1070 @@
+{
+  "files_scanned": 35,
+  "slob_candidates": [
+    {
+      "file": "src/flask/app.py",
+      "function": "Flask",
+      "type": "class",
+      "line": 108,
+      "metrics": {
+        "complexity": 5,
+        "loc": 413,
+        "method_count": 35,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 1730.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "App",
+      "type": "class",
+      "line": 59,
+      "metrics": {
+        "complexity": 3,
+        "loc": 266,
+        "method_count": 35,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 716.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "register",
+      "type": "function",
+      "line": 273,
+      "metrics": {
+        "complexity": 23,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 556.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "Blueprint",
+      "type": "class",
+      "line": 119,
+      "metrics": {
+        "complexity": 3,
+        "loc": 233,
+        "method_count": 28,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 551.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "routes_command",
+      "type": "function",
+      "line": 1061,
+      "metrics": {
+        "complexity": 18,
+        "loc": 33,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 334.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "Scaffold",
+      "type": "class",
+      "line": 52,
+      "metrics": {
+        "complexity": 2,
+        "loc": 180,
+        "method_count": 27,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 328.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "make_response",
+      "type": "function",
+      "line": 1223,
+      "metrics": {
+        "complexity": 16,
+        "loc": 41,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 272.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "find_app_by_string",
+      "type": "function",
+      "line": 120,
+      "metrics": {
+        "complexity": 14,
+        "loc": 77,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 255.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "explain_template_loading_attempts",
+      "type": "function",
+      "line": 124,
+      "metrics": {
+        "complexity": 13,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 181.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "url_for",
+      "type": "function",
+      "line": 1101,
+      "metrics": {
+        "complexity": 13,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 180.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "add_url_rule",
+      "type": "function",
+      "line": 602,
+      "metrics": {
+        "complexity": 13,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 177.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "load_dotenv",
+      "type": "function",
+      "line": 698,
+      "metrics": {
+        "complexity": 13,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 173.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "find_best_app",
+      "type": "function",
+      "line": 41,
+      "metrics": {
+        "complexity": 12,
+        "loc": 49,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 168.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "run",
+      "type": "function",
+      "line": 631,
+      "metrics": {
+        "complexity": 12,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 156.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "send_file",
+      "type": "function",
+      "line": 404,
+      "metrics": {
+        "complexity": 1,
+        "loc": 122,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 149.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "AppContext",
+      "type": "class",
+      "line": 259,
+      "metrics": {
+        "complexity": 3,
+        "loc": 107,
+        "method_count": 12,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 123.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "Config",
+      "type": "class",
+      "line": 50,
+      "metrics": {
+        "complexity": 5,
+        "loc": 98,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 121.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "get_root_path",
+      "type": "function",
+      "line": 574,
+      "metrics": {
+        "complexity": 10,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 105.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_validate_key",
+      "type": "function",
+      "line": 828,
+      "metrics": {
+        "complexity": 10,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 104.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "_find_package_path",
+      "type": "function",
+      "line": 709,
+      "metrics": {
+        "complexity": 10,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 104.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "__init_subclass__",
+      "type": "function",
+      "line": 253,
+      "metrics": {
+        "complexity": 10,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 101.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "BlueprintSetupState",
+      "type": "class",
+      "line": 34,
+      "metrics": {
+        "complexity": 5,
+        "loc": 82,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 92.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "DefaultJSONProvider",
+      "type": "class",
+      "line": 124,
+      "metrics": {
+        "complexity": 3,
+        "loc": 91,
+        "method_count": 3,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 91.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 49,
+      "metrics": {
+        "complexity": 9,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "Request",
+      "type": "class",
+      "line": 18,
+      "metrics": {
+        "complexity": 3,
+        "loc": 81,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 74.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "load_app",
+      "type": "function",
+      "line": 333,
+      "metrics": {
+        "complexity": 8,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 70.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "preprocess_request",
+      "type": "function",
+      "line": 1365,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "_dump_loader_info",
+      "type": "function",
+      "line": 107,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "FlaskGroup",
+      "type": "class",
+      "line": 531,
+      "metrics": {
+        "complexity": 5,
+        "loc": 61,
+        "method_count": 6,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 62.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "FlaskClient",
+      "type": "class",
+      "line": 109,
+      "metrics": {
+        "complexity": 3,
+        "loc": 71,
+        "method_count": 7,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 59.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "run_command",
+      "type": "function",
+      "line": 935,
+      "metrics": {
+        "complexity": 5,
+        "loc": 58,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 58.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_prefixed_env",
+      "type": "function",
+      "line": 126,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "wsgi_app",
+      "type": "function",
+      "line": 1547,
+      "metrics": {
+        "complexity": 7,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "examples/tutorial/flaskr/auth.py",
+      "function": "register",
+      "type": "function",
+      "line": 47,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "pop",
+      "type": "function",
+      "line": 432,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "open",
+      "type": "function",
+      "line": 204,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "MethodView",
+      "type": "class",
+      "line": 138,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 53.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "create_url_adapter",
+      "type": "function",
+      "line": 508,
+      "metrics": {
+        "complexity": 7,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SecureCookieSessionInterface",
+      "type": "class",
+      "line": 298,
+      "metrics": {
+        "complexity": 5,
+        "loc": 51,
+        "method_count": 3,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "_find_error_handler",
+      "type": "function",
+      "line": 865,
+      "metrics": {
+        "complexity": 7,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "ScriptInfo",
+      "type": "class",
+      "line": 293,
+      "metrics": {
+        "complexity": 6,
+        "loc": 38,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 50.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "__init_subclass__",
+      "type": "function",
+      "line": 165,
+      "metrics": {
+        "complexity": 7,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "DispatchingJinjaLoader",
+      "type": "class",
+      "line": 48,
+      "metrics": {
+        "complexity": 4,
+        "loc": 53,
+        "method_count": 6,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 44.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TaggedJSONSerializer",
+      "type": "class",
+      "line": 219,
+      "metrics": {
+        "complexity": 4,
+        "loc": 51,
+        "method_count": 7,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 42.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "EnvironBuilder",
+      "type": "class",
+      "line": 27,
+      "metrics": {
+        "complexity": 6,
+        "loc": 21,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 40.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 309,
+      "metrics": {
+        "complexity": 3,
+        "loc": 53,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 37.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "test_client",
+      "type": "function",
+      "line": 754,
+      "metrics": {
+        "complexity": 2,
+        "loc": 56,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 35.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "CertParamType",
+      "type": "class",
+      "line": 780,
+      "metrics": {
+        "complexity": 5,
+        "loc": 24,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 30.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "View",
+      "type": "class",
+      "line": 16,
+      "metrics": {
+        "complexity": 4,
+        "loc": 36,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 28.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "url_for",
+      "type": "function",
+      "line": 187,
+      "metrics": {
+        "complexity": 1,
+        "loc": 51,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 27.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SessionInterface",
+      "type": "class",
+      "line": 114,
+      "metrics": {
+        "complexity": 2,
+        "loc": 45,
+        "method_count": 13,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 24.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "FormDataRoutingRedirect",
+      "type": "class",
+      "line": 50,
+      "metrics": {
+        "complexity": 4,
+        "loc": 10,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 17.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "_AppCtxGlobals",
+      "type": "class",
+      "line": 29,
+      "metrics": {
+        "complexity": 2,
+        "loc": 35,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 16.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "FlaskCliRunner",
+      "type": "class",
+      "line": 265,
+      "metrics": {
+        "complexity": 3,
+        "loc": 13,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 10.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "Response",
+      "type": "class",
+      "line": 222,
+      "metrics": {
+        "complexity": 3,
+        "loc": 12,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 10.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "DebugFilesKeyError",
+      "type": "class",
+      "line": 23,
+      "metrics": {
+        "complexity": 3,
+        "loc": 11,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 10.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "PassDict",
+      "type": "class",
+      "line": 119,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 9.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "Environment",
+      "type": "class",
+      "line": 35,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 9.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "PassList",
+      "type": "class",
+      "line": 147,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 9.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "SeparatedPathType",
+      "type": "class",
+      "line": 867,
+      "metrics": {
+        "complexity": 3,
+        "loc": 6,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 9.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "AppGroup",
+      "type": "class",
+      "line": 405,
+      "metrics": {
+        "complexity": 2,
+        "loc": 14,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 5.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SessionMixin",
+      "type": "class",
+      "line": 24,
+      "metrics": {
+        "complexity": 2,
+        "loc": 12,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 5.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "NullSession",
+      "type": "class",
+      "line": 97,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "ProxyMixin",
+      "type": "class",
+      "line": 17,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "FlaskProxy",
+      "type": "class",
+      "line": 22,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "AppContextProxy",
+      "type": "class",
+      "line": 24,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "_AppCtxGlobalsProxy",
+      "type": "class",
+      "line": 26,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "RequestProxy",
+      "type": "class",
+      "line": 28,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "SessionMixinProxy",
+      "type": "class",
+      "line": 30,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "NoAppException",
+      "type": "class",
+      "line": 37,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "UnexpectedUnicodeError",
+      "type": "class",
+      "line": 17,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    }
+  ]
+}

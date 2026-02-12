@@ -1,0 +1,27 @@
+{
+  "datasets": [
+      {
+          "name": "clean-modular",
+          "path": "codebases/test-clean-modular",
+          "expected_status": "clean",
+          "description": "Code with short functions and low complexity.",
+          "key_files": ["math_utils.py", "processor.py"]
+      },
+      {
+          "name": "slob-complexity",
+          "path": "codebases/test-slob-complexity",
+          "expected_status": "slob",
+          "reason": "High Cyclomatic Complexity",
+          "description": "Deeply nested loops and conditionals.",
+          "key_files": ["nested_logic.py"]
+      },
+      {
+          "name": "slob-lloc",
+          "path": "codebases/test-slob-lloc",
+          "expected_status": "slob",
+          "reason": "High LLOC / Verbosity",
+          "description": "Long, monolithic functions with redundant variables.",
+          "key_files": ["verbose_script.py"]
+      }
+  ]
+}

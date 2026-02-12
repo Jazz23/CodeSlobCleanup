@@ -1,0 +1,6650 @@
+{
+  "files_scanned": 128,
+  "slob_candidates": [
+    {
+      "file": "summarize_results.py",
+      "function": "print_summary",
+      "type": "function",
+      "line": 158,
+      "metrics": {
+        "complexity": 116,
+        "loc": 233,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 13998.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "Locator",
+      "type": "class",
+      "line": 43,
+      "metrics": {
+        "complexity": 10,
+        "loc": 827,
+        "method_count": 36,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 6939.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_process_single_bug_with_retries",
+      "type": "function",
+      "line": 290,
+      "metrics": {
+        "complexity": 43,
+        "loc": 664,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 6257.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "V2chisel_batch",
+      "type": "class",
+      "line": 46,
+      "metrics": {
+        "complexity": 13,
+        "loc": 592,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 3673.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_find_vcd_in_hierarchy",
+      "type": "function",
+      "line": 979,
+      "metrics": {
+        "complexity": 52,
+        "loc": 121,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 2850.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "Builder",
+      "type": "class",
+      "line": 20,
+      "metrics": {
+        "complexity": 6,
+        "loc": 530,
+        "method_count": 42,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 2845.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "ContainerManager",
+      "type": "class",
+      "line": 259,
+      "metrics": {
+        "complexity": 6,
+        "loc": 527,
+        "method_count": 27,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 2813.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "FileTrackerLocal",
+      "type": "class",
+      "line": 22,
+      "metrics": {
+        "complexity": 6,
+        "loc": 506,
+        "method_count": 31,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 2596.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_wrap.py",
+      "function": "_call_llm",
+      "type": "function",
+      "line": 275,
+      "metrics": {
+        "complexity": 47,
+        "loc": 158,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 2458.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_rule_based_property_from_row",
+      "type": "function",
+      "line": 787,
+      "metrics": {
+        "complexity": 49,
+        "loc": 74,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 2455.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/code_scope.py",
+      "function": "_parse_scopes",
+      "type": "function",
+      "line": 20,
+      "metrics": {
+        "complexity": 48,
+        "loc": 106,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 2416.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "V2chisel_fix",
+      "type": "class",
+      "line": 75,
+      "metrics": {
+        "complexity": 7,
+        "loc": 482,
+        "method_count": 18,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 2372.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "Equiv_check",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 7,
+        "loc": 468,
+        "method_count": 24,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 2239.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "main",
+      "type": "function",
+      "line": 1063,
+      "metrics": {
+        "complexity": 42,
+        "loc": 208,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 2196.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "main",
+      "type": "function",
+      "line": 303,
+      "metrics": {
+        "complexity": 41,
+        "loc": 112,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1806.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_expr_text",
+      "type": "function",
+      "line": 187,
+      "metrics": {
+        "complexity": 41,
+        "loc": 68,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1727.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "PropertyBuilder",
+      "type": "class",
+      "line": 405,
+      "metrics": {
+        "complexity": 11,
+        "loc": 400,
+        "method_count": 21,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 1721.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "build_io_relations",
+      "type": "function",
+      "line": 672,
+      "metrics": {
+        "complexity": 39,
+        "loc": 123,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1672.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "run",
+      "type": "function",
+      "line": 1327,
+      "metrics": {
+        "complexity": 35,
+        "loc": 118,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1364.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_build.py",
+      "function": "_format_error_response",
+      "type": "function",
+      "line": 63,
+      "metrics": {
+        "complexity": 35,
+        "loc": 113,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1352.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/path_manager.py",
+      "function": "PathManager",
+      "type": "class",
+      "line": 22,
+      "metrics": {
+        "complexity": 3,
+        "loc": 359,
+        "method_count": 32,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 1297.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "GoldenDesignBuilder",
+      "type": "class",
+      "line": 20,
+      "metrics": {
+        "complexity": 7,
+        "loc": 348,
+        "method_count": 17,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 1260.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "VerilogGenerator",
+      "type": "class",
+      "line": 12,
+      "metrics": {
+        "complexity": 10,
+        "loc": 340,
+        "method_count": 13,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 1256.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "emit_prop_and_bind_for_module",
+      "type": "function",
+      "line": 422,
+      "metrics": {
+        "complexity": 33,
+        "loc": 97,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1183.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_build.py",
+      "function": "mcp_execute",
+      "type": "function",
+      "line": 383,
+      "metrics": {
+        "complexity": 33,
+        "loc": 76,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1146.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "main",
+      "type": "function",
+      "line": 249,
+      "metrics": {
+        "complexity": 33,
+        "loc": 74,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1143.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_wrap.py",
+      "function": "LLM_wrap",
+      "type": "class",
+      "line": 36,
+      "metrics": {
+        "complexity": 10,
+        "loc": 303,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 1018.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_applier.py",
+      "function": "apply_diff",
+      "type": "function",
+      "line": 73,
+      "metrics": {
+        "complexity": 31,
+        "loc": 72,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 1012.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_detect_clk_rst_from_port_names",
+      "type": "function",
+      "line": 315,
+      "metrics": {
+        "complexity": 30,
+        "loc": 46,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 921.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "BackupManager",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 10,
+        "loc": 275,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 856.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_find_clk_rst",
+      "type": "function",
+      "line": 522,
+      "metrics": {
+        "complexity": 29,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 849.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "SpecBuilder",
+      "type": "class",
+      "line": 1089,
+      "metrics": {
+        "complexity": 12,
+        "loc": 264,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 840.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_pass1/v2chisel_pass1.py",
+      "function": "run",
+      "type": "function",
+      "line": 184,
+      "metrics": {
+        "complexity": 25,
+        "loc": 132,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 799.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "run",
+      "type": "function",
+      "line": 107,
+      "metrics": {
+        "complexity": 24,
+        "loc": 139,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 769.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_build.py",
+      "function": "get_mcp_schema",
+      "type": "function",
+      "line": 179,
+      "metrics": {
+        "complexity": 23,
+        "loc": 154,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 766.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "print_dry_run",
+      "type": "function",
+      "line": 163,
+      "metrics": {
+        "complexity": 26,
+        "loc": 54,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 705.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_pass1/v2chisel_pass1.py",
+      "function": "V2Chisel_pass1",
+      "type": "class",
+      "line": 64,
+      "metrics": {
+        "complexity": 8,
+        "loc": 252,
+        "method_count": 7,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 699.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_message_handlers.py",
+      "function": "_analyze_tool_response",
+      "type": "function",
+      "line": 211,
+      "metrics": {
+        "complexity": 26,
+        "loc": 41,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 692.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/docker_diff_applier.py",
+      "function": "DockerDiffApplier",
+      "type": "class",
+      "line": 11,
+      "metrics": {
+        "complexity": 7,
+        "loc": 250,
+        "method_count": 14,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 674.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/filter_lines.py",
+      "function": "filter_lines",
+      "type": "function",
+      "line": 86,
+      "metrics": {
+        "complexity": 25,
+        "loc": 63,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 664.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_find_variable_in_files",
+      "type": "function",
+      "line": 1431,
+      "metrics": {
+        "complexity": 25,
+        "loc": 56,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 656.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/coverage_public_unused.py",
+      "function": "main",
+      "type": "function",
+      "line": 30,
+      "metrics": {
+        "complexity": 25,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 652.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "find_chisel_files_docker_filtered",
+      "type": "function",
+      "line": 39,
+      "metrics": {
+        "complexity": 25,
+        "loc": 45,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 645.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/chisel_diff_generator.py",
+      "function": "ChiselDiffGenerator",
+      "type": "class",
+      "line": 12,
+      "metrics": {
+        "complexity": 8,
+        "loc": 241,
+        "method_count": 5,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 644.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/code_scope.py",
+      "function": "Code_scope",
+      "type": "class",
+      "line": 1,
+      "metrics": {
+        "complexity": 16,
+        "loc": 191,
+        "method_count": 5,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 620.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "summarize_results.py",
+      "function": "main",
+      "type": "function",
+      "line": 473,
+      "metrics": {
+        "complexity": 23,
+        "loc": 85,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 601.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator.py",
+      "function": "HintsGenerator",
+      "type": "class",
+      "line": 16,
+      "metrics": {
+        "complexity": 7,
+        "loc": 235,
+        "method_count": 10,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 601.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/check_yaml.py",
+      "function": "YAMLValidator",
+      "type": "class",
+      "line": 28,
+      "metrics": {
+        "complexity": 7,
+        "loc": 232,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 587.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_build_hierarchy_cache",
+      "type": "function",
+      "line": 428,
+      "metrics": {
+        "complexity": 23,
+        "loc": 76,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 586.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_never_called_check.py",
+      "function": "main",
+      "type": "function",
+      "line": 171,
+      "metrics": {
+        "complexity": 23,
+        "loc": 61,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 566.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "run_cmd",
+      "type": "function",
+      "line": 757,
+      "metrics": {
+        "complexity": 22,
+        "loc": 71,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 534.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "run",
+      "type": "function",
+      "line": 75,
+      "metrics": {
+        "complexity": 19,
+        "loc": 128,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 524.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "run_JasperGold",
+      "type": "function",
+      "line": 887,
+      "metrics": {
+        "complexity": 21,
+        "loc": 88,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 518.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "FileManager",
+      "type": "class",
+      "line": 14,
+      "metrics": {
+        "complexity": 8,
+        "loc": 207,
+        "method_count": 12,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 492.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/executor_local.py",
+      "function": "run_cmd",
+      "type": "function",
+      "line": 99,
+      "metrics": {
+        "complexity": 21,
+        "loc": 60,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 477.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/hagent-mcp-server.py",
+      "function": "register_mcp_module_impl",
+      "type": "function",
+      "line": 87,
+      "metrics": {
+        "complexity": 17,
+        "loc": 137,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 476.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "create_master_backup",
+      "type": "function",
+      "line": 101,
+      "metrics": {
+        "complexity": 21,
+        "loc": 59,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 475.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_locator.py",
+      "function": "main",
+      "type": "function",
+      "line": 276,
+      "metrics": {
+        "complexity": 21,
+        "loc": 57,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 473.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "_cleanup_all_containers",
+      "type": "function",
+      "line": 1155,
+      "metrics": {
+        "complexity": 21,
+        "loc": 57,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 473.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/fix_syntax_errors.py",
+      "function": "generate_Jaspergold_property_module",
+      "type": "function",
+      "line": 349,
+      "metrics": {
+        "complexity": 21,
+        "loc": 53,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 469.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_run_api",
+      "type": "function",
+      "line": 547,
+      "metrics": {
+        "complexity": 20,
+        "loc": 58,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 433.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "detect_top_ports_from_rtl",
+      "type": "function",
+      "line": 236,
+      "metrics": {
+        "complexity": 20,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 427.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_generate_hints_for_bug",
+      "type": "function",
+      "line": 956,
+      "metrics": {
+        "complexity": 20,
+        "loc": 49,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 424.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "_find_matching_tops",
+      "type": "function",
+      "line": 504,
+      "metrics": {
+        "complexity": 20,
+        "loc": 47,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 422.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_message_handlers.py",
+      "function": "MCPMessageHandlers",
+      "type": "class",
+      "line": 15,
+      "metrics": {
+        "complexity": 4,
+        "loc": 200,
+        "method_count": 19,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 416.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/clk_rst_utils.py",
+      "function": "detect_clk_rst_from_ports",
+      "type": "function",
+      "line": 469,
+      "metrics": {
+        "complexity": 20,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 407.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "_refine_chisel_code_with_prompt4",
+      "type": "function",
+      "line": 673,
+      "metrics": {
+        "complexity": 19,
+        "loc": 66,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 404.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/jg_postcheck_repair.py",
+      "function": "run_postcheck_repair",
+      "type": "function",
+      "line": 151,
+      "metrics": {
+        "complexity": 19,
+        "loc": 64,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 401.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "check_equivalence",
+      "type": "function",
+      "line": 302,
+      "metrics": {
+        "complexity": 19,
+        "loc": 57,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 393.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_build.py",
+      "function": "main",
+      "type": "function",
+      "line": 630,
+      "metrics": {
+        "complexity": 19,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 388.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "parse_jg_log_detailed",
+      "type": "function",
+      "line": 670,
+      "metrics": {
+        "complexity": 19,
+        "loc": 45,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 381.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "main",
+      "type": "function",
+      "line": 1312,
+      "metrics": {
+        "complexity": 18,
+        "loc": 73,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 377.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_canonical_signal_ref",
+      "type": "function",
+      "line": 392,
+      "metrics": {
+        "complexity": 19,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 369.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "validate_csv_text",
+      "type": "function",
+      "line": 950,
+      "metrics": {
+        "complexity": 18,
+        "loc": 60,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 360.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "generate_properties",
+      "type": "function",
+      "line": 1072,
+      "metrics": {
+        "complexity": 18,
+        "loc": 50,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 349.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/chisel_diff_generator.py",
+      "function": "generate_chisel_diff",
+      "type": "function",
+      "line": 70,
+      "metrics": {
+        "complexity": 15,
+        "loc": 111,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 348.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "_verify_diff_application",
+      "type": "function",
+      "line": 459,
+      "metrics": {
+        "complexity": 18,
+        "loc": 48,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 347.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/react.py",
+      "function": "react_cycle",
+      "type": "function",
+      "line": 144,
+      "metrics": {
+        "complexity": 17,
+        "loc": 74,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 343.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "summarize_results.py",
+      "function": "analyze_single_bug",
+      "type": "function",
+      "line": 45,
+      "metrics": {
+        "complexity": 18,
+        "loc": 42,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 341.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_build_verilog_chisel_mapping",
+      "type": "function",
+      "line": 592,
+      "metrics": {
+        "complexity": 18,
+        "loc": 37,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 337.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/baseline_verilog_generator.py",
+      "function": "BaselineVerilogGenerator",
+      "type": "class",
+      "line": 12,
+      "metrics": {
+        "complexity": 6,
+        "loc": 173,
+        "method_count": 10,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 335.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "build_params_text_from_scoped_ast",
+      "type": "function",
+      "line": 273,
+      "metrics": {
+        "complexity": 18,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 334.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "find_liberty_file",
+      "type": "function",
+      "line": 122,
+      "metrics": {
+        "complexity": 18,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 330.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/avoid_spagetti_code.py",
+      "function": "main",
+      "type": "function",
+      "line": 267,
+      "metrics": {
+        "complexity": 17,
+        "loc": 42,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 306.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_find_variable_cross_representation",
+      "type": "function",
+      "line": 1193,
+      "metrics": {
+        "complexity": 17,
+        "loc": 40,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 305.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "find_and_backup_verilog_files",
+      "type": "function",
+      "line": 391,
+      "metrics": {
+        "complexity": 17,
+        "loc": 38,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 303.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_call_llm_for_row",
+      "type": "function",
+      "line": 955,
+      "metrics": {
+        "complexity": 17,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 301.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "_parse_signal_table",
+      "type": "function",
+      "line": 456,
+      "metrics": {
+        "complexity": 17,
+        "loc": 30,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 298.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "experiments/mcp_baseline/verify_mcp_diff.py",
+      "function": "verify_mcp_diff",
+      "type": "function",
+      "line": 28,
+      "metrics": {
+        "complexity": 10,
+        "loc": 139,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 293.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator_v2.py",
+      "function": "find_hints",
+      "type": "function",
+      "line": 58,
+      "metrics": {
+        "complexity": 14,
+        "loc": 95,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 286.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/docker_diff_applier.py",
+      "function": "_apply_single_file_diff",
+      "type": "function",
+      "line": 173,
+      "metrics": {
+        "complexity": 16,
+        "loc": 51,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 282.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_parse_csv_best_effort",
+      "type": "function",
+      "line": 121,
+      "metrics": {
+        "complexity": 16,
+        "loc": 50,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 281.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/clk_rst_utils.py",
+      "function": "detect_clk_rst_for_top",
+      "type": "function",
+      "line": 753,
+      "metrics": {
+        "complexity": 16,
+        "loc": 49,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 280.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "_create_baseline_snapshot",
+      "type": "function",
+      "line": 187,
+      "metrics": {
+        "complexity": 16,
+        "loc": 47,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 278.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "create_file_backup",
+      "type": "function",
+      "line": 203,
+      "metrics": {
+        "complexity": 16,
+        "loc": 45,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 276.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "restore_to_original",
+      "type": "function",
+      "line": 277,
+      "metrics": {
+        "complexity": 16,
+        "loc": 44,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 275.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "setup",
+      "type": "function",
+      "line": 117,
+      "metrics": {
+        "complexity": 16,
+        "loc": 43,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 274.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_repair_pre_post_from_csv",
+      "type": "function",
+      "line": 727,
+      "metrics": {
+        "complexity": 16,
+        "loc": 38,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 270.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "list_apis_for_profile",
+      "type": "function",
+      "line": 735,
+      "metrics": {
+        "complexity": 16,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 268.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "order_packages_by_dependency",
+      "type": "function",
+      "line": 549,
+      "metrics": {
+        "complexity": 16,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 268.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_corrector.py",
+      "function": "ChiselDiffCorrector",
+      "type": "class",
+      "line": 27,
+      "metrics": {
+        "complexity": 6,
+        "loc": 152,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 267.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "normalize_csv_rows",
+      "type": "function",
+      "line": 830,
+      "metrics": {
+        "complexity": 16,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 264.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_run_slang",
+      "type": "function",
+      "line": 1185,
+      "metrics": {
+        "complexity": 16,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 264.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "forward_find_parent_node",
+      "type": "function",
+      "line": 304,
+      "metrics": {
+        "complexity": 16,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 261.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/step.py",
+      "function": "Step",
+      "type": "class",
+      "line": 37,
+      "metrics": {
+        "complexity": 4,
+        "loc": 156,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 259.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "Module_finder",
+      "type": "class",
+      "line": 19,
+      "metrics": {
+        "complexity": 7,
+        "loc": 145,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 259.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "main_call",
+      "type": "function",
+      "line": 654,
+      "metrics": {
+        "complexity": 15,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 252.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "try_run_private_coverage_summarizer",
+      "type": "function",
+      "line": 788,
+      "metrics": {
+        "complexity": 15,
+        "loc": 49,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 249.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "generate_verilog_from_chisel",
+      "type": "function",
+      "line": 206,
+      "metrics": {
+        "complexity": 15,
+        "loc": 44,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 244.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "index_repository",
+      "type": "function",
+      "line": 262,
+      "metrics": {
+        "complexity": 15,
+        "loc": 37,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 238.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator_v2.py",
+      "function": "HintsGeneratorV2",
+      "type": "class",
+      "line": 27,
+      "metrics": {
+        "complexity": 5,
+        "loc": 146,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 238.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "find_verilog_files_in_docker",
+      "type": "function",
+      "line": 123,
+      "metrics": {
+        "complexity": 15,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 237.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "find_chisel_files",
+      "type": "function",
+      "line": 177,
+      "metrics": {
+        "complexity": 15,
+        "loc": 33,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 235.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_setup_file_tracking",
+      "type": "function",
+      "line": 369,
+      "metrics": {
+        "complexity": 15,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 235.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_get_synthesis_command",
+      "type": "function",
+      "line": 319,
+      "metrics": {
+        "complexity": 15,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 233.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_applier.py",
+      "function": "ChiselDiffApplier",
+      "type": "class",
+      "line": 8,
+      "metrics": {
+        "complexity": 12,
+        "loc": 94,
+        "method_count": 3,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 232.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem_docker.py",
+      "function": "write_file",
+      "type": "function",
+      "line": 86,
+      "metrics": {
+        "complexity": 14,
+        "loc": 60,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 232.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 406,
+      "metrics": {
+        "complexity": 15,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 230.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "_translate_to_container",
+      "type": "function",
+      "line": 116,
+      "metrics": {
+        "complexity": 15,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 228.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "Tracer",
+      "type": "class",
+      "line": 281,
+      "metrics": {
+        "complexity": 5,
+        "loc": 142,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 226.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/compile_slang.py",
+      "function": "Compile_slang",
+      "type": "class",
+      "line": 14,
+      "metrics": {
+        "complexity": 5,
+        "loc": 142,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 226.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "finalize_dac_metrics",
+      "type": "function",
+      "line": 228,
+      "metrics": {
+        "complexity": 14,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 223.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/span_index.py",
+      "function": "SpanIndex",
+      "type": "class",
+      "line": 19,
+      "metrics": {
+        "complexity": 4,
+        "loc": 143,
+        "method_count": 14,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 220.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/cleanup_test_containers.py",
+      "function": "cleanup_test_containers",
+      "type": "function",
+      "line": 65,
+      "metrics": {
+        "complexity": 14,
+        "loc": 46,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 217.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "restore_from_backup",
+      "type": "function",
+      "line": 349,
+      "metrics": {
+        "complexity": 14,
+        "loc": 39,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 211.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/code_scope.py",
+      "function": "find_nearest_upper_scopes",
+      "type": "function",
+      "line": 226,
+      "metrics": {
+        "complexity": 14,
+        "loc": 39,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 211.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/react.py",
+      "function": "React",
+      "type": "class",
+      "line": 55,
+      "metrics": {
+        "complexity": 5,
+        "loc": 136,
+        "method_count": 6,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 209.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "_create_asynchronous_trace",
+      "type": "function",
+      "line": 512,
+      "metrics": {
+        "complexity": 14,
+        "loc": 37,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 209.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_esp32.py",
+      "function": "api_install",
+      "type": "function",
+      "line": 73,
+      "metrics": {
+        "complexity": 12,
+        "loc": 81,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 209.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/check_yaml.py",
+      "function": "_verify_output_generation",
+      "type": "function",
+      "line": 187,
+      "metrics": {
+        "complexity": 14,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 208.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_corrector.py",
+      "function": "correct_diff",
+      "type": "function",
+      "line": 41,
+      "metrics": {
+        "complexity": 10,
+        "loc": 104,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 208.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/runner.py",
+      "function": "Runner",
+      "type": "class",
+      "line": 17,
+      "metrics": {
+        "complexity": 3,
+        "loc": 141,
+        "method_count": 19,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 207.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/bug_selector.py",
+      "function": "_parse_range_spec",
+      "type": "function",
+      "line": 171,
+      "metrics": {
+        "complexity": 14,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 206.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/docker_diff_applier.py",
+      "function": "_verify_target_line_exists",
+      "type": "function",
+      "line": 302,
+      "metrics": {
+        "complexity": 14,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 206.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/uv_bump_versions.py",
+      "function": "bump_requirement",
+      "type": "function",
+      "line": 63,
+      "metrics": {
+        "complexity": 14,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 204.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "Extract_code_verilog",
+      "type": "class",
+      "line": 29,
+      "metrics": {
+        "complexity": 14,
+        "loc": 27,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 203.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/selector.py",
+      "function": "select",
+      "type": "function",
+      "line": 40,
+      "metrics": {
+        "complexity": 14,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 202.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/executor_docker.py",
+      "function": "_translate_path_to_container",
+      "type": "function",
+      "line": 120,
+      "metrics": {
+        "complexity": 14,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 202.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem_docker.py",
+      "function": "FileSystemDocker",
+      "type": "class",
+      "line": 16,
+      "metrics": {
+        "complexity": 5,
+        "loc": 130,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 194.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "run_llm_advisor_if_needed",
+      "type": "function",
+      "line": 907,
+      "metrics": {
+        "complexity": 11,
+        "loc": 80,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 185.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_wrap.py",
+      "function": "_check_env_keys",
+      "type": "function",
+      "line": 99,
+      "metrics": {
+        "complexity": 13,
+        "loc": 39,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 184.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "PipelineReport",
+      "type": "class",
+      "line": 145,
+      "metrics": {
+        "complexity": 5,
+        "loc": 126,
+        "method_count": 14,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 183.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator.py",
+      "function": "_extract_hints_from_metadata",
+      "type": "function",
+      "line": 336,
+      "metrics": {
+        "complexity": 13,
+        "loc": 37,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 182.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "backup_existing_original_verilog",
+      "type": "function",
+      "line": 114,
+      "metrics": {
+        "complexity": 13,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 181.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_message_handlers.py",
+      "function": "handle_mcp_stdio_request",
+      "type": "function",
+      "line": 308,
+      "metrics": {
+        "complexity": 13,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 180.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/path_manager.py",
+      "function": "_configure_explicit",
+      "type": "function",
+      "line": 596,
+      "metrics": {
+        "complexity": 13,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 180.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_docker.py",
+      "function": "FileTrackerDocker",
+      "type": "class",
+      "line": 18,
+      "metrics": {
+        "complexity": 4,
+        "loc": 127,
+        "method_count": 15,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 177.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "get_tracked_files",
+      "type": "function",
+      "line": 635,
+      "metrics": {
+        "complexity": 13,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 176.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "parse",
+      "type": "function",
+      "line": 30,
+      "metrics": {
+        "complexity": 13,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 175.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_load_ports_from_ports_json",
+      "type": "function",
+      "line": 208,
+      "metrics": {
+        "complexity": 13,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 175.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "visit_ClassDef",
+      "type": "function",
+      "line": 146,
+      "metrics": {
+        "complexity": 13,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 173.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/bug_selector.py",
+      "function": "BugSelector",
+      "type": "class",
+      "line": 20,
+      "metrics": {
+        "complexity": 6,
+        "loc": 117,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 172.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_select_profile",
+      "type": "function",
+      "line": 502,
+      "metrics": {
+        "complexity": 13,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 172.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_sanitize_llm_property",
+      "type": "function",
+      "line": 1021,
+      "metrics": {
+        "complexity": 13,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 171.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/filter_lines.py",
+      "function": "FilterLines",
+      "type": "class",
+      "line": 9,
+      "metrics": {
+        "complexity": 8,
+        "loc": 102,
+        "method_count": 6,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 168.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_find_chisel_files_with_module",
+      "type": "function",
+      "line": 1287,
+      "metrics": {
+        "complexity": 12,
+        "loc": 48,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 167.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "setup",
+      "type": "function",
+      "line": 664,
+      "metrics": {
+        "complexity": 12,
+        "loc": 47,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 166.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_validate_configuration",
+      "type": "function",
+      "line": 456,
+      "metrics": {
+        "complexity": 12,
+        "loc": 42,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 161.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/baseline_verilog_generator.py",
+      "function": "backup_baseline_verilog",
+      "type": "function",
+      "line": 241,
+      "metrics": {
+        "complexity": 12,
+        "loc": 39,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 159.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "backup_existing_original_verilog",
+      "type": "function",
+      "line": 334,
+      "metrics": {
+        "complexity": 12,
+        "loc": 38,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 158.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "generate_fresh_baseline_verilog",
+      "type": "function",
+      "line": 139,
+      "metrics": {
+        "complexity": 12,
+        "loc": 37,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 157.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/parse_jg_sva_log.py",
+      "function": "parse_jg_sva_log",
+      "type": "function",
+      "line": 7,
+      "metrics": {
+        "complexity": 12,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 156.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_parse_track_directive",
+      "type": "function",
+      "line": 275,
+      "metrics": {
+        "complexity": 12,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 155.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/executor_local.py",
+      "function": "LocalExecutor",
+      "type": "class",
+      "line": 16,
+      "metrics": {
+        "complexity": 6,
+        "loc": 109,
+        "method_count": 7,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 154.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/check_yaml.py",
+      "function": "_run_validation",
+      "type": "function",
+      "line": 287,
+      "metrics": {
+        "complexity": 12,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 154.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel2v.py",
+      "function": "chisel_fix",
+      "type": "function",
+      "line": 55,
+      "metrics": {
+        "complexity": 12,
+        "loc": 30,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 153.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/conftest.py",
+      "function": "ensure_container_cleanup",
+      "type": "function",
+      "line": 138,
+      "metrics": {
+        "complexity": 12,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 152.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "_check_equivalence",
+      "type": "function",
+      "line": 608,
+      "metrics": {
+        "complexity": 12,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 152.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/use_chisel2v.py",
+      "function": "main",
+      "type": "function",
+      "line": 24,
+      "metrics": {
+        "complexity": 11,
+        "loc": 56,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 152.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_template.py",
+      "function": "LLM_template",
+      "type": "class",
+      "line": 9,
+      "metrics": {
+        "complexity": 10,
+        "loc": 72,
+        "method_count": 3,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 151.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/code_scope.py",
+      "function": "find_scopes_for_lines",
+      "type": "function",
+      "line": 174,
+      "metrics": {
+        "complexity": 12,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 151.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/chisel_diff_generator.py",
+      "function": "_extract_chisel_diff",
+      "type": "function",
+      "line": 183,
+      "metrics": {
+        "complexity": 12,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 150.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "extract_parameters_from_body",
+      "type": "function",
+      "line": 350,
+      "metrics": {
+        "complexity": 12,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 149.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_setup_environment",
+      "type": "function",
+      "line": 222,
+      "metrics": {
+        "complexity": 12,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 149.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/filter_lines.py",
+      "function": "_extract_tokens",
+      "type": "function",
+      "line": 43,
+      "metrics": {
+        "complexity": 12,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 149.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/module_finder_strategy.py",
+      "function": "_calculate_match_confidence",
+      "type": "function",
+      "line": 87,
+      "metrics": {
+        "complexity": 12,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 148.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_collect_lhs_defs",
+      "type": "function",
+      "line": 441,
+      "metrics": {
+        "complexity": 12,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 148.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "_calculate_match_confidence",
+      "type": "function",
+      "line": 172,
+      "metrics": {
+        "complexity": 12,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 148.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_run_lec_verification",
+      "type": "function",
+      "line": 1223,
+      "metrics": {
+        "complexity": 11,
+        "loc": 52,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 148.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator.py",
+      "function": "_extract_code_from_hits",
+      "type": "function",
+      "line": 198,
+      "metrics": {
+        "complexity": 11,
+        "loc": 50,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 146.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/integration_example.py",
+      "function": "example_v2chisel_batch_integration",
+      "type": "function",
+      "line": 8,
+      "metrics": {
+        "complexity": 11,
+        "loc": 46,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 142.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "_ensure_git_repo",
+      "type": "function",
+      "line": 86,
+      "metrics": {
+        "complexity": 11,
+        "loc": 44,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 140.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/module_finder_strategy.py",
+      "function": "ModuleFinder",
+      "type": "class",
+      "line": 14,
+      "metrics": {
+        "complexity": 7,
+        "loc": 92,
+        "method_count": 7,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 133.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "_write_manifest",
+      "type": "function",
+      "line": 253,
+      "metrics": {
+        "complexity": 11,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 133.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel2v.py",
+      "function": "Chisel2v",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 6,
+        "loc": 98,
+        "method_count": 5,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 132.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "generate_baseline_verilog",
+      "type": "function",
+      "line": 280,
+      "metrics": {
+        "complexity": 11,
+        "loc": 33,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 131.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/path_manager.py",
+      "function": "_resolve_readable_config_path",
+      "type": "function",
+      "line": 299,
+      "metrics": {
+        "complexity": 11,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 131.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "_copy_results_from_docker",
+      "type": "function",
+      "line": 172,
+      "metrics": {
+        "complexity": 11,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 131.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "restore_all_tracked_files",
+      "type": "function",
+      "line": 49,
+      "metrics": {
+        "complexity": 11,
+        "loc": 31,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 130.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "_cleanup_anonymous_checkpoints",
+      "type": "function",
+      "line": 945,
+      "metrics": {
+        "complexity": 11,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 129.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_find_variable_in_specific_file",
+      "type": "function",
+      "line": 1367,
+      "metrics": {
+        "complexity": 11,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 128.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "extract_ports_from_body",
+      "type": "function",
+      "line": 290,
+      "metrics": {
+        "complexity": 10,
+        "loc": 53,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 128.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/uv_bump_versions.py",
+      "function": "main",
+      "type": "function",
+      "line": 123,
+      "metrics": {
+        "complexity": 11,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 127.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/fuzzy_grep.py",
+      "function": "search",
+      "type": "function",
+      "line": 325,
+      "metrics": {
+        "complexity": 11,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 126.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "_find_generated_verilog_files",
+      "type": "function",
+      "line": 527,
+      "metrics": {
+        "complexity": 11,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 126.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_pass1/v2chisel_pass1.py",
+      "function": "_extract_chisel_subset",
+      "type": "function",
+      "line": 102,
+      "metrics": {
+        "complexity": 10,
+        "loc": 50,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 125.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "generate_slices",
+      "type": "function",
+      "line": 1054,
+      "metrics": {
+        "complexity": 11,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 125.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "generate_bind",
+      "type": "function",
+      "line": 397,
+      "metrics": {
+        "complexity": 11,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 125.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_expr_uses_only_ports",
+      "type": "function",
+      "line": 619,
+      "metrics": {
+        "complexity": 11,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 124.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "locate_code",
+      "type": "function",
+      "line": 215,
+      "metrics": {
+        "complexity": 11,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 123.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/docker_diff_applier.py",
+      "function": "_select_best_match",
+      "type": "function",
+      "line": 258,
+      "metrics": {
+        "complexity": 11,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 123.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "map_variable",
+      "type": "function",
+      "line": 151,
+      "metrics": {
+        "complexity": 11,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 122.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/replicate_code/replicate_code.py",
+      "function": "Replicate_code",
+      "type": "class",
+      "line": 14,
+      "metrics": {
+        "complexity": 8,
+        "loc": 74,
+        "method_count": 3,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 118.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/path_manager.py",
+      "function": "_validate_local_mode",
+      "type": "function",
+      "line": 96,
+      "metrics": {
+        "complexity": 10,
+        "loc": 43,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 118.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/fuzzy_grep.py",
+      "function": "Fuzzy_grep",
+      "type": "class",
+      "line": 6,
+      "metrics": {
+        "complexity": 5,
+        "loc": 96,
+        "method_count": 9,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 117.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_executor.py",
+      "function": "main",
+      "type": "function",
+      "line": 19,
+      "metrics": {
+        "complexity": 10,
+        "loc": 41,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 116.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "parse_yaml_files",
+      "type": "function",
+      "line": 174,
+      "metrics": {
+        "complexity": 10,
+        "loc": 40,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 116.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "_setup_mount_points",
+      "type": "function",
+      "line": 560,
+      "metrics": {
+        "complexity": 10,
+        "loc": 39,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 115.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_wrap.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 155,
+      "metrics": {
+        "complexity": 10,
+        "loc": 37,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 113.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "_add_metadata",
+      "type": "function",
+      "line": 422,
+      "metrics": {
+        "complexity": 6,
+        "loc": 86,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 109.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "cleanup",
+      "type": "function",
+      "line": 983,
+      "metrics": {
+        "complexity": 10,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_extract_dotted_and_plain_identifiers",
+      "type": "function",
+      "line": 905,
+      "metrics": {
+        "complexity": 10,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/conftest.py",
+      "function": "pytest_sessionfinish",
+      "type": "function",
+      "line": 35,
+      "metrics": {
+        "complexity": 10,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_apply_chisel_diff",
+      "type": "function",
+      "line": 1094,
+      "metrics": {
+        "complexity": 10,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/docker_diff_applier.py",
+      "function": "_parse_multi_file_diff",
+      "type": "function",
+      "line": 128,
+      "metrics": {
+        "complexity": 10,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/docker_diff_applier.py",
+      "function": "_verify_diff_applied",
+      "type": "function",
+      "line": 344,
+      "metrics": {
+        "complexity": 10,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_pass1/v2chisel_pass1.py",
+      "function": "union_hints",
+      "type": "function",
+      "line": 27,
+      "metrics": {
+        "complexity": 10,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 106.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/baseline_verilog_generator.py",
+      "function": "_find_baseline_verilog_files",
+      "type": "function",
+      "line": 203,
+      "metrics": {
+        "complexity": 10,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 105.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_normalize_csv_expr",
+      "type": "function",
+      "line": 587,
+      "metrics": {
+        "complexity": 10,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 105.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/hdl_utils.py",
+      "function": "write_jasper_vc",
+      "type": "function",
+      "line": 324,
+      "metrics": {
+        "complexity": 10,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 104.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/fix_syntax_errors.py",
+      "function": "delete_syntax_errors",
+      "type": "function",
+      "line": 272,
+      "metrics": {
+        "complexity": 10,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 104.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_parse_slang_hierarchy",
+      "type": "function",
+      "line": 939,
+      "metrics": {
+        "complexity": 10,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 104.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/clk_rst_utils.py",
+      "function": "_find_sensitivity_clk_rst",
+      "type": "function",
+      "line": 556,
+      "metrics": {
+        "complexity": 10,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 104.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/trial_ledger.py",
+      "function": "TrialLedger",
+      "type": "class",
+      "line": 15,
+      "metrics": {
+        "complexity": 3,
+        "loc": 97,
+        "method_count": 11,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 103.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/hagent-mcp-server.py",
+      "function": "_send_response",
+      "type": "function",
+      "line": 638,
+      "metrics": {
+        "complexity": 10,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 102.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "Extract_code_dslx",
+      "type": "class",
+      "line": 111,
+      "metrics": {
+        "complexity": 10,
+        "loc": 16,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 102.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_llm",
+      "type": "function",
+      "line": 1152,
+      "metrics": {
+        "complexity": 10,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 102.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "DACMetrics",
+      "type": "class",
+      "line": 26,
+      "metrics": {
+        "complexity": 7,
+        "loc": 73,
+        "method_count": 5,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 102.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "get_index_for_forward_slices",
+      "type": "function",
+      "line": 284,
+      "metrics": {
+        "complexity": 10,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 101.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_fix_reset_deassertion",
+      "type": "function",
+      "line": 670,
+      "metrics": {
+        "complexity": 10,
+        "loc": 7,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 100.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_get_scoped_body",
+      "type": "function",
+      "line": 1230,
+      "metrics": {
+        "complexity": 9,
+        "loc": 40,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 97.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/step.py",
+      "function": "step",
+      "type": "function",
+      "line": 242,
+      "metrics": {
+        "complexity": 9,
+        "loc": 38,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 95.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "_apply_diff_to_golden_files",
+      "type": "function",
+      "line": 289,
+      "metrics": {
+        "complexity": 9,
+        "loc": 38,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 95.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "create_file",
+      "type": "function",
+      "line": 1085,
+      "metrics": {
+        "complexity": 9,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 93.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 1090,
+      "metrics": {
+        "complexity": 9,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 93.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "image_checkpoint",
+      "type": "function",
+      "line": 883,
+      "metrics": {
+        "complexity": 9,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 93.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/replicate_code/replicate_code.py",
+      "function": "_check_lec",
+      "type": "function",
+      "line": 31,
+      "metrics": {
+        "complexity": 9,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 92.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "create_golden_design",
+      "type": "function",
+      "line": 51,
+      "metrics": {
+        "complexity": 9,
+        "loc": 33,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 91.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/hdl_utils.py",
+      "function": "collect_pkg_closure_for_files",
+      "type": "function",
+      "line": 189,
+      "metrics": {
+        "complexity": 9,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 91.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/replicate_code/replicate_code.py",
+      "function": "run",
+      "type": "function",
+      "line": 77,
+      "metrics": {
+        "complexity": 9,
+        "loc": 31,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 90.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "_extract_chisel_code_for_modules",
+      "type": "function",
+      "line": 339,
+      "metrics": {
+        "complexity": 9,
+        "loc": 31,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 90.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/fuzzy_grep_strategy.py",
+      "function": "FuzzyGrepStrategy",
+      "type": "class",
+      "line": 20,
+      "metrics": {
+        "complexity": 5,
+        "loc": 81,
+        "method_count": 6,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 90.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "CallCollector",
+      "type": "class",
+      "line": 143,
+      "metrics": {
+        "complexity": 5,
+        "loc": 81,
+        "method_count": 10,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 90.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/run_spec_builder.py",
+      "function": "run_multi",
+      "type": "function",
+      "line": 87,
+      "metrics": {
+        "complexity": 9,
+        "loc": 30,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 90.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/baseline_verilog_generator.py",
+      "function": "generate_fresh_baseline",
+      "type": "function",
+      "line": 106,
+      "metrics": {
+        "complexity": 9,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 89.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/baseline_verilog_generator.py",
+      "function": "verify_baseline_files_exist",
+      "type": "function",
+      "line": 297,
+      "metrics": {
+        "complexity": 9,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 89.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "verify_verilog_generation",
+      "type": "function",
+      "line": 598,
+      "metrics": {
+        "complexity": 9,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 89.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "generate_baseline_verilog",
+      "type": "function",
+      "line": 168,
+      "metrics": {
+        "complexity": 9,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 88.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/fuzzy_grep_strategy.py",
+      "function": "_search_in_modules",
+      "type": "function",
+      "line": 82,
+      "metrics": {
+        "complexity": 9,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 88.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_build.py",
+      "function": "_list_profiles_with_options",
+      "type": "function",
+      "line": 337,
+      "metrics": {
+        "complexity": 9,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 88.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_template.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 40,
+      "metrics": {
+        "complexity": 9,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 88.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_file_tracker.py",
+      "function": "cmd_status",
+      "type": "function",
+      "line": 108,
+      "metrics": {
+        "complexity": 9,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 88.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/compile_slang.py",
+      "function": "get_ios",
+      "type": "function",
+      "line": 184,
+      "metrics": {
+        "complexity": 9,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 88.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "extract_property_blocks",
+      "type": "function",
+      "line": 782,
+      "metrics": {
+        "complexity": 9,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 87.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "extract_sva_blocks",
+      "type": "function",
+      "line": 751,
+      "metrics": {
+        "complexity": 9,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 87.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_map_diff_to_target",
+      "type": "function",
+      "line": 1546,
+      "metrics": {
+        "complexity": 9,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 87.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_load_config",
+      "type": "function",
+      "line": 72,
+      "metrics": {
+        "complexity": 9,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 86.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/command_discovery.py",
+      "function": "get_command_capabilities",
+      "type": "function",
+      "line": 182,
+      "metrics": {
+        "complexity": 9,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 85.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_locator.py",
+      "function": "run_locate_variable",
+      "type": "function",
+      "line": 178,
+      "metrics": {
+        "complexity": 9,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 85.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/models.py",
+      "function": "_extract_changed_lines",
+      "type": "function",
+      "line": 217,
+      "metrics": {
+        "complexity": 9,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 85.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_parse_diff_header",
+      "type": "function",
+      "line": 1598,
+      "metrics": {
+        "complexity": 9,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 85.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_template.py",
+      "function": "_validate_template",
+      "type": "function",
+      "line": 10,
+      "metrics": {
+        "complexity": 9,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 84.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "_translate_to_container_path",
+      "type": "function",
+      "line": 330,
+      "metrics": {
+        "complexity": 9,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 84.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "cleanup_master_backup",
+      "type": "function",
+      "line": 411,
+      "metrics": {
+        "complexity": 9,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 84.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/backup_manager.py",
+      "function": "cleanup_backup",
+      "type": "function",
+      "line": 441,
+      "metrics": {
+        "complexity": 9,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 84.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "_find_original_verilog_files",
+      "type": "function",
+      "line": 566,
+      "metrics": {
+        "complexity": 9,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "_string_similarity",
+      "type": "function",
+      "line": 230,
+      "metrics": {
+        "complexity": 9,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "visit_ClassDef",
+      "type": "function",
+      "line": 114,
+      "metrics": {
+        "complexity": 9,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_collect_signal_refs",
+      "type": "function",
+      "line": 423,
+      "metrics": {
+        "complexity": 9,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "_extract_modules_from_diff",
+      "type": "function",
+      "line": 69,
+      "metrics": {
+        "complexity": 9,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "parse",
+      "type": "function",
+      "line": 112,
+      "metrics": {
+        "complexity": 9,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_verilog_diff_keywords.py",
+      "function": "_get_words",
+      "type": "function",
+      "line": 70,
+      "metrics": {
+        "complexity": 9,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "_is_main_guard",
+      "type": "function",
+      "line": 180,
+      "metrics": {
+        "complexity": 9,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_docker.py",
+      "function": "get_patch_dict",
+      "type": "function",
+      "line": 156,
+      "metrics": {
+        "complexity": 9,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 82.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "run_postcheck_if_requested",
+      "type": "function",
+      "line": 998,
+      "metrics": {
+        "complexity": 7,
+        "loc": 58,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 82.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/parse_jg_sva_log.py",
+      "function": "summarize_results",
+      "type": "function",
+      "line": 48,
+      "metrics": {
+        "complexity": 9,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 82.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "backward_find_parent_node",
+      "type": "function",
+      "line": 427,
+      "metrics": {
+        "complexity": 9,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 82.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/clk_rst_utils.py",
+      "function": "_find_decl_clk_rst_candidates",
+      "type": "function",
+      "line": 528,
+      "metrics": {
+        "complexity": 9,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 82.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/replicate_code/select_best.py",
+      "function": "Select_best",
+      "type": "class",
+      "line": 12,
+      "metrics": {
+        "complexity": 4,
+        "loc": 81,
+        "method_count": 6,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 81.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "extract_assignments_with_guards",
+      "type": "function",
+      "line": 464,
+      "metrics": {
+        "complexity": 2,
+        "loc": 88,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 81.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/hagent-mcp-server.py",
+      "function": "EnvironmentSetup",
+      "type": "class",
+      "line": 343,
+      "metrics": {
+        "complexity": 5,
+        "loc": 74,
+        "method_count": 4,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 79.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "_iterative_compile_fix",
+      "type": "function",
+      "line": 477,
+      "metrics": {
+        "complexity": 8,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 76.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_message_handlers.py",
+      "function": "handle_tools_call",
+      "type": "function",
+      "line": 68,
+      "metrics": {
+        "complexity": 8,
+        "loc": 36,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 76.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/path_manager.py",
+      "function": "_validate_docker_mode",
+      "type": "function",
+      "line": 156,
+      "metrics": {
+        "complexity": 8,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 75.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "_initialize_docker_client",
+      "type": "function",
+      "line": 369,
+      "metrics": {
+        "complexity": 8,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 75.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/source_locator.py",
+      "function": "SourceLocator",
+      "type": "class",
+      "line": 18,
+      "metrics": {
+        "complexity": 4,
+        "loc": 77,
+        "method_count": 7,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 75.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem_docker.py",
+      "function": "read_file",
+      "type": "function",
+      "line": 32,
+      "metrics": {
+        "complexity": 8,
+        "loc": 33,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 74.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/run_spec_builder.py",
+      "function": "run_single",
+      "type": "function",
+      "line": 30,
+      "metrics": {
+        "complexity": 8,
+        "loc": 31,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 73.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/compile.py",
+      "function": "Diagnostic",
+      "type": "class",
+      "line": 1,
+      "metrics": {
+        "complexity": 5,
+        "loc": 69,
+        "method_count": 4,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 72.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "MethodCollector",
+      "type": "class",
+      "line": 133,
+      "metrics": {
+        "complexity": 8,
+        "loc": 29,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 72.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "setup_docker_workspace",
+      "type": "function",
+      "line": 130,
+      "metrics": {
+        "complexity": 7,
+        "loc": 48,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 72.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/extract_hints/extract_hints.py",
+      "function": "run",
+      "type": "function",
+      "line": 37,
+      "metrics": {
+        "complexity": 8,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 71.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "_refine_chisel_code_with_lec_feedback",
+      "type": "function",
+      "line": 392,
+      "metrics": {
+        "complexity": 8,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 71.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "verify_verilog_output",
+      "type": "function",
+      "line": 95,
+      "metrics": {
+        "complexity": 8,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 71.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "prepare_files_for_module_finder",
+      "type": "function",
+      "line": 273,
+      "metrics": {
+        "complexity": 8,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 71.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "_drop_stash_by_hash",
+      "type": "function",
+      "line": 481,
+      "metrics": {
+        "complexity": 8,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 71.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/step.py",
+      "function": "parse_arguments",
+      "type": "function",
+      "line": 78,
+      "metrics": {
+        "complexity": 8,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 70.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/executor_docker.py",
+      "function": "DockerExecutor",
+      "type": "class",
+      "line": 15,
+      "metrics": {
+        "complexity": 4,
+        "loc": 74,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 70.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "filter_args_and_patch_filelists",
+      "type": "function",
+      "line": 43,
+      "metrics": {
+        "complexity": 8,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 70.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_template.py",
+      "function": "format",
+      "type": "function",
+      "line": 69,
+      "metrics": {
+        "complexity": 8,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 70.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/golden_design_builder.py",
+      "function": "_copy_baseline_to_golden",
+      "type": "function",
+      "line": 258,
+      "metrics": {
+        "complexity": 8,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 70.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_corrector.py",
+      "function": "_parse_removal_lines",
+      "type": "function",
+      "line": 147,
+      "metrics": {
+        "complexity": 8,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 70.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/bug_selector.py",
+      "function": "_load_successful_bugs",
+      "type": "function",
+      "line": 238,
+      "metrics": {
+        "complexity": 8,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 69.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/command_discovery.py",
+      "function": "discover_mcp_commands",
+      "type": "function",
+      "line": 25,
+      "metrics": {
+        "complexity": 8,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 69.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "read_docker_file",
+      "type": "function",
+      "line": 234,
+      "metrics": {
+        "complexity": 8,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/path_manager.py",
+      "function": "get_cache_path",
+      "type": "function",
+      "line": 435,
+      "metrics": {
+        "complexity": 8,
+        "loc": 22,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "translate_path_to_container",
+      "type": "function",
+      "line": 815,
+      "metrics": {
+        "complexity": 8,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/builder.py",
+      "function": "translate_path_to_local",
+      "type": "function",
+      "line": 856,
+      "metrics": {
+        "complexity": 8,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "normalize_sv_type",
+      "type": "function",
+      "line": 310,
+      "metrics": {
+        "complexity": 8,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "main",
+      "type": "function",
+      "line": 512,
+      "metrics": {
+        "complexity": 8,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "_find_files_in_dir_container",
+      "type": "function",
+      "line": 725,
+      "metrics": {
+        "complexity": 8,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "find_clock_signal",
+      "type": "function",
+      "line": 709,
+      "metrics": {
+        "complexity": 8,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/step.py",
+      "function": "setup",
+      "type": "function",
+      "line": 165,
+      "metrics": {
+        "complexity": 8,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 67.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_determine_cpu_profile",
+      "type": "function",
+      "line": 205,
+      "metrics": {
+        "complexity": 8,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 67.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "determine_failure_stage",
+      "type": "function",
+      "line": 79,
+      "metrics": {
+        "complexity": 8,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 67.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "Extract_code_pyrtl",
+      "type": "class",
+      "line": 88,
+      "metrics": {
+        "complexity": 8,
+        "loc": 18,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 67.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/check_yaml.py",
+      "function": "_get_output_files_before",
+      "type": "function",
+      "line": 136,
+      "metrics": {
+        "complexity": 8,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 67.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/span_index.py",
+      "function": "_find_span_end_line",
+      "type": "function",
+      "line": 212,
+      "metrics": {
+        "complexity": 8,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_docker.py",
+      "function": "track_dir",
+      "type": "function",
+      "line": 93,
+      "metrics": {
+        "complexity": 8,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "_find_class_end_line",
+      "type": "function",
+      "line": 146,
+      "metrics": {
+        "complexity": 8,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/file_manager.py",
+      "function": "cleanup_temp_files",
+      "type": "function",
+      "line": 322,
+      "metrics": {
+        "complexity": 8,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/unifier.py",
+      "function": "HintUnifier",
+      "type": "class",
+      "line": 16,
+      "metrics": {
+        "complexity": 4,
+        "loc": 71,
+        "method_count": 5,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/module_finder_strategy.py",
+      "function": "_normalize_name",
+      "type": "function",
+      "line": 132,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/module_finder_strategy.py",
+      "function": "_string_similarity",
+      "type": "function",
+      "line": 162,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/compile_slang.py",
+      "function": "get_top_list",
+      "type": "function",
+      "line": 158,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "_normalize_module_name",
+      "type": "function",
+      "line": 209,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/property_builder.py",
+      "function": "_find_ports",
+      "type": "function",
+      "line": 502,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/diff_verifier.py",
+      "function": "_verify",
+      "type": "function",
+      "line": 38,
+      "metrics": {
+        "complexity": 8,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "_looks_bad",
+      "type": "function",
+      "line": 887,
+      "metrics": {
+        "complexity": 8,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/avoid_spagetti_code.py",
+      "function": "iter_py_files",
+      "type": "function",
+      "line": 61,
+      "metrics": {
+        "complexity": 8,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "print_table",
+      "type": "function",
+      "line": 361,
+      "metrics": {
+        "complexity": 8,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/fuzzy_grep.py",
+      "function": "_line_matches",
+      "type": "function",
+      "line": 275,
+      "metrics": {
+        "complexity": 8,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/avoid_spagetti_code.py",
+      "function": "_get_node_end_line",
+      "type": "function",
+      "line": 143,
+      "metrics": {
+        "complexity": 8,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "iter_py_files",
+      "type": "function",
+      "line": 104,
+      "metrics": {
+        "complexity": 8,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_never_called_check.py",
+      "function": "iter_py_files",
+      "type": "function",
+      "line": 55,
+      "metrics": {
+        "complexity": 8,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "iter_py_files",
+      "type": "function",
+      "line": 72,
+      "metrics": {
+        "complexity": 8,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "count_diff_lines",
+      "type": "function",
+      "line": 48,
+      "metrics": {
+        "complexity": 8,
+        "loc": 10,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/trial_ledger.py",
+      "function": "get_summary",
+      "type": "function",
+      "line": 210,
+      "metrics": {
+        "complexity": 8,
+        "loc": 10,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_esp32.py",
+      "function": "api_setup",
+      "type": "function",
+      "line": 181,
+      "metrics": {
+        "complexity": 4,
+        "loc": 70,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "_collect_param_annotations",
+      "type": "function",
+      "line": 211,
+      "metrics": {
+        "complexity": 8,
+        "loc": 8,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 64.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/models.py",
+      "function": "DiffInfo",
+      "type": "class",
+      "line": 173,
+      "metrics": {
+        "complexity": 7,
+        "loc": 39,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 64.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem_local.py",
+      "function": "FileSystemLocal",
+      "type": "class",
+      "line": 17,
+      "metrics": {
+        "complexity": 4,
+        "loc": 69,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 63.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/verify_candidate/verify_candidate.py",
+      "function": "run",
+      "type": "function",
+      "line": 24,
+      "metrics": {
+        "complexity": 7,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 60.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/check_yaml.py",
+      "function": "_test_profile",
+      "type": "function",
+      "line": 232,
+      "metrics": {
+        "complexity": 7,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 60.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "setup",
+      "type": "function",
+      "line": 44,
+      "metrics": {
+        "complexity": 7,
+        "loc": 33,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 59.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "setup",
+      "type": "function",
+      "line": 69,
+      "metrics": {
+        "complexity": 7,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 59.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/hagent-mcp-server.py",
+      "function": "_handle_stdio_communication",
+      "type": "function",
+      "line": 580,
+      "metrics": {
+        "complexity": 7,
+        "loc": 31,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 58.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_file_tracker.py",
+      "function": "cmd_patch_dict",
+      "type": "function",
+      "line": 145,
+      "metrics": {
+        "complexity": 7,
+        "loc": 30,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 58.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator.py",
+      "function": "_parse_metadata_from_rtl",
+      "type": "function",
+      "line": 300,
+      "metrics": {
+        "complexity": 7,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 57.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "_generate_yosys_elaboration_hierarchy_script",
+      "type": "function",
+      "line": 512,
+      "metrics": {
+        "complexity": 1,
+        "loc": 75,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 57.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/command_discovery.py",
+      "function": "get_command_schemas_subprocess",
+      "type": "function",
+      "line": 99,
+      "metrics": {
+        "complexity": 7,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 56.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/cleanup_test_containers.py",
+      "function": "get_docker_client",
+      "type": "function",
+      "line": 17,
+      "metrics": {
+        "complexity": 7,
+        "loc": 27,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 56.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/parse_jg_sva_log.py",
+      "function": "extract_assertions",
+      "type": "function",
+      "line": 77,
+      "metrics": {
+        "complexity": 7,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 55.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_esp32.py",
+      "function": "main",
+      "type": "function",
+      "line": 619,
+      "metrics": {
+        "complexity": 7,
+        "loc": 26,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 55.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "find_instance_paths",
+      "type": "function",
+      "line": 1032,
+      "metrics": {
+        "complexity": 6,
+        "loc": 44,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 55.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/synth.py",
+      "function": "patch_filelist",
+      "type": "function",
+      "line": 81,
+      "metrics": {
+        "complexity": 7,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 55.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "parse_tree_from_text",
+      "type": "function",
+      "line": 165,
+      "metrics": {
+        "complexity": 7,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_compile_and_generate_verilog",
+      "type": "function",
+      "line": 1143,
+      "metrics": {
+        "complexity": 7,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/hagent-mcp-server.py",
+      "function": "_setup_local_directory",
+      "type": "function",
+      "line": 431,
+      "metrics": {
+        "complexity": 7,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_corrector.py",
+      "function": "_rebuild_diff_with_corrections",
+      "type": "function",
+      "line": 333,
+      "metrics": {
+        "complexity": 7,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/v2chisel_batch.py",
+      "function": "_generate_chisel_diff_with_llm",
+      "type": "function",
+      "line": 1052,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/verilog_generator.py",
+      "function": "generate_verilog",
+      "type": "function",
+      "line": 38,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "_validate_docker_workspace",
+      "type": "function",
+      "line": 81,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/compile_slang.py",
+      "function": "setup",
+      "type": "function",
+      "line": 31,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "extract_package_imports_from_module",
+      "type": "function",
+      "line": 211,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "_write_temp_verilog",
+      "type": "function",
+      "line": 682,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/fix_syntax_errors.py",
+      "function": "check_syntax_error_with_slang",
+      "type": "function",
+      "line": 239,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator.py",
+      "function": "_try_module_finder",
+      "type": "function",
+      "line": 99,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_fix/v2chisel_fix.py",
+      "function": "_refine_chisel_code",
+      "type": "function",
+      "line": 639,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/check_yaml.py",
+      "function": "_check_input_sources",
+      "type": "function",
+      "line": 72,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_verilog_diff_keywords.py",
+      "function": "Extract_verilog_diff_keywords",
+      "type": "class",
+      "line": 22,
+      "metrics": {
+        "complexity": 5,
+        "loc": 53,
+        "method_count": 4,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/llm_wrap.py",
+      "function": "_load_config",
+      "type": "function",
+      "line": 65,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_locator.py",
+      "function": "run_locate_vcd",
+      "type": "function",
+      "line": 82,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_locator.py",
+      "function": "run_map_variable",
+      "type": "function",
+      "line": 128,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/cli_locator.py",
+      "function": "locate_code",
+      "type": "function",
+      "line": 228,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 53.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "generate_assertions",
+      "type": "function",
+      "line": 618,
+      "metrics": {
+        "complexity": 7,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 52.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "_get_snapshot_diff",
+      "type": "function",
+      "line": 373,
+      "metrics": {
+        "complexity": 7,
+        "loc": 19,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 52.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/hints_generator.py",
+      "function": "_get_metadata_fallback_hints",
+      "type": "function",
+      "line": 275,
+      "metrics": {
+        "complexity": 7,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 52.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/chisel_diff_generator.py",
+      "function": "_init_llm",
+      "type": "function",
+      "line": 41,
+      "metrics": {
+        "complexity": 7,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 52.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem_local.py",
+      "function": "run_cmd",
+      "type": "function",
+      "line": 80,
+      "metrics": {
+        "complexity": 7,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_load_cache",
+      "type": "function",
+      "line": 658,
+      "metrics": {
+        "complexity": 7,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "parse",
+      "type": "function",
+      "line": 89,
+      "metrics": {
+        "complexity": 7,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_extract_slang_args_from_synth",
+      "type": "function",
+      "line": 365,
+      "metrics": {
+        "complexity": 7,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_never_called_check.py",
+      "function": "visit_Call",
+      "type": "function",
+      "line": 153,
+      "metrics": {
+        "complexity": 7,
+        "loc": 16,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_simple_brace_match",
+      "type": "function",
+      "line": 827,
+      "metrics": {
+        "complexity": 7,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/cli_formal.py",
+      "function": "extract_packages_from_port_types",
+      "type": "function",
+      "line": 188,
+      "metrics": {
+        "complexity": 7,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_never_called_check.py",
+      "function": "visit_ClassDef",
+      "type": "function",
+      "line": 95,
+      "metrics": {
+        "complexity": 7,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "Extract_code_chisel",
+      "type": "class",
+      "line": 70,
+      "metrics": {
+        "complexity": 7,
+        "loc": 14,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 50.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "visit_Call",
+      "type": "function",
+      "line": 239,
+      "metrics": {
+        "complexity": 7,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "visit_Call",
+      "type": "function",
+      "line": 233,
+      "metrics": {
+        "complexity": 7,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_esp32.py",
+      "function": "mcp_execute",
+      "type": "function",
+      "line": 514,
+      "metrics": {
+        "complexity": 4,
+        "loc": 59,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "CallCollector",
+      "type": "class",
+      "line": 177,
+      "metrics": {
+        "complexity": 4,
+        "loc": 59,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 50.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "extract_affected_chisel_files",
+      "type": "function",
+      "line": 60,
+      "metrics": {
+        "complexity": 7,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "mark_llm_success",
+      "type": "function",
+      "line": 162,
+      "metrics": {
+        "complexity": 7,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker_local.py",
+      "function": "_should_use_full_content",
+      "type": "function",
+      "line": 982,
+      "metrics": {
+        "complexity": 7,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/chisel_diff_corrector.py",
+      "function": "_calculate_similarity",
+      "type": "function",
+      "line": 306,
+      "metrics": {
+        "complexity": 7,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_extract_verilog_files_from_command",
+      "type": "function",
+      "line": 399,
+      "metrics": {
+        "complexity": 7,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "_build_mapping_cache",
+      "type": "function",
+      "line": 564,
+      "metrics": {
+        "complexity": 7,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/equiv_check.py",
+      "function": "_ios_match",
+      "type": "function",
+      "line": 614,
+      "metrics": {
+        "complexity": 7,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/step.py",
+      "function": "wrap_literals",
+      "type": "function",
+      "line": 18,
+      "metrics": {
+        "complexity": 7,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/utils/clk_rst_utils.py",
+      "function": "_build_rst_expr",
+      "type": "function",
+      "line": 273,
+      "metrics": {
+        "complexity": 7,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/golden_generation.py",
+      "function": "show_corrected_code_implementation",
+      "type": "function",
+      "line": 107,
+      "metrics": {
+        "complexity": 1,
+        "loc": 70,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/mcp/mcp_esp32.py",
+      "function": "api_env",
+      "type": "function",
+      "line": 447,
+      "metrics": {
+        "complexity": 3,
+        "loc": 64,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 49.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/selector.py",
+      "function": "CandidateSelector",
+      "type": "class",
+      "line": 14,
+      "metrics": {
+        "complexity": 4,
+        "loc": 55,
+        "method_count": 6,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 46.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_never_called_check.py",
+      "function": "CallCollector",
+      "type": "class",
+      "line": 111,
+      "metrics": {
+        "complexity": 4,
+        "loc": 55,
+        "method_count": 7,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 46.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/tool.py",
+      "function": "Tool",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 3,
+        "loc": 57,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 41.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/verify_candidate/verify_candidate.py",
+      "function": "Verify_candidate",
+      "type": "class",
+      "line": 9,
+      "metrics": {
+        "complexity": 5,
+        "loc": 39,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 40.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "setUp",
+      "type": "function",
+      "line": 408,
+      "metrics": {
+        "complexity": 1,
+        "loc": 60,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 37.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/bug_info.py",
+      "function": "BugInfo",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 2,
+        "loc": 55,
+        "method_count": 5,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 34.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/models.py",
+      "function": "ModuleCandidate",
+      "type": "class",
+      "line": 82,
+      "metrics": {
+        "complexity": 5,
+        "loc": 30,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 34.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/executor.py",
+      "function": "ExecutorFactory",
+      "type": "class",
+      "line": 69,
+      "metrics": {
+        "complexity": 5,
+        "loc": 11,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 26.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem_base.py",
+      "function": "FileSystem",
+      "type": "class",
+      "line": 11,
+      "metrics": {
+        "complexity": 2,
+        "loc": 42,
+        "method_count": 12,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 21.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/filesystem.py",
+      "function": "FileSystemFactory",
+      "type": "class",
+      "line": 20,
+      "metrics": {
+        "complexity": 4,
+        "loc": 20,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 20.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/models.py",
+      "function": "ModuleHint",
+      "type": "class",
+      "line": 55,
+      "metrics": {
+        "complexity": 4,
+        "loc": 18,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 19.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/hints/models.py",
+      "function": "TrialRecord",
+      "type": "class",
+      "line": 132,
+      "metrics": {
+        "complexity": 3,
+        "loc": 31,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 18.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "Extract_code",
+      "type": "class",
+      "line": 7,
+      "metrics": {
+        "complexity": 4,
+        "loc": 15,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 18.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/trivial/trivial.py",
+      "function": "Trivial",
+      "type": "class",
+      "line": 11,
+      "metrics": {
+        "complexity": 3,
+        "loc": 29,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 17.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/file_tracker.py",
+      "function": "FileTracker",
+      "type": "class",
+      "line": 16,
+      "metrics": {
+        "complexity": 2,
+        "loc": 36,
+        "method_count": 12,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 16.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "TracerMetaClass",
+      "type": "class",
+      "line": 661,
+      "metrics": {
+        "complexity": 4,
+        "loc": 8,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 16.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "Encoder",
+      "type": "class",
+      "line": 38,
+      "metrics": {
+        "complexity": 4,
+        "loc": 7,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 16.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/memory.py",
+      "function": "GraphCodeBERTEmbedding",
+      "type": "class",
+      "line": 18,
+      "metrics": {
+        "complexity": 3,
+        "loc": 15,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 11.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/extract_code.py",
+      "function": "Extract_code_default",
+      "type": "class",
+      "line": 131,
+      "metrics": {
+        "complexity": 3,
+        "loc": 5,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 9.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/sva_gen/sva_gen.py",
+      "function": "sva",
+      "type": "class",
+      "line": 50,
+      "metrics": {
+        "complexity": 2,
+        "loc": 20,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 8.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "AssignRecord",
+      "type": "class",
+      "line": 377,
+      "metrics": {
+        "complexity": 1,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 7.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "PhaseType",
+      "type": "class",
+      "line": 72,
+      "metrics": {
+        "complexity": 1,
+        "loc": 23,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 6.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/unified_diff/unified_diff.py",
+      "function": "Unified_diff",
+      "type": "class",
+      "line": 8,
+      "metrics": {
+        "complexity": 2,
+        "loc": 14,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 5.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/step/v2chisel_batch/components/pipeline_reporter.py",
+      "function": "IterationResult",
+      "type": "class",
+      "line": 11,
+      "metrics": {
+        "complexity": 1,
+        "loc": 20,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 5.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "MethodKey",
+      "type": "class",
+      "line": 48,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/spec_builder.py",
+      "function": "_Dummy",
+      "type": "class",
+      "line": 56,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_privacy_check.py",
+      "function": "MethodDef",
+      "type": "class",
+      "line": 85,
+      "metrics": {
+        "complexity": 1,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 3.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/avoid_spagetti_code.py",
+      "function": "ClassInfo",
+      "type": "class",
+      "line": 114,
+      "metrics": {
+        "complexity": 1,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 3.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "SourceLocation",
+      "type": "class",
+      "line": 32,
+      "metrics": {
+        "complexity": 1,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 2.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/avoid_spagetti_code.py",
+      "function": "FunctionInfo",
+      "type": "class",
+      "line": 104,
+      "metrics": {
+        "complexity": 1,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 2.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "MethodDef",
+      "type": "class",
+      "line": 58,
+      "metrics": {
+        "complexity": 1,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 2.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/method_never_called_check.py",
+      "function": "MethodDef",
+      "type": "class",
+      "line": 68,
+      "metrics": {
+        "complexity": 1,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 2.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/module_finder.py",
+      "function": "ModuleHit",
+      "type": "class",
+      "line": 9,
+      "metrics": {
+        "complexity": 1,
+        "loc": 12,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 2.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/avoid_spagetti_code.py",
+      "function": "FileComplexityInfo",
+      "type": "class",
+      "line": 125,
+      "metrics": {
+        "complexity": 1,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 2.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/locator.py",
+      "function": "RepresentationType",
+      "type": "class",
+      "line": 22,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/tool/memory.py",
+      "function": "Memory_shot",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "RepoIndex",
+      "type": "class",
+      "line": 68,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "scripts/find_used_methods.py",
+      "function": "ClassCtx",
+      "type": "class",
+      "line": 128,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/inou/container_manager.py",
+      "function": "ContainerNotReady",
+      "type": "class",
+      "line": 43,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.09
+      },
+      "high_severity": true
+    },
+    {
+      "file": "hagent/core/tracer.py",
+      "function": "TracerABCMetaClass",
+      "type": "class",
+      "line": 711,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    }
+  ]
+}

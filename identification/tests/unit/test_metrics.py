@@ -9,11 +9,9 @@ import pytest
 import sys
 from pathlib import Path
 
-# Add scripts directory to path for import
-# Current: identification/tests/unit/test_metrics.py
-# Root: identification/
+# Add src directory to path for import
 project_root = Path(__file__).resolve().parents[3]
-metrics_path = project_root / "identification" / ".gemini" / "skills" / "scanner" / "scripts"
+metrics_path = project_root / "identification" / "src" / "scanner"
 sys.path.append(str(metrics_path))
 
 import metrics

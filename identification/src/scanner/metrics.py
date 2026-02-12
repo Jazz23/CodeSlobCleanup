@@ -43,7 +43,7 @@ def calculate_slob_score(code: str, complexity: int = None, lloc: int = None) ->
     Higher is worse.
     
     Formula: (Complexity^2) + ((LLOC / 10)^2)
-    This targets high complexity AND high verbosity non-linearly.
+    This punishes high complexity AND high verbosity non-linearly.
     """
     if complexity is None:
         complexity = calculate_complexity(code)

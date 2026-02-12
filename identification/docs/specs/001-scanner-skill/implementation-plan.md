@@ -40,21 +40,21 @@
 
 ## Implementation Phases
 
-- [ ] S1 Phase 1: Infrastructure & Static Analysis Core
+- [x] S1 Phase 1: Infrastructure & Static Analysis Core
     *Goal: Build the engine that can calculate complexity metrics for Python files.*
 
-    - [ ] S1.1 Prime Context
-        - [ ] S1.1.1 Review `verification/tests/fixtures` to identify suitable test cases `[ref: verification/tests/fixtures]`
-    - [ ] S1.2 Write Tests
-        - [ ] S1.2.1 Create `identification/tests/unit/test_metrics.py` `[activity: testing]`
+    - [x] S1.1 Prime Context
+        - [x] S1.1.1 Review `verification/tests/fixtures` to identify suitable test cases `[ref: verification/tests/fixtures]`
+    - [x] S1.2 Write Tests
+        - [x] S1.2.1 Create `identification/tests/unit/test_metrics.py` `[activity: testing]`
         - [x] S1.2.2 Define `test_cyclomatic_complexity`: Assert highly nested code scores high.
         - [x] S1.2.3 Define `test_function_length`: Assert long functions are flagged.
-    - [ ] S1.3 Implement
-        - [ ] S1.3.1 Initialize `identification/src/scanner/metrics.py` `[activity: backend]`
-        - [ ] S1.3.2 Implement `calculate_metrics(file_path)` using `radon` or AST traversal `[activity: backend]`
-        - [ ] S1.3.3 Implement `is_slob_candidate(metrics)` heuristic logic `[activity: backend]`
-    - [ ] S1.4 Validate
-        - [ ] S1.4.1 Run unit tests: `uv run pytest identification/tests/unit/` `[activity: run-tests]`
+    - [x] S1.3 Implement
+        - [x] S1.3.1 Initialize `identification/src/scanner/metrics.py` `[activity: backend]`
+        - [x] S1.3.2 Implement `calculate_metrics(file_path)` using `radon` or AST traversal `[activity: backend]`
+        - [x] S1.3.3 Implement `is_slob_candidate(metrics)` heuristic logic `[activity: backend]`
+    - [x] S1.4 Validate
+        - [x] S1.4.1 Run unit tests: `uv run pytest identification/tests/unit/` `[activity: run-tests]`
 
 - [ ] S2 Phase 2: Orchestrator & Reporting
     *Goal: Scan a directory and output a JSON report of candidates.*

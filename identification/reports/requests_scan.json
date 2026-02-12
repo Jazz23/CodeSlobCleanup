@@ -1,0 +1,1010 @@
+{
+  "files_scanned": 21,
+  "slob_candidates": [
+    {
+      "file": "src/requests/models.py",
+      "function": "_encode_files",
+      "type": "function",
+      "line": 139,
+      "metrics": {
+        "complexity": 21,
+        "loc": 43,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 459.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/adapters.py",
+      "function": "HTTPAdapter",
+      "type": "class",
+      "line": 145,
+      "metrics": {
+        "complexity": 5,
+        "loc": 202,
+        "method_count": 15,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 433.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/auth.py",
+      "function": "build_digest_header",
+      "type": "function",
+      "line": 126,
+      "metrics": {
+        "complexity": 19,
+        "loc": 80,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 425.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/adapters.py",
+      "function": "send",
+      "type": "function",
+      "line": 592,
+      "metrics": {
+        "complexity": 19,
+        "loc": 49,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 385.01
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "Response",
+      "type": "class",
+      "line": 642,
+      "metrics": {
+        "complexity": 4,
+        "loc": 192,
+        "method_count": 22,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 384.64
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/utils.py",
+      "function": "super_len",
+      "type": "function",
+      "line": 134,
+      "metrics": {
+        "complexity": 18,
+        "loc": 35,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 336.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "PreparedRequest",
+      "type": "class",
+      "line": 315,
+      "metrics": {
+        "complexity": 5,
+        "loc": 172,
+        "method_count": 13,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 320.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "prepare_body",
+      "type": "function",
+      "line": 496,
+      "metrics": {
+        "complexity": 17,
+        "loc": 44,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 308.36
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "prepare_url",
+      "type": "function",
+      "line": 411,
+      "metrics": {
+        "complexity": 17,
+        "loc": 43,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 307.49
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/utils.py",
+      "function": "should_bypass_proxies",
+      "type": "function",
+      "line": 753,
+      "metrics": {
+        "complexity": 17,
+        "loc": 34,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 300.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "resolve_redirects",
+      "type": "function",
+      "line": 160,
+      "metrics": {
+        "complexity": 15,
+        "loc": 55,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 255.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "RequestEncodingMixin",
+      "type": "class",
+      "line": 86,
+      "metrics": {
+        "complexity": 13,
+        "loc": 77,
+        "method_count": 3,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 228.29
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/adapters.py",
+      "function": "cert_verify",
+      "type": "function",
+      "line": 282,
+      "metrics": {
+        "complexity": 14,
+        "loc": 54,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 225.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "Session",
+      "type": "class",
+      "line": 357,
+      "metrics": {
+        "complexity": 3,
+        "loc": 146,
+        "method_count": 19,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 222.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/auth.py",
+      "function": "HTTPDigestAuth",
+      "type": "class",
+      "line": 107,
+      "metrics": {
+        "complexity": 5,
+        "loc": 138,
+        "method_count": 8,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 215.44
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/cookies.py",
+      "function": "RequestsCookieJar",
+      "type": "class",
+      "line": 176,
+      "metrics": {
+        "complexity": 3,
+        "loc": 134,
+        "method_count": 24,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 188.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "SessionRedirectMixin",
+      "type": "class",
+      "line": 107,
+      "metrics": {
+        "complexity": 8,
+        "loc": 110,
+        "method_count": 6,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 185.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "send",
+      "type": "function",
+      "line": 674,
+      "metrics": {
+        "complexity": 11,
+        "loc": 39,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 136.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/utils.py",
+      "function": "get_netrc_auth",
+      "type": "function",
+      "line": 205,
+      "metrics": {
+        "complexity": 11,
+        "loc": 29,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 129.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/utils.py",
+      "function": "guess_json_utf",
+      "type": "function",
+      "line": 945,
+      "metrics": {
+        "complexity": 11,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 126.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "_encode_params",
+      "type": "function",
+      "line": 109,
+      "metrics": {
+        "complexity": 11,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 123.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/__init__.py",
+      "function": "check_compatibility",
+      "type": "function",
+      "line": 58,
+      "metrics": {
+        "complexity": 10,
+        "loc": 32,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 110.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "should_strip_auth",
+      "type": "function",
+      "line": 128,
+      "metrics": {
+        "complexity": 10,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 101.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/utils.py",
+      "function": "proxy_bypass_registry",
+      "type": "function",
+      "line": 75,
+      "metrics": {
+        "complexity": 9,
+        "loc": 25,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 87.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "iter_lines",
+      "type": "function",
+      "line": 859,
+      "metrics": {
+        "complexity": 9,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 83.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/cookies.py",
+      "function": "_find_no_duplicates",
+      "type": "function",
+      "line": 386,
+      "metrics": {
+        "complexity": 9,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 82.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/utils.py",
+      "function": "extract_zipped_paths",
+      "type": "function",
+      "line": 256,
+      "metrics": {
+        "complexity": 8,
+        "loc": 21,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 68.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "merge_environment_settings",
+      "type": "function",
+      "line": 751,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "json",
+      "type": "function",
+      "line": 949,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/help.py",
+      "function": "info",
+      "type": "function",
+      "line": 66,
+      "metrics": {
+        "complexity": 6,
+        "loc": 55,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 66.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/sessions.py",
+      "function": "merge_setting",
+      "type": "function",
+      "line": 62,
+      "metrics": {
+        "complexity": 8,
+        "loc": 14,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.96
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/cookies.py",
+      "function": "remove_cookie_by_name",
+      "type": "function",
+      "line": 151,
+      "metrics": {
+        "complexity": 8,
+        "loc": 13,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 65.69
+      },
+      "high_severity": true
+    },
+    {
+      "file": "docs/_themes/flask_theme_support.py",
+      "function": "FlaskyStyle",
+      "type": "class",
+      "line": 7,
+      "metrics": {
+        "complexity": 1,
+        "loc": 79,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 63.41
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "iter_content",
+      "type": "function",
+      "line": 801,
+      "metrics": {
+        "complexity": 7,
+        "loc": 31,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 58.61
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/adapters.py",
+      "function": "_urllib3_request_context",
+      "type": "function",
+      "line": 78,
+      "metrics": {
+        "complexity": 7,
+        "loc": 24,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 54.76
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "__init__",
+      "type": "function",
+      "line": 260,
+      "metrics": {
+        "complexity": 7,
+        "loc": 18,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 52.24
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/models.py",
+      "function": "RequestHooksMixin",
+      "type": "class",
+      "line": 208,
+      "metrics": {
+        "complexity": 5,
+        "loc": 16,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 27.56
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "RequestException",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 5,
+        "loc": 10,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 26.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/cookies.py",
+      "function": "MockRequest",
+      "type": "class",
+      "line": 23,
+      "metrics": {
+        "complexity": 2,
+        "loc": 40,
+        "method_count": 14,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 20.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/structures.py",
+      "function": "CaseInsensitiveDict",
+      "type": "class",
+      "line": 13,
+      "metrics": {
+        "complexity": 2,
+        "loc": 30,
+        "method_count": 10,
+        "is_god_class": true,
+        "is_data_class": false,
+        "slob_score": 13.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "JSONDecodeError",
+      "type": "class",
+      "line": 32,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/auth.py",
+      "function": "HTTPProxyAuth",
+      "type": "class",
+      "line": 99,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/auth.py",
+      "function": "AuthBase",
+      "type": "class",
+      "line": 69,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 4.16
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/cookies.py",
+      "function": "CookieConflictError",
+      "type": "class",
+      "line": 170,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "InvalidJSONError",
+      "type": "class",
+      "line": 28,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "HTTPError",
+      "type": "class",
+      "line": 56,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "ConnectionError",
+      "type": "class",
+      "line": 60,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "ProxyError",
+      "type": "class",
+      "line": 64,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "SSLError",
+      "type": "class",
+      "line": 68,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "Timeout",
+      "type": "class",
+      "line": 72,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "ConnectTimeout",
+      "type": "class",
+      "line": 81,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "ReadTimeout",
+      "type": "class",
+      "line": 88,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "URLRequired",
+      "type": "class",
+      "line": 92,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "TooManyRedirects",
+      "type": "class",
+      "line": 96,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "MissingSchema",
+      "type": "class",
+      "line": 100,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "InvalidSchema",
+      "type": "class",
+      "line": 104,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "InvalidURL",
+      "type": "class",
+      "line": 108,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "InvalidHeader",
+      "type": "class",
+      "line": 112,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "InvalidProxyURL",
+      "type": "class",
+      "line": 116,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "ChunkedEncodingError",
+      "type": "class",
+      "line": 120,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "ContentDecodingError",
+      "type": "class",
+      "line": 124,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "StreamConsumedError",
+      "type": "class",
+      "line": 128,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "RetryError",
+      "type": "class",
+      "line": 132,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "UnrewindableBodyError",
+      "type": "class",
+      "line": 136,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "RequestsWarning",
+      "type": "class",
+      "line": 143,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "FileModeWarning",
+      "type": "class",
+      "line": 147,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/requests/exceptions.py",
+      "function": "RequestsDependencyWarning",
+      "type": "class",
+      "line": 151,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    }
+  ]
+}

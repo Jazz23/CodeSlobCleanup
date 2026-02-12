@@ -1,0 +1,155 @@
+{
+  "files_scanned": 8,
+  "slob_candidates": [
+    {
+      "file": "src/dotenv/main.py",
+      "function": "find_dotenv",
+      "type": "function",
+      "line": 287,
+      "metrics": {
+        "complexity": 11,
+        "loc": 30,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 130.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "set_key",
+      "type": "function",
+      "line": 163,
+      "metrics": {
+        "complexity": 10,
+        "loc": 28,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 107.84
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "DotEnv",
+      "type": "class",
+      "line": 45,
+      "metrics": {
+        "complexity": 4,
+        "loc": 60,
+        "method_count": 6,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 52.0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/__init__.py",
+      "function": "get_cli_string",
+      "type": "function",
+      "line": 12,
+      "metrics": {
+        "complexity": 7,
+        "loc": 17,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 51.89
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "run",
+      "type": "function",
+      "line": 173,
+      "metrics": {
+        "complexity": 7,
+        "loc": 11,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": false,
+        "slob_score": 50.21
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/ipython.py",
+      "function": "IPythonDotEnv",
+      "type": "class",
+      "line": 12,
+      "metrics": {
+        "complexity": 3,
+        "loc": 15,
+        "method_count": 1,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 11.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "Atom",
+      "type": "class",
+      "line": 18,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "method_count": 2,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 9.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Binding",
+      "type": "class",
+      "line": 40,
+      "metrics": {
+        "complexity": 1,
+        "loc": 9,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.81
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Original",
+      "type": "class",
+      "line": 35,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.25
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Error",
+      "type": "class",
+      "line": 65,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "method_count": 0,
+        "is_god_class": false,
+        "is_data_class": true,
+        "slob_score": 1.04
+      },
+      "high_severity": true
+    }
+  ]
+}
