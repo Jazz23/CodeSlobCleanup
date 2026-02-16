@@ -1,3 +1,6 @@
+# /// script
+# dependencies = ["numpy"]
+# ///
 import utils
 import inventory
 

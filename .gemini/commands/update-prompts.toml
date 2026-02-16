@@ -10,7 +10,6 @@ Then, run the e2e subagent with the {{args}} target_dir. It will give you a numb
 3. If the agent went off and did something something it wasn't instructed to do, update refactor.md and or SKILL.md accordingly.
 4. If the agent did something redundant, such as reading in orchestrator.py, update it's instructions accordingly to prevent it.
 5. If something went wrong with the verification scripts, update the scripts in skills/code-slob-cleanup/scripts to fix the issue/add the necessary feature.
-6. If something went wrong with the identification scripts, update the scripts in skills/code-slob-cleanup/scripts accordingly.
 
 If at any point the report reports only a minor issue, ignore it. This could be something like the agent re-reading a file a second time.
 

@@ -1,3 +1,8 @@
+# /// script
+# dependencies = ["numpy"]
+# ///
+import numpy as np
+
 def calculate_fibonacci(n):
     # This is a very inefficient way to calculate fibonacci
     if n <= 1:
@@ -21,11 +26,7 @@ def format_names(names):
     return l
 
 def get_max_value(data):
-    # reinventing the wheel
-    if len(data) == 0:
+    # Using numpy to find the max value
+    if not data:
         return None
-    m = data[0]
-    for i in range(len(data)):
-        if data[i] > m:
-            m = data[i]
-    return m
+    return np.max(data).item()

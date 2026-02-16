@@ -16,18 +16,11 @@ The "Code Slob Cleanup" project aims to build an automated toolchain—packaged 
     *   **Mandatory PEP 723**: Never use `uv run --with <package>`. Instead, if a script is missing a dependency, modify the original script to include PEP 723 inline metadata (e.g., `# /// script 
  # dependencies = ["package"] 
  # ///`).
-*   **Continuous Verification**: Always run the comprehensive test suite after modifying any tools, scripts, or adding new "slob" vs "clean" examples to ensure behavior remains consistent and tools function as expected.
-    *   Command: `uv run verification/tests/run_tests.py`
-*   **Current Focus**:
-    *   Establishing the testing baseline with Hypothesis.
-    *   Developing the static analysis scanner for identifying slob.
-    *   Creating canonical examples of "slob" vs. "clean" code.
-
-## References
-*   See `cse247b_reports_w26\codeslob\overview.md` for the full project overview.
-*   See `CodeSlobCleanup\.gemini\skills\cse247b\references\codeslob.md` for skill references.
 
 ## Tone & Communication
+*   **Never push to GitHub unless the user explicitly tells you to do so.**
 *   **No Redundant Confirmations**: Do not verbally state "I will not push without consent" in responses. Adhere to the policy silently as per core mandates.
 
 - Anytime the word "skill" is mentioned, if you haven't already please web_fetch this documentation: https://geminicli.com/docs/cli/skills/
+
+- Whenever the user says "modify the skill", they are talking about an agent skill located in `skills/code-slob-cleanup`.

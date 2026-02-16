@@ -19,7 +19,6 @@ Run `uv run tests/test_e2e.py <TARGET_DIR> --agent` ONLY ONCE. Then, based on th
 3. If the agent does anything besides what it is instructed to do based on the skill, include what it did wrong and why it was wrong. Re-reading files to verify correctness is OKAY, do not include this in the report if the agent simply re-read a file to confirm something.
 4. If the agent did anything redudant, include what it did that was unnecessary and why. Do not include if it re-read a file to confirm something.
 5. If you notice that something might be wrong with the verification/identification scripts, include that as well. This could be something that's impossible to test and should be skipped, for example. Or maybe a test that is [FAIL] but should actually be [SKIP].
-6. If something went wrong with the identification scripts, include what went wrong and how to fix it.
 
 Example report:
 

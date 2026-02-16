@@ -100,42 +100,45 @@ def main():
         print("Skipping gemini refactoring (--agent not provided).")
 
     # 4. Verify output
-    print("Verifying output...")
-    expected_output_path = source_folder / "expected_output.txt"
-    if not expected_output_path.exists():
-        print(f"Warning: {expected_output_path} not found. Skipping verification.")
-    else:
-        try:
-            expected_content = expected_output_path.read_text().strip()
-            
-            # Run the refactored main.py
-            verify_result = subprocess.run(
-                [sys.executable, "main.py"],
-                cwd=temp_dir,
-                capture_output=True,
-                text=True,
-                check=True
-            )
-            actual_content = verify_result.stdout.strip()
-            
-            if actual_content == expected_content:
-                print("Verification Passed: Output matches expected_output.txt")
-            else:
-                print("Verification Failed: Output does not match expected_output.txt")
-                print("--- Expected ---")
-                print(expected_content)
-                print("--- Actual ---")
-                print(actual_content)
-                sys.exit(1)
+    if args.agent:
+        print("Verifying output...")
+        expected_output_path = source_folder / "expected_output.txt"
+        if not expected_output_path.exists():
+            print(f"Warning: {expected_output_path} not found. Skipping verification.")
+        else:
+            try:
+                expected_content = expected_output_path.read_text().strip()
                 
-        except subprocess.CalledProcessError as e:
-             print(f"Verification Failed: Refactored code crashed.")
-             print("--- Stderr ---")
-             print(e.stderr)
-             sys.exit(1)
-        except Exception as e:
-            print(f"Verification Failed: {e}")
-            sys.exit(1)
+                # Run the refactored main.py
+                verify_result = subprocess.run(
+                    [sys.executable, "main.py"],
+                    cwd=temp_dir,
+                    capture_output=True,
+                    text=True,
+                    check=True
+                )
+                actual_content = verify_result.stdout.strip()
+                
+                if actual_content == expected_content:
+                    print("Verification Passed: Output matches expected_output.txt")
+                else:
+                    print("Verification Failed: Output does not match expected_output.txt")
+                    print("--- Expected ---")
+                    print(expected_content)
+                    print("--- Actual ---")
+                    print(actual_content)
+                    sys.exit(1)
+                    
+            except subprocess.CalledProcessError as e:
+                 print(f"Verification Failed: Refactored code crashed.")
+                 print("--- Stderr ---")
+                 print(e.stderr)
+                 sys.exit(1)
+            except Exception as e:
+                print(f"Verification Failed: {e}")
+                sys.exit(1)
+    else:
+        print("Skipping verification (--agent not provided).")
 
     print("Setup complete.")
 

@@ -461,13 +461,7 @@ def main():
     tasks = []
     
     # Functions
-    skip_list = config.get("skip", [])
-    
     for func_name in common_funcs:
-        if func_name in skip_list:
-            print(f"[SKIP] {func_name} (Explicitly skipped via config)")
-            continue
-            
         if func_name.startswith('_') and not (func_name.startswith('__') and func_name.endswith('__')):
             print(f"[PASS] {func_name} (0.0000s) (Private function automatically passed)")
             continue
@@ -489,9 +483,6 @@ def main():
         
         for method_name in common_methods:
              full_name = f"{cls_name}.{method_name}"
-             if full_name in skip_list:
-                 print(f"[SKIP] {full_name} (Explicitly skipped via config)")
-                 continue
              
              if method_name.startswith('_') and not (method_name.startswith('__') and method_name.endswith('__')):
                  print(f"[PASS] {full_name} (0.0000s) (Private method automatically passed)")

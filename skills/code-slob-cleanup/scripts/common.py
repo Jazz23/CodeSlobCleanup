@@ -183,14 +183,15 @@ def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) ->
     # 2. Check Config
     # Prefer strict match (QualName) over simple Name
     target_key = None
-    if qualname in config:
+    functions_config = config.get("functions", {})
+    if qualname in functions_config:
         target_key = qualname
-    elif name in config:
+    elif name in functions_config:
         target_key = name
         
     if target_key:
         print(f"    [INFO] Found config entry for {target_key}")
-        type_list = config[target_key]
+        type_list = functions_config[target_key]
         strategies = [_json_type_to_strategy(t) for t in type_list]
         return st.tuples(*strategies)
 
