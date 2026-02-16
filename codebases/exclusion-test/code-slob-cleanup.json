@@ -1,0 +1,10 @@
+{
+    "excludePaths": ["subfolder/"],
+    "excludeFunctions": [
+        "global_*",
+        "*.py:specifically_*",
+        "utils.py:pattern_*",
+        "ubiquitous_slob",
+        "main.py:targeted_slob"
+    ]
+}

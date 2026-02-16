@@ -6,6 +6,24 @@
 - Copy the [code-slob-cleanup](https://github.com/Jazz23/CodeSlobCleanup/tree/main/skills/code-slob-cleanup) skill into your agent's `skills` folder in your repository.
 - Tell your agent to "Clean up my code".
 
+## Exclusions (Optional)
+You can specify functions, files, or folders to ignore during the cleanup by creating a `code-slob-cleanup.json` file at your project's root:
+
+```json
+{
+    "excludePaths": [
+        "path/to/folder/*",
+        "specific_file.py"
+    ],
+    "excludeFunctions": [
+        "internal_*",              // Exclude any function matching this pattern globally
+        "utils.py:legacy_func",    // Exclude a specific function in a specific file
+        "src/*.py:*_helper"        // Use glob patterns for both path and function name
+    ]
+}
+```
+The agent and its scripts (such as `identify.py` and `clean_untested.py`) will automatically respect these rules.
+
 # Notes
 - The agent will create a temporary directory, `.code-slob-tmp`. This will be deleted after the refactoring process; however, it may be useful to add this to your `.gitignore` just in case the agent crashes or is cancelled.
 

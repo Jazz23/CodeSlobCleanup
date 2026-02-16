@@ -14,22 +14,37 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 ## Workflow
 
 ### Phase 1: Identification & Setup
+0.  **Configuration & Exclusions**: Check for a `code-slob-cleanup.json` file in the project root.
+    *   **Format**:
+        ```json
+        {
+            "excludePaths": ["path/to/file.py", "folder/*"],
+            "excludeFunctions": ["func_name", "path/to/file.py:func_name"]
+        }
+        ```
+    *   **Action**: If it exists, read it. You MUST strictly exclude the specified paths and functions from all subsequent steps in this phase.
+    *   **excludePaths**: Skip any files or folders that match these patterns (relative to project root).
+    *   **excludeFunctions**: Supports literal names and glob-style pattern matching (`*`, `?`).
+        *   **Global Pattern**: If it's just a name or pattern (e.g., `"internal_*"`), skip any function matching that pattern in ANY file.
+        *   **Scoped Pattern**: If it contains a colon (e.g., `"src/*.py:*_helper"`), skip functions matching the function pattern only in files matching the path pattern.
+        *   **Mixed**: You can mix literals and patterns (e.g., `"utils.py:legacy_*"` or `"*/api.py:validate"`).
 1.  **Golden Test Coverage (Optional)**:
     *   **Trigger**: Run this step **ONLY IF** the user explicitly requests to remove untested code or perform a "golden test cleanup" in their prompt (e.g., "Clean up untested code using test_main.py"). Do **NOT** run this step just because a test script is mentioned or exists in the codebase; the intent to use it for code removal must be explicit.
     *   **Action**: Run the cleanup script: `uv run scripts/clean_untested.py <golden_test_script_path>`.
-    *   **Outcome**: This will automatically remove any functions from the original codebase that are not executed by the golden test script.
+    *   **Outcome**: This will automatically remove any functions from the original codebase that are not executed by the golden test script. **The script will automatically respect exclusions from `code-slob-cleanup.json` (Step 0).**
 2.  **Discover Existing Jobs**: Check for an existing `.code-slob-tmp` directory.
     *   If it exists, assume identification is complete. Read all existing `original.py` files in its subdirectories to proceed with refactoring. **Do not** re-scan the source codebase unless explicitly requested.
     *   If it does *not* exist, proceed to step 3.
 3.  **Hybrid Identification**:
-    *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir .`. Use its output as your primary source of targets.
-    *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Avoid reading every file if the script already covers the main candidates.
+    *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir .`.
+    *   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that match the `excludePaths` or `excludeFunctions` defined in step 0.
+    *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Ensure you do NOT include anything that matches the exclusions.
     *   **Heuristic vs. Reality**: Analyze the output of both methods. Note that high complexity/LOC doesn't *always* mean the code is "slob". 
     *   **Filter**: If a function is an inherently complex algorithm (e.g., advanced mathematics) where the complexity is necessary and the code is already as clean as practical, **DO NOT** refactor it. Focus on actual "slob"—code that is complex due to poor structure or neglect.
 4.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
 4.  **Structure**: For any *newly* identified targets, create a uniquely named subdirectory (job) within `.code-slob-tmp`.
 5.  **Extract**: Create or update `original.py` files for the jobs.
-    *   **Filter Duplicates**: Ensure you only add functions that are *not* already present in the existing `original.py` for that job.
+    *   **Filter Duplicates & Exclusions**: Ensure you only add functions that are *not* already present in the existing `original.py` for that job, and are NOT excluded by the configuration in step 0.
     *   **Deterministic Only**: Only copy functions that are deterministic and suitable for property-based testing. **Do NOT** copy functions that:
         *   Use random number generation or are otherwise non-deterministic (e.g., `generate_id`, `random_string`).
     *   **Copy Content**: Copy the identified functions into the appropriate `original.py`.
