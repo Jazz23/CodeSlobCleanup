@@ -14,6 +14,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 
 import metrics
+import semantic
 
 def scan_directory(target_dir: Path):
     slob_candidates = []
@@ -38,10 +39,17 @@ def scan_directory(target_dir: Path):
                     # Get per-function metrics
                     func_metrics = metrics.get_function_metrics(content)
                     
+                    # Get semantic metrics
+                    semantic_score = semantic.get_semantic_slob_score(str(file_path), content)
+                    semantic_info = semantic.evaluate_semantic_relevance(str(file_path), content)
+                    global_vars = semantic.detect_global_variables(content)
+
                     for m in func_metrics:
                         # Determine if slob
                         # Thresholds
-                        is_high_severity = m["complexity"] > 10 or m["loc"] > 50 or m["score"] > 50
+                        # Combined score includes semantic penalty
+                        total_score = m["score"] + semantic_score
+                        is_high_severity = m["complexity"] > 10 or m["loc"] > 50 or total_score > 100
                         
                         slob_candidates.append({
                             "file": str(file_path.relative_to(target_dir)),
@@ -50,7 +58,13 @@ def scan_directory(target_dir: Path):
                             "metrics": {
                                 "complexity": m["complexity"],
                                 "loc": m["loc"],
-                                "slob_score": m["score"]
+                                "slob_score": m["score"],
+                                "semantic_penalty": semantic_score,
+                                "total_score": round(total_score, 2)
+                            },
+                            "semantic_info": {
+                                "relevance": semantic_info["relevance_score"],
+                                "global_vars_count": len(global_vars)
                             },
                             "high_severity": is_high_severity
                         })
@@ -87,7 +101,11 @@ def main():
     for cand in slob_candidates:
         if cand["high_severity"]:
             print(f"[SLOB]   {cand['file']}::{cand['function']} (Line {cand['line']})")
-            print(f"         Score: {cand['metrics']['slob_score']} (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']})")
+            print(f"         Total Score: {cand['metrics']['total_score']} (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
+            if cand["semantic_info"]["global_vars_count"] > 0:
+                print(f"         Globals Found: {cand['semantic_info']['global_vars_count']}")
+            if cand["semantic_info"]["relevance"] < 1.0:
+                print(f"         Relevance: {cand['semantic_info']['relevance']}")
     
     if args.output:
         report = {
