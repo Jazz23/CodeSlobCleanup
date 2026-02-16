@@ -5,6 +5,8 @@
 
 - Copy the [code-slob-cleanup](https://github.com/Jazz23/CodeSlobCleanup/tree/main/skills/code-slob-cleanup) skill into your agent's `skills` folder in your repository.
 - Tell your agent to "Clean up my code".
+    - You can specify specific folders/files/functions to refactor.
+    - If you have a comprehensive testing script, you can mention it in your prompt and Code Slob Cleanup will automatically remove unused functions.
 
 ## Exclusions (Optional)
 You can specify functions, files, or folders to ignore during the cleanup by creating a `code-slob-cleanup.json` file at your project's root:
