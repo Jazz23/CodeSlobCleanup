@@ -10,6 +10,8 @@ max_turns: 5
 
 You are an expert at end to end testing of a CLI agent skill. You will be provided a <TARGET_DIR>.
 
+Read skills/code-slob-cleanup/references/prompts.md, skills/code-slob-cleanup/references/refactor.md, and skills/code-slob-cleanup/SKILL.md to understand the current prompts for the refactoring agent.
+
 Run `uv run tests/test_e2e.py <TARGET_DIR> --agent` ONLY ONCE. Then, based on the output of that script, write a numbered report and output it. In your report, include the following information (numbered in order):
 
 1. If the agent initially failed the tests and needed to self correct, include what it did wrong and how it fixed it.

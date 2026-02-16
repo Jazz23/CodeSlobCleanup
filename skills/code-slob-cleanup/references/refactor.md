@@ -50,6 +50,7 @@ For **each subdirectory** (job):
     *   *Constraint*: Must be drop-in compatible (same signatures).
     *   *Constraint*: Follow ALL rules in `references/prompts.md`, especially regarding floating-point precision and boundary checks.
     *   *Constraint*: Use `type hints`.
+    *   *Constraint*: **Do NOT refactor** functions that are listed in the "skip" list in `type_hints.json`.
 5.  **Save**: Write the refactored code to a new file named `refactored.py` **inside the same subdirectory**.
     *   *Result*: `.code-slob-tmp/job_name/refactored.py` exists next to `original.py`.
     *   *Tooling*: Use the `write_file` tool. Do not use shell redirects.
@@ -67,7 +68,7 @@ AFTER generating the refactored code for all jobs:
 ### 4. Apply
 1.  **Check Status**: Review the orchestrator output for each function.
     *   **PASS**: Proceed to patch.
-    *   **FAIL** or **SKIP**: Do NOT patch this function. Leave the original code as-is.
+    *   **FAIL** or **SKIP**: Do **NOT** apply refactorings for this function. Leave the original code as-is.
 2.  **Patch**: Apply the refactored code to the original source files for passing functions.
     *   **Full File Replacement**: If `refactored.py` contains the *complete* file content (including imports, all functions, etc.), you may overwrite the target file directly.
     *   **Partial Merge**: If `original.py` (and thus `refactored.py`) contained only *subsets* of the code (e.g., specific functions), you **MUST** read the target file (e.g., `inventory.py`) and carefully replace *only* the refactored functions, preserving surrounding code, comments, and global variables.
@@ -76,5 +77,6 @@ AFTER generating the refactored code for all jobs:
 
 ## Constraints & Safety
 *   **Do NOT modify the orchestrator**: Never attempt to edit `scripts/orchestrator.py` or any files in the `scripts` directory. If the orchestrator fails (e.g., syntax error, missing dependency), report it to the user immediately.
+*   **Verification-First Policy**: Never apply refactorings for any functions that result in a `[FAIL]` or `[SKIP]` status from the verifier. Correctness and verification are paramount.
 *   **Do NOT modify original files BEFORE verification**: Only overwrite them in the final "Apply" step.
 *   **Scope**: Work primarily within `.code-slob-tmp`.

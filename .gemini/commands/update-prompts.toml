@@ -1,7 +1,9 @@
 description = "Triggers a feedback loop that updates prompts.md to allow the refactoring agent to refactor code first try."
 prompt = """
 
-Run the e2e subagent with the {{args}} target_dir. It will give you a numbered report. Modify the following files based on the different numbered responses from the report:
+Read skills/code-slob-cleanup/references/prompts.md, skills/code-slob-cleanup/references/refactor.md, and skills/code-slob-cleanup/SKILL.md to understand the current prompts for the refactoring agent.
+
+Then, run the e2e subagent with the {{args}} target_dir. It will give you a numbered report. Modify the following files based on the different numbered responses from the report:
 
 1. If the agent didn't pass a test first try, modify skills/code-slob-cleanup/references/prompts.md to include whatever the fix was. If the fix was to modify the instructions of how the agent functions, modify skills/code-slob-cleanup/references/refactor.md instead.
 2. If the agent did something it shouldn't have, modify skills/code-slob-cleanup/references/refactor.md if it needs better refactoring instructions or skills/code-slob-cleanup/SKILL.md if it did something else wrong not quite related to refactoring.
@@ -9,6 +11,8 @@ Run the e2e subagent with the {{args}} target_dir. It will give you a numbered r
 4. If the agent did something redundant, such as reading in orchestrator.py, update it's instructions accordingly to prevent it.
 5. If something went wrong with the verification scripts, update the scripts in skills/code-slob-cleanup/scripts to fix the issue/add the necessary feature.
 6. If something went wrong with the identification scripts, update the scripts in skills/code-slob-cleanup/scripts accordingly.
+
+If at any point the report reports only a minor issue, ignore it. This could be something like the agent re-reading a file a second time.
 
 After making the appropriate changes, re-run the e2e subagent with the same target_dir. Repeat until the report has no issues.
 """
