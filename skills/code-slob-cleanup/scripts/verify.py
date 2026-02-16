@@ -33,10 +33,10 @@ import hypothesis.strategies as st
 from hypothesis.errors import Unsatisfiable
 
 try:
-    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
+    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
 except ImportError:
     # Fallback if necessary, though direct execution adds local dir to path
-    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
+    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
 
 @dataclass
 class VerifyResult:
@@ -247,9 +247,10 @@ def run_naive_fuzzing(orig_func: Callable, ref_func: Callable) -> VerifyResult:
         duration = time.time() - start_time
         return VerifyResult("SKIP", duration, f"Error: {e}")
 
-def combine_results(name: str, hyp_res: VerifyResult, naive_res: VerifyResult):
+def combine_results(name: str, hyp_res: VerifyResult, naive_res: VerifyResult, config: Dict[str, Any] = None):
     """Combines results from both fuzzers and prints the output."""
     total_duration = hyp_res.duration + naive_res.duration
+    display_name = get_display_name(name, config)
     
     # Logic:
     # Fail if either fails.
@@ -257,23 +258,23 @@ def combine_results(name: str, hyp_res: VerifyResult, naive_res: VerifyResult):
     # Skip if both skip.
     
     if hyp_res.status == "FAIL":
-        print(f"[FAIL] {name} ({total_duration:.4f}s)")
+        print(f"[FAIL] {display_name} ({total_duration:.4f}s)")
         if hyp_res.error:
              print(hyp_res.error)
         return "FAILURE"
     
     if naive_res.status == "FAIL":
-        print(f"[FAIL] {name} ({total_duration:.4f}s)")
+        print(f"[FAIL] {display_name} ({total_duration:.4f}s)")
         if naive_res.error:
              print(naive_res.error)
         return "FAILURE"
     
     if hyp_res.status == "PASS" or naive_res.status == "PASS":
-        print(f"[PASS] {name} ({total_duration:.4f}s)")
+        print(f"[PASS] {display_name} ({total_duration:.4f}s)")
         return "SUCCESS"
     
     # Both skipped
-    print(f"[SKIP] {name} ({total_duration:.4f}s) (Both fuzzers skipped)")
+    print(f"[SKIP] {display_name} ({total_duration:.4f}s) (Both fuzzers skipped)")
     return "SKIPPED"
 
 def worker_verify_function(orig_path, ref_path, func_name, config, result_queue):
@@ -288,12 +289,13 @@ def worker_verify_function(orig_path, ref_path, func_name, config, result_queue)
         hyp_res = run_hypothesis_verification(orig_func, ref_func, config=config)
         naive_res = run_naive_fuzzing(orig_func, ref_func)
         
-        status = combine_results(func_name, hyp_res, naive_res)
+        status = combine_results(func_name, hyp_res, naive_res, config=config)
         result_queue.put(status)
         
     except Exception as e:
         # Fallback if loading fails or something unexpected
-        print(f"[SKIP] {func_name} (0.0000s) (Worker Error: {e})")
+        display_name = get_display_name(func_name, config)
+        print(f"[SKIP] {display_name} (0.0000s) (Worker Error: {e})")
         result_queue.put("SKIPPED")
 
 def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, config, result_queue):
@@ -418,11 +420,12 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
              # Should not happen if logic holds (if sample_args is None, we entered the first if block)
              naive_res = VerifyResult("SKIP", 0.0, "No sample args")
              
-        status = combine_results(full_name, hyp_res, naive_res)
+        status = combine_results(full_name, hyp_res, naive_res, config=config)
         result_queue.put(status)
 
     except Exception as e:
-        print(f"[SKIP] {full_name} (0.0000s) (Worker Error: {e})")
+        display_name = get_display_name(full_name, config)
+        print(f"[SKIP] {display_name} (0.0000s) (Worker Error: {e})")
         result_queue.put("SKIPPED")
 
 def main():
@@ -463,7 +466,8 @@ def main():
     # Functions
     for func_name in common_funcs:
         if func_name.startswith('_') and not (func_name.startswith('__') and func_name.endswith('__')):
-            print(f"[PASS] {func_name} (0.0000s) (Private function automatically passed)")
+            display_name = get_display_name(func_name, config)
+            print(f"[PASS] {display_name} (0.0000s) (Private function automatically passed)")
             continue
 
         tasks.append({
@@ -485,7 +489,8 @@ def main():
              full_name = f"{cls_name}.{method_name}"
              
              if method_name.startswith('_') and not (method_name.startswith('__') and method_name.endswith('__')):
-                 print(f"[PASS] {full_name} (0.0000s) (Private method automatically passed)")
+                 display_name = get_display_name(full_name, config)
+                 print(f"[PASS] {display_name} (0.0000s) (Private method automatically passed)")
                  continue
 
              if method_name.startswith('__') and method_name.endswith('__'):
@@ -523,7 +528,8 @@ def main():
                     p.terminate()
                     p.join()
                     duration = time.time() - proc_info["start_time"]
-                    print(f"[SKIP] {proc_info['name']} ({duration:.4f}s) (Timeout)")
+                    display_name = get_display_name(proc_info['name'], config)
+                    print(f"[SKIP] {display_name} ({duration:.4f}s) (Timeout)")
                 else:
                     still_active.append(proc_info)
         

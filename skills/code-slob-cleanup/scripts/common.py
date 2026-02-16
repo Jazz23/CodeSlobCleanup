@@ -60,6 +60,14 @@ def get_common_classes(mod1, mod2) -> List[str]:
     cls2 = {n for n, c in inspect.getmembers(mod2, inspect.isclass) if getattr(c, '__module__', None) == mod2.__name__}
     return list(cls1.intersection(cls2))
 
+def get_display_name(name: str, config: Dict[str, Any] = None) -> str:
+    """Returns filename:name if filename is available in config['source_files'], else just name."""
+    if config:
+        source_file = config.get("source_files", {}).get(name)
+        if source_file:
+            return f"{source_file}:{name}"
+    return name
+
 def _json_type_to_strategy(type_str: str) -> st.SearchStrategy:
     """Maps a type string from JSON to a Hypothesis strategy."""
     type_str = type_str.lower().strip()

@@ -52,6 +52,24 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
     *   **Dependencies**: Include all necessary imports and helper classes/functions required for these functions to run in isolation.
     *   **Validity**: Ensure the final `original.py` remains valid, runnable Python code.
     *   **Restriction**: Do not copy the `main()` function into an `original.py` file.
+    *   **Type Hints & Metadata (type_hints.json)**: Create a `type_hints.json` file in each job directory. This is CRITICAL for both verification and reporting.
+        *   **Format**:
+            ```json
+            {
+                "functions": {
+                    "func_name": ["type1", "type2"],
+                    "ClassName.method_name": ["type1"]
+                },
+                "source_files": {
+                    "func_name": "path/to/source_file.py",
+                    "ClassName.method_name": "path/to/source_file.py"
+                },
+                "modules": ["any_required_external_module"]
+            }
+            ```
+        *   **source_files (REQUIRED)**: For every function and class method extracted into `original.py`, you MUST include its original relative path from the project root in the `source_files` object. This ensures the verification output correctly identifies functions across different files.
+        *   **functions (Optional)**: If you can confidently deduce type hints for the function arguments, include them here to help Hypothesis generate valid inputs.
+        *   **modules (Optional)**: List any external pip-installable modules required by the functions that are NOT part of the standard library.
 
 ### Phase 2: Refactoring
 Follow the instructions in `references/refactor.md` to generate `refactored.py` for the job(s) in the temporary workspace.

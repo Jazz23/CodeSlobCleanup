@@ -34,9 +34,9 @@ sys.path.insert(0, str(project_root))
 sys.path.insert(0, str(verification_root))
 
 try:
-    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
+    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
 except ImportError:
-    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies
+    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
 
 def generate_benchmark_inputs(func: Callable, num_inputs: int = 100, validate: bool = True, config: Dict[str, Any] = None) -> List[Any]:
     """Generates a list of input tuples for the given function using Hypothesis."""
@@ -110,9 +110,11 @@ def worker_benchmark_func(orig_path, ref_path, func_name, config):
         orig_func = getattr(orig_mod, func_name)
         ref_func = getattr(ref_mod, func_name)
         
+        display_name = get_display_name(func_name, config)
+        
         inputs = generate_benchmark_inputs(orig_func, config=config)
         if not inputs:
-            print(f"[SKIP] {func_name} (Unable to generate benchmark inputs)")
+            print(f"[SKIP] {display_name} (Unable to generate benchmark inputs)")
             return
             
         try:
@@ -120,18 +122,19 @@ def worker_benchmark_func(orig_path, ref_path, func_name, config):
             ref_times = measure_execution_time(ref_func, inputs)
             
             if not orig_times or not ref_times:
-                print(f"[SKIP] {func_name} (Benchmark execution failed)")
+                print(f"[SKIP] {display_name} (Benchmark execution failed)")
                 return
 
             orig_avg = np.mean(orig_times)
             ref_avg = np.mean(ref_times)
             
             speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
-            print(f"[SPEEDUP] {func_name}: {speedup}")
+            print(f"[SPEEDUP] {display_name}: {speedup}")
         except Exception as e:
-            print(f"[SKIP] {func_name} (Error during benchmark: {e})")
+            print(f"[SKIP] {display_name} (Error during benchmark: {e})")
     except Exception as e:
-        print(f"[SKIP] {func_name} (Worker Error: {e})")
+        display_name = get_display_name(func_name, config)
+        print(f"[SKIP] {display_name} (Worker Error: {e})")
 
 def worker_benchmark_class_method(orig_path, ref_path, cls_name, method_name, config):
     # Similar logic for class methods
@@ -141,6 +144,9 @@ def worker_benchmark_class_method(orig_path, ref_path, cls_name, method_name, co
         
         orig_cls = getattr(orig_mod, cls_name)
         ref_cls = getattr(ref_mod, cls_name)
+        
+        full_name = f"{cls_name}.{method_name}"
+        display_name = get_display_name(full_name, config)
         
         try:
             init_inputs = generate_benchmark_inputs(orig_cls, 1, config=config)
@@ -166,7 +172,7 @@ def worker_benchmark_class_method(orig_path, ref_path, cls_name, method_name, co
         ref_avg = np.mean(ref_times)
         
         speedup = f"{orig_avg / ref_avg:.2f}x" if ref_avg > 0 else "N/A"
-        print(f"[SPEEDUP] {cls_name}.{method_name}: {speedup}")
+        print(f"[SPEEDUP] {display_name}: {speedup}")
     except Exception:
         pass
 
@@ -255,7 +261,8 @@ def main():
                 if time.time() - proc_info["start_time"] > 15:
                     p.terminate()
                     p.join()
-                    print(f"[SKIP] {proc_info['name']} (Timeout)")
+                    display_name = get_display_name(proc_info['name'], config)
+                    print(f"[SKIP] {display_name} (Timeout)")
                 else:
                     still_active.append(proc_info)
         
