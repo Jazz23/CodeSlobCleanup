@@ -32,7 +32,6 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
     *   **Filter Duplicates**: Ensure you only add functions that are *not* already present in the existing `original.py` for that job.
     *   **Deterministic Only**: Only copy functions that are deterministic and suitable for property-based testing. **Do NOT** copy functions that:
         *   Use random number generation or are otherwise non-deterministic (e.g., `generate_id`, `random_string`).
-        *   Are inherently complex algorithms (e.g., advanced mathematics) where the complexity is necessary.
     *   **Copy Content**: Copy the identified functions into the appropriate `original.py`.
     *   **Literal Copy**: Copy the code EXACTLY as it appears in the source. Do NOT add type hints, docstrings, or perform any refactoring during this step. `original.py` must be a faithful representation of the "slob" code for verification purposes.
     *   **Dependencies**: Include all necessary imports and helper classes/functions required for these functions to run in isolation.
