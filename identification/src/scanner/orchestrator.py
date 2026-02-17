@@ -6,9 +6,11 @@
 
 import os
 import sys
+import csv
 import json
 import argparse
 from pathlib import Path
+from collections import Counter
 
 # Ensure we can import local modules
 sys.path.append(str(Path(__file__).parent))
@@ -83,6 +85,7 @@ def main():
     parser = argparse.ArgumentParser(description="Scan directory for Code Slob.")
     parser.add_argument("--target-dir", type=str, required=True, help="Directory to scan")
     parser.add_argument("--output", type=str, default="scan_report.json", help="Output report file")
+    parser.add_argument("--append-csv", type=str, help="Append summary to CSV file")
     
     args = parser.parse_args()
     target_dir = Path(args.target_dir).resolve()
@@ -112,6 +115,42 @@ def main():
     print(f"Scan complete. Scanned {files_scanned} files.")
     print(f"Report written to {report_path}")
     print(f"Found {len(slob_candidates)} slob candidates.")
+
+    if args.append_csv:
+        total_slob_score = sum(c["metrics"]["slob_score"] for c in slob_candidates)
+        
+        # Determine Top Slob Factor
+        factors = []
+        for c in slob_candidates:
+            if c["metrics"]["is_god_class"]: factors.append("God Classes")
+            elif c["metrics"]["is_data_class"]: factors.append("Data Classes")
+            elif c["metrics"]["complexity"] > 20: factors.append("Complex Logic")
+            else: factors.append("General Maintenance")
+        
+        top_factor = Counter(factors).most_common(1)[0][0] if factors else "N/A"
+        
+        # Generate Rationale
+        repo_name = target_dir.name
+        if slob_candidates:
+            top_c = slob_candidates[0]
+            rationale = f"Scanned {files_scanned} files. Top issue: {top_c['file']}:{top_c['function']} with score {top_c['metrics']['slob_score']:.1f}."
+            if top_c["metrics"]["is_god_class"]:
+                rationale += f" God Class detected with {top_c['metrics']['method_count']} methods."
+        else:
+            rationale = f"No significant slob detected across {files_scanned} files."
+            
+        csv_path = Path(args.append_csv).resolve()
+        file_exists = csv_path.exists()
+        
+        try:
+            with open(csv_path, "a", newline="") as f:
+                writer = csv.writer(f)
+                if not file_exists:
+                    writer.writerow(["Repository", "Total Slob Score", "Files Scanned", "Slob Candidates", "Top Slob Factor", "Rationale"])
+                writer.writerow([repo_name, round(total_slob_score, 2), files_scanned, len(slob_candidates), top_factor, rationale])
+            print(f"Summary appended to {csv_path}")
+        except Exception as e:
+            print(f"Error writing to CSV: {e}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()

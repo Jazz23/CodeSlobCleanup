@@ -1,0 +1,98 @@
+# Code Slob Scoring: Exact Mathematical Formulas & Interpretations
+
+The total Slob Score for a repository is the sum of scores for every function identified as a candidate.
+
+## 1. The Core Formulas
+
+### Function-Level Score (S_f)
+For a function `f` in file `F`:
+S_f = (Complexity^2) + (LLOC / 5.0) + Penalty(F)
+
+### File-Level Semantic Penalty (Penalty(F))
+Penalty(F) = (G * 5) + (K_adj * 10) + (R_pen) + (M * 10)
+
+Where:
+- G = Count of non-constant global variables.
+- K_adj = Number of public classes in the file minus 3 (if > 3, else 0).
+- R_pen = 30 point penalty if the Relevance Score < 0.5.
+- M = Count of semantically irrelevant classes in the file.
+
+### Aggregation & "Penalty Amplification"
+The total repository penalty Σ(Penalty) is the sum of Penalty(F) for every candidate function in that file. This means global-heavy files are penalized relative to their "population" of functions.
+
+---
+
+## 2. Mathematical Breakdown by Repository
+
+### hagent
+Formula Applied: S_total = Σ [ (C^2) + (L/5) + (G=24 * 5) + (K=0) + (R_pen=0) + (M=0) ]
+Formula Applied: S_total (125,072.00) = Σ(C²=99,591) + Σ(L/5=6,931.0) + Σ(Penalty=18,550.0)
+- Σ(Penalty) Breakdown:
+  - Σ(Globals * 5) = 6,570.0
+  - Σ(God Class * 10) = 2,940.0
+  - Σ(Relevance Penalty) = 4,170.0
+  - Σ(Misplaced * 10) = 4,870.0
+
+#### Calculation for sva_gen.py
+- Globals Found (G): 24
+- Candidate Functions in File: 36
+- Penalty(F) = 24 * 5 = 120.0
+- **Total File Contribution**: 120.0 (Penalty) * 36 (Functions) = **4,320.0** points
+
+1. **Σ(Globals * 5) = 6,570.0**
+   - *Included here: **4,320.0** (from sva_gen.py) + 2,250.0 (from other files)*
+2. **Σ(God Class * 10) = 2,940.0**
+3. **Σ(Relevance Penalty) = 4,170.0**
+4. **Σ(Misplaced * 10) = 4,870.0**
+5. **Total sum = 18,550.0**
+
+#### Complexity Breakdown for Σ(C²=99,591)
+The value **99,591** is the sum of (Complexity²) for all 341 candidates. The top 5 contributors account for ~23% of this total:
+1. **summarize_results.py::print_summary**: C=116 → **13,456** points
+2. **hagent/inou/locator.py::_find_vcd_in_hierarchy**: C=52 → **2,704** points
+3. **hagent/tool/property_builder.py::_rule_based_property_from_row**: C=49 → **2,401** points
+4. **hagent/tool/code_scope.py::_parse_scopes**: C=48 → **2,304** points
+5. **hagent/core/llm_wrap.py::_call_llm**: C=47 → **2,209** points
+*+ 336 other candidates contributing the remaining 75,517 points.*
+
+- L (LLOC): Total L = 34,655. Contributes 6,931 points to the total score.
+- C (Complexity): The quadratic driver. When C=116, it adds 13,456 points.
+- Result: 125,072.00 (Critical Breakdown)
+
+### requests
+Formula Applied: S_total = Σ [ (C^2) + (L/5) + (G=0) + (K_adj) + (R_pen=30) + (M * 10) ]
+Formula Applied: S_total (33,141.40) = Σ(C²=6,427) + Σ(L/5=749.4) + Σ(Penalty=25,965.0)
+- Σ(Penalty) Breakdown:
+  - Σ(Globals * 5) = 695.0
+  - Σ(God Class * 10) = 7,840.0
+  - Σ(Relevance Penalty) = 5,910.0
+  - Σ(Misplaced * 10) = 11,520.0
+- L (LLOC): Total L = 3,747. Contributes 749.4 points to the total score.
+- R_pen (Relevance): The primary semantic driver. In 'exceptions.py', the low naming relevance triggers a 30-point penalty across many blocks.
+- M (Misplaced): For files like 'models.py', M represents specific classes detected as semantically unrelated to the file name, adding 10 points per occurrence.
+- Result: 33,141.40 (Severe Debt)
+
+### flask
+Formula Applied: S_total = Σ [ (C^2) + (L/5) + (G=6) + (K_adj * 10) + (R_pen) ]
+Formula Applied: S_total (29,298.80) = Σ(C²=6,188) + Σ(L/5=1,165.8) + Σ(Penalty=21,945.0)
+- Σ(Penalty) Breakdown:
+  - Σ(Globals * 5) = 7,285.0
+  - Σ(God Class * 10) = 4,830.0
+  - Σ(Relevance Penalty) = 5,160.0
+  - Σ(Misplaced * 10) = 4,670.0
+- L (LLOC): Total L = 5,829. Contributes 1,165.8 points to the total score. Large God Classes (L > 400) contribute substantial points even when complexity is moderate.
+- K_adj (God Files): Files with >3 public classes (like in 'sessions.py' or 'json/tag.py') trigger a 10-point penalty per extra class.
+- Result: 29,298.80 (Significant Slob)
+
+### python-dotenv
+Formula Applied: S_total = Σ [ (C^2) + (L/5) + (G=15 * 5) + (K=0) + (R_pen=30) ]
+Formula Applied: S_total (6,264.40) = Σ(C²=772) + Σ(L/5=137.4) + Σ(Penalty=5,355.0)
+- Σ(Penalty) Breakdown:
+  - Σ(Globals * 5) = 2,005.0
+  - Σ(God Class * 10) = 460.0
+  - Σ(Relevance Penalty) = 1,740.0
+  - Σ(Misplaced * 10) = 1,150.0
+- L (LLOC): Total L = 687. Contributes 137.4 points to the total score.
+- G (Globals): G=15 in the parser file adds a 75-point penalty to every helper function.
+- R_pen (Relevance): The high density of global variables and diverse parser helpers results in a relevance score below 0.5, triggering the 30-point flat penalty.
+- Result: 6,264.40 (Maintainable but Slobby)

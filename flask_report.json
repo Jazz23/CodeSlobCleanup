@@ -1,0 +1,7417 @@
+{
+  "files_scanned": 35,
+  "slob_candidates": [
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "register",
+      "line": 273,
+      "metrics": {
+        "complexity": 23,
+        "loc": 52,
+        "slob_score": 539.4,
+        "semantic_penalty": 55.0,
+        "total_score": 594.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "routes_command",
+      "line": 1061,
+      "metrics": {
+        "complexity": 18,
+        "loc": 33,
+        "slob_score": 330.6,
+        "semantic_penalty": 150.0,
+        "total_score": 480.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "make_response",
+      "line": 1223,
+      "metrics": {
+        "complexity": 16,
+        "loc": 41,
+        "slob_score": 264.2,
+        "semantic_penalty": 55.0,
+        "total_score": 319.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "find_app_by_string",
+      "line": 120,
+      "metrics": {
+        "complexity": 14,
+        "loc": 77,
+        "slob_score": 211.4,
+        "semantic_penalty": 150.0,
+        "total_score": 361.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "explain_template_loading_attempts",
+      "line": 124,
+      "metrics": {
+        "complexity": 13,
+        "loc": 36,
+        "slob_score": 176.2,
+        "semantic_penalty": 30.0,
+        "total_score": 206.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "url_for",
+      "line": 1101,
+      "metrics": {
+        "complexity": 13,
+        "loc": 34,
+        "slob_score": 175.8,
+        "semantic_penalty": 55.0,
+        "total_score": 230.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "add_url_rule",
+      "line": 602,
+      "metrics": {
+        "complexity": 13,
+        "loc": 29,
+        "slob_score": 174.8,
+        "semantic_penalty": 25.0,
+        "total_score": 199.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "load_dotenv",
+      "line": 698,
+      "metrics": {
+        "complexity": 13,
+        "loc": 22,
+        "slob_score": 173.4,
+        "semantic_penalty": 150.0,
+        "total_score": 323.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "find_best_app",
+      "line": 41,
+      "metrics": {
+        "complexity": 12,
+        "loc": 49,
+        "slob_score": 153.8,
+        "semantic_penalty": 150.0,
+        "total_score": 303.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "run",
+      "line": 631,
+      "metrics": {
+        "complexity": 12,
+        "loc": 36,
+        "slob_score": 151.2,
+        "semantic_penalty": 55.0,
+        "total_score": 206.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "Flask",
+      "line": 108,
+      "metrics": {
+        "complexity": 5,
+        "loc": 413,
+        "slob_score": 107.6,
+        "semantic_penalty": 55.0,
+        "total_score": 162.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "get_root_path",
+      "line": 574,
+      "metrics": {
+        "complexity": 10,
+        "loc": 24,
+        "slob_score": 104.8,
+        "semantic_penalty": 0.0,
+        "total_score": 104.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_validate_key",
+      "line": 828,
+      "metrics": {
+        "complexity": 10,
+        "loc": 22,
+        "slob_score": 104.4,
+        "semantic_penalty": 150.0,
+        "total_score": 254.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "_find_package_path",
+      "line": 709,
+      "metrics": {
+        "complexity": 10,
+        "loc": 22,
+        "slob_score": 104.4,
+        "semantic_penalty": 45.0,
+        "total_score": 149.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "__init_subclass__",
+      "line": 253,
+      "metrics": {
+        "complexity": 10,
+        "loc": 13,
+        "slob_score": 102.6,
+        "semantic_penalty": 55.0,
+        "total_score": 157.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "__init__",
+      "line": 49,
+      "metrics": {
+        "complexity": 9,
+        "loc": 16,
+        "slob_score": 84.2,
+        "semantic_penalty": 35.0,
+        "total_score": 119.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "load_app",
+      "line": 333,
+      "metrics": {
+        "complexity": 8,
+        "loc": 26,
+        "slob_score": 69.2,
+        "semantic_penalty": 150.0,
+        "total_score": 219.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "preprocess_request",
+      "line": 1365,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "slob_score": 67.0,
+        "semantic_penalty": 55.0,
+        "total_score": 122.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "_dump_loader_info",
+      "line": 107,
+      "metrics": {
+        "complexity": 8,
+        "loc": 15,
+        "slob_score": 67.0,
+        "semantic_penalty": 30.0,
+        "total_score": 97.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "App",
+      "line": 59,
+      "metrics": {
+        "complexity": 3,
+        "loc": 266,
+        "slob_score": 62.2,
+        "semantic_penalty": 25.0,
+        "total_score": 87.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "Blueprint",
+      "line": 119,
+      "metrics": {
+        "complexity": 3,
+        "loc": 233,
+        "slob_score": 55.6,
+        "semantic_penalty": 55.0,
+        "total_score": 110.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_prefixed_env",
+      "line": 126,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "slob_score": 53.6,
+        "semantic_penalty": 0.0,
+        "total_score": 53.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "wsgi_app",
+      "line": 1547,
+      "metrics": {
+        "complexity": 7,
+        "loc": 22,
+        "slob_score": 53.4,
+        "semantic_penalty": 55.0,
+        "total_score": 108.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "examples/tutorial/flaskr/auth.py",
+      "function": "register",
+      "line": 47,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "slob_score": 53.2,
+        "semantic_penalty": 5.0,
+        "total_score": 58.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "pop",
+      "line": 432,
+      "metrics": {
+        "complexity": 7,
+        "loc": 21,
+        "slob_score": 53.2,
+        "semantic_penalty": 5.0,
+        "total_score": 58.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "open",
+      "line": 204,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "slob_score": 53.0,
+        "semantic_penalty": 35.0,
+        "total_score": 88.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "MethodView",
+      "line": 138,
+      "metrics": {
+        "complexity": 7,
+        "loc": 20,
+        "slob_score": 53.0,
+        "semantic_penalty": 35.0,
+        "total_score": 88.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "create_url_adapter",
+      "line": 508,
+      "metrics": {
+        "complexity": 7,
+        "loc": 16,
+        "slob_score": 52.2,
+        "semantic_penalty": 55.0,
+        "total_score": 107.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "_find_error_handler",
+      "line": 865,
+      "metrics": {
+        "complexity": 7,
+        "loc": 14,
+        "slob_score": 51.8,
+        "semantic_penalty": 25.0,
+        "total_score": 76.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "__init_subclass__",
+      "line": 165,
+      "metrics": {
+        "complexity": 7,
+        "loc": 12,
+        "slob_score": 51.4,
+        "semantic_penalty": 35.0,
+        "total_score": 86.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "handle_user_exception",
+      "line": 864,
+      "metrics": {
+        "complexity": 7,
+        "loc": 10,
+        "slob_score": 51.0,
+        "semantic_penalty": 55.0,
+        "total_score": 106.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "_prepare_response_obj",
+      "line": 75,
+      "metrics": {
+        "complexity": 7,
+        "loc": 8,
+        "slob_score": 50.6,
+        "semantic_penalty": 0.0,
+        "total_score": 50.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "Config",
+      "line": 50,
+      "metrics": {
+        "complexity": 5,
+        "loc": 98,
+        "slob_score": 44.6,
+        "semantic_penalty": 0.0,
+        "total_score": 44.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "ScriptInfo",
+      "line": 293,
+      "metrics": {
+        "complexity": 6,
+        "loc": 38,
+        "slob_score": 43.6,
+        "semantic_penalty": 150.0,
+        "total_score": 193.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "BlueprintSetupState",
+      "line": 34,
+      "metrics": {
+        "complexity": 5,
+        "loc": 82,
+        "slob_score": 41.4,
+        "semantic_penalty": 55.0,
+        "total_score": 96.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "add_url_rule",
+      "line": 413,
+      "metrics": {
+        "complexity": 6,
+        "loc": 27,
+        "slob_score": 41.4,
+        "semantic_penalty": 55.0,
+        "total_score": 96.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "shell_command",
+      "line": 1001,
+      "metrics": {
+        "complexity": 6,
+        "loc": 22,
+        "slob_score": 40.4,
+        "semantic_penalty": 150.0,
+        "total_score": 190.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "EnvironBuilder",
+      "line": 27,
+      "metrics": {
+        "complexity": 6,
+        "loc": 21,
+        "slob_score": 40.2,
+        "semantic_penalty": 35.0,
+        "total_score": 75.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "Scaffold",
+      "line": 52,
+      "metrics": {
+        "complexity": 2,
+        "loc": 180,
+        "slob_score": 40.0,
+        "semantic_penalty": 45.0,
+        "total_score": 85.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "convert",
+      "line": 791,
+      "metrics": {
+        "complexity": 6,
+        "loc": 19,
+        "slob_score": 39.8,
+        "semantic_penalty": 150.0,
+        "total_score": 189.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "handle_exception",
+      "line": 896,
+      "metrics": {
+        "complexity": 6,
+        "loc": 19,
+        "slob_score": 39.8,
+        "semantic_penalty": 55.0,
+        "total_score": 94.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "_get_exc_class_and_code",
+      "line": 657,
+      "metrics": {
+        "complexity": 6,
+        "loc": 19,
+        "slob_score": 39.8,
+        "semantic_penalty": 45.0,
+        "total_score": 84.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "prepare_import",
+      "line": 200,
+      "metrics": {
+        "complexity": 6,
+        "loc": 18,
+        "slob_score": 39.6,
+        "semantic_penalty": 150.0,
+        "total_score": 189.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "_merge_blueprint_funcs",
+      "line": 379,
+      "metrics": {
+        "complexity": 6,
+        "loc": 18,
+        "slob_score": 39.6,
+        "semantic_penalty": 55.0,
+        "total_score": 94.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "handle_url_build_error",
+      "line": 978,
+      "metrics": {
+        "complexity": 6,
+        "loc": 13,
+        "slob_score": 38.6,
+        "semantic_penalty": 25.0,
+        "total_score": 63.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "get_flashed_messages",
+      "line": 347,
+      "metrics": {
+        "complexity": 6,
+        "loc": 12,
+        "slob_score": 38.4,
+        "semantic_penalty": 0.0,
+        "total_score": 38.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "process_response",
+      "line": 1393,
+      "metrics": {
+        "complexity": 6,
+        "loc": 11,
+        "slob_score": 38.2,
+        "semantic_penalty": 55.0,
+        "total_score": 93.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "trap_http_exception",
+      "line": 890,
+      "metrics": {
+        "complexity": 6,
+        "loc": 10,
+        "slob_score": 38.0,
+        "semantic_penalty": 25.0,
+        "total_score": 63.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "_default",
+      "line": 108,
+      "metrics": {
+        "complexity": 6,
+        "loc": 10,
+        "slob_score": 38.0,
+        "semantic_penalty": 0.0,
+        "total_score": 38.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "FlaskGroup",
+      "line": 531,
+      "metrics": {
+        "complexity": 5,
+        "loc": 61,
+        "slob_score": 37.2,
+        "semantic_penalty": 150.0,
+        "total_score": 187.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "run_command",
+      "line": 935,
+      "metrics": {
+        "complexity": 5,
+        "loc": 58,
+        "slob_score": 36.6,
+        "semantic_penalty": 150.0,
+        "total_score": 186.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SecureCookieSessionInterface",
+      "line": 298,
+      "metrics": {
+        "complexity": 5,
+        "loc": 51,
+        "slob_score": 35.2,
+        "semantic_penalty": 105.0,
+        "total_score": 140.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "add_url_rule",
+      "line": 87,
+      "metrics": {
+        "complexity": 5,
+        "loc": 29,
+        "slob_score": 30.8,
+        "semantic_penalty": 55.0,
+        "total_score": 85.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "AppContext",
+      "line": 259,
+      "metrics": {
+        "complexity": 3,
+        "loc": 107,
+        "slob_score": 30.4,
+        "semantic_penalty": 5.0,
+        "total_score": 35.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "CertParamType",
+      "line": 780,
+      "metrics": {
+        "complexity": 5,
+        "loc": 24,
+        "slob_score": 29.8,
+        "semantic_penalty": 150.0,
+        "total_score": 179.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "docs/conf.py",
+      "function": "github_link",
+      "line": 72,
+      "metrics": {
+        "complexity": 5,
+        "loc": 22,
+        "slob_score": 29.4,
+        "semantic_penalty": 110.0,
+        "total_score": 139.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 22
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "save_session",
+      "line": 351,
+      "metrics": {
+        "complexity": 5,
+        "loc": 21,
+        "slob_score": 29.2,
+        "semantic_penalty": 105.0,
+        "total_score": 134.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "_get_source_explained",
+      "line": 63,
+      "metrics": {
+        "complexity": 5,
+        "loc": 19,
+        "slob_score": 28.8,
+        "semantic_penalty": 30.0,
+        "total_score": 58.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/auth.py",
+      "function": "login",
+      "line": 85,
+      "metrics": {
+        "complexity": 5,
+        "loc": 18,
+        "slob_score": 28.6,
+        "semantic_penalty": 5.0,
+        "total_score": 33.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "__init__",
+      "line": 563,
+      "metrics": {
+        "complexity": 5,
+        "loc": 18,
+        "slob_score": 28.6,
+        "semantic_penalty": 150.0,
+        "total_score": 178.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "get_namespace",
+      "line": 323,
+      "metrics": {
+        "complexity": 5,
+        "loc": 15,
+        "slob_score": 28.0,
+        "semantic_penalty": 0.0,
+        "total_score": 28.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "locate_app",
+      "line": 241,
+      "metrics": {
+        "complexity": 5,
+        "loc": 15,
+        "slob_score": 28.0,
+        "semantic_penalty": 150.0,
+        "total_score": 178.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "find_package",
+      "line": 754,
+      "metrics": {
+        "complexity": 5,
+        "loc": 15,
+        "slob_score": 28.0,
+        "semantic_penalty": 45.0,
+        "total_score": 73.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "get_command",
+      "line": 609,
+      "metrics": {
+        "complexity": 5,
+        "loc": 14,
+        "slob_score": 27.8,
+        "semantic_penalty": 150.0,
+        "total_score": 177.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "full_dispatch_request",
+      "line": 991,
+      "metrics": {
+        "complexity": 5,
+        "loc": 14,
+        "slob_score": 27.8,
+        "semantic_penalty": 55.0,
+        "total_score": 82.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_file",
+      "line": 256,
+      "metrics": {
+        "complexity": 5,
+        "loc": 12,
+        "slob_score": 27.4,
+        "semantic_penalty": 0.0,
+        "total_score": 27.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "update_template_context",
+      "line": 589,
+      "metrics": {
+        "complexity": 5,
+        "loc": 12,
+        "slob_score": 27.4,
+        "semantic_penalty": 55.0,
+        "total_score": 82.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "register",
+      "line": 256,
+      "metrics": {
+        "complexity": 5,
+        "loc": 12,
+        "slob_score": 27.4,
+        "semantic_penalty": 90.0,
+        "total_score": 117.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/logging.py",
+      "function": "has_level_handler",
+      "line": 31,
+      "metrics": {
+        "complexity": 5,
+        "loc": 11,
+        "slob_score": 27.2,
+        "semantic_penalty": 5.0,
+        "total_score": 32.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "list_templates",
+      "line": 107,
+      "metrics": {
+        "complexity": 5,
+        "loc": 11,
+        "slob_score": 27.2,
+        "semantic_penalty": 30.0,
+        "total_score": 57.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "DefaultJSONProvider",
+      "line": 124,
+      "metrics": {
+        "complexity": 3,
+        "loc": 91,
+        "slob_score": 27.2,
+        "semantic_penalty": 0.0,
+        "total_score": 27.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "inject_url_defaults",
+      "line": 957,
+      "metrics": {
+        "complexity": 5,
+        "loc": 10,
+        "slob_score": 27.0,
+        "semantic_penalty": 25.0,
+        "total_score": 52.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_env_file_callback",
+      "line": 493,
+      "metrics": {
+        "complexity": 5,
+        "loc": 9,
+        "slob_score": 26.8,
+        "semantic_penalty": 150.0,
+        "total_score": 176.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "DispatchingJinjaLoader",
+      "line": 48,
+      "metrics": {
+        "complexity": 4,
+        "loc": 53,
+        "slob_score": 26.6,
+        "semantic_penalty": 30.0,
+        "total_score": 56.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "show_server_banner",
+      "line": 766,
+      "metrics": {
+        "complexity": 5,
+        "loc": 8,
+        "slob_score": 26.6,
+        "semantic_penalty": 150.0,
+        "total_score": 176.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "_untag_scan",
+      "line": 309,
+      "metrics": {
+        "complexity": 5,
+        "loc": 8,
+        "slob_score": 26.6,
+        "semantic_penalty": 90.0,
+        "total_score": 116.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "raise_routing_exception",
+      "line": 561,
+      "metrics": {
+        "complexity": 5,
+        "loc": 6,
+        "slob_score": 26.2,
+        "semantic_penalty": 55.0,
+        "total_score": 81.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TaggedJSONSerializer",
+      "line": 219,
+      "metrics": {
+        "complexity": 4,
+        "loc": 51,
+        "slob_score": 26.2,
+        "semantic_penalty": 90.0,
+        "total_score": 116.2
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "parse_args",
+      "line": 678,
+      "metrics": {
+        "complexity": 5,
+        "loc": 5,
+        "slob_score": 26.0,
+        "semantic_penalty": 150.0,
+        "total_score": 176.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "_load_form_data",
+      "line": 197,
+      "metrics": {
+        "complexity": 5,
+        "loc": 5,
+        "slob_score": 26.0,
+        "semantic_penalty": 30.0,
+        "total_score": 56.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "session_transaction",
+      "line": 136,
+      "metrics": {
+        "complexity": 4,
+        "loc": 47,
+        "slob_score": 25.4,
+        "semantic_penalty": 35.0,
+        "total_score": 60.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "send_file",
+      "line": 404,
+      "metrics": {
+        "complexity": 1,
+        "loc": 122,
+        "slob_score": 25.4,
+        "semantic_penalty": 0.0,
+        "total_score": 25.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "Request",
+      "line": 18,
+      "metrics": {
+        "complexity": 3,
+        "loc": 81,
+        "slob_score": 25.2,
+        "semantic_penalty": 30.0,
+        "total_score": 55.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "FlaskClient",
+      "line": 109,
+      "metrics": {
+        "complexity": 3,
+        "loc": 71,
+        "slob_score": 23.2,
+        "semantic_penalty": 35.0,
+        "total_score": 58.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "View",
+      "line": 16,
+      "metrics": {
+        "complexity": 4,
+        "loc": 36,
+        "slob_score": 23.2,
+        "semantic_penalty": 35.0,
+        "total_score": 58.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "response",
+      "line": 189,
+      "metrics": {
+        "complexity": 4,
+        "loc": 26,
+        "slob_score": 21.2,
+        "semantic_penalty": 0.0,
+        "total_score": 21.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "as_view",
+      "line": 86,
+      "metrics": {
+        "complexity": 4,
+        "loc": 22,
+        "slob_score": 20.4,
+        "semantic_penalty": 35.0,
+        "total_score": 55.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "__init__",
+      "line": 309,
+      "metrics": {
+        "complexity": 3,
+        "loc": 53,
+        "slob_score": 19.6,
+        "semantic_penalty": 55.0,
+        "total_score": 74.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "examples/tutorial/flaskr/blog.py",
+      "function": "update",
+      "line": 88,
+      "metrics": {
+        "complexity": 4,
+        "loc": 17,
+        "slob_score": 19.4,
+        "semantic_penalty": 5.0,
+        "total_score": 24.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "__init__",
+      "line": 174,
+      "metrics": {
+        "complexity": 4,
+        "loc": 17,
+        "slob_score": 19.4,
+        "semantic_penalty": 55.0,
+        "total_score": 74.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/blog.py",
+      "function": "create",
+      "line": 62,
+      "metrics": {
+        "complexity": 4,
+        "loc": 16,
+        "slob_score": 19.2,
+        "semantic_penalty": 5.0,
+        "total_score": 24.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_pyfile",
+      "line": 187,
+      "metrics": {
+        "complexity": 4,
+        "loc": 15,
+        "slob_score": 19.0,
+        "semantic_penalty": 0.0,
+        "total_score": 19.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "create_jinja_environment",
+      "line": 468,
+      "metrics": {
+        "complexity": 4,
+        "loc": 14,
+        "slob_score": 18.8,
+        "semantic_penalty": 55.0,
+        "total_score": 73.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "open_session",
+      "line": 337,
+      "metrics": {
+        "complexity": 4,
+        "loc": 13,
+        "slob_score": 18.6,
+        "semantic_penalty": 105.0,
+        "total_score": 123.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "dispatch_request",
+      "line": 965,
+      "metrics": {
+        "complexity": 4,
+        "loc": 12,
+        "slob_score": 18.4,
+        "semantic_penalty": 55.0,
+        "total_score": 73.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_mapping",
+      "line": 304,
+      "metrics": {
+        "complexity": 4,
+        "loc": 11,
+        "slob_score": 18.2,
+        "semantic_penalty": 0.0,
+        "total_score": 18.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "handle_http_exception",
+      "line": 829,
+      "metrics": {
+        "complexity": 4,
+        "loc": 10,
+        "slob_score": 18.0,
+        "semantic_penalty": 55.0,
+        "total_score": 73.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "FormDataRoutingRedirect",
+      "line": 50,
+      "metrics": {
+        "complexity": 4,
+        "loc": 10,
+        "slob_score": 18.0,
+        "semantic_penalty": 30.0,
+        "total_score": 48.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "session",
+      "line": 381,
+      "metrics": {
+        "complexity": 4,
+        "loc": 10,
+        "slob_score": 18.0,
+        "semantic_penalty": 5.0,
+        "total_score": 23.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "push",
+      "line": 409,
+      "metrics": {
+        "complexity": 4,
+        "loc": 9,
+        "slob_score": 17.8,
+        "semantic_penalty": 5.0,
+        "total_score": 22.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/blog.py",
+      "function": "get_post",
+      "line": 28,
+      "metrics": {
+        "complexity": 4,
+        "loc": 8,
+        "slob_score": 17.6,
+        "semantic_penalty": 5.0,
+        "total_score": 22.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/logging.py",
+      "function": "create_logger",
+      "line": 58,
+      "metrics": {
+        "complexity": 4,
+        "loc": 8,
+        "slob_score": 17.6,
+        "semantic_penalty": 5.0,
+        "total_score": 22.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "_iter_loaders",
+      "line": 97,
+      "metrics": {
+        "complexity": 4,
+        "loc": 8,
+        "slob_score": 17.6,
+        "semantic_penalty": 30.0,
+        "total_score": 47.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_object",
+      "line": 218,
+      "metrics": {
+        "complexity": 4,
+        "loc": 7,
+        "slob_score": 17.4,
+        "semantic_penalty": 0.0,
+        "total_score": 17.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "on_json_loading_failed",
+      "line": 212,
+      "metrics": {
+        "complexity": 4,
+        "loc": 7,
+        "slob_score": 17.4,
+        "semantic_penalty": 30.0,
+        "total_score": 47.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "do_teardown_request",
+      "line": 1419,
+      "metrics": {
+        "complexity": 4,
+        "loc": 7,
+        "slob_score": 17.4,
+        "semantic_penalty": 55.0,
+        "total_score": 72.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_set_debug",
+      "line": 468,
+      "metrics": {
+        "complexity": 4,
+        "loc": 6,
+        "slob_score": 17.2,
+        "semantic_penalty": 150.0,
+        "total_score": 167.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "dispatch_request",
+      "line": 182,
+      "metrics": {
+        "complexity": 4,
+        "loc": 6,
+        "slob_score": 17.2,
+        "semantic_penalty": 35.0,
+        "total_score": 52.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__init__",
+      "line": 299,
+      "metrics": {
+        "complexity": 3,
+        "loc": 36,
+        "slob_score": 16.2,
+        "semantic_penalty": 5.0,
+        "total_score": 21.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "test_client",
+      "line": 754,
+      "metrics": {
+        "complexity": 2,
+        "loc": 56,
+        "slob_score": 15.2,
+        "semantic_penalty": 55.0,
+        "total_score": 70.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "JSONProvider",
+      "line": 19,
+      "metrics": {
+        "complexity": 3,
+        "loc": 29,
+        "slob_score": 14.8,
+        "semantic_penalty": 0.0,
+        "total_score": 14.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/blueprints.py",
+      "function": "Blueprint",
+      "line": 18,
+      "metrics": {
+        "complexity": 3,
+        "loc": 27,
+        "slob_score": 14.4,
+        "semantic_penalty": 30.0,
+        "total_score": 44.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "__init__",
+      "line": 279,
+      "metrics": {
+        "complexity": 3,
+        "loc": 25,
+        "slob_score": 14.0,
+        "semantic_penalty": 25.0,
+        "total_score": 39.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SessionInterface",
+      "line": 114,
+      "metrics": {
+        "complexity": 2,
+        "loc": 45,
+        "slob_score": 13.0,
+        "semantic_penalty": 105.0,
+        "total_score": 118.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_signing_serializer",
+      "line": 317,
+      "metrics": {
+        "complexity": 3,
+        "loc": 17,
+        "slob_score": 12.4,
+        "semantic_penalty": 105.0,
+        "total_score": 117.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "__init__",
+      "line": 41,
+      "metrics": {
+        "complexity": 3,
+        "loc": 17,
+        "slob_score": 12.4,
+        "semantic_penalty": 55.0,
+        "total_score": 67.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "should_set_cookie",
+      "line": 247,
+      "metrics": {
+        "complexity": 3,
+        "loc": 14,
+        "slob_score": 11.8,
+        "semantic_penalty": 105.0,
+        "total_score": 116.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TagDict",
+      "line": 93,
+      "metrics": {
+        "complexity": 3,
+        "loc": 14,
+        "slob_score": 11.8,
+        "semantic_penalty": 90.0,
+        "total_score": 101.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "FlaskCliRunner",
+      "line": 265,
+      "metrics": {
+        "complexity": 3,
+        "loc": 13,
+        "slob_score": 11.6,
+        "semantic_penalty": 35.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "Response",
+      "line": 222,
+      "metrics": {
+        "complexity": 3,
+        "loc": 12,
+        "slob_score": 11.4,
+        "semantic_penalty": 30.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_called_with_wrong_args",
+      "line": 94,
+      "metrics": {
+        "complexity": 3,
+        "loc": 11,
+        "slob_score": 11.2,
+        "semantic_penalty": 150.0,
+        "total_score": 161.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "list_commands",
+      "line": 636,
+      "metrics": {
+        "complexity": 3,
+        "loc": 11,
+        "slob_score": 11.2,
+        "semantic_penalty": 150.0,
+        "total_score": 161.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "finalize_request",
+      "line": 1020,
+      "metrics": {
+        "complexity": 3,
+        "loc": 11,
+        "slob_score": 11.2,
+        "semantic_penalty": 55.0,
+        "total_score": 66.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "DebugFilesKeyError",
+      "line": 23,
+      "metrics": {
+        "complexity": 3,
+        "loc": 11,
+        "slob_score": 11.2,
+        "semantic_penalty": 30.0,
+        "total_score": 41.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "url_for",
+      "line": 187,
+      "metrics": {
+        "complexity": 1,
+        "loc": 51,
+        "slob_score": 11.2,
+        "semantic_penalty": 0.0,
+        "total_score": 11.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "_AppCtxGlobals",
+      "line": 29,
+      "metrics": {
+        "complexity": 2,
+        "loc": 35,
+        "slob_score": 11.0,
+        "semantic_penalty": 5.0,
+        "total_score": 16.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "name",
+      "line": 423,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 25.0,
+        "total_score": 35.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "from_envvar",
+      "line": 102,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 0.0,
+        "total_score": 10.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/blueprints.py",
+      "function": "get_send_file_max_age",
+      "line": 55,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 30.0,
+        "total_score": 40.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/blueprints.py",
+      "function": "open_resource",
+      "line": 104,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 30.0,
+        "total_score": 40.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "get_send_file_max_age",
+      "line": 364,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 55.0,
+        "total_score": 65.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "open_resource",
+      "line": 413,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 55.0,
+        "total_score": 65.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "__init__",
+      "line": 57,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 30.0,
+        "total_score": 40.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "match_request",
+      "line": 398,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 5.0,
+        "total_score": 15.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "invoke",
+      "line": 275,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 35.0,
+        "total_score": 45.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "static_url_path",
+      "line": 249,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 45.0,
+        "total_score": 55.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "PassDict",
+      "line": 119,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 90.0,
+        "total_score": 100.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "untag",
+      "line": 297,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 90.0,
+        "total_score": 100.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "examples/celery/src/task_app/views.py",
+      "function": "result",
+      "line": 11,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 5.0,
+        "total_score": 15.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__get__",
+      "line": 35,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 0.0,
+        "total_score": 10.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "Environment",
+      "line": 35,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 30.0,
+        "total_score": 40.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "_get_source_fast",
+      "line": 87,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 30.0,
+        "total_score": 40.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "get_version",
+      "line": 267,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 150.0,
+        "total_score": 160.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_content_length",
+      "line": 60,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 30.0,
+        "total_score": 40.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_form_memory_size",
+      "line": 93,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 30.0,
+        "total_score": 40.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_form_parts",
+      "line": 120,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 30.0,
+        "total_score": 40.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "__init__",
+      "line": 28,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 30.0,
+        "total_score": 40.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "after_this_request",
+      "line": 117,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 5.0,
+        "total_score": 15.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "make_response",
+      "line": 138,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 0.0,
+        "total_score": 10.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "PassList",
+      "line": 147,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 90.0,
+        "total_score": 100.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_load_plugin_commands",
+      "line": 600,
+      "metrics": {
+        "complexity": 3,
+        "loc": 6,
+        "slob_score": 10.2,
+        "semantic_penalty": 150.0,
+        "total_score": 160.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "SeparatedPathType",
+      "line": 867,
+      "metrics": {
+        "complexity": 3,
+        "loc": 6,
+        "slob_score": 10.2,
+        "semantic_penalty": 150.0,
+        "total_score": 160.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "blueprint",
+      "line": 162,
+      "metrics": {
+        "complexity": 3,
+        "loc": 6,
+        "slob_score": 10.2,
+        "semantic_penalty": 30.0,
+        "total_score": 40.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "tag",
+      "line": 289,
+      "metrics": {
+        "complexity": 3,
+        "loc": 6,
+        "slob_score": 10.2,
+        "semantic_penalty": 90.0,
+        "total_score": 100.2
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "make_context",
+      "line": 657,
+      "metrics": {
+        "complexity": 3,
+        "loc": 5,
+        "slob_score": 10.0,
+        "semantic_penalty": 150.0,
+        "total_score": 160.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 103,
+      "metrics": {
+        "complexity": 3,
+        "loc": 5,
+        "slob_score": 10.0,
+        "semantic_penalty": 90.0,
+        "total_score": 100.0
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "_make_timedelta",
+      "line": 72,
+      "metrics": {
+        "complexity": 3,
+        "loc": 4,
+        "slob_score": 9.8,
+        "semantic_penalty": 55.0,
+        "total_score": 64.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "_make_timedelta",
+      "line": 52,
+      "metrics": {
+        "complexity": 3,
+        "loc": 4,
+        "slob_score": 9.8,
+        "semantic_penalty": 25.0,
+        "total_score": 34.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "send_from_directory",
+      "line": 530,
+      "metrics": {
+        "complexity": 1,
+        "loc": 41,
+        "slob_score": 9.2,
+        "semantic_penalty": 0.0,
+        "total_score": 9.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "__init__",
+      "line": 75,
+      "metrics": {
+        "complexity": 2,
+        "loc": 24,
+        "slob_score": 8.8,
+        "semantic_penalty": 45.0,
+        "total_score": 53.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "stream_with_context",
+      "line": 62,
+      "metrics": {
+        "complexity": 2,
+        "loc": 22,
+        "slob_score": 8.4,
+        "semantic_penalty": 0.0,
+        "total_score": 8.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "JSONTag",
+      "line": 60,
+      "metrics": {
+        "complexity": 2,
+        "loc": 21,
+        "slob_score": 8.2,
+        "semantic_penalty": 90.0,
+        "total_score": 98.2
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/__init__.py",
+      "function": "create_app",
+      "line": 6,
+      "metrics": {
+        "complexity": 2,
+        "loc": 20,
+        "slob_score": 8.0,
+        "semantic_penalty": 0.0,
+        "total_score": 8.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "ConfigAttribute",
+      "line": 20,
+      "metrics": {
+        "complexity": 2,
+        "loc": 20,
+        "slob_score": 8.0,
+        "semantic_penalty": 0.0,
+        "total_score": 8.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/blueprints.py",
+      "function": "send_static_file",
+      "line": 82,
+      "metrics": {
+        "complexity": 2,
+        "loc": 20,
+        "slob_score": 8.0,
+        "semantic_penalty": 30.0,
+        "total_score": 38.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "send_static_file",
+      "line": 391,
+      "metrics": {
+        "complexity": 2,
+        "loc": 20,
+        "slob_score": 8.0,
+        "semantic_penalty": 55.0,
+        "total_score": 63.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SecureCookieSession",
+      "line": 52,
+      "metrics": {
+        "complexity": 2,
+        "loc": 18,
+        "slob_score": 7.6,
+        "semantic_penalty": 105.0,
+        "total_score": 112.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "flash",
+      "line": 313,
+      "metrics": {
+        "complexity": 1,
+        "loc": 31,
+        "slob_score": 7.2,
+        "semantic_penalty": 0.0,
+        "total_score": 7.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "AppGroup",
+      "line": 405,
+      "metrics": {
+        "complexity": 2,
+        "loc": 14,
+        "slob_score": 6.8,
+        "semantic_penalty": 150.0,
+        "total_score": 156.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "SessionMixin",
+      "line": 24,
+      "metrics": {
+        "complexity": 2,
+        "loc": 12,
+        "slob_score": 6.4,
+        "semantic_penalty": 105.0,
+        "total_score": 111.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "examples/tutorial/flaskr/auth.py",
+      "function": "load_logged_in_user",
+      "line": 33,
+      "metrics": {
+        "complexity": 2,
+        "loc": 10,
+        "slob_score": 6.0,
+        "semantic_penalty": 5.0,
+        "total_score": 11.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "copy_current_request_context",
+      "line": 153,
+      "metrics": {
+        "complexity": 2,
+        "loc": 10,
+        "slob_score": 6.0,
+        "semantic_penalty": 5.0,
+        "total_score": 11.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TagMarkup",
+      "line": 173,
+      "metrics": {
+        "complexity": 2,
+        "loc": 10,
+        "slob_score": 6.0,
+        "semantic_penalty": 90.0,
+        "total_score": 96.0
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "_default_template_ctx_processor",
+      "line": 21,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 30.0,
+        "total_score": 35.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_filter",
+      "line": 450,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 55.0,
+        "total_score": 60.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_test",
+      "line": 504,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 55.0,
+        "total_score": 60.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_global",
+      "line": 562,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 55.0,
+        "total_score": 60.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_filter",
+      "line": 667,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 25.0,
+        "total_score": 30.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_test",
+      "line": 717,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 25.0,
+        "total_score": 30.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_global",
+      "line": 776,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 25.0,
+        "total_score": 30.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TagTuple",
+      "line": 133,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 90.0,
+        "total_score": 95.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TagBytes",
+      "line": 159,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 90.0,
+        "total_score": 95.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TagUUID",
+      "line": 191,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 90.0,
+        "total_score": 95.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "TagDateTime",
+      "line": 205,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 90.0,
+        "total_score": 95.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "make_config",
+      "line": 479,
+      "metrics": {
+        "complexity": 2,
+        "loc": 8,
+        "slob_score": 5.6,
+        "semantic_penalty": 25.0,
+        "total_score": 30.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/tasks.py",
+      "function": "process",
+      "line": 18,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 0.0,
+        "total_score": 5.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "make_shell_context",
+      "line": 619,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 55.0,
+        "total_score": 60.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "async_to_sync",
+      "line": 1078,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 55.0,
+        "total_score": 60.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/__init__.py",
+      "function": "dump",
+      "line": 47,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 0.0,
+        "total_score": 5.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "__init__",
+      "line": 249,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 90.0,
+        "total_score": 95.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/db.py",
+      "function": "get_db",
+      "line": 9,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 0.0,
+        "total_score": 5.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "NullSession",
+      "line": 97,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 105.0,
+        "total_score": 110.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "__getattr__",
+      "line": 65,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 40.0,
+        "total_score": 45.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_set_app",
+      "line": 440,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 150.0,
+        "total_score": 155.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "blueprints",
+      "line": 181,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 30.0,
+        "total_score": 35.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "open_instance_resource",
+      "line": 446,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 55.0,
+        "total_score": 60.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "test_cli_runner",
+      "line": 812,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 55.0,
+        "total_score": 60.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__getattr__",
+      "line": 504,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 5.0,
+        "total_score": 10.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "pop",
+      "line": 78,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 5.0,
+        "total_score": 10.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "get_load_dotenv",
+      "line": 35,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 0.0,
+        "total_score": 5.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "_prepare_send_file_kwargs",
+      "line": 389,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 0.0,
+        "total_score": 5.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "_split_blueprint_path",
+      "line": 632,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 0.0,
+        "total_score": 5.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "auto_find_instance_path",
+      "line": 507,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 25.0,
+        "total_score": 30.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "static_folder",
+      "line": 224,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 45.0,
+        "total_score": 50.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "jinja_loader",
+      "line": 272,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 45.0,
+        "total_score": 50.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/__init__.py",
+      "function": "dumps",
+      "line": 13,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 0.0,
+        "total_score": 5.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/db.py",
+      "function": "close_db",
+      "line": 23,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 0.0,
+        "total_score": 5.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/logging.py",
+      "function": "wsgi_errors_stream",
+      "line": 16,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 5.0,
+        "total_score": 10.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_expiration_time",
+      "line": 237,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 105.0,
+        "total_score": 110.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "__init__",
+      "line": 41,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 30.0,
+        "total_score": 35.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "endpoint",
+      "line": 147,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 30.0,
+        "total_score": 35.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_cookie_size",
+      "line": 247,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 30.0,
+        "total_score": 35.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "ensure_sync",
+      "line": 1064,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 55.0,
+        "total_score": 60.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "do_teardown_appcontext",
+      "line": 1443,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 55.0,
+        "total_score": 60.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__getattr__",
+      "line": 52,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 5.0,
+        "total_score": 10.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__delattr__",
+      "line": 61,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 5.0,
+        "total_score": 10.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__repr__",
+      "line": 110,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 5.0,
+        "total_score": 10.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "request",
+      "line": 370,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 5.0,
+        "total_score": 10.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "_get_werkzeug_version",
+      "line": 100,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 35.0,
+        "total_score": 40.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "_copy_environ",
+      "line": 185,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 35.0,
+        "total_score": 40.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "__enter__",
+      "line": 249,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 35.0,
+        "total_score": 40.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "redirect",
+      "line": 241,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 0.0,
+        "total_score": 5.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "abort",
+      "line": 268,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 0.0,
+        "total_score": 5.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "_check_setup_finished",
+      "line": 213,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 55.0,
+        "total_score": 60.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "register_blueprint",
+      "line": 256,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 55.0,
+        "total_score": 60.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "select_jinja_autoescape",
+      "line": 533,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 25.0,
+        "total_score": 30.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/__init__.py",
+      "function": "loads",
+      "line": 77,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 0.0,
+        "total_score": 5.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/__init__.py",
+      "function": "load",
+      "line": 108,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 0.0,
+        "total_score": 5.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "get_source",
+      "line": 56,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 30.0,
+        "total_score": 34.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "convert",
+      "line": 873,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 150.0,
+        "total_score": 154.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__repr__",
+      "line": 494,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 5.0,
+        "total_score": 9.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "get_debug_flag",
+      "line": 27,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 0.0,
+        "total_score": 4.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "_check_setup_finished",
+      "line": 410,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 25.0,
+        "total_score": 29.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "debug",
+      "line": 560,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 25.0,
+        "total_score": 29.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "redirect",
+      "line": 936,
+      "metrics": {
+        "complexity": 1,
+        "loc": 19,
+        "slob_score": 4.8,
+        "semantic_penalty": 25.0,
+        "total_score": 29.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "_endpoint_from_view_func",
+      "line": 701,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 45.0,
+        "total_score": 49.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "static_folder",
+      "line": 234,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 45.0,
+        "total_score": 49.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "static_url_path",
+      "line": 265,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 45.0,
+        "total_score": 49.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "_method_route",
+      "line": 284,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 45.0,
+        "total_score": 49.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_path",
+      "line": 201,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 105.0,
+        "total_score": 109.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__init__",
+      "line": 94,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 0.0,
+        "total_score": 4.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "ProxyMixin",
+      "line": 17,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 40.0,
+        "total_score": 44.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "has_request_context",
+      "line": 208,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 5.0,
+        "total_score": 9.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "add_template_filter",
+      "line": 696,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 25.0,
+        "total_score": 29.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "add_template_test",
+      "line": 753,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 25.0,
+        "total_score": 29.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "add_template_global",
+      "line": 807,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 25.0,
+        "total_score": 29.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 125,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 90.0,
+        "total_score": 94.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 140,
+      "metrics": {
+        "complexity": 2,
+        "loc": 2,
+        "slob_score": 4.4,
+        "semantic_penalty": 90.0,
+        "total_score": 94.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 153,
+      "metrics": {
+        "complexity": 2,
+        "loc": 2,
+        "slob_score": 4.4,
+        "semantic_penalty": 90.0,
+        "total_score": 94.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "log_exception",
+      "line": 949,
+      "metrics": {
+        "complexity": 1,
+        "loc": 14,
+        "slob_score": 3.8,
+        "semantic_penalty": 55.0,
+        "total_score": 58.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "attach_enctype_error_multidict",
+      "line": 81,
+      "metrics": {
+        "complexity": 1,
+        "loc": 14,
+        "slob_score": 3.8,
+        "semantic_penalty": 30.0,
+        "total_score": 33.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "copy",
+      "line": 354,
+      "metrics": {
+        "complexity": 1,
+        "loc": 13,
+        "slob_score": 3.6,
+        "semantic_penalty": 5.0,
+        "total_score": 8.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/__init__.py",
+      "function": "create_app",
+      "line": 7,
+      "metrics": {
+        "complexity": 1,
+        "loc": 11,
+        "slob_score": 3.2,
+        "semantic_penalty": 0.0,
+        "total_score": 3.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/__init__.py",
+      "function": "celery_init_app",
+      "line": 29,
+      "metrics": {
+        "complexity": 1,
+        "loc": 10,
+        "slob_score": 3.0,
+        "semantic_penalty": 0.0,
+        "total_score": 3.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "__init__",
+      "line": 305,
+      "metrics": {
+        "complexity": 1,
+        "loc": 10,
+        "slob_score": 3.0,
+        "semantic_penalty": 150.0,
+        "total_score": 153.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "with_appcontext",
+      "line": 380,
+      "metrics": {
+        "complexity": 1,
+        "loc": 9,
+        "slob_score": 2.8,
+        "semantic_penalty": 150.0,
+        "total_score": 152.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "test_request_context",
+      "line": 1498,
+      "metrics": {
+        "complexity": 1,
+        "loc": 9,
+        "slob_score": 2.8,
+        "semantic_penalty": 55.0,
+        "total_score": 57.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/auth.py",
+      "function": "login_required",
+      "line": 19,
+      "metrics": {
+        "complexity": 1,
+        "loc": 8,
+        "slob_score": 2.6,
+        "semantic_penalty": 5.0,
+        "total_score": 7.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "_stream",
+      "line": 162,
+      "metrics": {
+        "complexity": 1,
+        "loc": 8,
+        "slob_score": 2.6,
+        "semantic_penalty": 30.0,
+        "total_score": 32.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "command",
+      "line": 413,
+      "metrics": {
+        "complexity": 1,
+        "loc": 8,
+        "slob_score": 2.6,
+        "semantic_penalty": 150.0,
+        "total_score": 152.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "add_ctx",
+      "line": 96,
+      "metrics": {
+        "complexity": 1,
+        "loc": 8,
+        "slob_score": 2.6,
+        "semantic_penalty": 55.0,
+        "total_score": 57.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "__init__",
+      "line": 125,
+      "metrics": {
+        "complexity": 1,
+        "loc": 8,
+        "slob_score": 2.6,
+        "semantic_penalty": 35.0,
+        "total_score": 37.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_errorhandler",
+      "line": 656,
+      "metrics": {
+        "complexity": 1,
+        "loc": 8,
+        "slob_score": 2.6,
+        "semantic_penalty": 55.0,
+        "total_score": 57.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/blog.py",
+      "function": "delete",
+      "line": 115,
+      "metrics": {
+        "complexity": 1,
+        "loc": 7,
+        "slob_score": 2.4,
+        "semantic_penalty": 5.0,
+        "total_score": 7.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "_render",
+      "line": 122,
+      "metrics": {
+        "complexity": 1,
+        "loc": 7,
+        "slob_score": 2.4,
+        "semantic_penalty": 30.0,
+        "total_score": 32.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "remove_ctx",
+      "line": 84,
+      "metrics": {
+        "complexity": 1,
+        "loc": 7,
+        "slob_score": 2.4,
+        "semantic_penalty": 55.0,
+        "total_score": 57.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "_request_from_builder_args",
+      "line": 193,
+      "metrics": {
+        "complexity": 1,
+        "loc": 7,
+        "slob_score": 2.4,
+        "semantic_penalty": 35.0,
+        "total_score": 37.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "route",
+      "line": 336,
+      "metrics": {
+        "complexity": 1,
+        "loc": 7,
+        "slob_score": 2.4,
+        "semantic_penalty": 45.0,
+        "total_score": 47.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/views.py",
+      "function": "add",
+      "line": 22,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 5.0,
+        "total_score": 7.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "make_default_options_response",
+      "line": 1052,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 55.0,
+        "total_score": 57.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "record_once",
+      "line": 233,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 55.0,
+        "total_score": 57.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "setupmethod",
+      "line": 42,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 45.0,
+        "total_score": 47.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "endpoint",
+      "line": 436,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 45.0,
+        "total_score": 47.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "errorhandler",
+      "line": 598,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 45.0,
+        "total_score": 47.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "dumps",
+      "line": 166,
+      "metrics": {
+        "complexity": 1,
+        "loc": 6,
+        "slob_score": 2.2,
+        "semantic_penalty": 0.0,
+        "total_score": 2.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/db.py",
+      "function": "init_db",
+      "line": 33,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 0.0,
+        "total_score": 2.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/blog.py",
+      "function": "index",
+      "line": 17,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 5.0,
+        "total_score": 7.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "__init__",
+      "line": 74,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 105.0,
+        "total_score": 107.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "render_template",
+      "line": 135,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 30.0,
+        "total_score": 32.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "render_template_string",
+      "line": 150,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 30.0,
+        "total_score": 32.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "stream_template",
+      "line": 180,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 30.0,
+        "total_score": 32.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "stream_template_string",
+      "line": 199,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 30.0,
+        "total_score": 32.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "from_environ",
+      "line": 339,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 5.0,
+        "total_score": 7.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "add_app_template_filter",
+      "line": 476,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "add_app_template_test",
+      "line": 532,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "add_app_template_global",
+      "line": 590,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "before_app_request",
+      "line": 614,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "after_app_request",
+      "line": 624,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "teardown_app_request",
+      "line": 634,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_context_processor",
+      "line": 644,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_url_value_preprocessor",
+      "line": 673,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_url_defaults",
+      "line": 685,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 55.0,
+        "total_score": 57.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/auth.py",
+      "function": "logout",
+      "line": 113,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 5.0,
+        "total_score": 6.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/db.py",
+      "function": "init_db_command",
+      "line": 42,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 0.0,
+        "total_score": 1.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/tutorial/flaskr/db.py",
+      "function": "init_app",
+      "line": 51,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 0.0,
+        "total_score": 1.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/views.py",
+      "function": "block",
+      "line": 30,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 5.0,
+        "total_score": 6.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/views.py",
+      "function": "process",
+      "line": 36,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 5.0,
+        "total_score": 6.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/javascript/js_example/views.py",
+      "function": "add",
+      "line": 15,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 0.0,
+        "total_score": 1.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/blueprints.py",
+      "function": "__init__",
+      "line": 19,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 30.0,
+        "total_score": 31.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "_path_is_ancestor",
+      "line": 691,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 150.0,
+        "total_score": 151.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "group",
+      "line": 429,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 150.0,
+        "total_score": 151.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "teardown_appcontext",
+      "line": 824,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 25.0,
+        "total_score": 26.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "shell_context_processor",
+      "line": 855,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 25.0,
+        "total_score": 26.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "before_request",
+      "line": 460,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "after_request",
+      "line": 487,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "teardown_request",
+      "line": 508,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "context_processor",
+      "line": 542,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "url_value_preprocessor",
+      "line": 559,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "url_defaults",
+      "line": 584,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "register_error_handler",
+      "line": 642,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 45.0,
+        "total_score": 46.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "response",
+      "line": 89,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 0.0,
+        "total_score": 1.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "tag",
+      "line": 87,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 90.0,
+        "total_score": 91.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 110,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 90.0,
+        "total_score": 91.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 114,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 90.0,
+        "total_score": 91.8
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "_lazy_sha1",
+      "line": 290,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "permanent",
+      "line": 28,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "__getitem__",
+      "line": 84,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get",
+      "line": 88,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "setdefault",
+      "line": 92,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "_fail",
+      "line": 103,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "make_null_session",
+      "line": 164,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "is_null_session",
+      "line": 176,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_name",
+      "line": 185,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_domain",
+      "line": 189,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_httponly",
+      "line": 209,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_secure",
+      "line": 216,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_samesite",
+      "line": 222,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "get_cookie_partitioned",
+      "line": 229,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "open_session",
+      "line": 263,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "save_session",
+      "line": 277,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 105.0,
+        "total_score": 106.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__init__",
+      "line": 23,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "app_context",
+      "line": 1462,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 55.0,
+        "total_score": 56.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "request_context",
+      "line": 1482,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 55.0,
+        "total_score": 56.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/app.py",
+      "function": "__call__",
+      "line": 1599,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 55.0,
+        "total_score": 56.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "has_app_context",
+      "line": 234,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 5.0,
+        "total_score": 6.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "get",
+      "line": 67,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 5.0,
+        "total_score": 6.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "setdefault",
+      "line": 92,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 5.0,
+        "total_score": 6.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "has_request",
+      "line": 350,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 5.0,
+        "total_score": 6.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__enter__",
+      "line": 482,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 5.0,
+        "total_score": 6.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "json_dumps",
+      "line": 88,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 35.0,
+        "total_score": 36.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "__exit__",
+      "line": 255,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 35.0,
+        "total_score": 36.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/testing.py",
+      "function": "__init__",
+      "line": 271,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 35.0,
+        "total_score": 36.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "get_template_attribute",
+      "line": 291,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/views.py",
+      "function": "dispatch_request",
+      "line": 78,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 35.0,
+        "total_score": 36.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "record",
+      "line": 224,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 55.0,
+        "total_score": 56.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "make_setup_state",
+      "line": 246,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 55.0,
+        "total_score": 56.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "logger",
+      "line": 440,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "jinja_env",
+      "line": 467,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "make_aborter",
+      "line": 495,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "create_global_jinja_loader",
+      "line": 520,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "debug",
+      "line": 547,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "register_blueprint",
+      "line": 567,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "iter_blueprints",
+      "line": 594,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 25.0,
+        "total_score": 26.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "has_static_folder",
+      "line": 241,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "get",
+      "line": 296,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "post",
+      "line": 304,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "put",
+      "line": 312,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "delete",
+      "line": 320,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "patch",
+      "line": 328,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "add_url_rule",
+      "line": 368,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 45.0,
+        "total_score": 46.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "__init__",
+      "line": 38,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "dumps",
+      "line": 41,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "dump",
+      "line": 49,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "loads",
+      "line": 59,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "load",
+      "line": 67,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/provider.py",
+      "function": "loads",
+      "line": 181,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/__init__.py",
+      "function": "jsonify",
+      "line": 138,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "__init__",
+      "line": 69,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 90.0,
+        "total_score": 91.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 73,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 90.0,
+        "total_score": 91.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 77,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 90.0,
+        "total_score": 91.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 82,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 90.0,
+        "total_score": 91.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "dumps",
+      "line": 321,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 90.0,
+        "total_score": 91.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "loads",
+      "line": 325,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 90.0,
+        "total_score": 91.6
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "docs/conf.py",
+      "function": "setup",
+      "line": 100,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 110.0,
+        "total_score": 111.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 22
+      },
+      "high_severity": true
+    },
+    {
+      "file": "examples/celery/src/task_app/tasks.py",
+      "function": "add",
+      "line": 8,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/celery/src/task_app/tasks.py",
+      "function": "block",
+      "line": 13,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "examples/javascript/js_example/views.py",
+      "function": "index",
+      "line": 10,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sessions.py",
+      "function": "permanent",
+      "line": 33,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 105.0,
+        "total_score": 106.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__get__",
+      "line": 30,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__get__",
+      "line": 33,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__set__",
+      "line": 46,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/config.py",
+      "function": "__repr__",
+      "line": 366,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/templating.py",
+      "function": "__init__",
+      "line": 53,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 30.0,
+        "total_score": 31.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "_get_current_object",
+      "line": 18,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 40.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "FlaskProxy",
+      "line": 22,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 40.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "AppContextProxy",
+      "line": 24,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 40.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "_AppCtxGlobalsProxy",
+      "line": 26,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 40.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "RequestProxy",
+      "line": 28,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 40.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/globals.py",
+      "function": "SessionMixinProxy",
+      "line": 30,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 40.0,
+        "total_score": 41.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 8
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "locate_app",
+      "line": 230,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 150.0,
+        "total_score": 151.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "locate_app",
+      "line": 236,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 150.0,
+        "total_score": 151.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "main",
+      "line": 1122,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 150.0,
+        "total_score": 151.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "NoAppException",
+      "line": 37,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 150.0,
+        "total_score": 151.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/cli.py",
+      "function": "__init__",
+      "line": 788,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 150.0,
+        "total_score": 151.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 6
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_content_length",
+      "line": 89,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 30.0,
+        "total_score": 31.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_form_memory_size",
+      "line": 116,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 30.0,
+        "total_score": 31.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/wrappers.py",
+      "function": "max_form_parts",
+      "line": 143,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 30.0,
+        "total_score": 31.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "UnexpectedUnicodeError",
+      "line": 17,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 30.0,
+        "total_score": 31.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/debughelpers.py",
+      "function": "__str__",
+      "line": 46,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 30.0,
+        "total_score": 31.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__setattr__",
+      "line": 58,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 5.0,
+        "total_score": 6.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__contains__",
+      "line": 104,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 5.0,
+        "total_score": 6.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__iter__",
+      "line": 107,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 5.0,
+        "total_score": 6.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/ctx.py",
+      "function": "__exit__",
+      "line": 486,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 5.0,
+        "total_score": 6.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "stream_with_context",
+      "line": 51,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/helpers.py",
+      "function": "stream_with_context",
+      "line": 57,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 0.0,
+        "total_score": 1.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_filter",
+      "line": 444,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 55.0,
+        "total_score": 56.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_filter",
+      "line": 446,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 55.0,
+        "total_score": 56.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_test",
+      "line": 498,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 55.0,
+        "total_score": 56.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_test",
+      "line": 500,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 55.0,
+        "total_score": 56.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_global",
+      "line": 556,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 55.0,
+        "total_score": 56.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/blueprints.py",
+      "function": "app_template_global",
+      "line": 558,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 55.0,
+        "total_score": 56.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 11
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "create_jinja_environment",
+      "line": 476,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_filter",
+      "line": 661,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_filter",
+      "line": 663,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_test",
+      "line": 711,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_test",
+      "line": 713,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_global",
+      "line": 770,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/app.py",
+      "function": "template_global",
+      "line": 772,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 25.0,
+        "total_score": 26.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 5
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "__repr__",
+      "line": 217,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 45.0,
+        "total_score": 46.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/sansio/scaffold.py",
+      "function": "_check_setup_finished",
+      "line": 220,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 45.0,
+        "total_score": 46.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 9
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 122,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 137,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 143,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 150,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 163,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 166,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 169,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 181,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 184,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 187,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 195,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 198,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 201,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "check",
+      "line": 209,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_json",
+      "line": 212,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/flask/json/tag.py",
+      "function": "to_python",
+      "line": 215,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.8,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    }
+  ]
+}

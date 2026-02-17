@@ -1,0 +1,1229 @@
+{
+  "files_scanned": 8,
+  "slob_candidates": [
+    {
+      "file": "src/dotenv/main.py",
+      "function": "find_dotenv",
+      "line": 287,
+      "metrics": {
+        "complexity": 11,
+        "loc": 30,
+        "slob_score": 127.0,
+        "semantic_penalty": 40.0,
+        "total_score": 167.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "set_key",
+      "line": 163,
+      "metrics": {
+        "complexity": 10,
+        "loc": 28,
+        "slob_score": 105.6,
+        "semantic_penalty": 40.0,
+        "total_score": 145.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/__init__.py",
+      "function": "get_cli_string",
+      "line": 12,
+      "metrics": {
+        "complexity": 7,
+        "loc": 17,
+        "slob_score": 52.4,
+        "semantic_penalty": 5.0,
+        "total_score": 57.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "run",
+      "line": 173,
+      "metrics": {
+        "complexity": 7,
+        "loc": 11,
+        "slob_score": 51.2,
+        "semantic_penalty": 0.0,
+        "total_score": 51.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "list_values",
+      "line": 93,
+      "metrics": {
+        "complexity": 6,
+        "loc": 15,
+        "slob_score": 39.0,
+        "semantic_penalty": 0.0,
+        "total_score": 39.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "_get_stream",
+      "line": 64,
+      "metrics": {
+        "complexity": 6,
+        "loc": 10,
+        "slob_score": 38.0,
+        "semantic_penalty": 40.0,
+        "total_score": 78.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "set_as_environment_variables",
+      "line": 100,
+      "metrics": {
+        "complexity": 6,
+        "loc": 10,
+        "slob_score": 38.0,
+        "semantic_penalty": 40.0,
+        "total_score": 78.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "resolve_variables",
+      "line": 244,
+      "metrics": {
+        "complexity": 5,
+        "loc": 19,
+        "slob_score": 28.8,
+        "semantic_penalty": 40.0,
+        "total_score": 68.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "unset_key",
+      "line": 211,
+      "metrics": {
+        "complexity": 5,
+        "loc": 16,
+        "slob_score": 28.2,
+        "semantic_penalty": 40.0,
+        "total_score": 68.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "DotEnv",
+      "line": 45,
+      "metrics": {
+        "complexity": 4,
+        "loc": 60,
+        "slob_score": 28.0,
+        "semantic_penalty": 40.0,
+        "total_score": 68.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "parse_binding",
+      "line": 142,
+      "metrics": {
+        "complexity": 4,
+        "loc": 34,
+        "slob_score": 22.8,
+        "semantic_penalty": 175.0,
+        "total_score": 197.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "parse_variables",
+      "line": 70,
+      "metrics": {
+        "complexity": 4,
+        "loc": 15,
+        "slob_score": 19.0,
+        "semantic_penalty": 35.0,
+        "total_score": 54.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "parse_value",
+      "line": 128,
+      "metrics": {
+        "complexity": 4,
+        "loc": 12,
+        "slob_score": 18.4,
+        "semantic_penalty": 175.0,
+        "total_score": 193.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "_walk_to_root",
+      "line": 269,
+      "metrics": {
+        "complexity": 4,
+        "loc": 12,
+        "slob_score": 18.4,
+        "semantic_penalty": 40.0,
+        "total_score": 58.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "load_dotenv",
+      "line": 338,
+      "metrics": {
+        "complexity": 4,
+        "loc": 9,
+        "slob_score": 17.8,
+        "semantic_penalty": 40.0,
+        "total_score": 57.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "dotenv_values",
+      "line": 387,
+      "metrics": {
+        "complexity": 3,
+        "loc": 33,
+        "slob_score": 15.6,
+        "semantic_penalty": 40.0,
+        "total_score": 55.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/ipython.py",
+      "function": "IPythonDotEnv",
+      "line": 12,
+      "metrics": {
+        "complexity": 3,
+        "loc": 15,
+        "slob_score": 12.0,
+        "semantic_penalty": 0.0,
+        "total_score": 12.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "rewrite",
+      "line": 142,
+      "metrics": {
+        "complexity": 3,
+        "loc": 14,
+        "slob_score": 11.8,
+        "semantic_penalty": 40.0,
+        "total_score": 51.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "dict",
+      "line": 78,
+      "metrics": {
+        "complexity": 3,
+        "loc": 10,
+        "slob_score": 11.0,
+        "semantic_penalty": 40.0,
+        "total_score": 51.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "Atom",
+      "line": 18,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 35.0,
+        "total_score": 45.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "parse_key",
+      "line": 112,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 175.0,
+        "total_score": 185.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "_is_file_or_fifo",
+      "line": 423,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 40.0,
+        "total_score": 50.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "get",
+      "line": 115,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 40.0,
+        "total_score": 50.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "with_warn_for_invalid_lines",
+      "line": 35,
+      "metrics": {
+        "complexity": 3,
+        "loc": 5,
+        "slob_score": 10.0,
+        "semantic_penalty": 40.0,
+        "total_score": 50.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "parse",
+      "line": 94,
+      "metrics": {
+        "complexity": 3,
+        "loc": 5,
+        "slob_score": 10.0,
+        "semantic_penalty": 40.0,
+        "total_score": 50.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "resolve",
+      "line": 64,
+      "metrics": {
+        "complexity": 3,
+        "loc": 4,
+        "slob_score": 9.8,
+        "semantic_penalty": 35.0,
+        "total_score": 44.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Reader",
+      "line": 69,
+      "metrics": {
+        "complexity": 2,
+        "loc": 29,
+        "slob_score": 9.8,
+        "semantic_penalty": 175.0,
+        "total_score": 184.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "Variable",
+      "line": 48,
+      "metrics": {
+        "complexity": 2,
+        "loc": 16,
+        "slob_score": 7.2,
+        "semantic_penalty": 35.0,
+        "total_score": 42.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "Literal",
+      "line": 29,
+      "metrics": {
+        "complexity": 2,
+        "loc": 13,
+        "slob_score": 6.6,
+        "semantic_penalty": 35.0,
+        "total_score": 41.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Position",
+      "line": 47,
+      "metrics": {
+        "complexity": 2,
+        "loc": 13,
+        "slob_score": 6.6,
+        "semantic_penalty": 175.0,
+        "total_score": 181.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "set_value",
+      "line": 116,
+      "metrics": {
+        "complexity": 2,
+        "loc": 10,
+        "slob_score": 6.0,
+        "semantic_penalty": 0.0,
+        "total_score": 6.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "get",
+      "line": 131,
+      "metrics": {
+        "complexity": 2,
+        "loc": 10,
+        "slob_score": 6.0,
+        "semantic_penalty": 0.0,
+        "total_score": 6.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "run_command",
+      "line": 193,
+      "metrics": {
+        "complexity": 2,
+        "loc": 10,
+        "slob_score": 6.0,
+        "semantic_penalty": 0.0,
+        "total_score": 6.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "unset",
+      "line": 148,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 0.0,
+        "total_score": 5.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/ipython.py",
+      "function": "dotenv",
+      "line": 34,
+      "metrics": {
+        "complexity": 2,
+        "loc": 9,
+        "slob_score": 5.8,
+        "semantic_penalty": 0.0,
+        "total_score": 5.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "enumerate_env",
+      "line": 24,
+      "metrics": {
+        "complexity": 2,
+        "loc": 8,
+        "slob_score": 5.6,
+        "semantic_penalty": 0.0,
+        "total_score": 5.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "stream_file",
+      "line": 68,
+      "metrics": {
+        "complexity": 2,
+        "loc": 8,
+        "slob_score": 5.6,
+        "semantic_penalty": 0.0,
+        "total_score": 5.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "read",
+      "line": 90,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 175.0,
+        "total_score": 180.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "read_regex",
+      "line": 97,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 175.0,
+        "total_score": 180.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "_load_dotenv_disabled",
+      "line": 25,
+      "metrics": {
+        "complexity": 2,
+        "loc": 6,
+        "slob_score": 5.2,
+        "semantic_penalty": 40.0,
+        "total_score": 45.2
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__ne__",
+      "line": 19,
+      "metrics": {
+        "complexity": 2,
+        "loc": 5,
+        "slob_score": 5.0,
+        "semantic_penalty": 35.0,
+        "total_score": 40.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__eq__",
+      "line": 36,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 35.0,
+        "total_score": 39.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__eq__",
+      "line": 56,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 35.0,
+        "total_score": 39.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "parse_stream",
+      "line": 179,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 175.0,
+        "total_score": 179.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "__init__",
+      "line": 46,
+      "metrics": {
+        "complexity": 1,
+        "loc": 15,
+        "slob_score": 4.0,
+        "semantic_penalty": 40.0,
+        "total_score": 44.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Binding",
+      "line": 40,
+      "metrics": {
+        "complexity": 1,
+        "loc": 9,
+        "slob_score": 2.8,
+        "semantic_penalty": 175.0,
+        "total_score": 177.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Original",
+      "line": 35,
+      "metrics": {
+        "complexity": 1,
+        "loc": 5,
+        "slob_score": 2.0,
+        "semantic_penalty": 175.0,
+        "total_score": 177.0
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "decode_escapes",
+      "line": 105,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 175.0,
+        "total_score": 176.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "__init__",
+      "line": 70,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 175.0,
+        "total_score": 176.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "get_marked",
+      "line": 81,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 175.0,
+        "total_score": 176.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/cli.py",
+      "function": "cli",
+      "line": 62,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 0.0,
+        "total_score": 1.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__init__",
+      "line": 49,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 35.0,
+        "total_score": 36.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/__init__.py",
+      "function": "load_ipython_extension",
+      "line": 6,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 5.0,
+        "total_score": 6.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "parse_unquoted_value",
+      "line": 123,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 175.0,
+        "total_score": 176.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "__init__",
+      "line": 48,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 175.0,
+        "total_score": 176.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "set",
+      "line": 56,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 175.0,
+        "total_score": 176.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "advance",
+      "line": 60,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 175.0,
+        "total_score": 176.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "peek",
+      "line": 87,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 175.0,
+        "total_score": 176.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/ipython.py",
+      "function": "load_ipython_extension",
+      "line": 48,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/main.py",
+      "function": "get_key",
+      "line": 128,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 40.0,
+        "total_score": 41.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "resolve",
+      "line": 26,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__init__",
+      "line": 30,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__repr__",
+      "line": 33,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__hash__",
+      "line": 41,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "resolve",
+      "line": 44,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__repr__",
+      "line": 53,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/variables.py",
+      "function": "__hash__",
+      "line": 61,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 35.0,
+        "total_score": 36.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 1
+      },
+      "high_severity": false
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "make_regex",
+      "line": 14,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 175.0,
+        "total_score": 176.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "start",
+      "line": 53,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 175.0,
+        "total_score": 176.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "Error",
+      "line": 65,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 175.0,
+        "total_score": 176.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "has_next",
+      "line": 75,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 175.0,
+        "total_score": 176.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    },
+    {
+      "file": "src/dotenv/parser.py",
+      "function": "set_mark",
+      "line": 78,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 175.0,
+        "total_score": 176.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 15
+      },
+      "high_severity": true
+    }
+  ]
+}
