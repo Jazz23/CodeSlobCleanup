@@ -1,0 +1,12 @@
+identify.py:
+uv run identify.py --target-dir <target_dir> --output <output_file>
+
+benchmark.py:
+uv run benchmark.py --target-dir <target_dir> --output <output_file>
+
+Get repo summary:
+# Full rebuild (wipes file first)
+uv run skills/code-slob-cleanup/scripts/update_summary.py --repo all --summary-file identification/reports/github_test_summary.csv --init
+
+# Selective update (appends/updates)
+uv run skills/code-slob-cleanup/scripts/update_summary.py --repo <repo1> <repo2> --summary-file identification/reports/github_test_summary.csv

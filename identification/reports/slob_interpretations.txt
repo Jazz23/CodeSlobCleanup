@@ -1,8 +1,20 @@
 # Code Slob Scoring: Exact Mathematical Formulas & Interpretations
 
-The total Slob Score for a repository is the sum of scores for every function identified as a candidate.
+## 1. Baselines: What is a "High Slob" Repository?
 
-## 1. The Core Formulas
+Based on the audit of 5+ production repositories, the following baselines are established:
+
+### A. Repository Level (Slob Density)
+**Slob Density** = Total Slob Score / Total Functions.
+- **Low Slob (< 15):** The codebase is modular and easy to maintain. (Example: `flask` @ 20.1 is bordering moderate).
+- **High Slob (> 40):** Significant architectural debt. The average function is burdened by either complexity or global state. (Example: `requests` @ 49.5, `hagent` @ 56.4).
+
+### B. File/Function Level (S_f)
+- **Low Slob (< 100):** A healthy, modular function.
+- **Moderate Slob (100 - 500):** A large or complex function that typically needs refactoring but isn't critical.
+- **High Slob (> 1000):** A "God Method" that poses a high risk for bugs and maintenance.
+
+## 2. The Core Formulas
 
 ### Function-Level Score (S_f)
 For a function `f` in file `F`:

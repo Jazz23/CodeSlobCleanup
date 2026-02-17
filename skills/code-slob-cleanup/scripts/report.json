@@ -1,0 +1,1212 @@
+{
+  "files_scanned": 11,
+  "slob_candidates": [
+    {
+      "file": "common.py",
+      "function": "smart_infer_arg_strategies",
+      "line": 171,
+      "metrics": {
+        "complexity": 31,
+        "loc": 75,
+        "slob_score": 976.0,
+        "semantic_penalty": 0.0,
+        "total_score": 976.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "verify.py",
+      "function": "main",
+      "line": 431,
+      "metrics": {
+        "complexity": 29,
+        "loc": 89,
+        "slob_score": 858.8,
+        "semantic_penalty": 15.0,
+        "total_score": 873.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "orchestrator.py",
+      "function": "main",
+      "line": 159,
+      "metrics": {
+        "complexity": 25,
+        "loc": 63,
+        "slob_score": 637.6,
+        "semantic_penalty": 0.0,
+        "total_score": 637.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "verify.py",
+      "function": "objects_are_equal",
+      "line": 110,
+      "metrics": {
+        "complexity": 19,
+        "loc": 30,
+        "slob_score": 367.0,
+        "semantic_penalty": 15.0,
+        "total_score": 382.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "benchmark.py",
+      "function": "main",
+      "line": 188,
+      "metrics": {
+        "complexity": 18,
+        "loc": 62,
+        "slob_score": 336.4,
+        "semantic_penalty": 15.0,
+        "total_score": 351.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "verify.py",
+      "function": "worker_verify_class_method",
+      "line": 301,
+      "metrics": {
+        "complexity": 16,
+        "loc": 86,
+        "slob_score": 273.2,
+        "semantic_penalty": 15.0,
+        "total_score": 288.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "update_summary.py",
+      "function": "analyze_top_slob",
+      "line": 47,
+      "metrics": {
+        "complexity": 14,
+        "loc": 30,
+        "slob_score": 202.0,
+        "semantic_penalty": 0.0,
+        "total_score": 202.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "orchestrator.py",
+      "function": "parse_verify_output",
+      "line": 30,
+      "metrics": {
+        "complexity": 13,
+        "loc": 44,
+        "slob_score": 177.8,
+        "semantic_penalty": 0.0,
+        "total_score": 177.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "common.py",
+      "function": "_json_type_to_strategy",
+      "line": 71,
+      "metrics": {
+        "complexity": 13,
+        "loc": 29,
+        "slob_score": 174.8,
+        "semantic_penalty": 0.0,
+        "total_score": 174.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "update_summary.py",
+      "function": "main",
+      "line": 86,
+      "metrics": {
+        "complexity": 12,
+        "loc": 52,
+        "slob_score": 154.4,
+        "semantic_penalty": 0.0,
+        "total_score": 154.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "clean_untested.py",
+      "function": "remove_untested_functions",
+      "line": 104,
+      "metrics": {
+        "complexity": 12,
+        "loc": 29,
+        "slob_score": 149.8,
+        "semantic_penalty": 0.0,
+        "total_score": 149.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "orchestrator.py",
+      "function": "process_job",
+      "line": 102,
+      "metrics": {
+        "complexity": 11,
+        "loc": 55,
+        "slob_score": 132.0,
+        "semantic_penalty": 0.0,
+        "total_score": 132.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "semantic.py",
+      "function": "evaluate_semantic_relevance",
+      "line": 50,
+      "metrics": {
+        "complexity": 11,
+        "loc": 21,
+        "slob_score": 125.2,
+        "semantic_penalty": 0.0,
+        "total_score": 125.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "identify.py",
+      "function": "scan_directory",
+      "line": 19,
+      "metrics": {
+        "complexity": 10,
+        "loc": 25,
+        "slob_score": 105.0,
+        "semantic_penalty": 0.0,
+        "total_score": 105.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "update_summary.py",
+      "function": "count_repository_wide_metrics",
+      "line": 23,
+      "metrics": {
+        "complexity": 10,
+        "loc": 22,
+        "slob_score": 104.4,
+        "semantic_penalty": 0.0,
+        "total_score": 104.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "semantic.py",
+      "function": "detect_global_variables",
+      "line": 5,
+      "metrics": {
+        "complexity": 10,
+        "loc": 18,
+        "slob_score": 103.6,
+        "semantic_penalty": 0.0,
+        "total_score": 103.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": true
+    },
+    {
+      "file": "verify.py",
+      "function": "run_hypothesis_verification",
+      "line": 57,
+      "metrics": {
+        "complexity": 9,
+        "loc": 42,
+        "slob_score": 89.4,
+        "semantic_penalty": 15.0,
+        "total_score": 104.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "identify.py",
+      "function": "main",
+      "line": 77,
+      "metrics": {
+        "complexity": 9,
+        "loc": 32,
+        "slob_score": 87.4,
+        "semantic_penalty": 0.0,
+        "total_score": 87.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "generate_args",
+      "line": 196,
+      "metrics": {
+        "complexity": 9,
+        "loc": 21,
+        "slob_score": 85.2,
+        "semantic_penalty": 15.0,
+        "total_score": 100.2
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "clean_untested.py",
+      "function": "is_excluded",
+      "line": 26,
+      "metrics": {
+        "complexity": 9,
+        "loc": 16,
+        "slob_score": 84.2,
+        "semantic_penalty": 0.0,
+        "total_score": 84.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "semantic.py",
+      "function": "analyze_class_structure",
+      "line": 28,
+      "metrics": {
+        "complexity": 9,
+        "loc": 12,
+        "slob_score": 83.4,
+        "semantic_penalty": 0.0,
+        "total_score": 83.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "benchmark.py",
+      "function": "measure_execution_time",
+      "line": 74,
+      "metrics": {
+        "complexity": 8,
+        "loc": 22,
+        "slob_score": 68.4,
+        "semantic_penalty": 15.0,
+        "total_score": 83.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "common.py",
+      "function": "_type_to_strategy",
+      "line": 151,
+      "metrics": {
+        "complexity": 8,
+        "loc": 17,
+        "slob_score": 67.4,
+        "semantic_penalty": 0.0,
+        "total_score": 67.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "benchmark.py",
+      "function": "generate_benchmark_inputs",
+      "line": 41,
+      "metrics": {
+        "complexity": 7,
+        "loc": 27,
+        "slob_score": 54.4,
+        "semantic_penalty": 15.0,
+        "total_score": 69.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "benchmark.py",
+      "function": "worker_benchmark_func",
+      "line": 105,
+      "metrics": {
+        "complexity": 7,
+        "loc": 27,
+        "slob_score": 54.4,
+        "semantic_penalty": 15.0,
+        "total_score": 69.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "combine_results",
+      "line": 250,
+      "metrics": {
+        "complexity": 7,
+        "loc": 23,
+        "slob_score": 53.6,
+        "semantic_penalty": 15.0,
+        "total_score": 68.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "check_result_equivalence",
+      "line": 148,
+      "metrics": {
+        "complexity": 7,
+        "loc": 17,
+        "slob_score": 52.4,
+        "semantic_penalty": 15.0,
+        "total_score": 67.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "benchmark.py",
+      "function": "worker_benchmark_class_method",
+      "line": 139,
+      "metrics": {
+        "complexity": 6,
+        "loc": 31,
+        "slob_score": 42.2,
+        "semantic_penalty": 15.0,
+        "total_score": 57.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "dump_fixtures.py",
+      "function": "main",
+      "line": 21,
+      "metrics": {
+        "complexity": 6,
+        "loc": 25,
+        "slob_score": 41.0,
+        "semantic_penalty": 0.0,
+        "total_score": 41.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "clean_traceback",
+      "line": 47,
+      "metrics": {
+        "complexity": 6,
+        "loc": 9,
+        "slob_score": 37.8,
+        "semantic_penalty": 15.0,
+        "total_score": 52.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "orchestrator.py",
+      "function": "parse_benchmark_output",
+      "line": 85,
+      "metrics": {
+        "complexity": 5,
+        "loc": 16,
+        "slob_score": 28.2,
+        "semantic_penalty": 0.0,
+        "total_score": 28.2
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "very_complex_function",
+      "line": 26,
+      "metrics": {
+        "complexity": 5,
+        "loc": 14,
+        "slob_score": 27.8,
+        "semantic_penalty": 90.0,
+        "total_score": 117.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": true
+    },
+    {
+      "file": "common.py",
+      "function": "get_common_functions",
+      "line": 51,
+      "metrics": {
+        "complexity": 5,
+        "loc": 5,
+        "slob_score": 26.0,
+        "semantic_penalty": 0.0,
+        "total_score": 26.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "common.py",
+      "function": "get_common_classes",
+      "line": 57,
+      "metrics": {
+        "complexity": 5,
+        "loc": 5,
+        "slob_score": 26.0,
+        "semantic_penalty": 0.0,
+        "total_score": 26.0
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "common.py",
+      "function": "infer_strategy",
+      "line": 105,
+      "metrics": {
+        "complexity": 4,
+        "loc": 22,
+        "slob_score": 20.4,
+        "semantic_penalty": 0.0,
+        "total_score": 20.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "NaiveRandomFuzzer",
+      "line": 175,
+      "metrics": {
+        "complexity": 3,
+        "loc": 53,
+        "slob_score": 19.6,
+        "semantic_penalty": 15.0,
+        "total_score": 34.6
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": true
+    },
+    {
+      "file": "clean_untested.py",
+      "function": "main",
+      "line": 153,
+      "metrics": {
+        "complexity": 4,
+        "loc": 17,
+        "slob_score": 19.4,
+        "semantic_penalty": 0.0,
+        "total_score": 19.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "semantic.py",
+      "function": "get_semantic_slob_score",
+      "line": 83,
+      "metrics": {
+        "complexity": 4,
+        "loc": 14,
+        "slob_score": 18.8,
+        "semantic_penalty": 0.0,
+        "total_score": 18.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "fuzz",
+      "line": 217,
+      "metrics": {
+        "complexity": 4,
+        "loc": 14,
+        "slob_score": 18.8,
+        "semantic_penalty": 15.0,
+        "total_score": 33.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "metrics.py",
+      "function": "calculate_complexity",
+      "line": 5,
+      "metrics": {
+        "complexity": 4,
+        "loc": 9,
+        "slob_score": 17.8,
+        "semantic_penalty": 0.0,
+        "total_score": 17.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "metrics.py",
+      "function": "get_function_metrics",
+      "line": 55,
+      "metrics": {
+        "complexity": 3,
+        "loc": 19,
+        "slob_score": 12.8,
+        "semantic_penalty": 0.0,
+        "total_score": 12.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "clean_untested.py",
+      "function": "run_coverage",
+      "line": 49,
+      "metrics": {
+        "complexity": 3,
+        "loc": 18,
+        "slob_score": 12.6,
+        "semantic_penalty": 0.0,
+        "total_score": 12.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "run_naive_fuzzing",
+      "line": 235,
+      "metrics": {
+        "complexity": 3,
+        "loc": 14,
+        "slob_score": 11.8,
+        "semantic_penalty": 15.0,
+        "total_score": 26.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "common.py",
+      "function": "load_module_from_path",
+      "line": 41,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 0.0,
+        "total_score": 10.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "clean_untested.py",
+      "function": "load_config",
+      "line": 16,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 0.0,
+        "total_score": 10.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "clean_untested.py",
+      "function": "get_function_ranges",
+      "line": 89,
+      "metrics": {
+        "complexity": 3,
+        "loc": 9,
+        "slob_score": 10.8,
+        "semantic_penalty": 0.0,
+        "total_score": 10.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "metrics.py",
+      "function": "calculate_slob_score",
+      "line": 39,
+      "metrics": {
+        "complexity": 3,
+        "loc": 8,
+        "slob_score": 10.6,
+        "semantic_penalty": 0.0,
+        "total_score": 10.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "common.py",
+      "function": "get_display_name",
+      "line": 63,
+      "metrics": {
+        "complexity": 3,
+        "loc": 7,
+        "slob_score": 10.4,
+        "semantic_penalty": 0.0,
+        "total_score": 10.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "worker_verify_function",
+      "line": 280,
+      "metrics": {
+        "complexity": 2,
+        "loc": 15,
+        "slob_score": 7.0,
+        "semantic_penalty": 15.0,
+        "total_score": 22.0
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "benchmark.py",
+      "function": "run_with_timeout",
+      "line": 179,
+      "metrics": {
+        "complexity": 2,
+        "loc": 8,
+        "slob_score": 5.6,
+        "semantic_penalty": 15.0,
+        "total_score": 20.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "metrics.py",
+      "function": "calculate_loc",
+      "line": 19,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 0.0,
+        "total_score": 5.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "metrics.py",
+      "function": "calculate_halstead",
+      "line": 29,
+      "metrics": {
+        "complexity": 2,
+        "loc": 7,
+        "slob_score": 5.4,
+        "semantic_penalty": 0.0,
+        "total_score": 5.4
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "DatabaseConnector",
+      "line": 11,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 90.0,
+        "total_score": 94.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "UserProfile",
+      "line": 16,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 90.0,
+        "total_score": 94.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "Logger",
+      "line": 21,
+      "metrics": {
+        "complexity": 2,
+        "loc": 4,
+        "slob_score": 4.8,
+        "semantic_penalty": 90.0,
+        "total_score": 94.8
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "common.py",
+      "function": "_get_candidate_values",
+      "line": 130,
+      "metrics": {
+        "complexity": 1,
+        "loc": 19,
+        "slob_score": 4.8,
+        "semantic_penalty": 0.0,
+        "total_score": 4.8
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "MathOperations",
+      "line": 7,
+      "metrics": {
+        "complexity": 2,
+        "loc": 3,
+        "slob_score": 4.6,
+        "semantic_penalty": 90.0,
+        "total_score": 94.6
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_list",
+      "line": 187,
+      "metrics": {
+        "complexity": 2,
+        "loc": 2,
+        "slob_score": 4.4,
+        "semantic_penalty": 15.0,
+        "total_score": 19.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_dict",
+      "line": 188,
+      "metrics": {
+        "complexity": 2,
+        "loc": 2,
+        "slob_score": 4.4,
+        "semantic_penalty": 15.0,
+        "total_score": 19.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "VerifyResult",
+      "line": 42,
+      "metrics": {
+        "complexity": 1,
+        "loc": 7,
+        "slob_score": 2.4,
+        "semantic_penalty": 15.0,
+        "total_score": 17.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_any",
+      "line": 190,
+      "metrics": {
+        "complexity": 1,
+        "loc": 4,
+        "slob_score": 1.8,
+        "semantic_penalty": 15.0,
+        "total_score": 16.8
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "orchestrator.py",
+      "function": "run_command",
+      "line": 26,
+      "metrics": {
+        "complexity": 1,
+        "loc": 3,
+        "slob_score": 1.6,
+        "semantic_penalty": 0.0,
+        "total_score": 1.6
+      },
+      "semantic_info": {
+        "relevance": 1.0,
+        "global_vars_count": 0
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "add",
+      "line": 8,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "connect",
+      "line": 13,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "get_name",
+      "line": 18,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "test_slob.py",
+      "function": "log",
+      "line": 23,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 90.0,
+        "total_score": 91.4
+      },
+      "semantic_info": {
+        "relevance": 0.0,
+        "global_vars_count": 2
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "__init__",
+      "line": 180,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 15.0,
+        "total_score": 16.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_int",
+      "line": 183,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 15.0,
+        "total_score": 16.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_float",
+      "line": 184,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 15.0,
+        "total_score": 16.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_str",
+      "line": 185,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 15.0,
+        "total_score": 16.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    },
+    {
+      "file": "verify.py",
+      "function": "_gen_bool",
+      "line": 186,
+      "metrics": {
+        "complexity": 1,
+        "loc": 2,
+        "slob_score": 1.4,
+        "semantic_penalty": 15.0,
+        "total_score": 16.4
+      },
+      "semantic_info": {
+        "relevance": 0.5,
+        "global_vars_count": 3
+      },
+      "high_severity": false
+    }
+  ]
+}
