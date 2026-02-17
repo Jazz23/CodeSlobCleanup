@@ -74,6 +74,14 @@ def scan_directory(target_dir: Path):
                     
     return files_scanned, slob_candidates
 
+def get_slob_classification(score):
+    if score < 100:
+        return "Low Slob"
+    elif score <= 500:
+        return "Moderate Slob"
+    else:
+        return "High Slob"
+
 def main():
     parser = argparse.ArgumentParser(description="Scan directory for Code Slob.")
     parser.add_argument("--target-dir", type=str, required=True, help="Directory to scan")
@@ -89,7 +97,7 @@ def main():
     files_scanned, slob_candidates = scan_directory(target_dir)
     
     # Sort by score descending
-    slob_candidates.sort(key=lambda x: x["metrics"]["slob_score"], reverse=True)
+    slob_candidates.sort(key=lambda x: x["metrics"]["total_score"], reverse=True)
     
     # Print summary for the Agent to see
     print(f"--- Identification Summary ---")
@@ -100,8 +108,10 @@ def main():
     
     for cand in slob_candidates:
         if cand["high_severity"]:
+            score = cand["metrics"]["total_score"]
+            classification = get_slob_classification(score)
             print(f"[SLOB]   {cand['file']}::{cand['function']} (Line {cand['line']})")
-            print(f"         Total Score: {cand['metrics']['total_score']} (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
+            print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
             if cand["semantic_info"]["global_vars_count"] > 0:
                 print(f"         Globals Found: {cand['semantic_info']['global_vars_count']}")
             if cand["semantic_info"]["relevance"] < 1.0:

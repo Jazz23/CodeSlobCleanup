@@ -12,7 +12,7 @@ Based on the audit of 5+ production repositories, the following baselines are es
 ### B. File/Function Level (S_f)
 - **Low Slob (< 100):** A healthy, modular function.
 - **Moderate Slob (100 - 500):** A large or complex function that typically needs refactoring but isn't critical.
-- **High Slob (> 1000):** A "God Method" that poses a high risk for bugs and maintenance.
+- **High Slob (> 500):** A "God Method" that poses a high risk for bugs and maintenance.
 
 ## 2. The Core Formulas
 
