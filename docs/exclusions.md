@@ -13,9 +13,9 @@ The configuration file supports excluding specific paths and functions from the 
         "legacy/old_utils.py"
     ],
     "excludeFunctions": [
-        "internal_*", // Exclude any function name matching this pattern globally
-        "src/api.py:deprecated_handler", // Exclude a specific function in a specific file
-        "utils.py:helper_*" // Exclude any function starting with "helper_" in utils.py
+        "internal_*",
+        "src/api.py:deprecated_handler",
+        "utils.py:helper_*"
     ]
 }
 ```

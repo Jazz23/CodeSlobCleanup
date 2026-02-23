@@ -28,7 +28,7 @@ See [exclusions](exclusions.md) for how to specify functions, files, or folders 
 
 Code Slob Cleanup identifies, tests, and applies code refactorings in a rigorous multi-stage workflow.
 
-1.  **Scanner**: Detects "slob" candidates using static analysis (complexity, LoC) and semantic analysis (LLMs).
+1.  **Scanner**: Detects "slob" candidates using static analysis (complexity, LoC) and semantic analysis using your agent.
 2.  **Verifier**: Ensures that refactoring does not break functionality using [Hypothesis](https://hypothesis.readthedocs.io/) for property-based testing.
 3.  **Refactor** Applies refactored code to the codebase if verification passes.
 

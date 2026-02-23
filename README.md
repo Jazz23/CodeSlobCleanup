@@ -3,34 +3,10 @@
 
 # How to use
 
-- Copy the [code-slob-cleanup](https://github.com/Jazz23/CodeSlobCleanup/tree/main/skills/code-slob-cleanup) skill into your agent's `skills` folder in your repository.
-- Tell your agent to "Clean up my code".
-    - You can specify specific folders/files/functions to refactor.
-    - If you have a comprehensive testing script, you can mention it in your prompt and Code Slob Cleanup will automatically remove unused functions.
-
-## Exclusions (Optional)
-You can specify functions, files, or folders to ignore during the cleanup by creating a `code-slob-cleanup.json` file at your project's root:
-
-```json
-{
-    "excludePaths": [
-        "path/to/folder/*",
-        "specific_file.py"
-    ],
-    "excludeFunctions": [
-        "internal_*",              // Exclude any function matching this pattern globally
-        "utils.py:legacy_func",    // Exclude a specific function in a specific file
-        "src/*.py:*_helper"        // Use glob patterns for both path and function name
-    ]
-}
-```
-The agent and its scripts (such as `identify.py` and `clean_untested.py`) will automatically respect these rules.
-
-# Notes
-- The agent will create a temporary directory, `.code-slob-tmp`. This will be deleted after the refactoring process; however, it may be useful to add this to your `.gitignore` just in case the agent crashes or is cancelled.
+See [getting started](https://jazz23.github.io/CodeSlobCleanup/#getting-started) for installation and usage instructions.
 
 # Core Objectives
-1.  **Automated Identification**: Detect refactoring targets using static analysis metrics (Cyclomatic Complexity, LoC, nesting depth) and semantic analysis via LLMs to identify redundant logic.
+1.  **Automated Identification**: Detect refactoring targets using static analysis metrics (Cyclomatic Complexity, LoC, nesting depth) and semantic analysis via the agent to identify redundant logic.
 2.  **Safe Refactoring**: Employs your agent to perform code transformations such as function decomposition, visibility enforcement (Converting public to private), and dead code removal.
 3.  **Rigorous Verification**: Ensure behavioral equivalence using **Property-Based Testing**: Leveraging **Hypothesis** to verify `Original(input) == Transformed(input)` across thousands of inputs.
 4.  **Autonomous Self-Correction**: Integrate verification feedback directly into the refactoring loop, allowing the agent to "fix its own fixes" based on counter-examples found during testing.
@@ -40,7 +16,7 @@ The system follows an iterative loop:
 *   **Scanner**: Traverses the codebase and finds code slob.
 *   **Refactor Agent**: Analyzes flagged code and generates a cleaned-up version.
 *   **Verifier**: An isolated orchestrator executes Hypothesis tests, and benchmarks performance.
-*   **Feedback Loop**: If verification fails, the failing test cases are fed back to the Refactor Agent for a retry.
+*   **Feedback Loop**: If verification fails, the failing test cases are fed back to your agent for a retry.
 *   **Committer**: Applies the change if verification passes and performance is not regressed.
 
 # Technologies
