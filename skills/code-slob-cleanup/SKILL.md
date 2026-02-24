@@ -1,6 +1,6 @@
 ---
 name: code-slob-cleanup
-description: A comprehensive skill to identify "code slob" (technical debt), refactor it into clean, idiomatic Python, and rigorously verify the changes using property-based testing. Use when the user asks for their code to be refactored, cleaned up, or to have slob/slop removed.
+description: A comprehensive skill to identify "code slob" (technical debt), refactor it into clean, idiomatic Python, and rigorously verify the changes using property-based testing. Use when the user asks for their code to be refactored, cleaned up, or to have slob/slop removed. Also use when the user asks to remove code not covered by a given test. Also use when the user asks to revert a previous cleanup.
 ---
 
 # Code Slob Cleanup Skill
@@ -11,15 +11,29 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 - **Refactoring**: `references/refactor.md`
 - **Prompts**: `references/prompts.md`
 
-## Workflow
+**Workflow Direction**: If the user requests a cleanup, follow the "Refactor" workflow. If they request a revert, skip to the "Revert" workflow. Always strictly adhere to any exclusions specified in `code-slob-cleanup.json`.
+
+## Refactor Workflow
 
 ### Phase 1: Identification & Setup
 0.  **Configuration & Exclusions**: Check for a `code-slob-cleanup.json` file in the project root.
+    *   **Auto-Generation**: If it does not exist, create it with the following structure:
+        ```json
+        {
+            "excludePaths": [],
+            "excludeFunctions": [],
+            "edits": {}
+        }
+        ```
     *   **Format**:
         ```json
         {
             "excludePaths": ["path/to/file.py", "folder/*"],
-            "excludeFunctions": ["func_name", "path/to/file.py:func_name"]
+            "excludeFunctions": ["func_name", "path/to/file.py:func_name"],
+            "edits": {
+                "path/to/file.py:class_name.function_name": "commit-hash",
+                "path/to/file.py:function_name": "commit-hash"
+            }
         }
         ```
     *   **Action**: If it exists, read it. You MUST strictly exclude the specified paths and functions from all subsequent steps in this phase.
@@ -44,7 +58,7 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
         *   If a **Target Scope** was identified in step 0.1, you MUST filter all identification to ONLY include these targets.
         *   If the user specified functions, only scan/extract those functions.
         *   If the user specified files/folders, run the identification script on the appropriate directory and filter for those specific paths.
-    *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir .`.
+    *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir <TARGET_DIR>`. Use `.` as the default `TARGET_DIR` if the scope is the entire repository or the user didn't specify a scope.
     *   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that:
         1. Fall outside the **Target Scope** (if one exists).
         2. Match the `excludePaths` or `excludeFunctions` defined in step 0.
@@ -67,18 +81,14 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
             ```json
             {
                 "functions": {
-                    "func_name": ["type1", "type2"],
-                    "ClassName.method_name": ["type1"]
-                },
-                "source_files": {
-                    "func_name": "path/to/source_file.py",
-                    "ClassName.method_name": "path/to/source_file.py"
+                    "path/to/file.py:func_name": ["type1", "type2"],
+                    "path/to/file.py:ClassName.method_name": ["type1"]
                 },
                 "modules": ["any_required_external_module"]
             }
             ```
-        *   **source_files (REQUIRED)**: For every function and class method extracted into `original.py`, you MUST include its original relative path from the project root in the `source_files` object. This ensures the verification output correctly identifies functions across different files.
-        *   **functions (Optional)**: If you can confidently deduce type hints for the function arguments, include them here to help Hypothesis generate valid inputs.
+        *   **Function Keys (REQUIRED)**: For every function and class method extracted into `original.py`, you MUST use the full path as the key: `"path/to/file.py:function_name"` or `"path/to/file.py:ClassName.method_name"`. This ensures the verification output correctly identifies functions across different files and removes the need for a separate `source_files` section.
+        *   **functions (Optional Values)**: The values in the `functions` object are optional type hints. If you can confidently deduce type hints for the function arguments, include them here to help Hypothesis generate valid inputs.
         *   **modules (Optional)**: List any external pip-installable modules required by the functions that are NOT part of the standard library.
 
 ### Phase 2: Refactoring
@@ -109,8 +119,33 @@ Follow the instructions in **Section 3 of `references/refactor.md`** to verify t
 4.  **Fix Brittle Tests**: If existing tests fail for a function that Hypothesis verified as `[PASS]`:
     *   **Analyze**: Determine if the test is "brittle" (e.g., asserting on internal state, specific log messages, or private members that were cleanly refactored away).
     *   **Fix**: Modify the existing test so it passes with the new, cleaner code. Ensure you maintain the original intent of the test (verifying functionality) while removing the brittle dependency on the "slob" implementation.
-5.  **Report**: Inform the user that the code has been cleaned, verified by Hypothesis, and that existing tests have been run (and updated if necessary).
+5.  **Record Edits**: Add an entry to the `edits` dictionary in `code-slob-cleanup.json` for each successfully refactored function.
+    *   **Format**: `"identifier": "commit-hash"`.
+    *   **Function Mapping**: The identifier MUST include the full file path and class name (if any).
+        *   Example (top-level): `"path/to/file.py:function_name": "5akekdl"`
+        *   Example (class method): `"path/to/file.py:ClassName.method_name": "5akekdl"`
+    *   **Commit Hash**: Use the first 7 characters of the most recent commit (the parent commit of your changes). Use `git rev-parse --short=7 HEAD` to retrieve it.
+    *   **Constraint**: ONLY log individual function refactors in the `edits` dictionary. Do NOT log classes or files.
+6.  **Report**: Inform the user that the code has been cleaned, verified by Hypothesis, and that existing tests have been run (and updated if necessary).
 
 ### Phase 5: Cleanup
 1.  **Remove Workspace**: Delete the temporary directory.
     *   `rm -rf .code-slob-tmp`
+
+## Revert Workflow
+
+**Constraint**: If no `code-slob-cleanup.json` exists, or if the `edits` dictionary is empty, inform the user that there are no recorded cleanups to revert and exit. Otherwise, follow the steps below to revert the specified cleanup(s):
+
+1.  **Identify**: If the user asks to revert a cleanup (e.g., "Revert the cleanup for `process_data`", "Revert `src/utils.py`", or "Revert `src/logic/`"), search the `edits` dictionary in `code-slob-cleanup.json` for matches.
+2.  **Scan for Matches**:
+    *   **Specific Function**: Look for a direct match (e.g., `path/to/file.py:process_data`).
+    *   **Class**: Search for all entries that include that class name in their identifier (e.g., `path/to/file.py:MyClass.*`).
+    *   **File**: Search for all entries starting with that file's path (e.g., `path/to/file.py:*`).
+    *   **Folder**: Search for all entries whose path starts with that folder (e.g., `path/to/folder/*`).
+3.  **Find Hashes**: For each match, retrieve the associated 7-character commit hash (the parent commit where the original code exists).
+4.  **Locate & Extract**: For each matched target:
+    *   Use git to read the content of the original file at that commit (e.g., `git show <hash>:<path/to/file.py>`).
+    *   Extract the original version of the function/class.
+5.  **Revert**: Replace the refactored code in the current codebase with the original version extracted from git.
+6.  **Update**: Remove all matching entries from the `edits` dictionary in `code-slob-cleanup.json`.
+7.  **Verify**: Run existing tests to ensure the revert didn't break anything.

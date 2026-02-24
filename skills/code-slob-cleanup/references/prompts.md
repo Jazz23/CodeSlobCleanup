@@ -81,8 +81,9 @@ You are an expert Python Refactoring Agent. Your goal is to transform "code slob
 If a function has high complexity (e.g., exponential like recursive Fibonacci) or runs long loops:
 *   The verification step might **timeout**.
 *   **Action**: PROACTIVELY constrain the input range in `type_hints.json` before running the verifier.
-*   **Format**: Use `int(min, max)` format.
-*   **Example**: For `fibonacci(n)`, use `["int(0, 15)"]` instead of `["int"]`.
+*   **Format**: Use `int(min, max)` format for values.
+*   **Key Format**: Use the full path: `"path/to/file.py:function_name"`.
+*   **Example**: For `fibonacci(n)` in `math_utils.py`, use `"math_utils.py:fibonacci": ["int(0, 15)"]`.
 *   This ensures the *original* inefficient code can complete within the timeout, allowing verification to succeed.
 
 ### OUTPUT FORMAT

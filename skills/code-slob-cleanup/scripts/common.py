@@ -61,8 +61,15 @@ def get_common_classes(mod1, mod2) -> List[str]:
     return list(cls1.intersection(cls2))
 
 def get_display_name(name: str, config: Dict[str, Any] = None) -> str:
-    """Returns filename:name if filename is available in config['source_files'], else just name."""
+    """Returns path/to/file.py:name if available in config['functions'], else just name."""
     if config:
+        # 1. Check for path-prefixed keys in 'functions': "path/to/file.py:name" or "path/to/file.py:ClassName.name"
+        functions_config = config.get("functions", {})
+        for key in functions_config:
+            if key == name or key.endswith(f":{name}"):
+                return key
+        
+        # 2. Backward compatibility for 'source_files'
         source_file = config.get("source_files", {}).get(name)
         if source_file:
             return f"{source_file}:{name}"
@@ -189,13 +196,22 @@ def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) ->
     qualname = func.__qualname__
     
     # 2. Check Config
-    # Prefer strict match (QualName) over simple Name
+    # Prefer strict match (Path:QualName) over simple QualName or Name
     target_key = None
     functions_config = config.get("functions", {})
-    if qualname in functions_config:
-        target_key = qualname
-    elif name in functions_config:
-        target_key = name
+    
+    # 2.1 Check for Path-prefixed match first: "path/to/file.py:ClassName.func_name"
+    for key in functions_config:
+        if key.endswith(f":{qualname}") or key.endswith(f":{name}"):
+            target_key = key
+            break
+            
+    # 2.2 Fallback: Check for direct match (Backward compatibility)
+    if not target_key:
+        if qualname in functions_config:
+            target_key = qualname
+        elif name in functions_config:
+            target_key = name
         
     if target_key:
         print(f"    [INFO] Found config entry for {target_key}")

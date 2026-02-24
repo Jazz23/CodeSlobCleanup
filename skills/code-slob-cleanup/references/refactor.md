@@ -38,8 +38,8 @@ For **each subdirectory** (job):
         ```json
         {
           "functions": {
-            "function_name": ["type1", "type2", ...],
-            "function_name_2": ["int", "list[float]"]
+            "path/to/file.py:function_name": ["type1", "type2", ...],
+            "path/to/file.py:ClassName.method_name": ["int", "list[float]"]
           },
           "modules": ["pkg1", "pkg2"]
         }
@@ -48,7 +48,7 @@ For **each subdirectory** (job):
         ```json
         {
           "functions": {
-            "compute_average": ["list[float]"]
+            "src/utils.py:compute_average": ["list[float]"]
           },
           "modules": ["numpy"]
         }
