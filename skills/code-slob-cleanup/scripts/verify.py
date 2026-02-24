@@ -44,6 +44,28 @@ class VerifyResult:
     duration: float
     error: Optional[str] = None
 
+def is_explicit_raise(exc: Exception) -> bool:
+    """Checks if an exception was explicitly raised with a 'raise' statement."""
+    tb = exc.__traceback__
+    if not tb:
+        return False
+    
+    # Iterate to the last frame of the traceback (where it was raised)
+    last_frame_tb = tb
+    while last_frame_tb.tb_next:
+        last_frame_tb = last_frame_tb.tb_next
+    
+    frame = last_frame_tb.tb_frame
+    try:
+        frame_info = inspect.getframeinfo(frame)
+        code_context = frame_info.code_context
+        if code_context:
+            line = code_context[0].strip()
+            return line.startswith("raise")
+        return False
+    except Exception:
+        return False
+
 def clean_traceback(tb_str: str) -> str:
     """Filters traceback to return only the exception message."""
     lines = tb_str.splitlines()
@@ -74,12 +96,12 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
             try:
                 orig_res = orig_func(*args)
             except Exception as e:
-                orig_exc = type(e)
+                orig_exc = e
                 
             try:
                 ref_res = ref_func(*args)
             except Exception as e:
-                ref_exc = type(e)
+                ref_exc = e
             
             check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, f"input {args}")
 
@@ -148,26 +170,27 @@ def objects_are_equal(obj1, obj2):
 def check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, args_context):
     """
     Verifies that the refactored result matches the original result,
-    allowing for fixes of "crash" exceptions.
+    allowing for fixes of implicit "unhandled" exceptions while ensuring
+    explicit "caught" exceptions are maintained.
     """
-    # Exceptions considered "crashes" or "bugs" that are acceptable to fix.
-    ACCEPTABLE_FIX_EXCEPTIONS = {
-        AttributeError, TypeError, NameError, UnboundLocalError, 
-        ZeroDivisionError, IndexError, KeyError, RecursionError
-    }
-    
     if orig_exc:
+        orig_name = type(orig_exc).__name__
         if ref_exc:
-            if orig_exc.__name__ != ref_exc.__name__:
-                 raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_exc.__name__}, Refactored raised {ref_exc.__name__}")
+            ref_name = type(ref_exc).__name__
+            if orig_name != ref_name:
+                 raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_name}, Refactored raised {ref_name}")
         else:
-            if orig_exc in ACCEPTABLE_FIX_EXCEPTIONS:
-                return
+            # Original raised, Refactored didn't. 
+            # OK if it was an unhandled error (implicit raise), 
+            # FAIL if it was a caught error (explicit raise).
+            if is_explicit_raise(orig_exc):
+                raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_name} (explicit), Refactored returned {ref_res}")
             else:
-                raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_exc.__name__}, Refactored returned {ref_res}")
+                return # PASS - fixed an unhandled (implicit) error
     else:
+        # Original didn't raise
         if ref_exc:
-            raise AssertionError(f"Mismatch for {args_context}: Original returned {orig_res}, Refactored raised {ref_exc.__name__}")
+            raise AssertionError(f"Mismatch for {args_context}: Original returned {orig_res}, Refactored raised {type(ref_exc).__name__}")
         
         if not objects_are_equal(orig_res, ref_res):
              raise AssertionError(f"Mismatch for {args_context}: Original={orig_res}, Refactored={ref_res}")
@@ -223,12 +246,12 @@ class NaiveRandomFuzzer:
             try:
                 orig_res = orig_func(*args)
             except Exception as e:
-                orig_exc = type(e)
+                orig_exc = e
             
             try:
                 ref_res = ref_func(*args)
             except Exception as e:
-                ref_exc = type(e)
+                ref_exc = e
             
             check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, f"input {args}")
 
@@ -359,12 +382,12 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                     try:
                         orig_res = bound_orig(*method_args)
                     except Exception as e:
-                        orig_exc = type(e)
+                        orig_exc = e
                         
                     try:
                         ref_res = bound_ref(*method_args)
                     except Exception as e:
-                        ref_exc = type(e)
+                        ref_exc = e
                     
                     check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, f"init {init_args}, method {method_args}")
 

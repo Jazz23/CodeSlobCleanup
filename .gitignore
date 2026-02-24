@@ -102,3 +102,4 @@ cython_debug/
 
 # Temporary files
 .temp/
+.code-slob-tmp/
