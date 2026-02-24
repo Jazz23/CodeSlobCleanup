@@ -125,3 +125,30 @@ def targeted_slob(data):
                 else:
                     out.append(d + "!")
     return out
+
+def block_ignored_slob(items):
+    res = 0
+    # cs-cleanup: ignore-start
+    for item in items:
+        if item > 0:
+            if item % 2 == 0:
+                res += item
+            else:
+                res -= item
+        else:
+            if item % 2 == 0:
+                res -= item
+            else:
+                res += item
+    # cs-cleanup: ignore-end
+    return res
+
+# cs-cleanup: ignore-start
+def untested_but_block_ignored_func():
+    # This function is not called in test_main.py but should NOT be removed because it is in a block.
+    return 42
+# cs-cleanup: ignore-end
+
+def unexcluded_untested_utils_func():
+    # This function is not called and not excluded. It should be REMOVED.
+    return "Z"

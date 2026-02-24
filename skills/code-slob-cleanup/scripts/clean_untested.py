@@ -13,38 +13,9 @@ import argparse
 import ast
 import fnmatch
 
-def load_config(root_dir):
-    config_path = Path(root_dir) / "code-slob-cleanup.json"
-    if config_path.exists():
-        try:
-            with open(config_path, "r") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Error loading config: {e}")
-    return {}
-
-def is_excluded(file_path, func_name, config, root_dir):
-    rel_path = os.path.relpath(file_path, root_dir)
-    
-    # Check excludePaths
-    exclude_paths = config.get("excludePaths", [])
-    for pattern in exclude_paths:
-        # Simple glob match for file or folder
-        if fnmatch.fnmatch(rel_path, pattern) or fnmatch.fnmatch(rel_path, pattern.rstrip('/') + '/*'):
-            return True
-            
-    # Check excludeFunctions
-    exclude_funcs = config.get("excludeFunctions", [])
-    for pattern in exclude_funcs:
-        if ":" in pattern:
-            path_pat, func_pat = pattern.split(":", 1)
-            if fnmatch.fnmatch(rel_path, path_pat) and fnmatch.fnmatch(func_name, func_pat):
-                return True
-        else:
-            if fnmatch.fnmatch(func_name, pattern):
-                return True
-                
-    return False
+# Ensure we can import local modules
+sys.path.append(str(Path(__file__).parent))
+from exclusions import load_config, get_inline_exclusions, is_excluded
 
 def run_coverage(test_script_path):
     test_script_path = Path(test_script_path).resolve()
@@ -105,13 +76,18 @@ def remove_untested_functions(file_path, coverage_info, config, root_dir):
     if not os.path.exists(file_path):
         return
         
+    inline_excl = get_inline_exclusions(file_path)
+    if inline_excl.get("ignore_file"):
+        print(f"Skipping {file_path} due to ignore-file comment.")
+        return
+
     executed_lines = set(coverage_info.get("executed_lines", []))
     functions = get_function_ranges(file_path)
     
     to_remove = []
     for func in functions:
-        # Skip if excluded by config
-        if is_excluded(file_path, func["name"], config, root_dir):
+        # Skip if excluded by config or inline comments
+        if is_excluded(file_path, func["name"], func["start"], func["end"], config, root_dir, inline_excl):
             continue
             
         # A function is considered untested if NONE of its body lines are executed.

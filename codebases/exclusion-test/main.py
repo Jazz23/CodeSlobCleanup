@@ -104,3 +104,38 @@ def targeted_slob(b):
             else:
                 data.append(i - 1)
     return sum(data)
+
+# cs-cleanup: ignore-function
+def ignored_function_slob(a, b):
+    # This function is ignored using the directive
+    if a > b:
+        if a - b > 100:
+            if a % 2 == 0:
+                return a * b
+            else:
+                return a * b + 1
+        else:
+            if b % 2 == 0:
+                return a + b
+            else:
+                return a + b + 1
+    return a - b
+
+def line_ignored_slob(x):
+    if x > 10: # cs-cleanup: ignore
+        if x < 100:
+            return x * 10
+        else:
+            return x * 100
+    return x
+
+# cs-cleanup: ignore-function
+def untested_but_ignored_func():
+    # This function is not called in test_main.py but should NOT be removed.
+    a = 1
+    b = 2
+    return a + b
+
+def totally_untested_unexcluded_func():
+    # This function is not called and not excluded. It should be REMOVED.
+    return "X"
