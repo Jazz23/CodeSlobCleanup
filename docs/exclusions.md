@@ -1,10 +1,14 @@
-# Exclusions
+# Configuration & Exclusions
 
-You can control the behavior of the Code Slob Cleanup toolchain by creating a `code-slob-cleanup.json` file in your project root, or by providing inline comments in your code.
+You can control the behavior of the Code Slob Cleanup toolchain by using the `code-slob-cleanup.json` file in your project root, or by providing inline comments in your code.
 
-## Json File Format
+## The `code-slob-cleanup.json` File
 
-The configuration file supports excluding specific paths and functions from the cleanup process.
+This file is **auto-generated** in your project root during the first run if it does not already exist. You can also create it yourself before the first run. It serves two main purposes:
+1.  **Exclusions**: Specifying paths and functions to ignore during cleanup.
+2.  **Edit Tracking**: Keeping a record of refactored functions to allow for easy reverts.
+
+### Json File Format
 
 ```json
 {
@@ -16,7 +20,11 @@ The configuration file supports excluding specific paths and functions from the 
         "internal_*",
         "src/api.py:deprecated_handler",
         "utils.py:helper_*"
-    ]
+    ],
+    "edits": {
+        "src/utils.py:process_data": "5akekdl",
+        "src/models.py:User.validate": "7d2f3a1"
+    }
 }
 ```
 
@@ -32,6 +40,10 @@ A list of function names or patterns to exclude. This supports:
 - **Global Patterns**: `"internal_*"` - Excludes any function starting with `internal_` in any file.
 - **Scoped Literals**: `"src/app.py:main"` - Excludes the `main` function specifically in `src/app.py`.
 - **Scoped Patterns**: `"src/*.py:*_helper"` - Excludes functions ending in `_helper` in any Python file under `src/`.
+
+### `edits`
+
+This dictionary is managed by the cleanup agent. Each key is an identifier for a refactored function (including its path and class name, if any), and the value is the 7-character commit hash of the parent commit (where the original code exists). This map is used by the agent when you request to **revert** a cleanup.
 
 ## Inline Comments
 

@@ -8,6 +8,7 @@ Welcome to the documentation for the **Code Slob Cleanup** project. This project
 
 - You must have [uv](https://docs.astral.sh/uv/getting-started/installation/) and Python installed.
 - You should have a coding agent that supports agent skills. Copy [skills/code-slob-cleanup](https://github.com/Jazz23/CodeSlobCleanup/tree/main/skills/code-slob-cleanup) into your agent's `skills` directory.
+- During the first run, a `code-slob-cleanup.json` file will be auto-generated in your project root to manage exclusions and track edits for potential reverts.
 - During the cleanup process, a temporary directory `.code-slob-tmp` will be created. It is recommended to add this to your `.gitignore` file.
 
 ### Usage
