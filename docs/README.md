@@ -25,6 +25,15 @@ There are multiple workflows you can trigger with natural language. Below is a c
 
 See [exclusions](exclusions.md) for how to specify functions, files, or folders to ignore during the cleanup process.
 
+### Slob Identifiers
+
+- Cyclomatic complexity
+- Lines of code (LoC)
+- Global variables
+- Dead code (code not covered by tests)
+- Public methods/classes (that should be private)
+- Too many classes in a file
+
 ## How It Works
 
 Code Slob Cleanup identifies, tests, and applies code refactorings in a rigorous multi-stage workflow.

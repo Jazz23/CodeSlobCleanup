@@ -52,6 +52,10 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
     *   **Specific Targets**: If the user mentions specific functions (e.g., `process_data`), files (e.g., `utils.py`), or folders (e.g., `src/`), these are your **Target Scope**.
     *   **Implicit Scope**: If no specific targets are mentioned, the **Target Scope** is the entire repository (default: `.`).
     *   **Strict Adherence**: Your refactoring efforts MUST be strictly confined to the **Target Scope**. Do not refactor anything outside of what the user explicitly requested, even if it appears to be "slob".
+0.2 **Identifier Scoping**: Analyze the user's prompt for specific slob identifiers.
+    *   **Available Identifiers**: `cyclomatic-complexity`, `loc`, `global-variables`, `dead-code`, `public-members`, `file-class-count`.
+    *   **Action**: If the user mentions one or more identifiers (e.g., "clean up global variables and dead code"), record these as the **Identifier Scope**.
+    *   **Default**: If no identifiers are specified, the scope includes all available identifiers.
 1.  **Golden Test Coverage (Optional)**:
     *   **Trigger**: Run this step **ONLY IF** the user explicitly requests to remove untested code or perform a "golden test cleanup" in their prompt (e.g., "Clean up untested code using test_main.py"). Do **NOT** run this step just because a test script is mentioned or exists in the codebase; the intent to use it for code removal must be explicit.
     *   **Action**: Run the cleanup script: `uv run scripts/clean_untested.py <golden_test_script_path>`.
@@ -65,10 +69,11 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
         *   If the user specified functions, only scan/extract those functions.
         *   If the user specified files/folders, run the identification script on the appropriate directory and filter for those specific paths.
     *   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir <TARGET_DIR>`. Use `.` as the default `TARGET_DIR` if the scope is the entire repository or the user didn't specify a scope.
+    *   **Identifier Filtering**: If an **Identifier Scope** was defined in step 0.2, you MUST filter the output from the script to only include candidates that match the requested slob types. The script's output will contain information about why a candidate was flagged; use this to filter.
     *   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that:
         1. Fall outside the **Target Scope** (if one exists).
         2. Match the exclusions (JSON or inline comments) defined in step 0.
-    *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Ensure you do NOT include anything that matches the exclusions or falls outside the **Target Scope**.
+    *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Ensure you do NOT include anything that matches the exclusions or falls outside the **Target Scope**. If an **Identifier Scope** exists, only look for candidates matching those types.
     *   **Heuristic vs. Reality**: Analyze the output of both methods. Note that high complexity/LOC doesn't *always* mean the code is "slob". 
     *   **Filter**: If a function is an inherently complex algorithm (e.g., advanced mathematics) where the complexity is necessary and the code is already as clean as practical, **DO NOT** refactor it. Focus on actual "slob"—code that is complex due to poor structure or neglect.
 4.  **Access Workspace**: Use the temporary directory `.code-slob-tmp` in the project root. Create it if it does not exist.
