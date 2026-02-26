@@ -10,3 +10,6 @@ uv run skills/code-slob-cleanup/scripts/update_summary.py --repo all --summary-f
 
 # Selective update (appends/updates)
 uv run skills/code-slob-cleanup/scripts/update_summary.py --repo <repo1> <repo2> --summary-file identification/reports/github_test_summary.csv
+
+# Refactor Testing
+uv run high_slob_analyzer.py --target-dir <directory> --refactor-limit <limit>

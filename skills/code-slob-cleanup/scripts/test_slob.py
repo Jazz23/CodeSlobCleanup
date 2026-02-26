@@ -3,11 +3,13 @@
 
 global_state = 0
 unnecessary_list = []
-
+# codeslob: ignore begin
+foo = 0
 class MathOperations:
     def add(self, a, b):
         return a + b
-
+# codeslob: ignore end
+    
 class DatabaseConnector:
     """This class is irrelevant to math_utils.py"""
     def connect(self):
