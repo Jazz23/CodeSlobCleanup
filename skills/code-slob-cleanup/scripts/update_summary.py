@@ -66,7 +66,7 @@ def analyze_top_slob(candidates):
     if worst["metrics"]["loc"] > 100:
         factors.append("God Classes")
     if worst["metrics"]["semantic_penalty"] > 50:
-        if worst["semantic_info"]["global_vars_count"] > 5:
+        if len(worst["semantic_info"]["global_vars"]) > 5:
             factors.append("Global State Sprawl")
         if worst["semantic_info"]["relevance"] < 0.5:
             factors.append("Semantic Misalignment")
@@ -76,7 +76,7 @@ def analyze_top_slob(candidates):
     # Generate Rationale
     rationale = f"{len(high_sev)} candidates identified. Worst offender is {worst['file']}::{worst['function']} (Score: {worst['metrics']['total_score']}). "
     if "Global State Sprawl" in top_factor:
-        rationale += f"Significant global variable usage detected ({worst['semantic_info']['global_vars_count']} in one file)."
+        rationale += f"Significant global variable usage detected ({len(worst['semantic_info']['global_vars'])} in one file)."
     elif "Complex Logic" in top_factor:
         rationale += f"Individual function complexity (CC={worst['metrics']['complexity']}) is the primary driver."
     elif "Semantic Misalignment" in top_factor:
@@ -148,7 +148,7 @@ def main():
         for cand in candidates:
             f = cand["file"]
             if f not in seen_files:
-                seen_files[f] = cand["semantic_info"]["global_vars_count"]
+                seen_files[f] = len(cand["semantic_info"]["global_vars"])
                 relevance_scores.append(cand["semantic_info"]["relevance"])
                 
         total_globals = sum(seen_files.values())

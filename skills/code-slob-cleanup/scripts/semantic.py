@@ -2,10 +2,10 @@ import ast
 import os
 from typing import List, Dict, Any
 
-def detect_global_variables(code: str) -> List[str]:
+def detect_global_variables(code: str) -> List[Dict[str, Any]]:
     """
     Detects top-level variable assignments that aren't constants (all caps).
-    Global variables are often a sign of 'slob' in larger files.
+    Returns a list of dictionaries with 'name' and 'line'.
     """
     try:
         tree = ast.parse(code)
@@ -16,11 +16,11 @@ def detect_global_variables(code: str) -> List[str]:
                     if isinstance(target, ast.Name):
                         # Filter out typical constants (SHOUTING_CASE)
                         if not target.id.isupper():
-                            globals_found.append(target.id)
+                            globals_found.append({"name": target.id, "line": target.lineno})
             elif isinstance(node, ast.AnnAssign):
                 if isinstance(node.target, ast.Name):
                     if not node.target.id.isupper():
-                        globals_found.append(node.target.id)
+                        globals_found.append({"name": node.target.id, "line": node.target.lineno})
         return globals_found
     except Exception:
         return []

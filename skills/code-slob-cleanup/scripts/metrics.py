@@ -76,6 +76,7 @@ def get_function_metrics(code: str):
             results.append({
                 "name": block.name,
                 "line": block.lineno,
+                "end_line": end,
                 "complexity": complexity,
                 "loc": lloc,
                 "score": score

@@ -15,10 +15,14 @@ sys.path.append(str(Path(__file__).parent))
 
 import metrics
 import semantic
+import exclusions
 
 def scan_directory(target_dir: Path):
     slob_candidates = []
     files_scanned = 0
+    
+    # Load configuration
+    config = exclusions.load_config(target_dir)
     
     # Directories to exclude
     exclude_dirs = {".git", "venv", ".venv", "__pycache__", "tests", ".pytest_cache", ".gemini", ".code-slob-tmp"}
@@ -36,6 +40,9 @@ def scan_directory(target_dir: Path):
                 try:
                     content = file_path.read_text(encoding="utf-8")
                     
+                    # Get inline exclusions
+                    inline_excl = exclusions.get_inline_exclusions(str(file_path))
+                    
                     # Get per-function metrics
                     func_metrics = metrics.get_function_metrics(content)
                     
@@ -45,6 +52,10 @@ def scan_directory(target_dir: Path):
                     global_vars = semantic.detect_global_variables(content)
 
                     for m in func_metrics:
+                        # Check if function is excluded
+                        if exclusions.is_excluded(str(file_path), m["name"], m["line"], m["end_line"], config, str(target_dir), inline_excl):
+                            continue
+                            
                         # Determine if slob
                         # Thresholds
                         # Combined score includes semantic penalty
@@ -64,7 +75,8 @@ def scan_directory(target_dir: Path):
                             },
                             "semantic_info": {
                                 "relevance": semantic_info["relevance_score"],
-                                "global_vars_count": len(global_vars)
+                                "global_vars_count": len(global_vars),
+                                "global_vars": global_vars
                             },
                             "high_severity": is_high_severity
                         })
@@ -112,8 +124,10 @@ def main():
             classification = get_slob_classification(score)
             print(f"[SLOB]   {cand['file']}::{cand['function']} (Line {cand['line']})")
             print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
-            if cand["semantic_info"]["global_vars_count"] > 0:
-                print(f"         Globals Found: {cand['semantic_info']['global_vars_count']}")
+            if cand["semantic_info"]["global_vars"]:
+                globals_str = ", ".join([f"{g['name']} (Line {g['line']})" for g in cand["semantic_info"]["global_vars"]])
+                print(f"         Globals Found: {len(cand['semantic_info']['global_vars'])}")
+                print(f"         Globals Location: {globals_str}")
             if cand["semantic_info"]["relevance"] < 1.0:
                 print(f"         Relevance: {cand['semantic_info']['relevance']}")
     
@@ -129,3 +143,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
