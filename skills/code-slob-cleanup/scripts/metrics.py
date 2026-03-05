@@ -1,3 +1,9 @@
+# /// script
+# dependencies = [
+#     "radon",
+# ]
+# ///
+
 import radon.complexity as cc
 import radon.raw as raw
 import radon.metrics as met
