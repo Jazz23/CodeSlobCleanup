@@ -25,7 +25,8 @@ def count_repository_wide_metrics(target_dir):
     total_files = 0
     total_classes = 0
     total_functions = 0
-    private_classes_exist = False
+    public_classes = 0
+    private_classes = 0
     
     # We include EVERYTHING for the 'Total' metrics as per user's earlier manual requests
     for root, dirs, files in os.walk(target_dir):
@@ -40,12 +41,14 @@ def count_repository_wide_metrics(target_dir):
                         if isinstance(node, ast.ClassDef):
                             total_classes += 1
                             if node.name.startswith("_"):
-                                private_classes_exist = True
+                                private_classes += 1
+                            else:
+                                public_classes += 1
                         elif isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
                             total_functions += 1
                 except:
                     pass
-    return total_files, total_classes, total_functions, "Yes" if private_classes_exist else "No"
+    return total_files, total_classes, total_functions, public_classes, private_classes
 
 def analyze_top_slob(candidates):
     """Heuristically determines the top slob factor and a rationale string."""
@@ -155,7 +158,7 @@ def main():
         avg_relevance = round(sum(relevance_scores) / len(relevance_scores), 2) if relevance_scores else 1.0
         
         # 4. Get repo-wide baseline metrics
-        total_files, total_classes, total_funcs, private_exists = count_repository_wide_metrics(target_dir)
+        total_files, total_classes, total_functions, public_classes, private_classes = count_repository_wide_metrics(target_dir)
         
         # 5. Generate qualitative data
         factor, rationale = analyze_top_slob(candidates)
@@ -170,10 +173,11 @@ def main():
             "Top Slob Factor": factor,
             "Rationale": rationale,
             "Global Variables": total_globals,
-            "Private Classes Exist?": private_exists,
+            "Public Classes": public_classes,
+            "Private Classes": private_classes,
             "Classes Relevance": f"{avg_relevance:.2f}",
             " Total Classes": f" {total_classes}",
-            " Total Functions": f" {total_funcs}"
+            " Total Functions": f" {total_functions}"
         }
 
         # Remove existing entry for this repo if it exists in current rows
@@ -194,7 +198,7 @@ def main():
         # Ensure 'Repository' is first if we're building from scratch
         if not header:
             header = ["Repository", "Total Slob Score", "Total Files", "Files Scanned", "Slob Candidates", 
-                     "Top Slob Factor", "Rationale", "Global Variables", "Private Classes Exist?", 
+                     "Top Slob Factor", "Rationale", "Global Variables", "Public Classes", "Private Classes", 
                      "Classes Relevance", " Total Classes", " Total Functions"]
         else:
             # Add any new keys that might have been added
