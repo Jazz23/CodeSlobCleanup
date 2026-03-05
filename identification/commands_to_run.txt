@@ -13,3 +13,6 @@ uv run skills/code-slob-cleanup/scripts/update_summary.py --repo <repo1> <repo2>
 
 # Refactor Testing
 uv run skills/code-slob-cleanup/scripts/high_slob_analyzer.py --target-dir <directory> --refactor-limit <limit>
+
+#Run codeslob code anywhere
+curl -LsSf https://raw.githubusercontent.com/Jazz23/CodeSlobCleanup/main/scripts/install.sh | sh
