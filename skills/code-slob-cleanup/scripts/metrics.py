@@ -73,13 +73,25 @@ def get_function_metrics(code: str):
             complexity = block.complexity
             score = calculate_slob_score(block_code, complexity=complexity, lloc=lloc)
             
+            # Determine block type and privacy
+            block_type = "Function"
+            if hasattr(block, 'letter'):
+                if block.letter == 'C':
+                    block_type = "Class"
+                elif block.letter == 'M':
+                    block_type = "Method"
+            
+            is_private = block.name.startswith('_') and not (block.name.startswith('__') and block.name.endswith('__'))
+
             results.append({
                 "name": block.name,
                 "line": block.lineno,
                 "end_line": end,
                 "complexity": complexity,
                 "loc": lloc,
-                "score": score
+                "score": score,
+                "type": block_type,
+                "is_private": is_private
             })
         return results
     except Exception:

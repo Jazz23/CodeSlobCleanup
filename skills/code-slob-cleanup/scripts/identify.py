@@ -66,6 +66,8 @@ def scan_directory(target_dir: Path):
                             "file": str(file_path.relative_to(target_dir)),
                             "function": m["name"],
                             "line": m["line"],
+                            "type": m["type"],
+                            "is_private": m["is_private"],
                             "metrics": {
                                 "complexity": m["complexity"],
                                 "loc": m["loc"],
@@ -122,7 +124,16 @@ def main():
         if cand["high_severity"]:
             score = cand["metrics"]["total_score"]
             classification = get_slob_classification(score)
-            print(f"[SLOB]   {cand['file']}::{cand['function']} (Line {cand['line']})")
+            
+            label = "[SLOB]"
+            if cand["type"] == "Class":
+                label = "[PUBLIC CLASS]" if not cand["is_private"] else "[PRIVATE CLASS]"
+            elif cand["type"] == "Method":
+                label = "[METHOD]"
+            elif cand["type"] == "Function":
+                label = "[FUNCTION]"
+
+            print(f"{label.ljust(16)} {cand['file']}::{cand['function']} (Line {cand['line']})")
             print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
             if cand["semantic_info"]["global_vars"]:
                 globals_str = ", ".join([f"{g['name']} (Line {g['line']})" for g in cand["semantic_info"]["global_vars"]])
