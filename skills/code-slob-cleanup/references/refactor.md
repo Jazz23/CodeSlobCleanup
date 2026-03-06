@@ -32,6 +32,7 @@ The goal of this skill is **aggressive simplification**.
 For **each subdirectory** (job):
 1.  **Analyze**: Examine the `original.py` content.
 2.  **Infer Types & Constraints**: Infer argument types based on usage/docstrings. Save to `type_hints.json` in the subdirectory.
+    *   **CRITICAL**: ONLY add type hints to `type_hints.json` if the original function's parameters weren't already typed in the source code. This avoids redundant metadata if the source is already informative.
     *   **Proactive Constraints**: If a function is recursive (e.g., Fibonacci), uses deeply nested loops, or performs O(N^2) operations on large lists, you MUST proactively add input range constraints (e.g., `int(0, 15)`) to avoid verification timeouts.
     *   *External Dependencies*: If the code requires external packages not already present in the script's environment (e.g., `requests`, `pandas`, `pydantic`), add them to a `"modules"` list in `type_hints.json`. The orchestrator will automatically include them using `uv run --with`.
     *   *Format*:

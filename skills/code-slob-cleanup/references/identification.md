@@ -130,5 +130,5 @@ Create or update `original.py` files for the jobs.
         }
         ```
     *   **Function Keys (REQUIRED)**: For every function and class method extracted into `original.py`, you MUST use the full path as the key: `"path/to/file.py:function_name"` or `"path/to/file.py:ClassName.method_name"`. This ensures the verification output correctly identifies functions across different files and removes the need for a separate `source_files` section.
-    *   **functions (Optional Values)**: The values in the `functions` object are optional type hints. If you can confidently deduce type hints for the function arguments, include them here to help Hypothesis generate valid inputs.
+    *   **functions (Optional Values)**: The values in the `functions` object are optional type hints. If you can confidently deduce type hints for the function arguments, include them here to help Hypothesis generate valid inputs. **CRITICAL**: ONLY add type hints to `type_hints.json` if the original function's parameters weren't already typed in the source code. This avoids redundant metadata if the source is already informative.
     *   **modules (Optional)**: List any external pip-installable modules required by the functions that are NOT part of the standard library.

@@ -19,6 +19,7 @@ This skill orchestrates the entire lifecycle of cleaning up "code slob": identif
 ### Phase 1: Identification & Setup
 Follow the instructions in `references/identification.md` to identify slob candidates and set up the temporary workspace.
 *   **Result**: A `.code-slob-tmp` directory exists, containing subdirectories (jobs) for each identified target, each with an `original.py` and `type_hints.json`.
+*   **CRITICAL**: ONLY add type hints to `type_hints.json` if the original function's parameters weren't already typed in the source code.
 *   **Efficiency**: Do NOT re-read `references/identification.md` if you already have its content in memory from previous turns.
 
 ### Phase 2: RefactoringFollow the instructions in `references/refactor.md` to generate `refactored.py` for the job(s) in the temporary workspace.
