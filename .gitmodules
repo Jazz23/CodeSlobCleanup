@@ -1,3 +1,6 @@
 [submodule "codebases/hagent"]
 	path = codebases/hagent
 	url = https://github.com/masc-ucsc/hagent
+[submodule "codebases/code-smells-python"]
+	path = codebases/code-smells-python
+	url = https://github.com/ZikaZaki/code-smells-python
