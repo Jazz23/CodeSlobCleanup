@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 # CodeSlobCleanup Skill Installation Script
 # Repository: https://github.com/Jazz23/CodeSlobCleanup
 
+# Exit on error
 set -e
 
 # Ensure common paths are in PATH
@@ -11,11 +12,14 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin:$PATH
 echo "Starting CodeSlobCleanup skill installation..."
 
 # 1. Check for uv and install if not already installed
-if ! command -v uv &> /dev/null; then
+# Using POSIX redirection > /dev/null 2>&1 instead of &> /dev/null
+if ! command -v uv > /dev/null 2>&1; then
     echo "uv not found. Installing uv..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
     # Source the cargo env if it's there
-    [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+    if [ -f "$HOME/.cargo/env" ]; then
+        . "$HOME/.cargo/env"
+    fi
     # Ensure local bin is in PATH for this session
     export PATH="$HOME/.local/bin:$PATH"
 else
@@ -24,9 +28,10 @@ fi
 
 # 2. Identify the agent folder in the Current Working Directory
 AGENT_DIR=""
-POSSIBLE_DIRS=(".gemini" ".claude" ".agents")
+# POSIX sh does not support arrays, using a space-separated string
+POSSIBLE_DIRS=".gemini .claude .agents"
 
-for dir in "${POSSIBLE_DIRS[@]}"; do
+for dir in $POSSIBLE_DIRS; do
     if [ -d "$PWD/$dir" ]; then
         AGENT_DIR="$PWD/$dir"
         echo "Found agent folder in CWD: $AGENT_DIR"
@@ -38,9 +43,7 @@ done
 if [ -z "$AGENT_DIR" ]; then
     echo "Neither .gemini, .claude, nor .agents folders were found in the current directory ($PWD)."
     
-    # When running via 'curl | sh', stdin is the script itself. 
-    # We must read from /dev/tty to get actual user input.
-    # Also using printf + read for maximum portability across sh/bash/dash.
+    # Read from /dev/tty if stdin is a pipe (cat | sh or curl | sh)
     if [ -t 0 ]; then
         printf "Please enter the folder name to install the skill into (e.g., .gemini): "
         read USER_DIR
@@ -50,11 +53,10 @@ if [ -z "$AGENT_DIR" ]; then
     fi
     
     # Ensure it's treated as a path relative to CWD if not absolute
-    if [[ "$USER_DIR" == /* ]]; then
-        AGENT_DIR="$USER_DIR"
-    else
-        AGENT_DIR="$PWD/$USER_DIR"
-    fi
+    case "$USER_DIR" in
+        /*) AGENT_DIR="$USER_DIR" ;;
+        *)  AGENT_DIR="$PWD/$USER_DIR" ;;
+    esac
 fi
 
 # 3. Ensure the agent and skills directory exists
@@ -68,13 +70,13 @@ fi
 TEMP_DIR=$(mktemp -d)
 REPO_URL="https://github.com/Jazz23/CodeSlobCleanup"
 
-if command -v git &> /dev/null; then
+if command -v git > /dev/null 2>&1; then
     echo "Cloning CodeSlobCleanup repository..."
     git clone --depth 1 "$REPO_URL.git" "$TEMP_DIR"
     SKILL_SOURCE="$TEMP_DIR/skills/code-slob-cleanup"
 else
     echo "git not found. Attempting to download repository as ZIP..."
-    if command -v curl &> /dev/null && command -v unzip &> /dev/null; then
+    if command -v curl > /dev/null 2>&1 && command -v unzip > /dev/null 2>&1; then
         ZIP_URL="$REPO_URL/archive/refs/heads/main.zip"
         curl -LsSf "$ZIP_URL" -o "$TEMP_DIR/repo.zip"
         unzip -q "$TEMP_DIR/repo.zip" -d "$TEMP_DIR"
