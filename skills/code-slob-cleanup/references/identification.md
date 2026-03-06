@@ -70,8 +70,9 @@ Check for an existing `.code-slob-tmp` directory.
         *   `--complexity`: For cyclomatic complexity.
         *   `--lloc`: For logical lines of code.
         *   `--public-private`: For public/private member analysis.
-    *   **Default**: If no **Identifier Scope** is specified, provide ALL flags to perform a comprehensive scan.
-*   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that:
+        *   `--file-count <N>`: To limit output to the top N "slobbiest" files.
+        *   **Default**: If no **Identifier Scope** is specified, provide ALL identifier flags to perform a comprehensive scan.
+        *   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that:
     1. Fall outside the **Target Scope** (if one exists).
     2. Match the exclusions (JSON or inline comments) defined in step 0.
 *   **Manual Supplement**: Only perform a manual review of the codebase AFTER seeing the script results, to catch anything the script might have missed (e.g., extremely subtle logic "slob"). Ensure you do NOT include anything that matches the exclusions or falls outside the **Target Scope**. If an **Identifier Scope** exists, only look for candidates matching those types.

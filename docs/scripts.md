@@ -12,11 +12,13 @@ This script is the entry point for finding "code slob" in your repository.
     - `--complexity`: Enable cyclomatic complexity analysis.
     - `--lloc`: Enable Logical Lines of Code (LLOC) analysis.
     - `--public-private`: Enable analysis of public members that are never used outside their defining file.
+    - `--file-count <N>`: Display the top N files with the highest total slob score. Results will be grouped by file.
 - **Note**: If a flag is omitted, that specific slob identifier will not be processed or included in the results.
 - **Functionality**: 
     - Scans the target directory for Python files.
     - Calculates requested metrics for each function.
     - Outputs a report of candidate functions for refactoring based on active identifiers.
+    - If `--file-count` is specified, identifies the "slobbiest" files by summing scores of active identifiers.
     - Respects exclusions defined in `code-slob-cleanup.json` and inline comments.
 
 ## `scripts/orchestrator.py`

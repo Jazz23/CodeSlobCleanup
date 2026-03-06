@@ -243,6 +243,7 @@ def main():
     parser.add_argument("--complexity", action="store_true", help="Analyze cyclomatic complexity")
     parser.add_argument("--lloc", action="store_true", help="Analyze logical lines of code")
     parser.add_argument("--public-private", action="store_true", help="Analyze public/private usage")
+    parser.add_argument("--file-count", type=int, help="Display top N files with highest total slob score")
 
     args = parser.parse_args()
     target_dir = Path(args.target_dir).resolve()
@@ -258,46 +259,38 @@ def main():
         use_lloc=args.lloc,
         use_pub_priv=args.public_private
     )
-    
-    # Sort by score descending
-    slob_candidates.sort(key=lambda x: x["metrics"]["total_score"], reverse=True)
-    
+
     # Print summary
     print(f"--- Identification Summary ---")
     print(f"Files Scanned: {files_scanned}")
     print(f"Functions/Classes Found: {len(slob_candidates)}")
     print(f"Slob Candidates: {len([c for c in slob_candidates if c['high_severity']])}")
     print("------------------------------")
-    
-    for cand in slob_candidates:
-        if cand["high_severity"]:
-            score = cand["metrics"]["total_score"]
-            classification = get_slob_classification(score)
-            
-            label = "[SLOB]"
-            if cand.get("is_public_unused_outside"):
-                label = "[SHOULD BE PRIVATE]"
-            else:
-                if cand["type"] == "Class":
-                    label = "[PUBLIC CLASS]" if not cand["is_private"] else "[PRIVATE CLASS]"
-                elif cand["type"] == "Method":
-                    label = "[METHOD]"
-                elif cand["type"] == "Function":
-                    label = "[FUNCTION]"
 
-            print(f"{label.ljust(20)} {cand['file']}::{cand['function']} (Line {cand['line']})")
-            print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
-            
-            if cand.get("is_public_unused_outside"):
-                print(f"         Reason: Public {cand['type'].lower()} is not used outside this file and should be private.")
-                
-            if cand["semantic_info"]["global_vars"]:
-                globals_str = ", ".join([f"{g['name']} (Line {g['line']})" for g in cand["semantic_info"]["global_vars"]])
-                print(f"         Globals Found: {len(cand['semantic_info']['global_vars'])}")
-                print(f"         Globals Location: {globals_str}")
-            if cand["semantic_info"]["relevance"] < 1.0:
-                print(f"         Relevance: {cand['semantic_info']['relevance']}")
-    
+    if args.file_count:
+        # Group by file and sum scores
+        file_groups = defaultdict(list)
+        file_scores = defaultdict(float)
+        for cand in slob_candidates:
+            file_groups[cand["file"]].append(cand)
+            file_scores[cand["file"]] += cand["metrics"]["total_score"]
+
+        # Sort files by total score descending
+        sorted_files = sorted(file_scores.items(), key=lambda x: x[1], reverse=True)
+        top_files = sorted_files[:args.file_count]
+
+        for file_path, total_score in top_files:
+            print(f"\n--- {file_path} (Total Slob Score: {round(total_score, 2)}) ---")
+            # Sort candidates in file by score
+            cands = sorted(file_groups[file_path], key=lambda x: x["metrics"]["total_score"], reverse=True)
+            for cand in cands:
+                print_candidate(cand)
+    else:
+        # Sort by score descending
+        slob_candidates.sort(key=lambda x: x["metrics"]["total_score"], reverse=True)
+        for cand in slob_candidates:
+            print_candidate(cand)
+
     if args.output:
         report = {
             "files_scanned": files_scanned,
@@ -307,6 +300,35 @@ def main():
         with open(report_path, "w") as f:
             json.dump(report, f, indent=2)
         print(f"\nFull report written to {report_path}")
+
+def print_candidate(cand):
+    if cand["high_severity"]:
+        score = cand["metrics"]["total_score"]
+        classification = get_slob_classification(score)
+
+        label = "[SLOB]"
+        if cand.get("is_public_unused_outside"):
+            label = "[SHOULD BE PRIVATE]"
+        else:
+            if cand["type"] == "Class":
+                label = "[PUBLIC CLASS]" if not cand["is_private"] else "[PRIVATE CLASS]"
+            elif cand["type"] == "Method":
+                label = "[METHOD]"
+            elif cand["type"] == "Function":
+                label = "[FUNCTION]"
+
+        print(f"{label.ljust(20)} {cand['file']}::{cand['function']} (Line {cand['line']})")
+        print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
+
+        if cand.get("is_public_unused_outside"):
+            print(f"         Reason: Public {cand['type'].lower()} is not used outside this file and should be private.")
+
+        if cand["semantic_info"]["global_vars"]:
+            globals_str = ", ".join([f"{g['name']} (Line {g['line']})" for g in cand["semantic_info"]["global_vars"]])
+            print(f"         Globals Found: {len(cand['semantic_info']['global_vars'])}")
+            print(f"         Globals Location: {globals_str}")
+        if cand["semantic_info"]["relevance"] < 1.0:
+            print(f"         Relevance: {cand['semantic_info']['relevance']}")
 
 if __name__ == "__main__":
     main()
