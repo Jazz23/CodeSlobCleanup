@@ -6,7 +6,7 @@ The **Code Slob Cleanup** project relies on several key Python scripts to automa
 
 This script is the entry point for finding "code slob" in your repository.
 
-- **Usage**: `uv run scripts/identify.py --target-dir <directory>`
+- **Usage**: `uv run scripts/identify.py <directory>`
 - **Functionality**: 
     - Scans the target directory for Python files.
     - Calculates static metrics (Cyclomatic Complexity, LOC) for each function.

@@ -1,5 +1,5 @@
 identify.py:
-uv run skills/code-slob-cleanup/scripts/identify.py --target-dir <target_dir> --output <output_file>
+uv run skills/code-slob-cleanup/scripts/identify.py <target_dir> --output <output_file>
 
 benchmark.py:
 uv run skills/code-slob-cleanup/scripts/benchmark.py --target-dir <target_dir> --output <output_file>

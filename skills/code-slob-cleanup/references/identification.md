@@ -63,7 +63,7 @@ Check for an existing `.code-slob-tmp` directory.
     *   If a **Target Scope** was identified in step 0.1, you MUST filter all identification to ONLY include these targets.
     *   If the user specified functions, only scan/extract those functions.
     *   If the user specified files/folders, run the identification script on the appropriate directory and filter for those specific paths.
-*   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py --target-dir <TARGET_DIR>`. Use `.` as the default `TARGET_DIR` if the scope is the entire repository or the user didn't specify a scope.
+*   **Automated FIRST**: Run the identification script: `uv run scripts/identify.py <TARGET_DIR>`. Use `.` as the default `TARGET_DIR` if the scope is the entire repository or the user didn't specify a scope.
 *   **Identifier Filtering**: If an **Identifier Scope** was defined in step 0.2, you MUST filter the output from the script to only include candidates that match the requested slob types. The script's output will contain information about why a candidate was flagged; use this to filter.
 *   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that:
     1. Fall outside the **Target Scope** (if one exists).

@@ -210,7 +210,7 @@ def get_slob_classification(score):
 
 def main():
     parser = argparse.ArgumentParser(description="Scan directory for Code Slob.")
-    parser.add_argument("--target-dir", type=str, required=True, help="Directory to scan")
+    parser.add_argument("target_dir", type=str, help="Directory to scan")
     parser.add_argument("--output", type=str, help="Output report file (optional JSON)")
     
     args = parser.parse_args()
