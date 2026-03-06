@@ -157,6 +157,30 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
         global_vars = data["global_vars"]
         inline_excl = data["inline_excl"]
 
+        # Add file-level slob candidate for globals if any
+        if use_globals and global_vars:
+             slob_candidates.append({
+                "file": str(file_path.relative_to(target_dir)),
+                "function": "Global Scope",
+                "line": global_vars[0]["lines"][0] if global_vars else 1,
+                "type": "Global",
+                "is_private": False,
+                "is_public_unused_outside": False,
+                "metrics": {
+                    "complexity": 0,
+                    "loc": 0,
+                    "slob_score": len(global_vars) * 5.0,
+                    "semantic_penalty": len(global_vars) * 5.0,
+                    "total_score": round(len(global_vars) * 5.0, 2)
+                },
+                "semantic_info": {
+                    "relevance": 1.0,
+                    "global_vars_count": len(global_vars),
+                    "global_vars": global_vars
+                },
+                "high_severity": (len(global_vars) * 5.0) > 100
+            })
+
         for m in func_metrics:
             if exclusions.is_excluded(str(file_path), m["name"], m["line"], m["end_line"], config, str(target_dir), inline_excl):
                 continue
@@ -172,21 +196,13 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
                         is_public_unused_outside = True
 
             # Determine overall slob severity
-            # If a flag is omitted, that identifier should not be processed (contribute to score/severity)
             total_score = 0
             if use_complexity:
                 total_score += (m["complexity"] ** 2)
             if use_lloc:
                 total_score += (m["loc"] / 5.0)
-            if use_globals:
-                total_score += len(global_vars) * 5.0
-
-            # Note: other semantic penalties (relevance, misplaced classes) are kept if they don't have a flag?
-            # Based on "If a flag is omitted, that identifier should not be processed", 
-            # I should probably omit other semantic penalties too, or maybe they are always on.
-            # I'll include them only if they were already part of semantic_score and we don't have a flag for them.
-            # BUT the prompt says "There should be a flag for each type of slob identifier."
-            # So I'll ignore semantic_score and only use what's flagged.
+            # Global penalty is now handled at file level, so we don't add it to every function here
+            # to avoid double counting and redundant output.
 
             is_high_severity = False
             if use_complexity and m["complexity"] > 10:
@@ -214,14 +230,14 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
                 "metrics": {
                     "complexity": m["complexity"] if use_complexity else 0,
                     "loc": m["loc"] if use_lloc else 0,
-                    "slob_score": total_score, # Renamed or reused to represent the active score
-                    "semantic_penalty": len(global_vars) * 5.0 if use_globals else 0,
+                    "slob_score": total_score,
+                    "semantic_penalty": 0, # Globals handled at file level
                     "total_score": round(total_score, 2)
                 },
                 "semantic_info": {
                     "relevance": semantic_info["relevance_score"],
-                    "global_vars_count": len(global_vars),
-                    "global_vars": global_vars
+                    "global_vars_count": 0,
+                    "global_vars": []
                 },
                 "high_severity": is_high_severity
             })
@@ -302,12 +318,15 @@ def main():
         print(f"\nFull report written to {report_path}")
 
 def print_candidate(cand):
-    if cand["high_severity"]:
+    # Show if high severity OR if it contains global variables (since the user specifically asked for them)
+    if cand["high_severity"] or (cand.get("semantic_info", {}).get("global_vars")):
         score = cand["metrics"]["total_score"]
         classification = get_slob_classification(score)
 
         label = "[SLOB]"
-        if cand.get("is_public_unused_outside"):
+        if cand["type"] == "Global":
+            label = "[GLOBALS]"
+        elif cand.get("is_public_unused_outside"):
             label = "[SHOULD BE PRIVATE]"
         else:
             if cand["type"] == "Class":
@@ -317,16 +336,31 @@ def print_candidate(cand):
             elif cand["type"] == "Function":
                 label = "[FUNCTION]"
 
-        print(f"{label.ljust(20)} {cand['file']}::{cand['function']} (Line {cand['line']})")
-        print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
+        name_str = f"{cand['file']}::{cand['function']}" if cand["type"] != "Global" else cand['file']
+        print(f"{label.ljust(20)} {name_str} (Line {cand['line']})")
+        
+        metrics_parts = []
+        if cand["metrics"]["complexity"] > 0:
+            metrics_parts.append(f"Complexity: {cand['metrics']['complexity']}")
+        if cand["metrics"]["loc"] > 0:
+            metrics_parts.append(f"LOC: {cand['metrics']['loc']}")
+        if cand["metrics"]["semantic_penalty"] > 0:
+            metrics_parts.append(f"Semantic Penalty: {cand['metrics']['semantic_penalty']}")
+            
+        metrics_str = ", ".join(metrics_parts)
+        print(f"         Total Score: {score} ({classification}) ({metrics_str})")
 
         if cand.get("is_public_unused_outside"):
             print(f"         Reason: Public {cand['type'].lower()} is not used outside this file and should be private.")
 
         if cand["semantic_info"]["global_vars"]:
-            globals_str = ", ".join([f"{g['name']} (Line {g['line']})" for g in cand["semantic_info"]["global_vars"]])
             print(f"         Globals Found: {len(cand['semantic_info']['global_vars'])}")
-            print(f"         Globals Location: {globals_str}")
+            for g in cand["semantic_info"]["global_vars"]:
+                lines_str = ", ".join(map(str, g["lines"]))
+                usages_str = ", ".join(map(str, g["usages"])) if g["usages"] else "No usages found"
+                print(f"         - {g['name']}:")
+                print(f"           Defined on lines: {lines_str}")
+                print(f"           Used on lines: {usages_str}")
         if cand["semantic_info"]["relevance"] < 1.0:
             print(f"         Relevance: {cand['semantic_info']['relevance']}")
 
