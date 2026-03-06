@@ -31,7 +31,7 @@ See [exclusions](exclusions.md) for how to specify functions, files, or folders 
 - Lines of code (LoC)
 - Global variables
 - Dead code (code not covered by tests)
-- Public methods/classes (that should be private)
+- Public methods/classes that could be private
 - Too many classes in a file
 
 ## How It Works
