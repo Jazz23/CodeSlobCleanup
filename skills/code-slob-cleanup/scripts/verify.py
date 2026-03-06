@@ -116,9 +116,9 @@ def run_hypothesis_verification(orig_func: Callable, ref_func: Callable, config:
         error_msg = cleaned_tb if cleaned_tb else str(e)
         return VerifyResult("FAIL", duration, error_msg)
 
-    except Unsatisfiable:
+    except Unsatisfiable as e:
         duration = time.time() - start_time
-        return VerifyResult("SKIP", duration, "Unable to generate valid inputs")
+        return VerifyResult("SKIP", duration, str(e) if str(e) else "Unable to generate valid inputs")
 
     except Exception as e:
         duration = time.time() - start_time
@@ -207,14 +207,20 @@ class NaiveRandomFuzzer:
     def _gen_float(self): return random.uniform(-1000.0, 1000.0)
     def _gen_str(self): return "".join(random.choices(string.ascii_letters + string.digits, k=random.randint(0, 50)))
     def _gen_bool(self): return random.choice([True, False])
-    def _gen_list(self): return [self._gen_any() for _ in range(random.randint(0, 5))]
-    def _gen_dict(self): return {self._gen_str(): self._gen_any() for _ in range(random.randint(0, 5))}
     
-    def _gen_any(self):
-        return random.choice([
-            self._gen_int(), self._gen_float(), self._gen_str(), 
-            self._gen_bool(), None, self._gen_list(), self._gen_dict()
-        ])
+    def _gen_any(self, depth=0):
+        if depth > 2:
+            choice = random.randint(0, 4)
+        else:
+            choice = random.randint(0, 6)
+            
+        if choice == 0: return self._gen_int()
+        if choice == 1: return self._gen_float()
+        if choice == 2: return self._gen_str()
+        if choice == 3: return self._gen_bool()
+        if choice == 4: return None
+        if choice == 5: return [self._gen_any(depth + 1) for _ in range(random.randint(0, 5))]
+        if choice == 6: return {self._gen_str(): self._gen_any(depth + 1) for _ in range(random.randint(0, 5))}
 
     def generate_args(self, func):
         sig = inspect.signature(func)
@@ -230,9 +236,9 @@ class NaiveRandomFuzzer:
             elif param.annotation == bool:
                 args.append(self._gen_bool())
             elif param.annotation == list:
-                args.append(self._gen_list())
+                args.append([self._gen_any() for _ in range(random.randint(0, 5))])
             elif param.annotation == dict:
-                args.append(self._gen_dict())
+                args.append({self._gen_str(): self._gen_any() for _ in range(random.randint(0, 5))})
             else:
                 args.append(self._gen_any())
         return args
@@ -297,7 +303,14 @@ def combine_results(name: str, hyp_res: VerifyResult, naive_res: VerifyResult, c
         return "SUCCESS"
     
     # Both skipped
-    print(f"[SKIP] {display_name} ({total_duration:.4f}s) (Both fuzzers skipped)")
+    reasons = []
+    if hyp_res.error:
+        reasons.append(f"Hypothesis: {hyp_res.error}")
+    if naive_res.error:
+        reasons.append(f"Naive: {naive_res.error}")
+    
+    reason_str = "; ".join(reasons) if reasons else "Both fuzzers skipped"
+    print(f"[SKIP] {display_name} ({total_duration:.4f}s) ({reason_str})")
     return "SKIPPED"
 
 def worker_verify_function(orig_path, ref_path, func_name, config, result_queue):
