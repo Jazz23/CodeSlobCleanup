@@ -1,6 +1,8 @@
 # Overview
 "Code Slob" refers to the subtle technical debt, unnecessary verbosity, and over-complexity often introduced by AI coding agents or rapid development. While functional, "slob" code is harder to maintain and prone to future regressions. The **Code Slob Cleanup** project builds an automated toolchain—packaged as a coding agent skill—to identify, refactor, and rigorously verify Python code to remove this debt.
 
+Currently, the project only supports python codebases.
+
 # How to use
 
 See [getting started](https://jazz23.github.io/CodeSlobCleanup/#getting-started) for installation and usage instructions.

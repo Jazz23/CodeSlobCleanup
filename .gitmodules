@@ -1,0 +1,3 @@
+[submodule "codebases/hagent"]
+	path = codebases/hagent
+	url = https://github.com/masc-ucsc/hagent
