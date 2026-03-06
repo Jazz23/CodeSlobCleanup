@@ -43,10 +43,32 @@ Analyze the user's prompt for specific targets.
 *   **Strict Adherence**: Your refactoring efforts MUST be strictly confined to the **Target Scope**. Do not refactor anything outside of what the user explicitly requested, even if it appears to be "slob".
 
 ## 0.2 Identifier Scoping
-Analyze the user's prompt for specific slob identifiers.
-*   **Available Identifiers**: `cyclomatic-complexity`, `loc`, `global-variables`, `dead-code`, `public-members`, `file-class-count`.
-*   **Action**: If the user mentions one or more identifiers (e.g., "clean up global variables and dead code"), record these as the **Identifier Scope**.
-*   **Default**: If no identifiers are specified, the scope includes all available identifiers.
+Analyze the user's prompt for specific slob identifiers and file count.
+*   **Available Identifiers**: 
+    - (a) `global-variables`
+    - (b) `public-members` (should be private)
+    - (c) `cyclomatic-complexity`
+    - (d) `loc`
+*   **Action**: 
+    1. Check if the user has explicitly mentioned specific identifiers (e.g., "clean up global variables") OR provided the letter-based format (e.g., "abd 5") in their original prompt.
+    2. If identifiers OR a file count are present, record these as the **Identifier Scope** and **SKIP** the interaction below.
+*   **Mandatory Interaction**: If **BOTH** identifiers and file count are omitted from the prompt, you MUST ask the user using the following EXACT format:
+    > Do you want to:
+    > a. Remove global variables
+    > b. Make unnecessary public classes/functions private
+    > c. Lower cyclomatic complexity
+    > d. Lower line count per function
+    > 
+    > And for how many files?
+    > 
+    > Simply type the letters of the identifiers you want to use, along with the file count. E.g. "abd 5".
+*   **Response Parsing**:
+    - `a` -> `--global-variables`
+    - `b` -> `--public-private`
+    - `c` -> `--complexity`
+    - `d` -> `--lloc`
+    - The number provided (if any) -> `--file-count <number>`
+*   **Default**: If no identifiers are specified after the interaction, the scope includes all available identifiers.
 
 ## 1. Golden Test Coverage (Optional)
 *   **Trigger**: Run this step **ONLY IF** the user explicitly requests to remove untested code or perform a "golden test cleanup" in their prompt (e.g., "Clean up untested code using test_main.py"). Do **NOT** run this step just because a test script is mentioned or exists in the codebase; the intent to use it for code removal must be explicit.
