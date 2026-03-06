@@ -6,11 +6,17 @@ The **Code Slob Cleanup** project relies on several key Python scripts to automa
 
 This script is the entry point for finding "code slob" in your repository.
 
-- **Usage**: `uv run scripts/identify.py <directory>`
+- **Usage**: `uv run scripts/identify.py <directory> [flags]`
+- **Flags**:
+    - `--global-variables`: Enable detection of non-constant global variables.
+    - `--complexity`: Enable cyclomatic complexity analysis.
+    - `--lloc`: Enable Logical Lines of Code (LLOC) analysis.
+    - `--public-private`: Enable analysis of public members that are never used outside their defining file.
+- **Note**: If a flag is omitted, that specific slob identifier will not be processed or included in the results.
 - **Functionality**: 
     - Scans the target directory for Python files.
-    - Calculates static metrics (Cyclomatic Complexity, LOC) for each function.
-    - Outputs a report of candidate functions for refactoring.
+    - Calculates requested metrics for each function.
+    - Outputs a report of candidate functions for refactoring based on active identifiers.
     - Respects exclusions defined in `code-slob-cleanup.json` and inline comments.
 
 ## `scripts/orchestrator.py`

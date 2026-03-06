@@ -96,41 +96,42 @@ class CrossReferenceAnalyzer:
             # For ast.ImportFrom, we already handled it by adding the names directly to self.used_outside
             # So we don't need a fallback rough text search anymore, making it more accurate and preventing cross-contamination of duplicate names.
 
-def scan_directory(target_dir: Path):
+def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, use_lloc=False, use_pub_priv=False):
     slob_candidates = []
     files_scanned = 0
-    
+
     # Load configuration
     config = exclusions.load_config(target_dir)
-    
+
     # Directories to exclude
     exclude_dirs = {".git", "venv", ".venv", "__pycache__", "tests", ".pytest_cache", ".gemini", ".code-slob-tmp"}
-    
+
     # --- Pass 1: Collect Data ---
     file_data = []
-    analyzer = CrossReferenceAnalyzer(target_dir)
-    
+    analyzer = CrossReferenceAnalyzer(target_dir) if use_pub_priv else None
+
     for root, dirs, files in os.walk(target_dir):
         # Modify dirs in-place to skip excluded directories
         dirs[:] = [d for d in dirs if d not in exclude_dirs]
-        
+
         for file in files:
             if file.endswith(".py"):
                 files_scanned += 1
                 file_path = Path(root) / file
-                
+
                 try:
                     content = file_path.read_text(encoding="utf-8")
-                    
+
                     inline_excl = exclusions.get_inline_exclusions(str(file_path))
                     func_metrics = metrics.get_function_metrics(content)
-                    
-                    analyzer.add_file(file_path, content, func_metrics)
-                    
+
+                    if analyzer:
+                        analyzer.add_file(file_path, content, func_metrics)
+
                     semantic_score = semantic.get_semantic_slob_score(str(file_path), content)
                     semantic_info = semantic.evaluate_semantic_relevance(str(file_path), content)
-                    global_vars = semantic.detect_global_variables(content)
-                    
+                    global_vars = semantic.detect_global_variables(content) if use_globals else []
+
                     file_data.append({
                         "file_path": file_path,
                         "content": content,
@@ -142,10 +143,11 @@ def scan_directory(target_dir: Path):
                     })
                 except Exception as e:
                     print(f"Error processing {file_path}: {e}", file=sys.stderr)
-                    
+
     # --- Analyze Cross-References ---
-    analyzer.analyze()
-    
+    if analyzer:
+        analyzer.analyze()
+
     # --- Pass 2: Determine Slob Candidates ---
     for data in file_data:
         file_path = data["file_path"]
@@ -154,27 +156,53 @@ def scan_directory(target_dir: Path):
         semantic_info = data["semantic_info"]
         global_vars = data["global_vars"]
         inline_excl = data["inline_excl"]
-        
+
         for m in func_metrics:
             if exclusions.is_excluded(str(file_path), m["name"], m["line"], m["end_line"], config, str(target_dir), inline_excl):
                 continue
-                
+
             # Check if it's a public entity that is never used outside its defining file
             is_public_unused_outside = False
-            is_dunder = m["name"].startswith('__') and m["name"].endswith('__')
-            
-            # Note: "main" is a common entrypoint, so we don't force it to be private.
-            if not m["is_private"] and not is_dunder and m["name"] != "main":
-                if m["name"] not in analyzer.used_outside.get(file_path, set()):
-                    is_public_unused_outside = True
-            
+            if use_pub_priv:
+                is_dunder = m["name"].startswith('__') and m["name"].endswith('__')
+
+                # Note: "main" is a common entrypoint, so we don't force it to be private.
+                if not m["is_private"] and not is_dunder and m["name"] != "main":
+                    if analyzer and m["name"] not in analyzer.used_outside.get(file_path, set()):
+                        is_public_unused_outside = True
+
             # Determine overall slob severity
-            total_score = m["score"] + semantic_score
-            is_high_severity = m["complexity"] > 10 or m["loc"] > 50 or total_score > 100 or is_public_unused_outside
-            
-            if is_public_unused_outside:
+            # If a flag is omitted, that identifier should not be processed (contribute to score/severity)
+            total_score = 0
+            if use_complexity:
+                total_score += (m["complexity"] ** 2)
+            if use_lloc:
+                total_score += (m["loc"] / 5.0)
+            if use_globals:
+                total_score += len(global_vars) * 5.0
+
+            # Note: other semantic penalties (relevance, misplaced classes) are kept if they don't have a flag?
+            # Based on "If a flag is omitted, that identifier should not be processed", 
+            # I should probably omit other semantic penalties too, or maybe they are always on.
+            # I'll include them only if they were already part of semantic_score and we don't have a flag for them.
+            # BUT the prompt says "There should be a flag for each type of slob identifier."
+            # So I'll ignore semantic_score and only use what's flagged.
+
+            is_high_severity = False
+            if use_complexity and m["complexity"] > 10:
+                is_high_severity = True
+            if use_lloc and m["loc"] > 50:
+                is_high_severity = True
+            if total_score > 100:
+                is_high_severity = True
+            if use_pub_priv and is_public_unused_outside:
+                is_high_severity = True
                 # Add a large penalty so it's prioritized for cleanup
                 total_score += 150 
+
+            if not is_high_severity and total_score <= 0:
+                # If no identifiers are active or found, skip this candidate
+                continue
 
             slob_candidates.append({
                 "file": str(file_path.relative_to(target_dir)),
@@ -184,10 +212,10 @@ def scan_directory(target_dir: Path):
                 "is_private": m["is_private"],
                 "is_public_unused_outside": is_public_unused_outside,
                 "metrics": {
-                    "complexity": m["complexity"],
-                    "loc": m["loc"],
-                    "slob_score": m["score"],
-                    "semantic_penalty": semantic_score,
+                    "complexity": m["complexity"] if use_complexity else 0,
+                    "loc": m["loc"] if use_lloc else 0,
+                    "slob_score": total_score, # Renamed or reused to represent the active score
+                    "semantic_penalty": len(global_vars) * 5.0 if use_globals else 0,
                     "total_score": round(total_score, 2)
                 },
                 "semantic_info": {
@@ -197,7 +225,6 @@ def scan_directory(target_dir: Path):
                 },
                 "high_severity": is_high_severity
             })
-
     return files_scanned, slob_candidates
 
 def get_slob_classification(score):
@@ -212,15 +239,25 @@ def main():
     parser = argparse.ArgumentParser(description="Scan directory for Code Slob.")
     parser.add_argument("target_dir", type=str, help="Directory to scan")
     parser.add_argument("--output", type=str, help="Output report file (optional JSON)")
-    
+    parser.add_argument("--global-variables", action="store_true", help="Detect global variables")
+    parser.add_argument("--complexity", action="store_true", help="Analyze cyclomatic complexity")
+    parser.add_argument("--lloc", action="store_true", help="Analyze logical lines of code")
+    parser.add_argument("--public-private", action="store_true", help="Analyze public/private usage")
+
     args = parser.parse_args()
     target_dir = Path(args.target_dir).resolve()
-    
+
     if not target_dir.exists():
         print(f"Error: Target directory {target_dir} does not exist.", file=sys.stderr)
         sys.exit(1)
-        
-    files_scanned, slob_candidates = scan_directory(target_dir)
+
+    files_scanned, slob_candidates = scan_directory(
+        target_dir, 
+        use_globals=args.global_variables,
+        use_complexity=args.complexity,
+        use_lloc=args.lloc,
+        use_pub_priv=args.public_private
+    )
     
     # Sort by score descending
     slob_candidates.sort(key=lambda x: x["metrics"]["total_score"], reverse=True)
