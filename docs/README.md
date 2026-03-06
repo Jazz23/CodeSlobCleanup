@@ -6,16 +6,20 @@ Welcome to the documentation for the **Code Slob Cleanup** project. This project
 
 ### Installation
 
+#### Simply run `curl -LsSf https://raw.githubusercontent.com/Jazz23/CodeSlobCleanup/refs/heads/main/install.sh | sh`.
+
+During the first run, a `code-slob-cleanup.json` file will be auto-generated in your project root to manage exclusions and track edits for potential reverts. During the cleanup process, a temporary directory `.code-slob-tmp` will be created. It is recommended to add this to your `.gitignore` file.
+
+For manual installation:
+
 - You must have [uv](https://docs.astral.sh/uv/getting-started/installation/) and Python installed.
-- You should have a coding agent that supports agent skills. Copy [skills/code-slob-cleanup](https://github.com/Jazz23/CodeSlobCleanup/tree/main/skills/code-slob-cleanup) into your agent's `skills` directory.
-- During the first run, a `code-slob-cleanup.json` file will be auto-generated in your project root to manage exclusions and track edits for potential reverts.
-- During the cleanup process, a temporary directory `.code-slob-tmp` will be created. It is recommended to add this to your `.gitignore` file.
+- Copy [skills/code-slob-cleanup](https://github.com/Jazz23/CodeSlobCleanup/tree/main/skills/code-slob-cleanup) into your agent's `skills` directory.
 
 ### Usage
 
 There are multiple workflows you can trigger with natural language. Below is a comprehensive list of example prompts to utilize Code Slob Cleanup:
 
-- **"Clean up my code"** -> This will trigger the agent to crawl your entire repository looking for code slob. The agent will provide you with it's findings and ask you what you wish to refactor.
+- **"Clean up my code"** -> The agent will ask you what slob identifiers to target and how many files you want to clean up (in order of slob score).
 - **"Clean up code in the `src/helpers` folder"** -> The agent will only cleanup the `src/helpers` folder.
 - **"Revert cleanup changes made to the 'verify_user' function"** -> The agent will look at the commit it originally modified and revert the function.
 - **"Clean up global variables only"** -> The agent will skip other code slob identifiers and only look for global variables.
@@ -30,9 +34,8 @@ See [exclusions](exclusions.md) for how to specify functions, files, or folders 
 - Cyclomatic complexity
 - Lines of code (LoC)
 - Global variables
-- Dead code (code not covered by tests)
 - Public methods/classes that could be private
-- Too many classes in a file
+- Dead code (code not covered by a provided test)
 
 ## How It Works
 
