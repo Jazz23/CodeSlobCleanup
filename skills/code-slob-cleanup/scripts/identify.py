@@ -16,6 +16,7 @@ sys.path.append(str(Path(__file__).parent))
 import metrics
 import semantic
 import exclusions
+import duplication
 
 def scan_directory(target_dir: Path):
     slob_candidates = []
@@ -68,6 +69,7 @@ def scan_directory(target_dir: Path):
                             "line": m["line"],
                             "type": m["type"],
                             "is_private": m["is_private"],
+                            "raw_code": m.get("raw_code", ""),
                             "metrics": {
                                 "complexity": m["complexity"],
                                 "loc": m["loc"],
@@ -86,6 +88,9 @@ def scan_directory(target_dir: Path):
                 except Exception as e:
                     print(f"Error processing {file_path}: {e}", file=sys.stderr)
                     
+    # Find duplicates
+    slob_candidates = duplication.find_duplicates(slob_candidates)
+    
     return files_scanned, slob_candidates
 
 def get_slob_classification(score):
@@ -121,19 +126,28 @@ def main():
     print("------------------------------")
     
     for cand in slob_candidates:
-        if cand["high_severity"]:
+        if cand["high_severity"] or cand.get("is_duplicate"):
             score = cand["metrics"]["total_score"]
             classification = get_slob_classification(score)
             
             label = "[SLOB]"
+            if cand.get("is_duplicate") and not cand["high_severity"]:
+                label = "[CLONE]"
+            
             if cand["type"] == "Class":
-                label = "[PUBLIC CLASS]" if not cand["is_private"] else "[PRIVATE CLASS]"
+                if cand.get("is_duplicate"):
+                    label = "[DUPLICATE CLASS]"
+                else:
+                    label = "[PUBLIC CLASS]" if not cand["is_private"] else "[PRIVATE CLASS]"
             elif cand["type"] == "Method":
                 label = "[METHOD]"
             elif cand["type"] == "Function":
-                label = "[FUNCTION]"
+                if not label == "[CLONE]" and not label == "[SLOB]":
+                    label = "[FUNCTION]"
 
             print(f"{label.ljust(16)} {cand['file']}::{cand['function']} (Line {cand['line']})")
+            if cand.get("is_duplicate"):
+                print(f"         [DUPLICATE] Matches: {', '.join(cand['duplicate_locations'])}")
             print(f"         Total Score: {score} ({classification}) (Complexity: {cand['metrics']['complexity']}, LOC: {cand['metrics']['loc']}, Semantic Penalty: {cand['metrics']['semantic_penalty']})")
             if cand["semantic_info"]["global_vars"]:
                 globals_str = ", ".join([f"{g['name']} (Line {g['line']})" for g in cand["semantic_info"]["global_vars"]])
