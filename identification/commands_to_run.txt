@@ -1,5 +1,5 @@
 identify.py:
-uv run skills/code-slob-cleanup/scripts/identify.py --target-dir <target_dir> --output <output_file>
+uv run skills/code-slob-cleanup/scripts/identify.py <target_dir> --output <output_file>
 
 benchmark.py:
 uv run skills/code-slob-cleanup/scripts/benchmark.py --target-dir <target_dir> --output <output_file>
@@ -14,5 +14,5 @@ uv run skills/code-slob-cleanup/scripts/update_summary.py --repo <repo1> <repo2>
 # Refactor Testing
 uv run skills/code-slob-cleanup/scripts/high_slob_analyzer.py --target-dir <directory> --refactor-limit <limit>
 
-#Run codeslob code anywhere
-curl -LsSf https://raw.githubusercontent.com/Jazz23/CodeSlobCleanup/main/scripts/install.sh | sh
+#Install code slob cleanup skill
+curl -LsSf https://raw.githubusercontent.com/Jazz23/CodeSlobCleanup/refs/heads/main/install.sh | sh

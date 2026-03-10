@@ -5,23 +5,54 @@ from typing import List, Dict, Any
 def detect_global_variables(code: str) -> List[Dict[str, Any]]:
     """
     Detects top-level variable assignments that aren't constants (all caps).
-    Returns a list of dictionaries with 'name' and 'line'.
+    Returns a list of dictionaries with 'name', 'lines' (definitions), and 'usages'.
     """
     try:
         tree = ast.parse(code)
-        globals_found = []
+        globals_by_name = {}
+        
+        # Pass 1: Find top-level definitions
         for node in tree.body:
+            names = []
             if isinstance(node, ast.Assign):
                 for target in node.targets:
-                    if isinstance(target, ast.Name):
-                        # Filter out typical constants (SHOUTING_CASE)
-                        if not target.id.isupper():
-                            globals_found.append({"name": target.id, "line": target.lineno})
+                    if isinstance(target, ast.Name) and not target.id.isupper():
+                        names.append(target.id)
             elif isinstance(node, ast.AnnAssign):
-                if isinstance(node.target, ast.Name):
-                    if not node.target.id.isupper():
-                        globals_found.append({"name": node.target.id, "line": node.target.lineno})
-        return globals_found
+                if isinstance(node.target, ast.Name) and not node.target.id.isupper():
+                    names.append(node.target.id)
+            
+            for name in names:
+                if name not in globals_by_name:
+                    globals_by_name[name] = {"name": name, "lines": [], "usages": []}
+                if node.lineno not in globals_by_name[name]["lines"]:
+                    globals_by_name[name]["lines"].append(node.lineno)
+
+        if not globals_by_name:
+            return []
+
+        # Pass 2: Find all usages
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Name) and node.id in globals_by_name:
+                if isinstance(node.ctx, ast.Load):
+                    if node.lineno not in globals_by_name[node.id]["usages"]:
+                        globals_by_name[node.id]["usages"].append(node.lineno)
+                elif isinstance(node.ctx, ast.Store):
+                    # If it's a store not at top-level, it's either a local shadow or a global re-assignment
+                    # For simplicity, we only consider top-level assignments as 'definitions'
+                    # and other stores as 'usages' (re-assignments) if we want, 
+                    # but the user asked for "defined" and "used".
+                    # Let's check if this store is already in 'lines'.
+                    if node.lineno not in globals_by_name[node.id]["lines"] and node.lineno not in globals_by_name[node.id]["usages"]:
+                         globals_by_name[node.id]["usages"].append(node.lineno)
+        
+        # Clean up: remove definitions from usages (in case some Load happened on same line as Store, though unlikely)
+        for g in globals_by_name.values():
+            g["usages"] = [u for u in g["usages"] if u not in g["lines"]]
+            g["lines"].sort()
+            g["usages"].sort()
+
+        return list(globals_by_name.values())
     except Exception:
         return []
 

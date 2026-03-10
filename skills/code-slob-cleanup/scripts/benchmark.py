@@ -151,11 +151,13 @@ def worker_benchmark_class_method(orig_path, ref_path, cls_name, method_name, co
         try:
             init_inputs = generate_benchmark_inputs(orig_cls, 1, config=config)
             if not init_inputs:
+                print(f"[SKIP] {display_name} (Unable to generate constructor arguments)")
                 return
             init_args = init_inputs[0]
             inst_orig = orig_cls(*init_args)
             inst_ref = ref_cls(*init_args)
-        except Exception:
+        except Exception as e:
+            print(f"[SKIP] {display_name} (Error during constructor: {e})")
             return
             
         bound_orig = getattr(inst_orig, method_name)
@@ -163,6 +165,7 @@ def worker_benchmark_class_method(orig_path, ref_path, cls_name, method_name, co
         
         inputs = generate_benchmark_inputs(bound_orig, config=config)
         if not inputs:
+            print(f"[SKIP] {display_name} (Unable to generate benchmark inputs)")
             return
             
         orig_times = measure_execution_time(bound_orig, inputs)
