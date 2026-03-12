@@ -21,18 +21,6 @@ This script is the entry point for finding "code slob" in your repository.
     - If `--file-count` is specified, identifies the "slobbiest" files by summing scores of active identifiers.
     - Respects exclusions defined in `code-slob-cleanup.json` and inline comments.
 
-## `scripts/benchmark.py`
-
-- **Usage**: `uv run scripts/benchmark.py --target-dir <target_dir> --output <output_file>`
-
-## `scripts/update_summary.py`
-
-- **Usage**: `uv run scripts/update_summary.py --target-dir <target_dir> --output <output_file>`
-
-## `scripts/duplication.py`
-
-- **Usage**: `uv run scripts/duplication.py --target-dir <directory> --output <output_file>`
-
 ## `scripts/orchestrator.py`
 
 This script manages the verification process within the `.code-slob-tmp/` workspace.
