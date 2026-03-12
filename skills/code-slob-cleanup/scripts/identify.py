@@ -106,6 +106,12 @@ def main():
     parser.add_argument("--target-dir", type=str, required=True, help="Directory to scan")
     parser.add_argument("--output", type=str, help="Output report file (optional JSON)")
     
+    # Feature Flags
+    parser.add_argument("--global-variables", action="store_true", help="Filter for globals")
+    parser.add_argument("--complexity", action="store_true", help="Filter for high complexity")
+    parser.add_argument("--lloc", action="store_true", help="Filter for long logic (god functions/classes)")
+    parser.add_argument("--public-private", action="store_true", help="Filter for public classes/methods that could be private")
+    
     args = parser.parse_args()
     target_dir = Path(args.target_dir).resolve()
     
@@ -125,8 +131,33 @@ def main():
     print(f"Slob Candidates: {len([c for c in slob_candidates if c['high_severity']])}")
     print("------------------------------")
     
+    # Determine if any filters are active
+    filters_active = args.global_variables or args.complexity or args.lloc or args.public_private
+    
+    filtered_candidates = []
+    
     for cand in slob_candidates:
         if cand["high_severity"] or cand.get("is_duplicate"):
+            # Check against filters if any are active
+            if filters_active:
+                matches_filter = False
+                
+                if args.global_variables and len(cand["semantic_info"]["global_vars"]) > 0:
+                    matches_filter = True
+                if args.complexity and cand["metrics"]["complexity"] > 10:
+                    matches_filter = True
+                if args.lloc and cand["metrics"]["loc"] > 50:
+                    matches_filter = True
+                if args.public_private and \
+                   not cand["is_private"] and \
+                   cand["type"] in ["Class", "Method"]:
+                    matches_filter = True
+                    
+                if not matches_filter:
+                    continue  # Skip this candidate because it didn't match the required filters
+            
+            filtered_candidates.append(cand)
+            
             score = cand["metrics"]["total_score"]
             classification = get_slob_classification(score)
             
@@ -159,7 +190,7 @@ def main():
     if args.output:
         report = {
             "files_scanned": files_scanned,
-            "slob_candidates": slob_candidates
+            "slob_candidates": filtered_candidates
         }
         report_path = Path(args.output)
         with open(report_path, "w") as f:
