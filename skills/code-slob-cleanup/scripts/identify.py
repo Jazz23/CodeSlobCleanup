@@ -157,13 +157,6 @@ def main():
         
     filtered_candidates = []
     
-    # Print Summary when flags are provided
-    print(f"--- Identification Summary ---")
-    print(f"Files Scanned: {files_scanned}")
-    print(f"Functions Found: {len(slob_candidates)}")
-    print(f"Slob Candidates: {len([c for c in slob_candidates if c['high_severity']])}")
-    print("------------------------------")
-    
     # Custom Aggregation logic if flags are given
     if user_provided_flags:
         total_repo_score = sum(c["metrics"]["total_score"] for c in slob_candidates)
