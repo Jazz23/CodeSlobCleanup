@@ -159,11 +159,30 @@ def main():
         
         # 4. Get repo-wide baseline metrics
         total_files, total_classes, total_functions, public_classes, private_classes = count_repository_wide_metrics(target_dir)
-        
+
         # 5. Generate qualitative data
         factor, rationale = analyze_top_slob(candidates)
         
-        # 6. Prepare Row
+        # Determine which flags to output based on the metrics
+        flags = []
+        if total_globals > 0:
+            flags.append("--global-variables")
+        
+        # Consider an issue if there's a disproportionate amount of public classes or high absolute number
+        if public_classes > private_classes or public_classes > 10:
+            flags.append("--public-private")
+            
+        # Consider complexity and length based on worst offenses
+        if "Complex Logic" in factor or sum(c["metrics"]["complexity"] for c in candidates) / len(candidates) > 5 if candidates else False:
+            flags.append("--complexity")
+            
+        if "God Classes" in factor or sum(c["metrics"]["loc"] for c in candidates) / len(candidates) > 200 if candidates else False:
+            flags.append("--lloc")
+            
+        # 6. Output flags for the repository
+        print(f"Flags for {repo_name}: {' '.join(flags) if flags else 'None'}")
+        
+        # Also prepare the row to keep backward compatibility or debugging
         new_row = {
             "Repository": repo_name,
             "Total Slob Score": f"{total_score:.2f}",
@@ -177,7 +196,8 @@ def main():
             "Private Classes": private_classes,
             "Classes Relevance": f"{avg_relevance:.2f}",
             " Total Classes": f" {total_classes}",
-            " Total Functions": f" {total_functions}"
+            " Total Functions": f" {total_functions}",
+            "Suggested Flags": " ".join(flags)
         }
 
         # Remove existing entry for this repo if it exists in current rows
@@ -199,7 +219,7 @@ def main():
         if not header:
             header = ["Repository", "Total Slob Score", "Total Files", "Files Scanned", "Slob Candidates", 
                      "Top Slob Factor", "Rationale", "Global Variables", "Public Classes", "Private Classes", 
-                     "Classes Relevance", " Total Classes", " Total Functions"]
+                     "Classes Relevance", " Total Classes", " Total Functions", "Suggested Flags"]
         else:
             # Add any new keys that might have been added
             for key in sorted(current_keys):

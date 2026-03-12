@@ -17,11 +17,11 @@ In this phase, the toolchain identifies potential "code slob" candidates and pre
 1.  **Scope Determination**: The tool analyzes the user's request to determine which files or functions to target.
 2.  **Configuration**: The tool reads `code-slob-cleanup.json` (**auto-generating** it if it does not exist) to strictly exclude specific paths or functions.
 3.  **Golden Test Coverage (Optional)**: If requested, the `scripts/clean_untested.py` script is used to remove code that is not executed by a provided test suite.
-4.  **Discovery**: The tool uses `scripts/identify.py` to find complex or verbose functions using static analysis. It supports flags to target specific slob identifiers:
-    - `--global-variables`: Detect non-constant global variables.
-    - `--complexity`: Analyze cyclomatic complexity.
-    - `--lloc`: Analyze logical lines of code.
-    - `--public-private`: Identify public members that should be private.
+4.  **Discovery**: The tool uses `scripts/identify.py` to find complex or verbose functions using static analysis. To facilitate customized cleanup across different codebases, `scripts/update_summary.py` generates repository-specific feature flags based on the key code slob factors affecting each repository, rather than grouping everything into a single table. Only data matching these flags will be targeted:
+    - `--global-variables`: Output data if non-constant global variables are a primary issue.
+    - `--complexity`: Output data if cyclomatic complexity is high.
+    - `--lloc`: Output data if logical lines of code (God classes/functions) are excessive.
+    - `--public-private`: Output data if there is an excessive amount of public members that should be private.
 5.  **Extraction**: Identified functions are extracted into a temporary directory (`.code-slob-tmp/`) along with their dependencies and type hints.
 
 ### Phase 2: Refactoring
