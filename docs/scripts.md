@@ -4,34 +4,57 @@ The **Code Slob Cleanup** project relies on several key Python scripts to automa
 
 ## `scripts/identify.py`
 
-This script is the entry point for finding "code slob" in your repository.
+This script is the entry point for finding "code slob" in your repository. It supports both automatic factor inference and targeted aggregation.
 
-- **Usage**: `uv run scripts/identify.py <directory> [flags]`
+- **Usage**: `uv run scripts/identify.py --target-dir <directory> [flags]`
+- **Inferred Flags Mode**:
+    - If run without feature flags (e.g., `uv run scripts/identify.py --target-dir codebases/test1`), the script identifies the most prominent slob factors and outputs a suggested command (e.g., `Inferred Flags for Repository: --global-variables`).
+- **Targeted Aggregation Mode**:
+    - When specific flags are provided, the script outputs a consolidated summary:
+        - Total Repository Slob Score.
+        - Total count of the specific metric (e.g., total global variables).
+        - Top 3 Files most affected by that specific factor, with their individual scores.
 - **Flags**:
-    - `--global-variables`: Enable detection of non-constant global variables.
-    - `--complexity`: Enable cyclomatic complexity analysis.
-    - `--lloc`: Enable Logical Lines of Code (LLOC) analysis.
-    - `--public-private`: Enable analysis of public members that are never used outside their defining file.
-    - `--file-count <N>`: Display the top N files with the highest total slob score. Results will be grouped by file.
-- **Note**: If a flag is omitted, that specific slob identifier will not be processed or included in the results.
+    - `--global-variables`: Aggregate detection of non-constant global variables.
+    - `--complexity`: Aggregate cyclomatic complexity analysis.
+    - `--lloc`: Aggregate Logical Lines of Code (LLOC) analysis.
+    - `--public-private`: Aggregate analysis of public members that could be private.
 - **Functionality**: 
-    - Scans the target directory for Python files.
-    - Calculates requested metrics for each function.
-    - Outputs a report of candidate functions for refactoring based on active identifiers.
-    - If `--file-count` is specified, identifies the "slobbiest" files by summing scores of active identifiers.
+    - Scans the target directory for Python files and calculates core metrics.
+    - Automatically determines prominent slob factors if no flags are provided.
+    - Aggregates slob scores at the repository level for targeted reporting.
+    - Ranks files by their contribution to specific slob factors.
     - Respects exclusions defined in `code-slob-cleanup.json` and inline comments.
 
 ## `scripts/benchmark.py`
 
-- **Usage**: `uv run scripts/benchmark.py --target-dir <target_dir> --output <output_file>`
+- **Usage**: `uv run scripts/benchmark.py <original_file> <refactored_file> [flags]`
+- **Functionality**:
+    - Automatically generates diverse test inputs using Hypothesis strategies.
+    - Executes both original and refactored code across generated input sets.
+    - Measures and compares execution times to identifies performance regressions or improvements.
+    - Supports benchmarking for both standalone functions and class methods.
+    - Generates visual performance plots to illustrate speedup or throughput changes.
 
 ## `scripts/update_summary.py`
 
-- **Usage**: `uv run scripts/update_summary.py --target-dir <target_dir> --output <output_file>`
+- **Usage**: `uv run scripts/update_summary.py --repo <name> --summary-file <path> [flags]`
+- **Functionality**:
+    - Aggregated metrics across multiple repositories into a single CSV tracking file.
+    - Automatically classifies repositories into "Low", "Moderate", or "High" slob categories.
+    - Identifies the "Top Slob Factor" for each repository based on heuristic analysis.
+    - Generates a qualitative rationale explaining the primary driver of a repository's slob score.
+    - Maintains a cumulative history of scanning results across the entire codebases directory.
 
 ## `scripts/duplication.py`
 
-- **Usage**: `uv run scripts/duplication.py --target-dir <directory> --output <output_file>`
+- **Usage**: (Called internally by `identify.py` or `update_summary.py`)
+- **Functionality**:
+    - Parses Python source code into AST (Abstract Syntax Tree) representations.
+    - Normalizes code by stripping docstrings, comments, and renaming local variables to catch functional clones.
+    - Generates unique SHA-256 hashes for normalized code blocks to identify identical logic.
+    - Groups slob candidates by their code hash to detect cross-file duplication.
+    - Annotates candidates with references to their duplicate "twins" for easier cleanup.
 
 ## `scripts/orchestrator.py`
 
