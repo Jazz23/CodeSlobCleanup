@@ -1,12 +1,15 @@
-Repository,Total Slob Score,Total Files,Files Scanned,Slob Candidates,Top Slob Factor,Rationale,Global Variables,Public Classes,Private Classes,Classes Relevance, Total Classes, Total Functions
-brittle-test-example,67.20,4,2,0,Minor Debt,"2 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 5
-code-smells,3902.40,16,16,18,Semantic Misalignment,18 candidates identified. Worst offender is vehicle-registry-system/before.py::VehicleRegistry (Score: 143.2). Low semantic relevance between naming and file purpose identified.,1,21,0,0.60, 21, 57
-ecommerce-system,39.60,2,2,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 8
-exclusion-test,393.20,5,5,2,Utility Complexity,2 candidates identified. Worst offender is main.py::main_func (Score: 105.6). Driven primarily by code verbosity and sheer block size.,0,0,0,1.00, 0, 21
-hagent,125058.80,236,128,341,Complex Logic & God Classes,341 candidates identified. Worst offender is summarize_results.py::print_summary (Score: 13502.6). Individual function complexity (CC=116) is the primary driver.,50,257,2,0.91, 259, 2214
-non-deterministic-service,34.80,1,1,0,Minor Debt,"3 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 3
-test-clean-modular,27.00,3,3,0,Minor Debt,"7 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 7
-test-slob-complexity,245.60,2,2,1,Utility Complexity,1 candidates identified. Worst offender is nested_logic.py::deeply_nested_function (Score: 174.2). Driven primarily by code verbosity and sheer block size.,0,0,0,1.00, 0, 3
-test-slob-lloc,38.40,2,2,1,Utility Complexity,1 candidates identified. Worst offender is verbose_script.py::monolithic_processor (Score: 36.0). Driven primarily by code verbosity and sheer block size.,0,0,0,1.00, 0, 2
-test1,174.20,3,3,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",1,0,0,1.00, 0, 8
-test1-identified,187.00,5,3,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",1,0,0,1.00, 0, 15
+Repository,Total Slob Score,Total Files,Files Scanned,Slob Candidates,Top Slob Factor,Rationale,Global Variables,Public Classes,Private Classes,Classes Relevance, Total Classes, Total Functions,Suggested Flags
+brittle-test-example,67.20,4,2,0,Minor Debt,"2 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 5,--complexity
+code-smells,3902.40,16,16,18,Semantic Misalignment,18 candidates identified. Worst offender is vehicle-registry-system/before.py::VehicleRegistry (Score: 143.2). Low semantic relevance between naming and file purpose identified.,1,21,0,0.60, 21, 57,
+code-smells-python,0.00,0,0,0,Clean,No high-severity candidates found.,0,0,0,1.00, 0, 0,
+ecommerce-system,39.60,2,2,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 8,
+exclusion-test,393.20,5,5,2,Utility Complexity,2 candidates identified. Worst offender is main.py::main_func (Score: 105.6). Driven primarily by code verbosity and sheer block size.,0,0,0,1.00, 0, 21,--complexity
+global-refactor-test,83.40,3,3,0,Minor Debt,"5 functions found, none meet high-severity thresholds.",3,0,0,1.00, 0, 5,--global-variables
+hagent,0.00,0,0,0,Clean,No high-severity candidates found.,0,0,0,1.00, 0, 0,
+non-deterministic-service,34.80,1,1,0,Minor Debt,"3 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 3,
+privacy-test,14.80,3,3,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",0,2,0,1.00, 2, 6,--public-private
+test-clean-modular,27.00,3,3,0,Minor Debt,"7 functions found, none meet high-severity thresholds.",0,0,0,1.00, 0, 7,
+test-slob-complexity,245.60,2,2,1,Utility Complexity,1 candidates identified. Worst offender is nested_logic.py::deeply_nested_function (Score: 174.2). Driven primarily by code verbosity and sheer block size.,0,0,0,1.00, 0, 3,--complexity
+test-slob-lloc,38.40,2,2,1,Utility Complexity,1 candidates identified. Worst offender is verbose_script.py::monolithic_processor (Score: 36.0). Driven primarily by code verbosity and sheer block size.,0,0,0,1.00, 0, 2,
+test1,174.20,3,3,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",1,0,0,1.00, 0, 8,--global-variables
+test1-identified,187.00,5,3,0,Minor Debt,"8 functions found, none meet high-severity thresholds.",1,0,0,1.00, 0, 15,--global-variables

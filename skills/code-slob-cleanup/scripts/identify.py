@@ -131,9 +131,39 @@ def main():
     print(f"Slob Candidates: {len([c for c in slob_candidates if c['high_severity']])}")
     print("------------------------------")
     
-    # Determine if any filters are active
+    # If no filters were explicitly provided, try to infer them from the candidates
     filters_active = args.global_variables or args.complexity or args.lloc or args.public_private
     
+    if not filters_active and slob_candidates:
+        # Auto-detect prominent slob factors
+        total_globals = sum(len(c["semantic_info"]["global_vars"]) for c in slob_candidates)
+        avg_complexity = sum(c["metrics"]["complexity"] for c in slob_candidates) / len(slob_candidates)
+        avg_loc = sum(c["metrics"]["loc"] for c in slob_candidates) / len(slob_candidates)
+        
+        # Count classes vs private classes
+        public_classes = len([c for c in slob_candidates if c["type"] == "Class" and not c["is_private"]])
+        private_classes = len([c for c in slob_candidates if c["type"] == "Class" and c["is_private"]])
+        
+        inferred = []
+        if total_globals > 0:
+            args.global_variables = True
+            inferred.append("--global-variables")
+        if public_classes > private_classes or public_classes > 5:
+            args.public_private = True
+            inferred.append("--public-private")
+        if avg_complexity > 5:
+            args.complexity = True
+            inferred.append("--complexity")
+        if avg_loc > 100:
+            args.lloc = True
+            inferred.append("--lloc")
+            
+        if inferred:
+            print(f"Inferred Flags for Repository: {' '.join(inferred)}")
+            filters_active = True
+        else:
+            print("Inferred Flags for Repository: None")
+            
     filtered_candidates = []
     
     for cand in slob_candidates:
