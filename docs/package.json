@@ -1,0 +1,19 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Welcome to the documentation for the **Code Slob Cleanup** project. This project provides an automated toolchain and a packaged skill for coding agents, designed to identify, refactor, and rigorously verify Python code to remove \"code slob\"—subtle technical debt, unnecessary verbosity, and complexity often introduced by AI coding agents or rapid development.",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.30"
+  }
+}
