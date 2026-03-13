@@ -56,6 +56,21 @@ def get_inline_exclusions(file_path):
              
     return exclusions
 
+def is_path_excluded(file_path, config, root_dir):
+    """Checks if a file or directory path is excluded based on config."""
+    rel_path = os.path.relpath(file_path, root_dir)
+    if rel_path == ".":
+        return False
+        
+    exclude_paths = config.get("excludePaths", [])
+    for pattern in exclude_paths:
+        # Normalize pattern
+        p = pattern.rstrip('/')
+        # Check direct match or if it's a child of the pattern
+        if fnmatch.fnmatch(rel_path, p) or fnmatch.fnmatch(rel_path, p + '/*'):
+            return True
+    return False
+
 def is_excluded(file_path, func_name, func_start, func_end, config, root_dir, inline_excl):
     if inline_excl.get("ignore_file"):
         return True
@@ -74,15 +89,11 @@ def is_excluded(file_path, func_name, func_start, func_end, config, root_dir, in
         if func_start <= l_no <= func_end:
             return True
 
-    rel_path = os.path.relpath(file_path, root_dir)
-    
-    # Check excludePaths
-    exclude_paths = config.get("excludePaths", [])
-    for pattern in exclude_paths:
-        # Simple glob match for file or folder
-        if fnmatch.fnmatch(rel_path, pattern) or fnmatch.fnmatch(rel_path, pattern.rstrip('/') + '/*'):
-            return True
+    if is_path_excluded(file_path, config, root_dir):
+        return True
             
+    rel_path = os.path.relpath(file_path, root_dir)
+
     # Check excludeFunctions
     exclude_funcs = config.get("excludeFunctions", [])
     for pattern in exclude_funcs:

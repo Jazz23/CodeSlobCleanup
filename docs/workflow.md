@@ -15,9 +15,9 @@ Before starting, the agent determines if you want to **Refactor** new code or **
 In this phase, the toolchain identifies potential "code slob" candidates and prepares a temporary workspace for refactoring.
 
 1.  **Scope Determination**: The tool analyzes the user's request to determine which files or functions to target.
-2.  **Configuration**: The tool reads `code-slob-cleanup.json` (**auto-generating** it if it does not exist) to strictly exclude specific paths or functions.
-3.  **Golden Test Coverage (Optional)**: If requested, the `scripts/clean_untested.py` script is used to remove code that is not executed by a provided test suite.
-4.  **Discovery**: The tool uses `scripts/identify.py` to find complex or verbose functions using static analysis. It supports flags to target specific slob identifiers:
+2.  **Configuration**: The tool reads `codebases/exclusion-test/code-slob-cleanup.json` (**auto-generating** it if it does not exist) to strictly exclude specific paths or functions.
+3.  **Golden Test Coverage (Optional)**: If requested, the `skils/code-slob-cleanup/scripts/clean_untested.py` script is used to remove code that is not executed by a provided test suite.
+4.  **Discovery**: The tool uses `skils/code-slob-cleanup/scripts/identify.py` to find complex or verbose functions using static analysis. It supports flags to target specific slob identifiers:
     - `--global-variables`: Detect non-constant global variables.
     - `--complexity`: Analyze cyclomatic complexity.
     - `--lloc`: Analyze logical lines of code.
@@ -47,7 +47,7 @@ Once a function passes verification, it is moved back into the main codebase.
 - **Patching**: The tool uses surgical text replacement to update the source files.
 - **Test Validation**: Existing tests in the repository are run to ensure no regressions were introduced.
 - **Brittle Test Fixing**: If an existing test fails because it relied on the internal implementation of the "slob" code, the tool will update the test to be more robust.
-- **Record Edits**: For each successfully refactored function, an entry is added to the `edits` dictionary in `code-slob-cleanup.json`, storing the function identifier and the parent commit hash. This enables future reverts.
+- **Record Edits**: For each successfully refactored function, an entry is added to the `edits` dictionary in `codebases/exclusion-test/code-slob-cleanup.json`, storing the function identifier and the parent commit hash. This enables future reverts.
 
 ### Phase 5: Cleanup
 
@@ -59,7 +59,7 @@ The temporary workspace `.code-slob-tmp/` is deleted, leaving the codebase clean
 
 If you ask to "revert" or "undo" a cleanup, the agent follows this path:
 
-1.  **Identify Targets**: The agent scans the `edits` map in `code-slob-cleanup.json` to find the functions, classes, files, or folders you mentioned.
+1.  **Identify Targets**: The agent scans the `edits` map in `codebases/exclusion-test/code-slob-cleanup.json` to find the functions, classes, files, or folders you mentioned.
 2.  **Extract Original**: Using the stored commit hash and `git show`, the agent retrieves the original version of the code as it existed before the cleanup.
 3.  **Restore**: The refactored code in the current codebase is replaced with the extracted original code.
 4.  **Verify**: Existing tests are run to ensure the restoration is safe.

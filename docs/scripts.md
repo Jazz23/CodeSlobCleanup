@@ -2,11 +2,11 @@
 
 The **Code Slob Cleanup** project relies on several key Python scripts to automate the identification, verification, and cleaning of code. All scripts are ran using `uv run`.
 
-## `scripts/identify.py`
+## `skils/code-slob-cleanup/scripts/identify.py`
 
 This script is the entry point for finding "code slob" in your repository. It supports both automatic factor inference and targeted aggregation.
 
-- **Usage**: `uv run scripts/identify.py --target-dir <directory> [flags]`
+- **Usage**: `uv run skils/code-slob-cleanup/scripts/identify.py --target-dir <directory> [flags]`
 - **Inferred Flags Mode**:
     - If run without feature flags (e.g., `uv run scripts/identify.py --target-dir codebases/test1`), the script identifies the most prominent slob factors and outputs a suggested command (e.g., `Inferred Flags for Repository: --global-variables`).
 - **Targeted Aggregation Mode**:
@@ -26,9 +26,9 @@ This script is the entry point for finding "code slob" in your repository. It su
     - Ranks files by their contribution to specific slob factors.
     - Respects exclusions defined in `code-slob-cleanup.json` and inline comments.
 
-## `scripts/benchmark.py`
+## `skils/code-slob-cleanup/scripts/benchmark.py`
 
-- **Usage**: `uv run scripts/benchmark.py <original_file> <refactored_file> [flags]`
+- **Usage**: `uv run skils/code-slob-cleanup/scripts/benchmark.py <original_file> <refactored_file> [flags]`
 - **Functionality**:
     - Automatically generates diverse test inputs using Hypothesis strategies.
     - Executes both original and refactored code across generated input sets.
@@ -36,9 +36,9 @@ This script is the entry point for finding "code slob" in your repository. It su
     - Supports benchmarking for both standalone functions and class methods.
     - Generates visual performance plots to illustrate speedup or throughput changes.
 
-## `scripts/update_summary.py`
+## `skils/code-slob-cleanup/scripts/update_summary.py`
 
-- **Usage**: `uv run scripts/update_summary.py --repo <name> --summary-file <path> [flags]`
+- **Usage**: `uv run skils/code-slob-cleanup/scripts/update_summary.py --repo <name> --summary-file <path> [flags]`
 - **Functionality**:
     - Aggregated metrics across multiple repositories into a single CSV tracking file.
     - Automatically classifies repositories into "Low", "Moderate", or "High" slob categories.
@@ -46,7 +46,7 @@ This script is the entry point for finding "code slob" in your repository. It su
     - Generates a qualitative rationale explaining the primary driver of a repository's slob score.
     - Maintains a cumulative history of scanning results across the entire codebases directory.
 
-## `scripts/duplication.py`
+## `skils/code-slob-cleanup/scripts/duplication.py`
 
 - **Usage**: (Called internally by `identify.py` or `update_summary.py`)
 - **Functionality**:
@@ -56,11 +56,11 @@ This script is the entry point for finding "code slob" in your repository. It su
     - Groups slob candidates by their code hash to detect cross-file duplication.
     - Annotates candidates with references to their duplicate "twins" for easier cleanup.
 
-## `scripts/orchestrator.py`
+## `skils/code-slob-cleanup/scripts/orchestrator.py`
 
 This script manages the verification process within the `.code-slob-tmp/` workspace.
 
-- **Usage**: `uv run scripts/orchestrator.py .code-slob-tmp`
+- **Usage**: `uv run skils/code-slob-cleanup/scripts/orchestrator.py .code-slob-tmp`
 - **Functionality**:
     - Discovers all refactoring "jobs" in the temporary directory.
     - Executes `scripts/verify.py` for each job.
@@ -68,11 +68,11 @@ This script manages the verification process within the `.code-slob-tmp/` worksp
     - Benchmarks performance of Original vs Refactored code.
     - Summarizes the overall verification status.
 
-## `scripts/clean_untested.py`
+## `skils/code-slob-cleanup/scripts/clean_untested.py`
 
 This script allows you to remove code that is not covered by a specific "golden" test suite.
 
-- **Usage**: `uv run scripts/clean_untested.py <test_script_path>`
+- **Usage**: `uv run skils/code-slob-cleanup/scripts/clean_untested.py <test_script_path>`
 - **Functionality**:
     - Runs the provided test script under `coverage`.
     - Identifies all functions in the codebase that were NOT executed during the test.
@@ -81,7 +81,7 @@ This script allows you to remove code that is not covered by a specific "golden"
 
 ## Other Utility Scripts
 
-- **`scripts/verify.py`**: The core script for running Hypothesis-based property testing on a single function (called by `orchestrator.py`).
-- **`scripts/metrics.py`**: Provides the static analysis tools (like Radon) used by `identify.py`.
-- **`scripts/semantic.py`**: Identifies global variables, classes that should have their own files, and functions that should be private.
-- **`scripts/common.py`**: Shared utilities and configuration for the entire toolchain.
+- **`skils/code-slob-cleanup/scripts/verify.py`**: The core script for running Hypothesis-based property testing on a single function (called by `orchestrator.py`).
+- **`skils/code-slob-cleanup/scripts/metrics.py`**: Provides the static analysis tools (like Radon) used by `identify.py`.
+- **`skils/code-slob-cleanup/scripts/semantic.py`**: Identifies global variables, classes that should have their own files, and functions that should be private.
+- **`skils/code-slob-cleanup/scripts/common.py`**: Shared utilities and configuration for the entire toolchain.

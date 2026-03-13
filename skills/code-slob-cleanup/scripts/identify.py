@@ -30,13 +30,19 @@ def scan_directory(target_dir: Path):
     
     # Walk the directory
     for root, dirs, files in os.walk(target_dir):
-        # Modify dirs in-place to skip excluded directories
-        dirs[:] = [d for d in dirs if d not in exclude_dirs]
+        # Merge built-in excludes with config-based excludes for directory pruning
+        # This is a optimization to avoid walking into excluded trees
+        dirs[:] = [d for d in dirs if d not in exclude_dirs and not exclusions.is_path_excluded(Path(root) / d, config, target_dir)]
         
         for file in files:
             if file.endswith(".py"):
-                files_scanned += 1
                 file_path = Path(root) / file
+                
+                # Check path-based exclusion first
+                if exclusions.is_path_excluded(file_path, config, target_dir):
+                    continue
+                
+                files_scanned += 1
                 
                 try:
                     content = file_path.read_text(encoding="utf-8")
