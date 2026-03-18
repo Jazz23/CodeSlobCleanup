@@ -92,7 +92,10 @@ for script_path in "$SCRIPTS_DIR"/*.py; do
     cat > "$BIN_DIR/$script_name" <<EOF
 #!/bin/sh
 # Wrapper for $script_file in $PROJECT_NAME
-cd "$TARGET_DIR" && uv run skills/code-slob-cleanup/scripts/$script_file "\$@"
+# Self-locating: find the project root relative to this script
+SCRIPT_PATH="\$(cd "\$(dirname "\$0")" && pwd)"
+PROJECT_ROOT="\$(cd "\$SCRIPT_PATH/../.." && pwd)"
+cd "\$PROJECT_ROOT" && uv run skills/code-slob-cleanup/scripts/$script_file "\$@"
 EOF
     chmod +x "$BIN_DIR/$script_name"
     echo "  - Created wrapper: $script_name"
@@ -106,11 +109,16 @@ if [ -f "$BIN_DIR/identify" ]; then
         cat > "$BIN_DIR/$PROJECT_NAME" <<EOF
 #!/bin/sh
 # Master Wrapper for $PROJECT_NAME
+# Self-locating: find the project root relative to this script
+SCRIPT_PATH="\$(cd "\$(dirname "\$0")" && pwd)"
+BIN_DIR="\$SCRIPT_PATH"
+PROJECT_ROOT="\$(cd "\$BIN_DIR/../.." && pwd)"
+
 if [ "\$1" = "--help" ] || [ "\$1" = "-h" ]; then
     echo "=========================================================="
     echo "          $PROJECT_NAME - CODE SLOB CLEANUP SUITE          "
     echo "=========================================================="
-    for tool_path in "$BIN_DIR"/*; do
+    for tool_path in "\$BIN_DIR"/*; do
         tool_name=\$(basename "\$tool_path")
         # Skip aliases to avoid redundancy
         case "\$tool_name" in
@@ -128,9 +136,9 @@ if [ "\$1" = "--help" ] || [ "\$1" = "-h" ]; then
     # Finally show the main identify help
     echo ""
     echo ">>> HELP FOR: identify (default tool)"
-    "$BIN_DIR/identify" --help 2>&1 | sed 's/^/  /'
+    "\$BIN_DIR/identify" --help 2>&1 | sed 's/^/  /'
 else
-    "$BIN_DIR/identify" "\$@"
+    cd "\$PROJECT_ROOT" && "\$BIN_DIR/identify" "\$@"
 fi
 EOF
         chmod +x "$BIN_DIR/$PROJECT_NAME"
@@ -144,8 +152,16 @@ echo ""
 echo "✨ Setup complete!"
 echo "Project location: $TARGET_DIR"
 echo ""
-echo "To use the '$PROJECT_NAME' command, add this to your .bashrc or .zshrc:"
+echo "To use the '$PROJECT_NAME' command, run this command in your current shell:"
+echo "----------------------------------------------------------------------"
 echo "export PATH=\"\$PATH:$BIN_DIR\""
+echo "----------------------------------------------------------------------"
+echo ""
+echo "IMPORTANT: Copy the line above EXACTLY. Do not use '~' inside quotes,"
+echo "as your shell will not expand it correctly."
+echo ""
+echo "For permanent access, add the line to your .bashrc or .zshrc."
+echo "If you use Zsh, you may also need to run 'rehash' to update your command cache."
 echo ""
 echo "Then you can run:"
 echo "  cd $TARGET_DIR"

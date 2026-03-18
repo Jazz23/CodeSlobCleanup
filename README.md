@@ -26,3 +26,6 @@ The system follows an iterative loop:
 *   **Package Management**: `uv` (PEP 723 for standalone scripts)
 *   **Testing**: Hypothesis (Property-based), Pytest
 *   **Benchmarking**: Matplotlib/Numpy for performance comparison
+*   **Package Management**: `uv` (PEP 723 for standalone scripts)
+*   **Testing**: Hypothesis (Property-based), Pytest
+*   **Benchmarking**: Matplotlib/Numpy for performance comparison
