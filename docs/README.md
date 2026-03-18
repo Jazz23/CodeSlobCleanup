@@ -24,6 +24,7 @@ There are multiple workflows you can trigger with natural language. Below is a c
 - **"Revert cleanup changes made to the 'verify_user' function"** -> The agent will look at the commit it originally modified and revert the function.
 - **"Clean up global variables only"** -> The agent will skip other code slob identifiers and only look for global variables.
 - **"Remove all code that is not covered by `test_e2e.py`"** -> A Python script will run your provided test script to identify all code that is not covered by the test script and remove it.
+- **"Accessing --help remotely"** -> See [remote_help.md](remote_help.md) for how to set up the tool suite on any machine.
 
 ### Exclusions
 
