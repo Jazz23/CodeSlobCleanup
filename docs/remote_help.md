@@ -1,4 +1,6 @@
-# Accessing --help remotely
+# Scripts folder Access Information
+
+## CodeSlobCleanup/skills/code-slob-cleanup/scripts 
 
 You can set up and access the **CodeSlobCleanup** help system on any machine using these simple steps:
 
@@ -17,9 +19,16 @@ The script will output an `export PATH` command. Copy and run it exactly as prin
 export PATH="$PATH:/Users/jaisuraj/work/myproject/.codeslob/bin"
 ```
 
-### 3. Access the Master Help
-Now you can view the consolidated help for the entire suite from anywhere:
+### 3. Access the Master Help 
+Now you can view the consolidated help for an entire directory from anywhere:
 
 ```bash
 myproject --help
+```
+
+### 4. Access Help for any file
+Now you can view the consolidated help for a single file:
+
+```bash
+benchmark --help
 ```
