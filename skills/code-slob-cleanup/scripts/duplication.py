@@ -126,3 +126,8 @@ def find_duplicates(candidates):
                 cand["duplicate_locations"] = []
                 
     return candidates
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Utility for detecting duplicate code blocks using AST normalization.")
+    parser.parse_args()

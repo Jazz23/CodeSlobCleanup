@@ -106,3 +106,8 @@ def is_excluded(file_path, func_name, func_start, func_end, config, root_dir, in
                 return True
                 
     return False
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Logic for identifying excluded files, functions, and code blocks.")
+    parser.parse_args()
