@@ -5,7 +5,7 @@ Currently, the project only supports python codebases.
 
 # How to use
 
-See [getting started](https://jazz23.github.io/CodeSlobCleanup/#getting-started) for installation and usage instructions.
+See [getting started](https://jazz23.github.io/CodeSlobCleanup#getting-started) for installation and usage instructions.
 
 # Core Objectives
 1.  **Automated Identification**: Detect refactoring targets using static analysis metrics (Cyclomatic Complexity, LoC, nesting depth) and semantic analysis via the agent to identify redundant logic.
@@ -23,9 +23,6 @@ The system follows an iterative loop:
 
 # Technologies
 *   **Language**: Python 3.14+
-*   **Package Management**: `uv` (PEP 723 for standalone scripts)
-*   **Testing**: Hypothesis (Property-based), Pytest
-*   **Benchmarking**: Matplotlib/Numpy for performance comparison
 *   **Package Management**: `uv` (PEP 723 for standalone scripts)
 *   **Testing**: Hypothesis (Property-based), Pytest
 *   **Benchmarking**: Matplotlib/Numpy for performance comparison
