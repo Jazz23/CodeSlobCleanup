@@ -97,7 +97,8 @@ def get_function_metrics(code: str):
                 "loc": lloc,
                 "score": score,
                 "type": block_type,
-                "is_private": is_private
+                "is_private": is_private,
+                "raw_code": block_code
             })
         return results
     except Exception:

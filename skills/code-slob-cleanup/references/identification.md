@@ -49,6 +49,7 @@ Analyze the user's prompt for specific slob identifiers and file count.
     - (b) `public-members` (should be private)
     - (c) `cyclomatic-complexity`
     - (d) `loc`
+    - (e) `duplicate-code`
 *   **Action**: 
     1. Check if the user has explicitly mentioned specific identifiers (e.g., "clean up global variables") OR provided the letter-based format (e.g., "abd 5") in their original prompt.
     2. If identifiers OR a file count are present, record these as the **Identifier Scope** and **SKIP** the interaction below.
@@ -58,15 +59,17 @@ Analyze the user's prompt for specific slob identifiers and file count.
     > b. Make unnecessary public classes/functions private
     > c. Lower cyclomatic complexity
     > d. Lower line count per function
+    > e. Remove duplicate code
     > 
     > And for how many files?
     > 
-    > Simply type the letters of the identifiers you want to use, along with the file count. E.g. "abd 5".
+    > Simply type the letters of the identifiers you want to use, along with the file count. E.g. "abde 5".
 *   **Response Parsing**:
     - `a` -> `--global-variables`
     - `b` -> `--public-private`
     - `c` -> `--complexity`
     - `d` -> `--lloc`
+    - `e` -> `--duplicates`
     - The number provided (if any) -> `--file-count <number>`
 *   **Default**: If no identifiers are specified after the interaction, the scope includes all available identifiers.
 
@@ -92,6 +95,7 @@ Check for an existing `.code-slob-tmp` directory.
         *   `--complexity`: For cyclomatic complexity.
         *   `--lloc`: For logical lines of code.
         *   `--public-private`: For public/private member analysis.
+        *   `--duplicates`: For code duplication.
         *   `--file-count <N>`: To limit output to the top N "slobbiest" files.
         *   **Default**: If no **Identifier Scope** is specified, provide ALL identifier flags to perform a comprehensive scan.
         *   **Filter script output**: Manually filter the output of `identify.py` to remove any candidates that:

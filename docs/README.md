@@ -36,6 +36,7 @@ See [exclusions](exclusions.md) for how to specify functions, files, or folders 
 - Global variables
 - Public methods/classes that could be private
 - Dead code (code not covered by a provided test)
+- Code duplication (functional clones)
 
 ## How It Works
 

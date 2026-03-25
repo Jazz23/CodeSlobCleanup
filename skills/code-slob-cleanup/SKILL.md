@@ -1,6 +1,6 @@
 ---
 name: code-slob-cleanup
-description: A comprehensive skill to identify "code slob" (technical debt), refactor it into clean, idiomatic Python, and rigorously verify the changes using property-based testing. Use when the user asks for their code to be refactored, cleaned up, or to have slob/slop removed. Also use when the user asks to remove code not covered by a given test. Also use when the user asks to revert a previous cleanup.
+description: A comprehensive skill to identify "code slob" (technical debt, duplication, slop), refactor it into clean, idiomatic Python, and rigorously verify the changes using property-based testing. Use when the user asks for their code to be refactored, cleaned up, or to have slob/slop removed. Also use when the user asks to remove code not covered by a given test. Also use when the user asks to revert a previous cleanup.
 ---
 
 # Code Slob Cleanup Skill

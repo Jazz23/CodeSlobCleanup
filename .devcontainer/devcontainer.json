@@ -5,13 +5,18 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/python:latest",
 	"mounts": [
-  		"source=gemini,target=/home/vscode/.gemini,type=volume"
+  		"source=gemini,target=/home/vscode/.gemini,type=volume",
+  		"source=claude,target=/home/vscode/.claude,type=volume"
 	],
 	"features": {
 		"ghcr.io/devcontainers-extra/features/npm-packages:1": {
 			"packages": "@google/gemini-cli@preview"
 		},
-		"ghcr.io/devcontainers-extra/features/uv:1": {}
+		"ghcr.io/devcontainers-extra/features/uv:1": {},
+		"ghcr.io/stu-bell/devcontainer-features/claude-code:0": {}
+	},
+	"containerEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
 	},
 	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.gemini"
 

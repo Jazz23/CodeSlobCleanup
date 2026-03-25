@@ -22,6 +22,7 @@ In this phase, the toolchain identifies potential "code slob" candidates and pre
     - `--complexity`: Analyze cyclomatic complexity.
     - `--lloc`: Analyze logical lines of code.
     - `--public-private`: Identify public members that should be private.
+    - `--duplicates`: Analyze code duplication (functional clones).
 5.  **Extraction**: Identified functions are extracted into a temporary directory (`.code-slob-tmp/`) along with their dependencies and type hints.
 
 ### Phase 2: Refactoring

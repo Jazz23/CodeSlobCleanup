@@ -19,6 +19,7 @@ sys.path.append(str(Path(__file__).parent))
 import metrics
 import semantic
 import exclusions
+import duplication
 
 class CrossReferenceAnalyzer:
     def __init__(self, target_dir):
@@ -96,7 +97,7 @@ class CrossReferenceAnalyzer:
             # For ast.ImportFrom, we already handled it by adding the names directly to self.used_outside
             # So we don't need a fallback rough text search anymore, making it more accurate and preventing cross-contamination of duplicate names.
 
-def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, use_lloc=False, use_pub_priv=False):
+def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, use_lloc=False, use_pub_priv=False, use_duplicates=False):
     slob_candidates = []
     files_scanned = 0
 
@@ -216,7 +217,7 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
                 # Add a large penalty so it's prioritized for cleanup
                 total_score += 150 
 
-            if not is_high_severity and total_score <= 0:
+            if not is_high_severity and total_score <= 0 and not use_duplicates:
                 # If no identifiers are active or found, skip this candidate
                 continue
 
@@ -227,6 +228,7 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
                 "type": m["type"],
                 "is_private": m["is_private"],
                 "is_public_unused_outside": is_public_unused_outside,
+                "raw_code": m["raw_code"],
                 "metrics": {
                     "complexity": m["complexity"] if use_complexity else 0,
                     "loc": m["loc"] if use_lloc else 0,
@@ -241,6 +243,15 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
                 },
                 "high_severity": is_high_severity
             })
+
+    if use_duplicates:
+        slob_candidates = duplication.find_duplicates(slob_candidates)
+        # Update scores for duplicates
+        for cand in slob_candidates:
+            if cand.get("is_duplicate"):
+                cand["metrics"]["total_score"] += 100
+                cand["high_severity"] = True
+
     return files_scanned, slob_candidates
 
 def get_slob_classification(score):
@@ -259,6 +270,7 @@ def main():
     parser.add_argument("--complexity", action="store_true", help="Analyze cyclomatic complexity")
     parser.add_argument("--lloc", action="store_true", help="Analyze logical lines of code")
     parser.add_argument("--public-private", action="store_true", help="Analyze public/private usage")
+    parser.add_argument("--duplicates", action="store_true", help="Analyze code duplication")
     parser.add_argument("--file-count", type=int, help="Display top N files with highest total slob score")
 
     args = parser.parse_args()
@@ -273,7 +285,8 @@ def main():
         use_globals=args.global_variables,
         use_complexity=args.complexity,
         use_lloc=args.lloc,
-        use_pub_priv=args.public_private
+        use_pub_priv=args.public_private,
+        use_duplicates=args.duplicates
     )
 
     # Print summary
@@ -328,6 +341,8 @@ def print_candidate(cand):
             label = "[GLOBALS]"
         elif cand.get("is_public_unused_outside"):
             label = "[SHOULD BE PRIVATE]"
+        elif cand.get("is_duplicate"):
+            label = "[DUPLICATE]"
         else:
             if cand["type"] == "Class":
                 label = "[PUBLIC CLASS]" if not cand["is_private"] else "[PRIVATE CLASS]"
@@ -352,6 +367,11 @@ def print_candidate(cand):
 
         if cand.get("is_public_unused_outside"):
             print(f"         Reason: Public {cand['type'].lower()} is not used outside this file and should be private.")
+        
+        if cand.get("is_duplicate"):
+            print(f"         Duplicates found in:")
+            for loc in cand.get("duplicate_locations", []):
+                print(f"         - {loc}")
 
         if cand["semantic_info"]["global_vars"]:
             print(f"         Globals Found: {len(cand['semantic_info']['global_vars'])}")
