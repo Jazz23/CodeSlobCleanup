@@ -19,7 +19,10 @@
 	"containerEnv": {
 		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
 	},
-	"postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.gemini"
+	"postCreateCommand": {
+		"gemini": "sudo chown -R vscode:vscode /home/vscode/.gemini",
+		"test-setup": "docker build -t agent-test tests/"
+	}
 
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
