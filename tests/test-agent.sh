@@ -44,7 +44,7 @@ if [ "$MODEL" == "claude" ]; then
   fi
 elif [ "$MODEL" == "gemini" ]; then
   if [ -n "$HEADLESS_PROMPT" ]; then
-    COMMAND="gemini -y -p \"$HEADLESS_PROMPT\""
+    COMMAND="gemini -y --output-format json -p \"$HEADLESS_PROMPT\""
   else
     COMMAND="gemini -y"
   fi
