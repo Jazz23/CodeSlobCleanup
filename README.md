@@ -3,9 +3,17 @@
 
 Currently, the project only supports python codebases.
 
-# How to use
+# Installation
 
-See [getting started](https://jazz23.github.io/CodeSlobCleanup/#getting-started) for installation and usage instructions.
+Linux/Mac Auto Install/Uninstall/Update for Gemini/Claude/Codex:
+```bash
+curl -LsSf https://raw.githubusercontent.com/Jazz23/CodeSlobCleanup/refs/heads/main/install.sh | sh
+```
+
+Gemini CLI:
+```bash
+gemini extensions install https://github.com/Jazz23/CodeSlobCleanup
+```
 
 # Core Objectives
 1.  **Automated Identification**: Detect refactoring targets using static analysis metrics (Cyclomatic Complexity, LoC, nesting depth) and semantic analysis via the agent to identify redundant logic.
