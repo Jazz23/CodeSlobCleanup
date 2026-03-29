@@ -3,6 +3,27 @@ PARENT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # If $1 it's claude, the command is `claude --dangerously-skip-permissions`, if it's gemini, the command is `gemini -y`, if it's blank then ask the user for the command to run.
 
+usage() {
+  echo "Usage: $(basename "$0") [OPTIONS] [MODEL] [CODEBASE]"
+  echo ""
+  echo "Run agent tests inside a Docker container."
+  echo ""
+  echo "Arguments:"
+  echo "  MODEL      The AI model to test with: 'claude' or 'gemini'"
+  echo "             (omit to be prompted interactively)"
+  echo "  CODEBASE   Name of the codebase directory under codebases/"
+  echo "             (omit to be prompted interactively)"
+  echo ""
+  echo "Options:"
+  echo "  -prompt PROMPT   Run in headless mode with the given prompt"
+  echo "  -h, --help       Show this help message"
+  echo ""
+  echo "Examples:"
+  echo "  $(basename "$0")"
+  echo "  $(basename "$0") claude my-codebase"
+  echo "  $(basename "$0") gemini my-codebase -prompt 'Review the code'"
+}
+
 HEADLESS_PROMPT=""
 
 # Parse optional -prompt flag (can appear anywhere in args)
@@ -12,6 +33,10 @@ while [[ $# -gt 0 ]]; do
     -prompt)
       HEADLESS_PROMPT="$2"
       shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
       ;;
     *)
       POSITIONAL+=("$1")
@@ -26,7 +51,9 @@ if [ -z "$1" ]; then
 elif [[ "$1" == "gemini" || "$1" == "claude" ]]; then
   MODEL="$1"
 else
-  echo "Invalid argument. Please enter 'gemini' or 'claude'."
+  echo "Error: Invalid model '$1'. Expected 'gemini' or 'claude'."
+  echo ""
+  usage
   exit 1
 fi
 
