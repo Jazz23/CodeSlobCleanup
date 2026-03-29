@@ -113,7 +113,7 @@ def scan_directory(target_dir: Path, use_globals=False, use_complexity=False, us
 
     for root, dirs, files in os.walk(target_dir):
         # Modify dirs in-place to skip excluded directories
-        dirs[:] = [d for d in dirs if d not in exclude_dirs]
+        dirs[:] = [d for d in dirs if d not in exclude_dirs and not d.startswith(".")]
 
         for file in files:
             if file.endswith(".py"):
