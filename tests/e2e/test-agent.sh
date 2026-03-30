@@ -16,6 +16,8 @@ usage() {
   echo ""
   echo "Options:"
   echo "  -prompt PROMPT   Run in headless mode with the given prompt"
+  echo "  --global         Install skill into global ~/.claude/skills and ~/.gemini/skills"
+  echo "                   instead of the app directory"
   echo "  -h, --help       Show this help message"
   echo ""
   echo "Examples:"
@@ -25,14 +27,19 @@ usage() {
 }
 
 HEADLESS_PROMPT=""
+GLOBAL_INSTALL=false
 
-# Parse optional -prompt flag (can appear anywhere in args)
+# Parse optional flags (can appear anywhere in args)
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
   case "$1" in
     -prompt)
       HEADLESS_PROMPT="$2"
       shift 2
+      ;;
+    --global)
+      GLOBAL_INSTALL=true
+      shift
       ;;
     -h|--help)
       usage
@@ -77,4 +84,10 @@ elif [ "$MODEL" == "gemini" ]; then
   fi
 fi
 
-docker run -i -t --rm -v "$PARENT_DIR/codebases/$CODEBASE:/tempCodebase:ro" -v "$PARENT_DIR/skills:/tempSkill:ro" -v ~/.gemini:/home/node/.gemini -v ~/.claude:/home/node/.claude agent-test bash -c "cp -r /tempCodebase/. /app && mkdir -p /app/.gemini /app/.claude && cp -r /tempSkill/. /app/.gemini/skills && cp -r /tempSkill/. /app/.claude/skills && $COMMAND"
+if [ "$GLOBAL_INSTALL" = true ]; then
+  SKILL_INSTALL_CMD="mkdir -p /home/node/.gemini/skills /home/node/.claude/skills && cp -r /tempSkill/. /home/node/.gemini/skills && cp -r /tempSkill/. /home/node/.claude/skills"
+else
+  SKILL_INSTALL_CMD="mkdir -p /app/.gemini /app/.claude && cp -r /tempSkill/. /app/.gemini/skills && cp -r /tempSkill/. /app/.claude/skills"
+fi
+
+docker run -i -t --rm -v "$PARENT_DIR/codebases/$CODEBASE:/tempCodebase:ro" -v "$PARENT_DIR/skills:/tempSkill:ro" -v ~/.gemini:/home/node/.gemini -v ~/.claude:/home/node/.claude agent-test bash -c "cp -r /tempCodebase/. /app && $SKILL_INSTALL_CMD && $COMMAND"
