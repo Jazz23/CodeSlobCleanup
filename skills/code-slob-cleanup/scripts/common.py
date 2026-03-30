@@ -5,29 +5,6 @@
 # ///
 
 import sys
-import os
-import subprocess
-
-# Configure pycache to be created in the root of the active git repository
-# This runs on import to ensure all scripts importing this module share the config.
-try:
-    # Try to find git root
-    _git_root = subprocess.check_output(["git", "rev-parse", "--show-toplevel"], stderr=subprocess.DEVNULL, text=True).strip()
-    _pycache_dir = os.path.join(_git_root, "__pycache__")
-    os.makedirs(_pycache_dir, exist_ok=True)
-    sys.pycache_prefix = _pycache_dir
-    os.environ["PYTHONPYCACHEPREFIX"] = _pycache_dir
-except Exception:
-    # Fallback to local directory if git fails
-    try:
-        _script_dir = os.path.dirname(os.path.abspath(__file__))
-        _target_root = os.path.abspath(os.path.join(_script_dir, ".."))
-        _pycache_dir = os.path.join(_target_root, "__pycache__")
-        os.makedirs(_pycache_dir, exist_ok=True)
-        sys.pycache_prefix = _pycache_dir
-        os.environ["PYTHONPYCACHEPREFIX"] = _pycache_dir
-    except Exception:
-        pass
 
 import importlib.util
 import inspect
@@ -286,9 +263,6 @@ def smart_infer_arg_strategies(func: Callable, config: Dict[str, Any] = None) ->
         
         strategies = [_type_to_strategy(a) for a in args]
         strategy_options.append(st.tuples(*strategies))
-        
-    if not strategy_options:
-        return st.tuples(*[infer_strategy(p) for p in params])
-        
+
     print(f"    [INFO] Smart inference deduced {len(strategy_options)} valid signatures for {func.__name__}.")
     return st.one_of(*strategy_options)

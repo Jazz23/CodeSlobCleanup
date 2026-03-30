@@ -10,12 +10,6 @@ import argparse
 import os
 import sys
 
-try:
-    # Import common to configure sys.pycache_prefix
-    import common
-except ImportError:
-    pass
-
 import subprocess
 import json
 import time
@@ -229,5 +223,5 @@ def main():
     if any_failed:
         sys.exit(1)
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()

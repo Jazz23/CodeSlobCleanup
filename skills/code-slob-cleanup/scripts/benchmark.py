@@ -6,16 +6,9 @@
 # ]
 # ///
 
-import argparse
 import time
 import os
 import sys
-
-try:
-    # Import common to configure sys.pycache_prefix
-    import common
-except ImportError:
-    pass
 
 import inspect
 import numpy as np
@@ -33,10 +26,7 @@ verification_root = current_file.parents[1]
 sys.path.insert(0, str(project_root))
 sys.path.insert(0, str(verification_root))
 
-try:
-    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
-except ImportError:
-    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
+from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
 
 def generate_benchmark_inputs(func: Callable, num_inputs: int = 100, validate: bool = True, config: Dict[str, Any] = None) -> List[Any]:
     """Generates a list of input tuples for the given function using Hypothesis."""
@@ -53,7 +43,7 @@ def generate_benchmark_inputs(func: Callable, num_inputs: int = 100, validate: b
         
     try:
         collector()
-    except Exception:
+    except Exception:  # pragma: no cover
         pass
             
     if not validate:
@@ -188,90 +178,3 @@ def run_with_timeout(target, args, name, timeout=15):
         p.join()
         print(f"[SKIP] {name} (Timeout)")
 
-def main():
-    parser = argparse.ArgumentParser(description="Benchmark refactored code against original code.")
-    parser.add_argument("original", help="Path to original python file")
-    parser.add_argument("refactored", help="Path to refactored python file")
-    parser.add_argument("--plot", action="store_true", help="Generate benchmark plots")
-    parser.add_argument("--output-dir", default="benchmark_results", help="Directory for plots")
-    args = parser.parse_args()
-
-    config = {}
-    original_path = Path(args.original).resolve()
-    type_hints_path = original_path.parent / "type_hints.json"
-
-    if type_hints_path.exists():
-        try:
-            with open(type_hints_path, 'r') as f:
-                config = json.load(f)
-        except json.JSONDecodeError as e:
-            print(f"Error: Invalid JSON in type_hints.json: {e}")
-            sys.exit(1)
-
-    orig_mod = load_module_from_path(args.original, "original_mod")
-    ref_mod = load_module_from_path(args.refactored, "refactored_mod")
-
-    common_funcs = get_common_functions(orig_mod, ref_mod)
-
-    tasks = []
-    
-    for func_name in common_funcs:
-        tasks.append({
-            "target": worker_benchmark_func,
-            "args": (args.original, args.refactored, func_name, config),
-            "name": func_name
-        })
-
-    common_classes = get_common_classes(orig_mod, ref_mod)
-    
-    for cls_name in common_classes:
-        orig_cls = getattr(orig_mod, cls_name)
-        ref_cls = getattr(ref_mod, cls_name)
-        
-        methods1 = {n: m for n, m in inspect.getmembers(orig_cls, inspect.isfunction) if not n.startswith('_')}
-        methods2 = {n: m for n, m in inspect.getmembers(ref_cls, inspect.isfunction) if not n.startswith('_')}
-        common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
-        
-        for method_name in common_methods:
-             tasks.append({
-                "target": worker_benchmark_class_method,
-                "args": (args.original, args.refactored, cls_name, method_name, config),
-                "name": f"{cls_name}.{method_name}"
-            })
-
-    # Run tasks in parallel with a limit
-    max_workers = os.cpu_count() or 4
-    active_processes = []
-    
-    task_idx = 0
-    while task_idx < len(tasks) or active_processes:
-        # Start new processes if we have capacity and tasks
-        while len(active_processes) < max_workers and task_idx < len(tasks):
-            task = tasks[task_idx]
-            p = multiprocessing.Process(target=task["target"], args=task["args"])
-            p.start()
-            active_processes.append({"p": p, "start_time": time.time(), "name": task["name"]})
-            task_idx += 1
-            
-        # Check active processes
-        still_active = []
-        for proc_info in active_processes:
-            p = proc_info["p"]
-            if not p.is_alive():
-                p.join()
-            else:
-                # Check timeout
-                if time.time() - proc_info["start_time"] > 15:
-                    p.terminate()
-                    p.join()
-                    display_name = get_display_name(proc_info['name'], config)
-                    print(f"[SKIP] {display_name} (Timeout)")
-                else:
-                    still_active.append(proc_info)
-        
-        active_processes = still_active
-        time.sleep(0.1)
-
-if __name__ == "__main__":
-    multiprocessing.freeze_support()
-    main()

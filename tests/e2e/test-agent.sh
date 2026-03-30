@@ -1,5 +1,5 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PARENT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+PARENT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 # If $1 it's claude, the command is `claude --dangerously-skip-permissions`, if it's gemini, the command is `gemini -y`, if it's blank then ask the user for the command to run.
 

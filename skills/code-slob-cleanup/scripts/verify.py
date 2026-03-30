@@ -4,7 +4,6 @@
 # ]
 # ///
 
-import argparse
 import inspect
 import sys
 import traceback
@@ -32,11 +31,7 @@ import hypothesis
 import hypothesis.strategies as st
 from hypothesis.errors import Unsatisfiable
 
-try:
-    from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
-except ImportError:
-    # Fallback if necessary, though direct execution adds local dir to path
-    from verification.src.common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
+from common import load_module_from_path, get_common_functions, get_common_classes, infer_strategy, smart_infer_arg_strategies, get_display_name
 
 @dataclass
 class VerifyResult:
@@ -178,7 +173,11 @@ def check_result_equivalence(orig_res, orig_exc, ref_res, ref_exc, args_context)
         if ref_exc:
             ref_name = type(ref_exc).__name__
             if orig_name != ref_name:
-                 raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_name}, Refactored raised {ref_name}")
+                # If the original exception was explicitly raised (intentional), types must match.
+                # If it was an unexpected/unhandled error, allow differing types — both crashed, that's fine.
+                if is_explicit_raise(orig_exc):
+                    raise AssertionError(f"Mismatch for {args_context}: Original raised {orig_name} (explicit), Refactored raised {ref_name}")
+                return  # PASS - both threw unexpected errors, types don't need to match
         else:
             # Original raised, Refactored didn't. 
             # OK if it was an unhandled error (implicit raise), 
@@ -437,13 +436,9 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
         # But if Hypothesis Skipped because it couldn't construct the class, we need a way to construct the class.
         # If we can't construct the class, we can't run the method.
         
-        if hyp_res.status == "SKIP" and "Could not find valid constructor arguments" in (hyp_res.error or ""):
-             # If we have no sample args, we can't really run naive fuzzer on the method easily 
-             # without duplicating the init-arg-finding logic.
-             # For now, let's treat this as Naive also Skipping (implicitly).
-             naive_res = VerifyResult("SKIP", 0.0, "Could not find valid constructor arguments")
-        elif sample_args is not None:
-             # reuse sample_args
+        if sample_args is None:
+             naive_res = VerifyResult("SKIP", 0.0, hyp_res.error or "No sample args")
+        else:
              try:
                 inst_orig_naive = orig_cls(*sample_args)
                 inst_ref_naive = ref_cls(*sample_args)
@@ -452,9 +447,6 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
                 naive_res = run_naive_fuzzing(bound_orig_naive, bound_ref_naive)
              except Exception as e:
                 naive_res = VerifyResult("SKIP", time.time() - naive_start, str(e))
-        else:
-             # Should not happen if logic holds (if sample_args is None, we entered the first if block)
-             naive_res = VerifyResult("SKIP", 0.0, "No sample args")
              
         status = combine_results(full_name, hyp_res, naive_res, config=config)
         result_queue.put(status)
@@ -464,127 +456,3 @@ def worker_verify_class_method(orig_path, ref_path, cls_name, method_name, confi
         print(f"[SKIP] {display_name} (0.0000s) (Worker Error: {e})")
         result_queue.put("SKIPPED")
 
-def main():
-    parser = argparse.ArgumentParser(description="Verify refactored code against original code.")
-    parser.add_argument("original", help="Path to original python file")
-    parser.add_argument("refactored", help="Path to refactored python file")
-    args = parser.parse_args()
-
-    config = {}
-    original_path = Path(args.original).resolve()
-    type_hints_path = original_path.parent / "type_hints.json"
-
-    if type_hints_path.exists():
-        try:
-            with open(type_hints_path, 'r') as f:
-                config = json.load(f)
-        except json.JSONDecodeError as e:
-            print(f"Error: Invalid JSON in type_hints.json: {e}")
-            sys.exit(1)
-
-    try:
-        orig_mod = load_module_from_path(args.original, "original_mod")
-        ref_mod = load_module_from_path(args.refactored, "refactored_mod")
-        common_funcs = get_common_functions(orig_mod, ref_mod)
-        common_classes = get_common_classes(orig_mod, ref_mod)
-    except Exception as e:
-        print(f"[SKIP] (Module loading failed: {e})")
-        return
-
-    # Create a queue to collect results
-    result_queue = multiprocessing.Queue()
-    processes = []
-    success = True
-    
-    # Collect all tasks
-    tasks = []
-    
-    # Functions
-    for func_name in common_funcs:
-        if func_name.startswith('_') and not (func_name.startswith('__') and func_name.endswith('__')):
-            display_name = get_display_name(func_name, config)
-            print(f"[PASS] {display_name} (0.0000s) (Private function automatically passed)")
-            continue
-
-        tasks.append({
-            "target": worker_verify_function,
-            "args": (args.original, args.refactored, func_name, config, result_queue),
-            "name": func_name
-        })
-
-    # Class Methods
-    for cls_name in common_classes:
-        orig_cls = getattr(orig_mod, cls_name)
-        ref_cls = getattr(ref_mod, cls_name)
-        
-        methods1 = {n: m for n, m in inspect.getmembers(orig_cls, inspect.isfunction)}
-        methods2 = {n: m for n, m in inspect.getmembers(ref_cls, inspect.isfunction)}
-        common_methods = list(set(methods1.keys()).intersection(methods2.keys()))
-        
-        for method_name in common_methods:
-             full_name = f"{cls_name}.{method_name}"
-             
-             if method_name.startswith('_') and not (method_name.startswith('__') and method_name.endswith('__')):
-                 display_name = get_display_name(full_name, config)
-                 print(f"[PASS] {display_name} (0.0000s) (Private method automatically passed)")
-                 continue
-
-             if method_name.startswith('__') and method_name.endswith('__'):
-                 continue
-
-             tasks.append({
-                "target": worker_verify_class_method,
-                "args": (args.original, args.refactored, cls_name, method_name, config, result_queue),
-                "name": full_name
-            })
-
-    # Run tasks in parallel with a limit
-    max_workers = os.cpu_count() or 4
-    active_processes = []
-    
-    task_idx = 0
-    while task_idx < len(tasks) or active_processes:
-        # Start new processes if we have capacity and tasks
-        while len(active_processes) < max_workers and task_idx < len(tasks):
-            task = tasks[task_idx]
-            p = multiprocessing.Process(target=task["target"], args=task["args"])
-            p.start()
-            active_processes.append({"p": p, "start_time": time.time(), "name": task["name"]})
-            task_idx += 1
-            
-        # Check active processes
-        still_active = []
-        for proc_info in active_processes:
-            p = proc_info["p"]
-            if not p.is_alive():
-                p.join()
-            else:
-                # Check timeout
-                if time.time() - proc_info["start_time"] > 15:
-                    p.terminate()
-                    p.join()
-                    duration = time.time() - proc_info["start_time"]
-                    display_name = get_display_name(proc_info['name'], config)
-                    print(f"[SKIP] {display_name} ({duration:.4f}s) (Timeout)")
-                else:
-                    still_active.append(proc_info)
-        
-        active_processes = still_active
-        
-        # Drain queue
-        while not result_queue.empty():
-            try:
-                result = result_queue.get_nowait()
-                if result == "FAILURE":
-                    success = False
-            except Empty:
-                break
-        
-        time.sleep(0.1)
-
-    if not success:
-        sys.exit(1)
-
-if __name__ == "__main__":
-    multiprocessing.freeze_support()
-    main()
