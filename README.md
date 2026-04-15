@@ -15,6 +15,10 @@ Gemini CLI:
 gemini extensions install https://github.com/Jazz23/CodeSlobCleanup
 ```
 
+# How to use
+
+Click [here](https://jazz23.github.io/CodeSlobCleanup/) for a guide on how to use Code Slob Cleanup.
+
 # Core Objectives
 1.  **Automated Identification**: Detect refactoring targets using static analysis metrics (Cyclomatic Complexity, LoC, nesting depth) and semantic analysis via the agent to identify redundant logic.
 2.  **Safe Refactoring**: Employs your agent to perform code transformations such as function decomposition, visibility enforcement (Converting public to private), and dead code removal.
